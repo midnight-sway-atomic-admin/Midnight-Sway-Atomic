@@ -1,0 +1,225 @@
+/* Thunar GTK 3 theme overrides */
+
+/* X Base reset */
+* {
+  font-size: 12px;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: none;
+}
+
+/* X The main background of Thunar's file grid. Essential for theme's color */
+window,
+GtkWindow,
+.view,
+.treeview,
+.list,
+.icon-view {
+  background-color: #000000; 
+  color: #8A97BF;
+} 
+
+/* X Hide the icon directly left of the url in the main address bar (the "main address bar" is often named "location" in thunar's .css), and an icon above the left pane */
+ThunarPathEntry image,
+.thunar ThunarPathEntry image,
+.thunar .path-entry image,
+.thunar .location-entry image,
+.thunar entry image,
+.thunar image {
+  -gtk-icon-transform: scale(0);
+  margin-left: -6px;
+}
+
+/* X Hide scrollbars */
+scrollbar,
+scrollbar contents,
+scrollbar trough,
+scrollbar slider {
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  background: none;
+  opacity: 0;
+}
+
+/* X Main file pane inset: visually control icon grid */
+.thunar .standard-view {
+  padding-top: 50px;
+  padding-right: 100px;
+  padding-bottom: 69px;
+  padding-left: 100px;
+}
+
+/* X Drag-selection rectangle. Essential for theme's color */
+iconview.view rubberband,
+iconview.view .rubberband,
+treeview.view rubberband,
+treeview.view .rubberband,
+rubberband,
+.rubberband {
+  border: 1px solid #8A97BF;
+  background-color: transparent;
+}
+
+/* X Toolbar strip: the big background strip behind the main address bar. Essential for theme's color */
+.thunar toolbar,
+window.thunar toolbar {
+  background-color: #000000;
+  color: #ffffff;
+  border-color: #111111;
+} 
+
+/* X The main address bar position and inner padding. Essential for theme's color */
+.thunar #location-toolbar entry,
+window.thunar #location-toolbar entry,
+.thunar toolbar entry,
+window.thunar toolbar entry {
+  min-height: 0;
+
+  margin-top: 75px;
+  margin-bottom: 2px;
+  margin-left: 244px; /* This and "margin-right" control the horizontal position of the main address bar */
+  margin-right: 281px;
+
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 12px;
+  padding-right: 0;
+
+  background-color: #1a1a1a;
+  color: #8A97BF;
+  caret-color: #eeeeee;
+
+  border: 0.7px solid #474F63 /*#8A97BF*/;
+  border-radius: 15px; /* Sole control for main address bar corner rounding */
+  font-size: 11px;
+}
+
+/* X Selected text in the main address bar. Essential for theme's color */
+.thunar #location-toolbar entry selection,
+window.thunar #location-toolbar entry selection,
+.thunar toolbar entry selection,
+window.thunar toolbar entry selection {
+  background-color: #8A97BF;
+  color: #1a1a1a;
+}
+
+/* X Set ctrl+m context-menu hover background color */
+menu menuitem:hover,
+menu menuitem:selected {
+  background-color: #8A97BF;
+  background-image: none;
+  color: #ffffff;
+} 
+
+/* X Move the Thunar trash-bar action buttons toward the center */
+window.thunar infobar.info > revealer > box > buttonbox {
+  margin-right: 456px;
+  margin-left: 0px;
+}
+
+/* X Left shortcuts sidebar only: Places, Devices, Network, bookmarks. Essential for theme's color */
+.thunar scrolledwindow.shortcuts-pane treeview.view {
+    background-color: #000000;
+    color: transparent;
+}
+
+/* X Selected sidebar row. Essential for theme's color */
+.thunar treeview.view:selected,
+.thunar treeview.view:selected:focus {
+  background-color: #31364A;
+  color: #8A97BF;
+}
+
+/* X Side pane: bookmark/sidebar text size; 0 hides it */
+.thunar .sidebar .view {
+  font-size: 0px;
+}
+
+/* X List/search-results column header bar */
+.thunar treeview.view header button,
+.thunar treeview.view header button:backdrop {
+    background-image: none;
+    background-color: transparent;
+    color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+/* X Optional hover state of prior code block */
+.thunar treeview.view header button:hover {
+    background-image: none;
+    background-color: transparent;
+    color: transparent;
+}
+
+/* X Text caret (i.e. |) in main address bar. Essential for theme's color */
+.thunar entry:focus {
+    caret-color: #8A97BF;
+    -gtk-secondary-caret-color: #8A97BF; /* bidi-text secondary caret */
+}
+
+/* X Set ctrl+m menubar item text color while clicked/open. Essential for theme's color */
+.thunar menubar > menuitem:hover,
+.thunar menubar > menuitem:active,
+.thunar menubar > menuitem:checked {
+    color: #ffffff;
+}
+
+/* X Hide the icon to the left of the main address bar entry */
+.thunar toolbar entry {
+  -ThunarPathEntry-icon-size: 1;
+}
+
+.thunar toolbar entry image.left {
+  opacity: 0;
+  -gtk-icon-transform: scale(0);
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/* X Hide icons in the “Open With” combo box */
+ThunarPropertiesDialog ThunarChooserButton,
+ThunarPropertiesDialog ThunarChooserButton cellview,
+ThunarPropertiesDialog ThunarChooserButton window.popup,
+ThunarPropertiesDialog ThunarChooserButton window.popup * {
+    -gtk-icon-transform: scale(0);
+    -gtk-icon-shadow: none;
+}
+
+/* Linked to the prior code block. Fallback: hides icons in combo-box popups if the popup isn't scoped under ThunarChooserButton. Remove this block if it affects combo boxes in other GTK apps. */
+combobox cellview,
+combobox window.popup,
+combobox window.popup * {
+    -gtk-icon-transform: scale(0);
+    -gtk-icon-shadow: none;
+}
+
+/* X Trash commands' color */
+window.thunar infobar button,
+window.thunar infobar button label {
+  color: #8A97BF;
+}
+
+/* X Trash bar behind commands */
+window.thunar infobar,
+window.thunar infobar revealer,
+window.thunar infobar revealer box {
+  background: #000000;
+  background-color: #000000;
+  background-image: none;
+  border-color: #000000;
+}
+
+/* X Inactive menubar: remove grey inactive-window bar */
+window:backdrop menubar,
+menubar:backdrop {
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+    border-color: transparent;
+}
