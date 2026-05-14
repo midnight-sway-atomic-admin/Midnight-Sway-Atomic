@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+choice="$(printf '%s\n' \
+  "Thunar" \
+  "Firefox" \
+  "GIMP" \
+  "Wlsunset" \
+  "Bluetooth" | rofi -dmenu -i -p "Apps")"
+
+case "$choice" in
+  "Thunar")
+    thunar
+    ;;
+
+  "Firefox")
+    gtk-launch org.mozilla.firefox.desktop
+    ;;
+
+  "GIMP")
+    gtk-launch org.gimp.GIMP.desktop
+    ;;
+
+  "Wlsunset")
+    /home/user-1/.config/rofi/scripts/toggle-sunset.sh
+    ;;
+
+  "Bluetooth")
+    blueman-manager
+    ;;
+esac
