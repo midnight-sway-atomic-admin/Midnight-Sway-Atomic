@@ -1,0 +1,104 @@
+/* Waybar style.css */
+
+* {
+    font-family: 'Noto Sans Mono';
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+/* X Suppression of all tooltips at the CSS level */
+tooltip {
+    opacity: 0;
+}
+
+/* X Waybar text color */
+window#waybar {
+    color: #8A97BF;
+}
+
+/* X Waybar background color */
+window#waybar {
+  background-color: transparent;
+}
+
+/* X Remove all arbitrary extra padding and margins from all modules */
+#workspaces,
+#window,
+#clock,
+#battery,
+#temperature,
+#tray,
+#custom-power {
+    padding: 0;
+    margin: 0;
+    color: #8A97BF;
+}
+
+/* X Workspace button internal padding (space between numbers) */
+#workspaces button {
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0 5px;
+    background-color: transparent;
+    color: #494F65;
+}
+
+#workspaces button.focused {
+    color: #8A97BF;
+}
+
+#workspaces button.urgent {
+    background-color: transparent;
+    color: #eb4d4b;
+}
+
+/* X Power icon font control with zero padding */
+#custom-power {
+    font-size: 23px;
+    color: #8A97BF;
+}
+
+#temperature.critical {
+    background-color: transparent;
+    color: #FF1A1A;
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: #FF1A1A;
+}
+
+#battery {
+    background: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged,
+#battery.not-charging,
+#battery.pending-charge {
+    background-image: url("/home/user-1/.config/waybar/waybar-icons/00-battery.png");
+    min-width: 21px;
+    min-height: 21px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* X Power-button menu background color on hover */
+#custom-power menu menuitem:hover,
+#custom-power menu menuitem:selected {
+    background: #8A97BF;
+    background-image: none;
+}
+
+/* X Pulls battery icon 1px to the left; "2px" distorts the battery icon during workspace jumping */
+#battery {
+margin-left: -1px;
+}
