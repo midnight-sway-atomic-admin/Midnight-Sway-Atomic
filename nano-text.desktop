@@ -1,0 +1,8 @@
+# ~/.local/share/applications/nano-text.desktop
+[Desktop Entry]
+Type=Application
+Name=Nano Text Editor
+Exec=foot -e nano %F
+Terminal=false
+MimeType=text/plain;
+NoDisplay=true
