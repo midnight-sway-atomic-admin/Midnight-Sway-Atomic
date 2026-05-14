@@ -1,0 +1,8 @@
+rpm-ostree status -v
+top
+thunar -q
+pkill waybar
+swaymsg reload
+upgrade
+search
+
