@@ -3,7 +3,7 @@ configuration {
 }
 
 * {
-    /* Color shim: edit only these two values. */
+    /* Color shim: edit only these two values for color control */
     shim-base:                   rgba ( 26, 26, 26, 100 % );     /* dark grey background color / #1a1a1a */
     shim-accent:                 rgba ( 138, 151, 191, 100 % );  /* purple-blue accents and font colors / #8a97bf */
 
