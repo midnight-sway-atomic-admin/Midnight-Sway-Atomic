@@ -37,7 +37,7 @@ while [[ $PS1 == $'\n'* ]]; do
 done
 PS1=$'\n'"$PS1"
 
-# clock
+# Clock
 # Preserve Fedora's existing command-not-found handler, if present
 
 if ! declare -F __timer_old_command_not_found_handle >/dev/null; then
