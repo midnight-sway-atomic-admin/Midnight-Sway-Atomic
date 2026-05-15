@@ -83,8 +83,8 @@ window.thunar toolbar entry {
   margin-left: 244px; /* This and "margin-right" control the horizontal position of the main address bar */
   margin-right: 281px;
 
-  padding-top: 7px;
-  padding-bottom: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 12px;
   padding-right: 0;
 
@@ -93,7 +93,7 @@ window.thunar toolbar entry {
   caret-color: #eeeeee;
 
   border: 0.7px solid #474F63 /*#8A97BF*/;
-  border-radius: 15px; /* Sole control for main address bar corner rounding */
+  border-radius: 3px; /* Sole control for main address bar corner rounding */
   font-size: 11px;
 }
 
