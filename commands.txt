@@ -4,6 +4,7 @@
 
 
 Legend:
+
   core    usually present on a Fedora host
   shell   handled by the interactive shell, not a standalone program
   opt     valid, but may need a package installed or a toolbox container
