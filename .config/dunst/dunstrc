@@ -18,14 +18,14 @@
     background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
-    timeout = 0
+    timeout = 3
     highlight = "#ff0000"
 
 [urgency_normal]
     background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
-    timeout = 0
+    timeout = 5
     highlight = "#ff0000"
 
 [urgency_critical]
