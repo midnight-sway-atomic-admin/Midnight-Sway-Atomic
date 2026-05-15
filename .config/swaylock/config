@@ -21,11 +21,11 @@ ring-wrong-color=FF1A1A
 inside-wrong-color=000000
 line-wrong-color=FF1A1A
 
-ring-clear-color=a3be8c
+ring-clear-color=A3BE8C
 inside-clear-color=000000
-line-clear-color=a3be8c
+line-clear-color=A3BE8C
 
-text-color=ffffff
+text-color=FFFFFF
 text-ver-color=00FF00
 text-wrong-color=FF1A1A
-text-clear-color=a3be8c
+text-clear-color=A3BE8C
