@@ -1,7 +1,6 @@
 set mouse
 set softwrap
 set nohelp
-#set zero
 set emptyline
 
 # copy marked region -> Wayland clipboard (Ctrl-C)
