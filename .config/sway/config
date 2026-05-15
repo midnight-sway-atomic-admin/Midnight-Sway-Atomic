@@ -1,96 +1,96 @@
-# Use the Super/Windows key as the Sway modifier.
+# Use the Super/Windows key as the Sway modifier
 set $mod Mod4
 
-# Use foot as the terminal opened by Sway bindings.
+# Use foot as the terminal opened by Sway bindings
 set $term foot
 
-# Define rofi with foot as its terminal fallback.
+# Define rofi with foot as its terminal fallback
 set $rofi_cmd rofi \
     -terminal '$term'
 
-# Show rofi with desktop apps and PATH commands.
+# Show rofi with desktop apps and PATH commands
 #set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-# Custom rofi script.
+# Custom rofi script
 set $menu ~/.local/bin/rofi-apps
 
-# Load Fedora system snippets; /etc overrides matching /usr/share snippets.
+# Load Fedora system snippets; /etc overrides matching /usr/share snippets
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
 
-# Set the wallpaper on every output, cropped to fill.
+# Set the wallpaper on every output, cropped to fill
 output * bg ~/.local/share/wallpapers/desktop-swaylock-wallpaper.png fill
 
-# Scale the built-in display to 200%.
+# Scale the built-in display to 200%
 output eDP-1 scale 2
 
-# Apply these options to all touchpads.
+# Apply these options to all touchpads
 input "type:touchpad" {
     # Enable tap-to-click.
     tap enabled
 
-    # Make two-finger scrolling follow touch direction.
+    # Make two-finger scrolling follow touch direction
     natural_scroll enabled
 
-    # Disable the touchpad while typing.
+    # Disable the touchpad while typing
     dwt enabled
 }
 
-# Use the Adwaita cursor theme at 18 px on the default seat.
+# Use the Adwaita cursor theme at 18 px on the default seat
 seat seat0 xcursor_theme Adwaita 18
 
-# Reject X11 clients by disabling Xwayland.
+# Reject X11 clients by disabling Xwayland
 xwayland disable
 
-# Use one-pixel borders for tiled windows.
+# Use one-pixel borders for tiled windows
 default_border pixel 1
 
-# Use one-pixel borders for floating windows.
+# Use one-pixel borders for floating windows
 default_floating_border pixel 1
 
-# Set gaps between tiled windows to 12 px.
+# Set gaps between tiled windows to 12 px
 gaps inner 12
 
-# Add no extra gap beyond the inner edge gap.
+# Add no extra gap beyond the inner edge gap
 gaps outer 0
 
-# Hide gaps when a workspace has one visible tiled window.
+# Hide gaps when a workspace has one visible tiled window
 #smart_gaps on
 
-# Hide borders when a workspace has one visible tiled window.
+# Hide borders when a workspace has one visible tiled window
 #smart_borders on
 
-# Window colors: border, background, text, indicator, child border.
+# Window colors: border, background, text, indicator, child border
 client.focused          #474F63     #474F63     #FFFFFF     #8A97BF     #8A97BF
 client.focused_inactive #474F63     #474F63     #FFFFFF     #474F63     #474F63
 client.unfocused        #474F63     #474F63     #FFFFFF     #474F63     #474F63
 client.urgent           #00000000   #00000000   #00000000   #00000000   #00000000
 client.placeholder      #00000000   #00000000   #00000000   #00000000   #00000000
 
-# Open a terminal.
+# Open a terminal
 bindsym $mod+Return exec $term
 
-# Open the launcher.
+# Open the launcher
 bindsym $mod+d exec $menu
 
-# Close the focused window.
+# Close the focused window
 bindsym $mod+q kill
 
-# Toggle fullscreen for the focused window.
+# Toggle fullscreen for the focused window
 bindsym $mod+f fullscreen
 
-# Confirm before exiting the Sway session.
+# Confirm before exiting the Sway session
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
 
-# Move the focused container left or right.
+# Move the focused container left or right
 bindsym $mod+Left move left
 bindsym $mod+Right move right
 
-# Move focus between containers left or right.
+# Move focus between containers left or right
 bindsym $mod+Shift+Left focus left
 bindsym $mod+Shift+Right focus right
 
-# Switch to numbered workspaces.
+# Switch to numbered workspaces
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -102,7 +102,7 @@ bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
 
-# Move the focused container to numbered workspaces.
+# Move the focused container to numbered workspaces
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -114,24 +114,24 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-# Override $mod+w with no operation.
+# Override $mod+w with no operation
 bindsym $mod+w nop
 
-# Override $mod+e with no operation.
+# Override $mod+e with no operation
 bindsym $mod+e nop
 
-# Override $mod+s with no operation.
+# Override $mod+s with no operation
 bindsym $mod+s nop
 
-# Override $mod+h with no operation.
+# Override $mod+h with no operation
 bindsym $mod+h nop
 
-# Override $mod+v with no operation.
+# Override $mod+v with no operation
 bindsym $mod+v nop
 
-# Save a full-screen screenshot.
+# Save a full-screen screenshot
 bindsym --no-warn $mod+t exec sh -c 'grim ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
-# Save a user-selected-region screenshot.
+# Save a user-selected-region screenshot
 bindsym --no-warn $mod+r exec sh -c 'grim -g "$(slurp)" ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
