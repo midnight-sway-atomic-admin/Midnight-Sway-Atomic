@@ -1,3 +1,5 @@
+/* Bluelight-filter toggle */
+
 #!/bin/sh
 
 if pgrep -x wlsunset >/dev/null; then
