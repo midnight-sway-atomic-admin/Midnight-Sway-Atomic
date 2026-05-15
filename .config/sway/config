@@ -17,7 +17,7 @@ set $menu ~/.local/bin/rofi-apps
 # Load Fedora system snippets; /etc overrides matching /usr/share snippets
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
 
-# Set the wallpaper on every output, cropped to fill
+# Set the wallpaper on every output, cropped to fill (or fit, stretch, center, tile)
 output * bg ~/.local/share/wallpapers/desktop-swaylock-wallpaper.png fill
 
 # Scale the built-in display to 200%
