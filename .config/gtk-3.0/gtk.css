@@ -1,4 +1,4 @@
-/* Thunar GTK 3 theme overrides */
+/* Thunar GTK 3 theme overrides; "X" marks known-good control code */
 
 /* X Base reset */
 * {
@@ -191,7 +191,7 @@ ThunarPropertiesDialog ThunarChooserButton window.popup * {
     -gtk-icon-shadow: none;
 }
 
-/* Linked to the prior code block. Fallback: hides icons in combo-box popups if the popup isn't scoped under ThunarChooserButton. Remove this block if it affects combo boxes in other GTK apps. */
+/* Linked to the prior code block. Fallback: hides icons in combo-box popups if the popup isn't scoped under ThunarChooserButton. Remove this block if it affects combo boxes in other GTK apps */
 combobox cellview,
 combobox window.popup,
 combobox window.popup * {
