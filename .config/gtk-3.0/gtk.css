@@ -223,3 +223,9 @@ menubar:backdrop {
     box-shadow: none;
     border-color: transparent;
 }
+
+/* X Hover tooltip font size */
+tooltip label {
+    font-size: 8px;
+}
+
