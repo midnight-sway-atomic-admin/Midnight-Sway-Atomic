@@ -4,4 +4,5 @@ thunar -q
 pkill waybar
 swaymsg reload
 upgrade
+commands
 search
