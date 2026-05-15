@@ -1,0 +1,146 @@
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                 FEDORA SWAY ATOMIC — TERMINAL COMMANDS                       │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+Legend:
+  core    usually present on a Fedora host
+  shell   handled by the interactive shell, not a standalone program
+  opt     valid, but may need a package installed or a toolbox container
+  atomic  correct host-level workflow on Fedora Atomic Desktops
+
+
+FILE NAVIGATION AND FILE WORK
+─────────────────────────────
+  ls                         core   list files and directories
+  ls -la                     core   long listing, including dotfiles
+  cd DIR                     shell  change into DIR
+  cd                         shell  return to your home directory
+  pwd                        core   print the current directory
+  mkdir DIR                  core   create a directory
+  rm FILE                    core   remove a file
+  rm -r DIR                  core   remove a directory tree
+  rm -i FILE                 core   ask before removing a file
+  rm -rf DIR                 core   force-remove a directory tree; dangerous
+  cp SRC DEST                core   copy a file
+  cp -r SRC DEST             core   copy a directory tree
+  mv SRC DEST                core   move or rename a file or directory
+  ln -s TARGET LINK          core   create a symbolic link
+  touch FILE                 core   create FILE or update its modified time
+  cat FILE                   core   print a file to the terminal
+  cat > FILE                 shell  create/overwrite FILE from typed input; Ctrl-D ends input
+  more FILE                  core   page through a file
+  head FILE                  core   print the first 10 lines of a file
+  tail FILE                  core   print the last 10 lines of a file
+  tail -f FILE               core   follow new lines appended to a file
+
+
+SEARCHING
+─────────
+  grep PATTERN FILE          core   search FILE for PATTERN
+  grep -r PATTERN DIR        core   search recursively inside DIR
+  COMMAND | grep PATTERN     shell  filter COMMAND output for matching lines
+  locate NAME                opt    find paths from a prebuilt file index; package/database may be needed
+
+
+PROCESS AND JOB CONTROL
+───────────────────────
+  ps                         core   show processes in the current session
+  top                        core   show a live process monitor
+  kill PID                   shell  send a signal to PID; default asks the process to stop
+  kill -9 PID                shell  force-kill PID; use only when normal kill fails
+  killall NAME               opt    kill processes by executable name
+  bg                         shell  resume the current suspended job in the background
+  fg                         shell  bring the current background job to the foreground
+  fg %N                      shell  bring job number N to the foreground; see jobs
+  jobs                       shell  list jobs started by the current shell
+
+
+TERMINAL SHORTCUTS
+──────────────────
+  Ctrl-C                     shell  interrupt the foreground command
+  Ctrl-Z                     shell  suspend the foreground command; resume with fg or bg
+  Ctrl-D                     shell  send end-of-file; often exits an empty shell
+  Ctrl-L                     shell  clear the terminal screen
+  Ctrl-W                     shell  delete the word before the cursor
+  Ctrl-U                     shell  delete from cursor to start of line
+  Ctrl-R                     shell  reverse-search command history
+  !!                         shell  repeat the previous command
+  exit                       shell  close the current shell session
+
+
+SYSTEM INFORMATION
+──────────────────
+  date                       core   show the current date and time
+  cal                        opt    show this month's calendar
+  uptime                     core   show how long the system has been running
+  w                          core   show logged-in users and their activity
+  whoami                     core   print the current username
+  uname -a                   core   show kernel and machine information
+  cat /proc/cpuinfo          core   show CPU information
+  cat /proc/meminfo          core   show memory information
+  man COMMAND                core   open the manual page for COMMAND
+  df -h                      core   show filesystem space usage
+  du -sh PATH                core   show total disk usage for PATH
+  free -h                    core   show memory and swap usage
+  whereis COMMAND            core   find likely binary, source, and manual paths
+  which COMMAND              core   show the command that will run from PATH
+
+
+COMPRESSION AND ARCHIVES
+────────────────────────
+  tar cf ARCHIVE.tar FILES          core  create a tar archive
+  tar xf ARCHIVE.tar                core  extract a tar archive
+  tar czf ARCHIVE.tar.gz FILES      core  create a gzip-compressed tar archive
+  tar xzf ARCHIVE.tar.gz            core  extract a gzip-compressed tar archive
+  tar cjf ARCHIVE.tar.bz2 FILES     core  create a bzip2-compressed tar archive
+  tar xjf ARCHIVE.tar.bz2           core  extract a bzip2-compressed tar archive
+  gzip FILE                         core  compress FILE to FILE.gz
+  gzip -d FILE.gz                   core  decompress FILE.gz
+
+
+NETWORK
+───────
+  ping HOST                  core   test basic reachability to HOST
+  whois DOMAIN               opt    query domain registration records
+  dig DOMAIN                 opt    query DNS records
+  dig -x IP                  opt    reverse DNS lookup for IP
+  wget URL                   opt    download a file
+  wget -c URL                opt    continue a partial download
+
+
+PERMISSIONS
+───────────
+  chmod MODE FILE            core   change file permissions using octal mode
+  chmod 755 FILE             core   owner can read/write/execute; group/world can read/execute
+  chmod 644 FILE             core   owner can read/write; group/world can read
+  chmod 777 FILE             core   everyone can read/write/execute; almost never the right choice
+
+
+FEDORA SWAY ATOMIC: HOST PACKAGE AND APP WORKFLOW
+─────────────────────────────────────────────────
+  rpm-ostree status                 atomic  show deployments and pending host changes
+  sudo rpm-ostree upgrade           atomic  stage an OS update; reboot to boot into it
+  sudo rpm-ostree rollback          atomic  roll back to the previous deployment
+  sudo rpm-ostree install PKG       atomic  layer a Fedora RPM package onto the host
+  sudo rpm-ostree install ./PKG.rpm atomic  layer a local RPM onto the host
+  sudo rpm-ostree uninstall PKG     atomic  remove a layered host package
+
+  flatpak search NAME               atomic  search Flatpak apps
+  flatpak install REMOTE APP_ID     atomic  install a Flatpak app
+  flatpak list                      atomic  list installed Flatpaks
+  flatpak run APP_ID                atomic  run a Flatpak app
+  flatpak update                    atomic  update installed Flatpaks
+  flatpak uninstall APP_ID          atomic  remove a Flatpak app
+
+  toolbox create                    atomic  create a mutable Fedora development container
+  toolbox enter                     atomic  enter the default toolbox container
+  toolbox run COMMAND               atomic  run COMMAND inside a toolbox container
+
+
+BUILDING FROM SOURCE
+────────────────────
+  ./configure                opt    configure a source tree that uses autotools
+  make                       opt    build a project that has a Makefile
+  make install               opt    install built files; prefer doing this inside toolbox
+
