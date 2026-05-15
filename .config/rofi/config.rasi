@@ -1,14 +1,11 @@
-
-/* Rofi config for ~/.local/bin/rofi-apps launcher. That launcher uses: rofi -dmenu -i -p "Apps" */
-
 configuration {
     font: "Noto Sans Mono 10";
 }
 
 * {
     /* Color shim: edit only these two values. */
-    shim-base:                   rgba ( 26, 26, 26, 100 % );     /* dark grey / #1a1a1a */
-    shim-accent:                 rgba ( 138, 151, 191, 100 % );  /* accent / #8a97bf */
+    shim-base:                   rgba ( 26, 26, 26, 100 % );     /* dark grey background color / #1a1a1a */
+    shim-accent:                 rgba ( 138, 151, 191, 100 % );  /* purple-blue accents and font colors / #8a97bf */
 
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-active-foreground:  var(background);
