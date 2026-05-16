@@ -18,7 +18,7 @@ set $menu ~/.local/bin/rofi-apps
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
 
 # Set the wallpaper on every output, cropped to fill (or fit, stretch, center, tile)
-output * bg ~/.local/share/wallpapers/00-desktop-swaylock-wallpaper-2560-1600.png fill
+output * bg ~/.local/share/wallpapers/00-desktop-wallpaper-2560-1600.png fill
 
 # Scale the built-in display to 200%
 output eDP-1 scale 2
