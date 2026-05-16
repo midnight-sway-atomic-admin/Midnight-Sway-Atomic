@@ -81,7 +81,7 @@ window#waybar {
 #battery.plugged,
 #battery.not-charging,
 #battery.pending-charge {
-    background-image: url("/home/user-1/.config/waybar/waybar-icons/00-battery.png"); /* Replace "user-1" with your user-account name */
+    background-image: url("./waybar-icons/00-battery.png");
     min-width: 21px;
     min-height: 21px;
     background-size: contain;
