@@ -21,7 +21,7 @@ case "$choice" in
     ;;
 
   "Wlsunset")
-    /home/user-1/.config/rofi/scripts/toggle-sunset.sh
+    $HOME/.config/rofi/scripts/toggle-sunset.sh
     ;;
 
   "Bluetooth")
