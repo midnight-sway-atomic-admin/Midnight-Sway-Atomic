@@ -1,0 +1,106 @@
+Thunar Preferences Configuration
+
+1. Display Tab
+
+   1.1 Window Settings
+
+       - Use custom window decorations (only applied to new windows): Disabled
+       - Use current folder icon as window icon: Disabled
+
+   1.2 View Settings
+
+       - View new folders using: Last Active View
+       - Remember view settings for each folder: Enabled
+       - Sort folders before files: Disabled
+       - Show file size in binary format: Disabled
+
+   1.3 Thumbnails
+
+       - Show thumbnails: Always
+       - Only show thumbnails for files smaller than: Unlimited
+       - Draw frames around thumbnails: Disabled
+
+   1.4 Icon View
+
+       - Text beside icons: Disabled
+
+   1.5 Date
+
+       - Format: Thu 14 May 2026 02:24:12 PM EDT
+
+2. Side Pane Tab
+
+   2.1 Shortcuts Pane
+
+       - Icon Size: 16px
+       - Show Icon Emblems: Disabled
+
+   2.2 Tree Pane
+
+       - Icon Size: 16px
+       - Show Icon Emblems: Disabled
+
+   2.3 Icon Style
+
+       - Use symbolic folder icons: Enabled
+
+   2.4 Image Preview
+
+       - Image Preview Mode: Embedded
+
+3. Behavior Tab
+
+   3.1 Navigation
+
+       - Single click to activate items: Disabled
+       - Double click to activate items: Enabled
+
+   3.2 Tabs and Windows
+
+       - Open folders in new tabs on middle click: Disabled
+       - Open new thunar instances as tabs: Disabled
+       - Show full directory paths in tab titles: Disabled
+       - Restore tabs on startup: Disabled
+
+   3.3 Context Menu
+
+       - Show action to permanently delete files and folders: Disabled
+
+4. Advanced Tab
+
+   4.1 File Transfer
+
+       - Transfer files in parallel: Local Files Only (Idle Devices)
+       - Use intermediate file on copy: Never
+       - Verify file contents on copy: Always
+
+   4.2 Search
+
+       - Include subfolders: Always
+
+   4.3 Folder Permissions
+
+       - Default behavior when changing folder permissions: Ask every time
+
+   4.4 Security
+
+       - Execute shell scripts: Never
+
+   4.5 Volume Management
+
+       - Enable Volume Management: Disabled
+
+5. Shortcuts Tab
+
+   5.1 Window Shortcuts
+
+       - New Tab: Ctrl+T
+       - New Window: Ctrl+N
+       - Detach Tab: Unassigned (...)
+       - Close Tab: Ctrl+W
+       - Close Window: Ctrl+Q
+       - Close All Windows: Shift+Ctrl+W
+       - Undo: Ctrl+Z
+       - Redo: Shift+Ctrl+Z
+       - Preferences...: Unassigned (...)
+       - Reload: Ctrl+R, F5, Reload
