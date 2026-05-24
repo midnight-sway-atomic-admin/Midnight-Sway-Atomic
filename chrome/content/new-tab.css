@@ -1,6 +1,4 @@
-/* Firefox userContent.css
-   Stronger hide for the bottom-right New Tab customize/personalize pencil button.
-   Put this in the same profile chrome/ directory as userChrome.css, as userContent.css. */
+/* Hide the bottom-right New Tab customize/personalize pencil button */
 
 @-moz-document url("about:newtab"), url("about:home"), url("about:privatebrowsing"), url("chrome://browser/content/aboutNewTab.xhtml"), url("chrome://browser/content/aboutHome.xhtml") {
   /* Exact and current/legacy Activity Stream customize button selectors. */
@@ -50,8 +48,7 @@
     box-shadow: none !important;
   }
 
-  /* Current NTP builds may wrap the pencil button in a fixed-position corner container.
-     This stays narrow: only containers whose class/ID names identify them as customize/personalize/settings UI are hidden. */
+  /* Current NTP builds may wrap the pencil button in a fixed-position corner container. This stays narrow: only containers whose class/ID names identify them as customize/personalize/settings UI are hidden */
   [id*="customize" i],
   [id*="personalize" i],
   [class*="customize" i],
@@ -63,7 +60,7 @@
     pointer-events: none !important;
   }
 
-  /* Hide the panel too, in case the button was opened before the stylesheet loaded. */
+  /* Hide the panel too, in case the button was opened before the stylesheet loaded */
   .customize-menu,
   .customize-menu-container,
   .personalize-menu,
