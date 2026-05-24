@@ -2,7 +2,7 @@
 
 /* Comments tagged with "X" are seemingly necessary control code that roughly does what the comment says it does; this does not mean that the tagged code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X" the next step will be to make sure that code is as well-formed, precise, non-redundant, and as efficient as possible for what it does */
 
-/* Comments tagged with XX are as well-formed, precise, non-redundant, and efficient as possible for what the tagged code does */
+/* Comments tagged with "XX" are as well-formed, precise, non-redundant, and efficient as possible for what the tagged code does */
 
 /* This file in its current state is extremely bloated; ideally, it will be whittled down to no more than 1,000 LoC (exluding comments and blank lines) */
 
