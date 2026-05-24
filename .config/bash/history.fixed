@@ -1,8 +1,10 @@
 rpm-ostree status -v
+podman images
 top
 thunar -q
 pkill waybar
 swaymsg reload
+source ~/.bashrc
 upgrade
 commands
 search
