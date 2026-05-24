@@ -1,0 +1,105 @@
+/* Waybar style.css */
+
+/* Comments tagged with "X" are necessary control code that roughly does what the comment says it does; this does not mean that the tagged code is as efficient or well-formed or non-redundant or precise as it should be. When all code here has been tagged with "X" the next step will be to make sure that code is as well-formed, precise, and as efficient as possible for what it does */
+
+/* Comments tagged with XX are as well-formed, non-redundant, precise, and efficient as possible for what the tagged code does */
+
+* {
+    font-family: 'Noto Sans Mono';
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+/* X Suppression of all tooltips at the CSS level */
+tooltip {
+    opacity: 0;
+}
+
+/* Waybar background color */
+window#waybar {
+  background-color: transparent;
+}
+
+/* Remove all arbitrary extra padding and margins from all modules */
+#workspaces,
+#window,
+#clock,
+#battery,
+#temperature,
+#tray,
+#custom-power {
+    padding: 0;
+    margin: 0;
+    color: #8A97BF; /* Important for rice */
+}
+
+/* Workspace button internal padding (space between numbers) */
+#workspaces button {
+    min-width: 0;
+    min-height: 0;
+    margin: 0;
+    padding: 0 5px;
+    background-color: transparent;
+    color: #494F65; /* Important for rice */
+}
+
+#workspaces button.focused {
+    color: #8A97BF; /* Important for rice */
+}
+
+#workspaces button.urgent {
+    background-color: transparent;
+    color: #FF1A1A;
+}
+
+/* Power icon font control with zero padding */
+#custom-power {
+    font-size: 23px;
+    color: #8A97BF; /* Important for rice */
+}
+
+#temperature.critical {
+    background-color: transparent;
+    color: #FF1A1A;
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: #FF1A1A;
+}
+
+#battery {
+    background: none;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    min-height: 0;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged,
+#battery.not-charging,
+#battery.pending-charge {
+    background-image: url("./waybar-icons/battery-icon.svg");
+    min-width: 21px;
+    min-height: 21px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* X Power-button menu background color on hover */
+#custom-power menu menuitem:hover,
+#custom-power menu menuitem:selected {
+    background: #8A97BF; /* Important for rice */
+    background-image: none;
+
+}
+
+/* XX Pulls battery icon 1px to the left; "2px" distorts the battery icon during workspace jumping */
+#battery {
+margin-left: -1px;
+}
+
