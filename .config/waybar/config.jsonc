@@ -18,13 +18,11 @@
     },
 
     "clock#date": {
-        "timezone": "America/New_York",
         "format": "{:%a %d}",
         "tooltip": false
     },
 
     "clock#time": {
-        "timezone": "America/New_York",
         "format": "{:%H:%M}",
         "tooltip": false
     },
