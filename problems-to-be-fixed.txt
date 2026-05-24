@@ -46,4 +46,6 @@
 
 24. Either create a border for Firefox's quit dialogue box or center it within a black background;
 
-25. ...
+25. Expand and audit commands.txt;
+
+26. ...
