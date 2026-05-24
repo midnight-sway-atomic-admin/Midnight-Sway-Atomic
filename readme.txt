@@ -28,4 +28,4 @@ For the rice to look correct and be functional, you should:
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
-Note: AI -- mainly ChatGPT 5.5 plus but also other models -- have been and will continue to be indespensible in creating and maintaining the the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile .css code for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
+Note: AI -- mainly ChatGPT 5.5 plus but also other models -- have been and will continue to be indespensible in creating and maintaining the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile .css code for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
