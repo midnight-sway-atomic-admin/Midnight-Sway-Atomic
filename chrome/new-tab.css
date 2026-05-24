@@ -1,0 +1,81 @@
+/* Firefox userContent.css
+   Stronger hide for the bottom-right New Tab customize/personalize pencil button.
+   Put this in the same profile chrome/ directory as userChrome.css, as userContent.css. */
+
+@-moz-document url("about:newtab"), url("about:home"), url("about:privatebrowsing"), url("chrome://browser/content/aboutNewTab.xhtml"), url("chrome://browser/content/aboutHome.xhtml") {
+  /* Exact and current/legacy Activity Stream customize button selectors. */
+  button.personalize-button,
+  .personalize-button,
+  button.customize-button,
+  .customize-button,
+  button.prefs-button,
+  .prefs-button,
+  #personalizeButton,
+  #personalize-button,
+  #customizeButton,
+  #customize-button,
+  #prefs-button,
+  #prefsButton,
+  .newtab-customize-button,
+  .newtab-personalize-button,
+  .customize-menu-button,
+  .personalize-menu-button,
+  [data-l10n-id="newtab-personalize-button-label"],
+  [data-l10n-id="newtab-customize-button-label"],
+  [data-l10n-id="newtab-settings-button-label"],
+  [data-l10n-id*="personalize"],
+  [data-l10n-id*="customize"],
+  button[aria-label="Personalize New Tab"],
+  button[aria-label="Personalize new tab"],
+  button[aria-label="Customize New Tab"],
+  button[aria-label="Customize new tab"],
+  button[aria-label="Customize your New Tab page"],
+  button[title="Personalize New Tab"],
+  button[title="Personalize new tab"],
+  button[title="Customize New Tab"],
+  button[title="Customize new tab"],
+  button[title="Customize your New Tab page"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Current NTP builds may wrap the pencil button in a fixed-position corner container.
+     This stays narrow: only containers whose class/ID names identify them as customize/personalize/settings UI are hidden. */
+  [id*="customize" i],
+  [id*="personalize" i],
+  [class*="customize" i],
+  [class*="personalize" i],
+  [class*="prefs-button" i] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* Hide the panel too, in case the button was opened before the stylesheet loaded. */
+  .customize-menu,
+  .customize-menu-container,
+  .personalize-menu,
+  .personalize-menu-container,
+  .customization-menu,
+  .customization-menu-container,
+  [class*="customization-menu" i],
+  [class*="customize-menu" i],
+  [class*="personalize-menu" i] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
