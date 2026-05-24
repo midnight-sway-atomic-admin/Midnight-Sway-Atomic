@@ -19,6 +19,7 @@
 10. Standardize the four default wallpapers to various display sizes;
 
 11. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+
 12. Get a superior, more harmonious, custom set of icons;
 
 13. Create .svg versions of all icons;
