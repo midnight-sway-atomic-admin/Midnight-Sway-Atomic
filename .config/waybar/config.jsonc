@@ -1,0 +1,65 @@
+{
+    "height": 35,
+    "width": 250,
+    "spacing": 50,
+
+    "modules-center": [
+        "sway/workspaces",
+        "battery",
+        "temperature",
+        "clock#date",
+        "clock#time",
+        "tray",
+        "custom/power"
+    ],
+
+    "tray": {
+        "tooltip": false
+    },
+
+    "clock#date": {
+        "timezone": "America/New_York",
+        "format": "{:%a %d}",
+        "tooltip": false
+    },
+
+    "clock#time": {
+        "timezone": "America/New_York",
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C",
+        "tooltip": false
+    },
+
+    "battery": {
+        "interval": 2,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}%",
+        "format-discharging": "{capacity}%",
+        "format-plugged": " ",
+        "format-full": " ",
+        "format-charging": " ",
+        "tooltip": false
+    },
+
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "sync && systemctl poweroff",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "lock": "swaylock",
+	    "log off": "loginctl terminate-session $XDG_SESSION_ID"
+        }
+    }
+}
