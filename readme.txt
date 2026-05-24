@@ -14,7 +14,7 @@ For the rice to look correct and be functional, you should:
 
 (f) Use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
 
-(g) Get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+B opens the bookmarks sidebar, why do you need an icon for opening the bookmarks sidebar?);
+(g) Get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
 (h) In Thunar, press Ctrl+M, click View, and uncheck Show File Highlight;
 
