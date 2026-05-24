@@ -1,0 +1,48 @@
+1. Disable YouTube thumbs-up animation completely;
+
+2. Test the shims of the relevant config files to make sure that changing the main rice colors is easy;
+
+3. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as well-formed, efficient, non-redundant, and precise as possible (such code is tagged with "XX");
+
+4. Move Speed Controller's popup to a better position;
+
+5. Fix YouTube videoplayer thumbnail-to-videoplaying state jankiness (i.e., the lag between pressing play on the thumbnail and the video playing);
+
+6. Make YouTube videoplayer thumbnail dimensions strictly identical to those of the videoplayer;
+
+7. Make all gaps between Waybar status bar modules exactly identical;
+
+8. Set a universal, rigid width between YouTube videplayer channel name and thumbs-up-down buttons;
+
+9. Make YouTube front grid dead center (the left-side black-space is currently a few pixels too wide);
+
+10. Standardize the four default wallpapers to various display sizes;
+
+11. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+12. Get a superior, more harmonious, custom set of icons;
+
+13. Create .svg versions of all icons;
+
+14. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+
+15. Make sure the Thunar address bar is dead center;
+
+16. Hide the channel-name verified-circle under the YouTube videoplayer;
+
+17. Make Waybar power-button menu thinner;
+
+18. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+
+19. Fix current icon coverage by creating robust symlinks;
+
+20. Provide more elegant symlink icon;
+
+21. Improve Firefox UI hover states for certain buttons;
+
+22. Restore subscribe button on YouTube channel profiles;
+
+23. Implement better foot.ini ANSI colors;
+
+24. Either create a border for Firefox's quit dialogue box or center it within a black background;
+
+25. ...
