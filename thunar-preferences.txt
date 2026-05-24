@@ -26,7 +26,7 @@ Thunar Preferences Configuration
 
    1.5 Date
 
-       - Format: Thu 14 May 2026 02:24:12 PM EDT
+       - Format: Weekday DD Month YYYY HH:MM:SS
 
 2. Side Pane Tab
 
