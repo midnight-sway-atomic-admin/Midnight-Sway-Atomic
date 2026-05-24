@@ -1,0 +1,15 @@
+@-moz-document domain("www.newyorker.com") {
+  .bsgJVU.ExternalLinkEmbedWrapper-fuxWaS,
+  .jKLArK.StackedNavigationSectionUtilityLinks-klPYPc,
+  .jtXjDH.ContentFooterTagCloud-lmEydQ.hDgLib.TagCloudWrapper-iOOaiz,
+  .fVGmuA.BasePageSiteFooterRow-efkcBp.dNXSll.dZoWtJ.RowWrapper-efRjVu.BaseWrap-sc-SkJtP,
+  .linkstack.itarLF.LinkStackWrapper-jExPtO,
+  .large-screen.bookmark.hTsNPy.ActionBarButton-fDeyRu,
+  .bgxRip.Sidebar-ewzvSd,
+  .cDZhZJ.PullQuoteEmbedWrapper-sc-efqGLV,
+  iframe,
+  .mobile.bookmark.eIcifi.ActionBarButton-fDeyRu,
+  .fXsGnM.ResponsiveCartoonCTA-fGCcxD {
+    display: none !important;
+  }
+}
