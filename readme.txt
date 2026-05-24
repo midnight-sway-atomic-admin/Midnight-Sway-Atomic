@@ -22,9 +22,11 @@ For the rice to look correct and be functional, you should:
 
 (j) Note that the rofi files here assume you have flatpak Firefox and GIMP installed; if you use other apps, a simple change to the app names in the relevant rofi files is all you need to do; but you might have to manually adjust the rofi width to make the title of your apps cleanly fit fully within the rofi menu. But if you use something besides Firefox, as far as I know, you won't be able to apply Firefox's chrome files, and you won't be able to use the Firefox Temporary Extensions (Speed Dial and YouTube Speed Controller);
 
-(k) Be already subscribed to the YouTube channels you want to be subscribed to; the current YouTube userContent.css file hides the subscribe button on YouTube profiles, and this is listed in problems-to-be-fixed.txt. It will be fixed soon, but it is not an urgent priority for me.
+(k) Be already subscribed to the YouTube channels you want to be subscribed to; the current YouTube userContent.css file hides the subscribe button on YouTube profiles, and this is listed in problems-to-be-fixed.txt. It will be fixed soon, but it is not an urgent priority for me;
 
-(l) Remember that the extensions button is invisible but set to the left of the backwards-arrow icon.
+(l) Remember that the extensions button is invisible but set to the left of the backwards-arrow icon;
+
+(m) Install Privacy Badger, Ublock Origin, and NoScript.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
