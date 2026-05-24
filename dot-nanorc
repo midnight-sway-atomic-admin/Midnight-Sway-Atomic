@@ -1,0 +1,10 @@
+set mouse
+set softwrap
+set nohelp
+set emptyline
+
+# copy marked region -> Wayland clipboard (Ctrl-C)
+bind ^C "{execute}| wl-copy --type text/plain{enter}{undo}" main
+
+# paste Wayland clipboard -> insert at cursor (Ctrl-V)
+bind ^V "{execute}wl-paste --no-newline --type text/plain{enter}" main
