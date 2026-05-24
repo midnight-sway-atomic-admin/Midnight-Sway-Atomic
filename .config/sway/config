@@ -18,7 +18,7 @@ set $menu ~/.local/bin/rofi-apps
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
 
 # Set the wallpaper on every output, cropped to fill (or fit, stretch, center, tile)
-output * bg ~/.local/share/wallpapers/00-desktop-wallpaper-2560-1600.png fill
+output * bg ~/.local/share/wallpapers/2560-1600/00-desktop-wallpaper-2560-1600.png fill
 
 # Scale the built-in display to 200%
 output eDP-1 scale 2
@@ -81,7 +81,6 @@ bindsym $mod+f fullscreen
 # Confirm before exiting the Sway session
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
 
-
 # Move the focused container left or right
 bindsym $mod+Left move left
 bindsym $mod+Right move right
@@ -134,4 +133,3 @@ bindsym --no-warn $mod+t exec sh -c 'grim ~/screenshots/screenshot-$(date +%Y%m%
 
 # Save a user-selected-region screenshot
 bindsym --no-warn $mod+r exec sh -c 'grim -g "$(slurp)" ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
-
