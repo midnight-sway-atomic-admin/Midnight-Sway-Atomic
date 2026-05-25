@@ -26,7 +26,9 @@ For the rice to look correct and be functional, you should:
 
 (l) remember that the extensions button is invisible but set to the left of the backwards-arrow icon;
 
-(m) install Privacy Badger, Ublock Origin, and NoScript.
+(m) install Privacy Badger, Ublock Origin, and NoScript;
+
+(n) configure the appropriate scaling settings for your display in ~/.config/sway/config.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
