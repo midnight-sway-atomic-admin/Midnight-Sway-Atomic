@@ -30,7 +30,9 @@ For the rice to look correct and be functional, you should:
 
 (n) configure the appropriate scaling settings for your display in ~/.config/sway/config;
 
-(o) enable custom .css in Firefox by setting toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config.
+(o) enable custom .css in Firefox by setting toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config;
+
+(p) in Firefox's about:config, set full-screen-api.enabled to false (this prevents tapping to fullscreen on a YouTube video while preserving mod+f for an enlarged player).
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
