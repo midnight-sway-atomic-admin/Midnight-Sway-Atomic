@@ -1,5 +1,6 @@
 rpm-ostree status -v
 podman images
+flatpak list
 top
 thunar -q
 pkill waybar
