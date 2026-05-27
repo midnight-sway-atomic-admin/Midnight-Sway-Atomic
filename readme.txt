@@ -32,7 +32,9 @@ For the rice to look correct and be functional, you should:
 
 (o) in Firefox's about:config, set full-screen-api.enabled to false (this prevents tapping to fullscreen on a YouTube video while preserving mod+f for an enlarged player);
 
-(p) store your main bookmarks under the Bookmarks Toolbar. Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar.
+(p) store your main bookmarks under the Bookmarks Toolbar. Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar;
+
+(q) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text has been removed from the actual "Add Bookmark" popup.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
