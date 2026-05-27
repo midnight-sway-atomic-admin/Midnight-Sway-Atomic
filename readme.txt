@@ -10,13 +10,13 @@ For the rice to look correct and be functional, you should:
 
 (d) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
 
-(e) disable splitview and tab groups via about:config;
+(e) disable split view and tab groups via about:config;
 
 (f) use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
 
 (g) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(h) in Thunar, press Ctrl+M, click View, and uncheck Show File Highlight;
+(h) in Thunar, press Ctrl+M, click "View," and uncheck "Show File Highlight";
 
 (i) get used to used opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
 
@@ -24,15 +24,15 @@ For the rice to look correct and be functional, you should:
 
 (k) be already subscribed to the YouTube channels you want to be subscribed to; the current YouTube userContent.css file hides the subscribe button on YouTube profiles, and this is listed in problems-to-be-fixed.txt. It will be fixed soon, but it is not an urgent priority for me;
 
-(l) remember that the extensions button is invisible but set to the left of the backwards-arrow icon;
+(l) install Privacy Badger, Ublock Origin, and NoScript;
 
-(m) install Privacy Badger, Ublock Origin, and NoScript;
+(m) configure the appropriate scaling settings for your display in ~/.config/sway/config;
 
-(n) configure the appropriate scaling settings for your display in ~/.config/sway/config;
+(n) enable custom .css in Firefox by setting toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config;
 
-(o) enable custom .css in Firefox by setting toolkit.legacyUserProfileCustomizations.stylesheets to true in about:config;
+(o) in Firefox's about:config, set full-screen-api.enabled to false (this prevents tapping to fullscreen on a YouTube video while preserving mod+f for an enlarged player);
 
-(p) in Firefox's about:config, set full-screen-api.enabled to false (this prevents tapping to fullscreen on a YouTube video while preserving mod+f for an enlarged player).
+(p) store your main bookmarks under the Bookmarks Toolbar. Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
