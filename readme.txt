@@ -12,7 +12,7 @@ For the rice to look correct and be functional, you should:
 
 (e) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text has been removed from the actual "Add Bookmark" popup.
 
-(f) in Firefox's about:config, set full-screen-api.enabled to false (this prevents tapping to fullscreen on a YouTube video while preserving mod+f for an enlarged player);
+(f) in Firefox's about:config, set "full-screen-api.enabled" to "false" (this prevents tapping to fullscreen on a YouTube video while preserving Mod+F for an enlarged player);
 
 (g) disable split view and tab groups via about:config;
 
