@@ -16,7 +16,7 @@ For the rice to look correct and be functional, you should:
 
 (g) disable split view and tab groups via about:config;
 
-(h) set "browser.urlbar.scotchBonnet.enableOverride" to "false" in about:config; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords, making sure that even for these the blue left-side check mark is not set. It is much faster and more natural, for instance, to type "yt [your query]" and press enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press enter.
+(h) set "browser.urlbar.scotchBonnet.enableOverride" to "false" in about:config; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords, making sure that even for these the blue left-side check mark is not set. It is much faster and more natural, for instance, to type "yt [your query]" and press enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press enter;
 
 (i) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
 
@@ -36,7 +36,7 @@ For the rice to look correct and be functional, you should:
 
 (p) get used to used opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
 
-(q) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
+(q) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?).
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
