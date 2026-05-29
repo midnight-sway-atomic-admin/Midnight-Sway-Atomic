@@ -16,7 +16,7 @@ For the rice to look correct and be functional, you should:
 
 (g) disable split view and tab groups via about:config;
 
-(h) set "browser.urlbar.scotchBonnet.enableOverride" to "false" in about:config; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords, making sure that even for these the blue left-side check mark is not set. It is much faster and more natural, for instance, to type "yt [your query]" and press enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press enter;
+(h) set "browser.urlbar.scotchBonnet.enableOverride" to "false" in about:config; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords, making sure that even for these the blue left-side check mark is not set. (Unchecking the blue check mark prevents the ugly addition of icons and "This time search with" text to the bottom of your URL-bar dropdown.) Ultimately, it is much faster and more natural to type "yt [your query]" and press enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press enter;
 
 (i) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
 
