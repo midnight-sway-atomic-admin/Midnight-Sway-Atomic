@@ -44,7 +44,7 @@
 
 23. Expand and audit commands.txt;
 
-24. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between very easy;
+24. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
 25. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
