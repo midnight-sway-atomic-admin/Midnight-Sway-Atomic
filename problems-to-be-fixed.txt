@@ -42,14 +42,12 @@
 
 22. Implement better foot.ini ANSI colors;
 
-23. Either create a border for Firefox's quit dialogue box or center it within a black background;
+23. Expand and audit commands.txt;
 
-24. Expand and audit commands.txt;
+24. Create a light-colored pale matte version of the rice ("Midday Sway Atomic");
 
-25. Create a light-colored pale matte version of the rice ("Midday Sway Atomic");
+25. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-26. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
+26. Provide borders -- like the border of the URL dropdown -- for all "Alt"-button menu popups;
 
-27. Provide borders -- like the border of the URL dropdown -- for all "Alt"-button menu popups;
-
-28. ...
+27. ...
