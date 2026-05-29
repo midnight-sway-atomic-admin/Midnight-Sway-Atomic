@@ -9,7 +9,7 @@
 /* X Configure responsive single-line URL bar and tab bar layout */
 :root {
   --3tab-border-radius: 6px !important;
-  --NavbarWidth: 30;
+  --NavbarWidth: 24;
   --TabsHeight: 30;
   --TabsBorder: 8;
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
@@ -129,7 +129,7 @@
   --toolbarbutton-inner-padding: 4px !important;
 }
 
-/* X Hide Firefox's bottom-left status/link popups globally */
+/* X Hide Firefox's bottom-left gray status/link popups globally */
 #statuspanel,
 #statuspanel[type="overLink"],
 #statuspanel[type="status"],
@@ -183,7 +183,7 @@ toolbar[overflow] .scrollbox-button,
   padding: 0 !important;
 }
 
-/* URL, search, and find field colors */
+/* X URL, search, and find field colors */
 #urlbar,
 #urlbar-background,
 .urlbar-background,
@@ -192,9 +192,9 @@ toolbar[overflow] .scrollbox-button,
 .searchbar-textbox,
 findbar .findbar-textbox,
 findbar input {
-  background-color: #000000 !important;
+  background-color: transparent !important;
   color: #8a97bf !important;
-  border-color: transparent !important;
+  border-color: #0e0e0e !important;
   box-shadow: none !important;
   --link-color: #ffffff !important;
 }
@@ -206,9 +206,9 @@ findbar input {
 .searchbar-textbox[focused="true"],
 findbar .findbar-textbox:focus,
 findbar input:focus {
-  background-color: #000000 !important;
+  background-color: #060606 !important;
   color: #8a97bf !important;
-  border-color: transparent !important;
+  border-color: #13151B !important;
   box-shadow: none !important;
   outline: none !important;
 }
@@ -342,12 +342,12 @@ spacer[part="overflow-end-indicator"] {
   }
 }
 
-/* X Hide main search-bar text "Search with Duckduck Go or enter an address"
+/* X Hide main search-bar text "Search with Duckduck Go or enter an address" */
 @-moz-document url("chrome://browser/content/browser.xhtml") {
   #urlbar-input::placeholder {
     opacity: 0 !important;
   }
-}*/
+}
 
 /* X Hide right-side URL bar go-arrow icon, and blue globe icon */
 @-moz-document url("chrome://browser/content/browser.xhtml") {
@@ -526,90 +526,6 @@ menupopup#placesContext,
   display: none !important;
 }
 
-/* X Search-mode switcher panel cleanup. Hide only the heading/description row and the bottom settings row in the Unified Search / search-mode switcher panel. Engine choices remain visible */
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-description"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-description-menucaption"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-sticky-description-menucaption"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-one-off-header"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-header"],
-#searchmode-switcher-panel .search-panel-one-offs-header,
-#searchmode-switcher-panel .search-panel-one-offs-header-label,
-#searchmode-switcher-panel #urlbar-one-offs-header-label,
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-description"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-description-menucaption"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-sticky-description-menucaption"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-one-off-header"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-header"],
-#searchmode-switcher-panel-list-urlbar .search-panel-one-offs-header,
-#searchmode-switcher-panel-list-urlbar .search-panel-one-offs-header-label,
-#searchmode-switcher-panel-list-urlbar #urlbar-one-offs-header-label {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  pointer-events: none !important;
-}
-
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-search-settings-menuitem"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-search-settings-panelitem"],
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-settings-panelitem"],
-#searchmode-switcher-panel .search-setting-button,
-#searchmode-switcher-panel #urlbar-anon-search-settings,
-#searchmode-switcher-panel button.search-setting-button,
-#searchmode-switcher-panel .searchbar-engine-one-off-item.search-setting-button,
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-search-settings-menuitem"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-search-settings-panelitem"],
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-settings-panelitem"],
-#searchmode-switcher-panel-list-urlbar .search-setting-button,
-#searchmode-switcher-panel-list-urlbar #urlbar-anon-search-settings,
-#searchmode-switcher-panel-list-urlbar button.search-setting-button,
-#searchmode-switcher-panel-list-urlbar .searchbar-engine-one-off-item.search-setting-button,
-#searchmode-switcher-panel-list-urlbar button[title="Search Settings"],
-#searchmode-switcher-panel-list-urlbar button[label="Search Settings"],
-#searchmode-switcher-panel-list-urlbar toolbarbutton[label="Search Settings"],
-#searchmode-switcher-panel-list-urlbar menuitem[label="Search Settings"],
-#searchmode-switcher-panel-list-urlbar button[title="Settings"],
-#searchmode-switcher-panel-list-urlbar button[label="Settings"],
-#searchmode-switcher-panel-list-urlbar toolbarbutton[label="Settings"],
-#searchmode-switcher-panel-list-urlbar menuitem[label="Settings"] {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  pointer-events: none !important;
-}
-
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-search-settings-menuitem"] *,
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-search-settings-panelitem"] *,
-#searchmode-switcher-panel [data-l10n-id="urlbar-searchmode-popup-settings-panelitem"] *,
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-search-settings-menuitem"] *,
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-search-settings-panelitem"] *,
-#searchmode-switcher-panel-list-urlbar [data-l10n-id="urlbar-searchmode-popup-settings-panelitem"] * {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-}
-
 /* X Hide the "Switch to Tab" label/badge in Firefox URL-bar results */
 .urlbarView-row[type="switchtab"] .urlbarView-title-separator,
 .urlbarView-row[type="switchtab"] .urlbarView-action {
@@ -724,24 +640,6 @@ menupopup#placesContext,
   animation: none !important;
   background-image: none !important;
 }
-
-/* X Round the URL bar corners 
-#urlbar,
-#urlbar > #urlbar-background,
-#urlbar > .urlbar-background,
-#urlbar-background,
-.urlbar-background,
-#urlbar[breakout][breakout-extend] > #urlbar-background,
-#urlbar[breakout][breakout-extend] > .urlbar-background {
-  border-radius: 7px !important;
-}
-
-#urlbar > #urlbar-background,
-#urlbar > .urlbar-background,
-#urlbar-background,
-.urlbar-background {
-  overflow: hidden !important;
-} */
 
 /* X Toolbar, frame, tabstrip, and find bar colors */
 #navigator-toolbox,
@@ -1150,7 +1048,7 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   list-style-image: none !important;
 }
 
-/* Hide sidebar button */
+/* X Hide sidebar button */
 #sidebar-button {
   display: none !important;
 }
@@ -1259,34 +1157,12 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   input#input[type="search"],
   input#input[type="search"]:is(:hover, :focus, :focus-visible, :-moz-focusring) {
     background-color: transparent !important;
-    color: #8a97bf !important;
+    color: #939393 !important;
     border: 1px solid transparent !important;
     outline: 0 solid transparent !important;
     box-shadow: none !important;
   }
 }
-
-/* X Bookmarks sidebar search: set magnifying-glass color
-@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
-  #search-box::part(input),
-  #search-box #input.with-icon,
-  #search-box input.with-icon,
-  input#input[type="search"].with-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%238a97bf' d='M6.5 2a4.5 4.5 0 0 1 3.53 7.29l3.34 3.34a.75.75 0 1 1-1.06 1.06L8.97 10.35A4.5 4.5 0 1 1 6.5 2Zm0 1.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-size: 16px 16px !important;
-    background-position: 8px center !important;
-    padding-inline-start: 32px !important;
-    opacity: 0.5;
-  }
-
-  #search-box::part(input):-moz-locale-dir(rtl),
-  #search-box #input.with-icon:-moz-locale-dir(rtl),
-  #search-box input.with-icon:-moz-locale-dir(rtl),
-  input#input[type="search"].with-icon:-moz-locale-dir(rtl) {
-    background-position: center right 8px !important;
-  }
-}*/
 
 /* X Sidebar colors */
 #sidebar-box,
@@ -1300,20 +1176,21 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   border-color: #000000 !important;
 }
 
-/* Control the sidebar width */
+/* X Control the sidebar width */
 #sidebar-box {
   border-inline-end: none !important;
   box-shadow: none !important;
-  width: 200px !important;
-  min-width: 200px !important;
-  max-width: 200px !important;
+  width: 185px !important;
+  min-width: 185px !important;
+  max-width: 185px !important;
 }
 
-/* Hide sidebar width adjuster */
+/* X Hide sidebar width-adjuster */
 #sidebar-splitter {
   display: none !important;
 }
 
+/* X Bookmarks sidebar color controls */
 #bookmarks-view treechildren::-moz-tree-cell-text,
 #historyTree treechildren::-moz-tree-cell-text {
   color: #8a97bf !important;
@@ -1368,12 +1245,12 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   stroke: #8a97bf !important;
 }
 
-/* Bookmarks sidebar search: selected text highlight colors */
+/* X Bookmarks sidebar search: selected text highlight colors */
 @-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
   #search-box input::selection,
   #search-box #input::selection,
   input#input[type="search"]::selection {
-    background-color: #8a97bf !important; /* highlight color */
+    background-color: #939393 !important; /* highlight color */
     color: #000000 !important; /* text color while highlighted */
   }
 }
@@ -1446,7 +1323,7 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   }
 }
 
-/* Tab tooltips */
+/* X Tab tooltips */
 tooltip,
 #tabbrowser-tab-tooltip,
 #aHTMLTooltip,
@@ -1471,7 +1348,7 @@ tooltip label,
   color: #8a97bf !important;
 }
 
-/* Bookmarks sidebar search: hide the right-side clear "x" by masking it */
+/* X Bookmarks sidebar search: hide the right-side clear "x" by masking it */
 @-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
   #search-box {
     position: relative !important;
@@ -1483,12 +1360,9 @@ tooltip label,
     top: 2px !important;
     right: 2px !important;
     bottom: 2px !important;
-
     width: 24px !important;
-
     background-color: #000000 !important;
     border-radius: 0 6px 6px 0 !important;
-
     pointer-events: auto !important;
     z-index: 2147483647 !important;
   }
@@ -1574,6 +1448,27 @@ tooltip label,
   display: none !important;
 }
 
+/* X Remove all hover/click/focus highlights from tab audio-is-playing without changing live/mute states */
+.tabbrowser-tab .tab-audio-button {
+  --button-background-color-ghost: transparent !important;
+  --button-background-color-ghost-hover: transparent !important;
+  --button-background-color-ghost-active: transparent !important;
+  --button-background-color-ghost-selected: transparent !important;
+  --button-border-color-ghost: transparent !important;
+  --button-border-color-ghost-hover: transparent !important;
+  --button-border-color-ghost-active: transparent !important;
+  --button-border-color-ghost-selected: transparent !important;
+  --focus-outline: 0 solid transparent !important;
+  --focus-outline-color: transparent !important;
+}
+
+.tabbrowser-tab .tab-audio-button::part(button) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+}
+
 /* X Hide EME and DRM-content-disabled icons */
 notification[value="drmContentDisabled"],
 #eme-notification-icon {
@@ -1614,50 +1509,11 @@ notification[value="drmContentDisabled"],
   color: #8a97bf !important;
 }
 
-/*@namespace html url("http://www.w3.org/1999/xhtml");*/
+/*----------------------------------------------------------*/
+/* BEGIN LONG CONNECTED ADD-BOOKMARK-POPUP SETTINGS SECTION */
+/*----------------------------------------------------------*/
 
-/* X Search-mode switcher popup: vertical, icon-only */
-.searchmode-switcher-panel-list {
-  min-width: 40px !important;
-  width: 40px !important;
-}
-
-/* x Each popup row */
-.searchmode-switcher-panel-list > html|panel-item {
-  min-width: 40px !important;
-  width: 40px !important;
-  max-width: 40px !important;
-  font-size: 0 !important;
-}
-
-/* X Hide the generated text label */
-.searchmode-switcher-panel-list > html|panel-item::part(label) {
-  display: none !important;
-}
-
-/* X Keep the icon visible and centered */
-.searchmode-switcher-panel-list > html|panel-item::part(button) {
-  min-width: 40px !important;
-  width: 40px !important;
-  min-height: 32px !important;
-  height: 32px !important;
-  padding-inline: 0 !important;
-  background-position: center !important;
-  background-size: 16px !important;
-}
-
-/* X Popup */
-.searchmode-switcher-panel {
-  --panel-background: #000000 !important;
-  --panel-border-color: #8a97bf !important;
-}
-
-/* X Hide faded horizontal header and footer bars */
-.searchmode-switcher-panel-list > hr {
-  background-color: #000000 !important;
-}
-
-/* Add/Edit Bookmark popup colors and controls. Change only these custom properties to retheme the popup */
+/* X Add/Edit Bookmark popup colors and controls. Change only these custom properties to retheme the popup */
 #editBookmarkPanel,
 #editBMPanel_tagsAutocomplete,
 #editBMPanel_folderMenuList menupopup {
@@ -1765,7 +1621,7 @@ notification[value="drmContentDisabled"],
   border-color: transparent !important;
 }
 
-/* Color ordinary text in the popup. */
+/* Color ordinary text in the popup */
 #editBookmarkPanel :is(label, description, .caption-label) {
   color: var(--uc-bm-panel-fg) !important;
 }
@@ -2159,24 +2015,38 @@ notification[value="drmContentDisabled"],
 
 /* Color folder-tree twisty arrows */
 #editBMPanel_folderTree treechildren::-moz-tree-twisty {
-  color: var(--uc-bm-item-fg) !important;
-  fill: var(--uc-bm-item-fg) !important;
+  color: #8a97bf !important;
+  fill: #8a97bf !important;
 }
 
 /* Turn hovered folder-tree twisty arrows white */
 #editBMPanel_folderTree treechildren::-moz-tree-twisty(hover) {
-  color: var(--uc-bm-item-fg-hover) !important;
-  fill: var(--uc-bm-item-fg-hover) !important;
+  color: #8a97bf !important;
+  fill: #8a97bf !important;
 }
 
 /* Color selected folder-tree twisty arrows */
 #editBMPanel_folderTree treechildren::-moz-tree-twisty(selected),
 #editBMPanel_folderTree treechildren::-moz-tree-twisty(selected, focus) {
-  color: var(--uc-bm-item-fg-selected) !important;
-  fill: var(--uc-bm-item-fg-selected) !important;
+  color: #8a97bf !important;
+  fill: #8a97bf !important;
 }
 
-/* Hide the "Show editor when saving" checkbox row. Keep "browser.bookmarks.editDialog.showForNewBookmarks" set to true in about:config */
+/* X Hide the "Show editor when saving" checkbox row. Keep "browser.bookmarks.editDialog.showForNewBookmarks" set to true in about:config */
 #editBookmarkPanelBottomContent {
   display: none !important;
 }
+
+/*-----------------------------------------*/
+/* END ADD-BOOKMARK-POPUP SETTINGS SECTION */
+/*-----------------------------------------*/
+
+/* X Remove default left-side URL bar magnifying glass after "browser.urlbar.scotchBonnet.enableOverride" in about:config has been set to "false" */
+#identity-box[pageproxystate="invalid"] {
+  display: none !important;
+}
+
+/* X Add padding between the "s" in the URL bar text -- "Search with..." -- and the left URL border; comment this out when the text is hidden 
+#urlbar-input {
+  padding-left: 2px !important;
+}*/
