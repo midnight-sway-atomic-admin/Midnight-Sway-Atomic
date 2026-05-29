@@ -38,14 +38,18 @@
 
 20. Provide more elegant symlink icon;
 
-21. Improve Firefox UI hover states for certain buttons;
+21. Restore subscribe button on YouTube channel profiles;
 
-22. Restore subscribe button on YouTube channel profiles;
+22. Implement better foot.ini ANSI colors;
 
-23. Implement better foot.ini ANSI colors;
+23. Either create a border for Firefox's quit dialogue box or center it within a black background;
 
-24. Either create a border for Firefox's quit dialogue box or center it within a black background;
+24. Expand and audit commands.txt;
 
-25. Expand and audit commands.txt;
+25. Create a light-colored pale matte version of the rice ("Midday Sway Atomic");
 
-26. ...
+26. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
+
+27. Provide borders -- like the border of the URL dropdown -- for all "Alt"-button menu popups;
+
+28. ...
