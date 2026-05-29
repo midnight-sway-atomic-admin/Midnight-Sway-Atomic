@@ -1,7 +1,9 @@
-/* Hide the bottom-right New Tab customize/personalize pencil button */
+/* Firefox userContent.css */
+
+/* Hide for the bottom-right New Tab customize/personalize pencil button */
 
 @-moz-document url("about:newtab"), url("about:home"), url("about:privatebrowsing"), url("chrome://browser/content/aboutNewTab.xhtml"), url("chrome://browser/content/aboutHome.xhtml") {
-  /* Exact and current/legacy Activity Stream customize button selectors. */
+  /* Exact and current/legacy Activity Stream customize button selectors */
   button.personalize-button,
   .personalize-button,
   button.customize-button,
@@ -75,4 +77,8 @@
     opacity: 0 !important;
     pointer-events: none !important;
   }
+}
+
+@-moz-document url("about:newtab"), url("about:home") {
+  body { background: #000000 !important; }
 }
