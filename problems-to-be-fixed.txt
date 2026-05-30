@@ -1,6 +1,6 @@
 1. Disable YouTube thumbs-up animation completely;
 
-2. Test the shims of the relevant config files to make sure that changing the main rice colors is easy;
+2. Create shims of the relevant config files to make changing the main rice colors simple;
 
 3. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as  well-formed, precise, non-redundant, and as efficient as possible (such code is tagged with "XX");
 
@@ -48,6 +48,4 @@
 
 25. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-26. Provide borders -- like the border of the URL dropdown -- for all "Alt"-button menu popups;
-
-27. ...
+26. ...
