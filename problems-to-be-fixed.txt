@@ -46,4 +46,6 @@
 
 24. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-25. ...
+25. After the rice is completely finished, create a new set of show-case images;
+
+26. ...
