@@ -20,7 +20,7 @@ For the rice to look correct and be functional, you should:
 
 (i) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
 
-(j) store your main bookmarks under the Bookmarks Toolbar. Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar;
+(j) store your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
 (k) use only Ctrl+B to bring up the left-side bookmarks sidebar, while removing the horizontal bookmarks toolbar itself from appearing;
 
