@@ -1,13 +1,13 @@
 /* Firefox YouTube userContent.css */
 
-/* Comments tagged with "X" are necessary control code that roughly does what the comment says it does; this does not mean that the tagged code is as efficient or well-formed or precise as it should be. When all code here has been tagged with "X" the next step will be to make sure that code is as well-formed, non-redundant, precise, and as efficient as possible for what it does */
+/* Comments tagged with "X" are necessary control code that roughly does what the comment says it does; this does not mean that the tagged code is as well-formed, precise, non-redundant, and as efficient as it should be. When all code here has been tagged with "X" the next step will be to make sure that code is as well-formed, precise, non-redundant, and as efficient as possible for what it does */
 
-/* Comments tagged with XX are as well-formed, non-redundant, precise, and efficient as possible for what the tagged code does */
+/* Comments tagged with "XX" are as well-formed, precise, non-redundant, and as efficient as possible for what the tagged code does */
 
 /* This file in its current state is bloated; ideally, it will be whittled down to no more than 500 LoC (exluding comments and blank lines) */
 
-/* Color-control shim: edit these values to change the main theme colors */
-@-moz-document domain("youtube.com"), domain("www.youtube.com"), domain("youtube-nocookie.com"), url("about:newtab"), url("about:home") {
+/* Theme variables */
+@-moz-document domain("youtube.com"), url("about:newtab"), url("about:home") {
   :root {
     --ytc-page-bg:#000000;
     --ytc-accent:#8A97BF;
@@ -19,35 +19,61 @@
   }
 }
 
+/* Base, player, watch, home, and tooltip rules */
 @-moz-document domain("youtube.com") {
 
-  /* X Base page color and watch-page player frame */
+/* Base page background */
   html,
   ytd-app {
     background-color:var(--ytc-page-bg)!important;
   }
 
-  /* X Control knobs for YouTube's native video-player controls and custom player frame */
+/* Player sizing variables */
   #movie_player {
     --yt-player-controls-scale:0.65;
     --yt-player-controls-y:-60px;
     --yt-frame-video-scale:.87;
-    --yt-frame-thumb-width:68.91%; /* Tuned from screenshots: thumbnail was 1436px, video was 1384px */
+    --yt-frame-thumb-width:68.91%; /* Tune by comparing screenshots of states: videoplayer pre-play thumbnail was 1436px, video was 1384px */
     --yt-frame-thumb-height:87%;
     --yt-frame-bg:var(--ytc-page-bg);
     --yt-frame-border:var(--ytc-accent);
   }
 
+/* Player controls scale and offset */
   #movie_player .ytp-chrome-bottom {
     transform:translateY(var(--yt-player-controls-y)) scale(var(--yt-player-controls-scale))!important;
     transform-origin:bottom center!important;
   }
 
-  ytd-watch-flexy[video-id]:not([fullscreen])>#columns {
-    flex-direction:column!important;
-    align-items:center!important;
-  }
+/* X Set fixed videoplayer channel-name-to-thumbs-buttons spacing */
+ytd-watch-metadata #top-row {
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:400px!important; /* Change this pixel value. */
+}
 
+/* X Prevent YouTube's owner/actions containers from stretching or auto-spacing. Linked to prior codeblock */
+ytd-watch-metadata #top-row > #owner,
+ytd-watch-metadata #top-row > #actions {
+  flex:0 0 auto!important;
+  margin-left:0!important;
+  margin-right:0!important;
+  width:auto!important;
+  max-width:none!important;
+}
+
+/* X Keep the thumb buttons compact. Linked to prior two codeblocks */
+ytd-watch-metadata #actions,
+ytd-watch-metadata #top-level-buttons-computed {
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  gap:0!important;
+}
+
+/* Watch video frame. */
   ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) .html5-main-video {
     left:50%!important;
     transform:translateX(-50%) scale(var(--yt-frame-video-scale))!important;
@@ -56,7 +82,55 @@
     box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
   }
 
-  /* Hide YouTube chrome, sidebar, chat, comments, merch, and unwanted recommendations */
+/* X Pre-play thumbnail: hide actual video; this prevents the videoplayer from turning black */
+  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .html5-main-video {
+    opacity:0!important;
+    visibility:hidden!important;
+  }
+
+/* X Pre-play thumbnail: show thumbnail overlay after video has ended */
+  #movie_player:is(.ended-mode) :is(.ytp-cued-thumbnail-overlay,.ytp-cued-thumbnail-overlay-image,.ytp-large-play-button) {
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+
+  /* Pre-play thumbnail: show overlay. !CURRENTLY BEING TESTED FOR REMOVAL! 
+  #movie_player:is(.unstarted-mode,.cued-mode) :is(.ytp-cued-thumbnail-overlay,.ytp-cued-thumbnail-overlay-image,.ytp-large-play-button) {
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }*/
+
+  /* Pre-play thumbnail: overlay bounds. !CURRENTLY BEING TESTED FOR REMOVAL!
+  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay {
+    position:absolute!important;
+    inset:0!important;
+  }*/
+
+  /* X Pre-play thumbnail: centered and bordered */
+  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay-image {
+    position:absolute!important;
+    left:50%!important;
+    top:50%!important;
+    width:var(--yt-frame-thumb-width)!important;
+    height:var(--yt-frame-thumb-height)!important;
+    margin:0!important;
+    transform:translate(-50%,-50%)!important;
+    outline:1.15px solid var(--yt-frame-border)!important;
+    outline-offset:-1.15px!important;
+    background-size:cover!important;
+    background-position:center!important;
+    background-repeat:no-repeat!important;
+    box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
+  }
+
+  /* Pre-play thumbnail: hide playerplayer pre-play thumbnail chrome/buttons. !CURRENTLY BEING TESTED FOR REMOVAL!
+  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) :is(.ytp-chrome-top,.ytp-gradient-top,.ytp-gradient-bottom,.ytp-spinner,.ytp-title,.ytp-show-cards-title) {
+    display:none!important;
+  }*/
+
+  /* X Site chrome and sidebar hides */
   .ytp-gradient-bottom,
   .ytp-spinner,
   ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]),
@@ -76,7 +150,7 @@
     display:none!important;
   }
 
-  /* Preserve YouTube's native light/dark lockup text colors where inline colors are used */
+  /* Lockup metadata color: dark mode. */
   html[dark] yt-lockup-metadata-view-model .yt-lockup-metadata-view-model__metadata[style^="color:"] {
     color:var(--ytc-dark-metadata)!important;
   }
@@ -85,6 +159,7 @@
     color:var(--ytc-dark-title)!important;
   }
 
+  /* Lockup metadata color: light mode. */
   html:not([dark]) yt-lockup-metadata-view-model .yt-lockup-metadata-view-model__metadata[style^="color:"] {
     color:var(--ytc-light-metadata)!important;
   }
@@ -93,107 +168,47 @@
     color:var(--ytc-light-title)!important;
   }
 
-  /* Keep hover text color consistent with the custom theme. */
+/* X Hover text color: the three menu dots beside frontpage videos, the frontpage timestamp in the bottom-right corner of video-thumbnails, and the verified checkmark to the right of videoplayer channel names */
   *:hover {
-    color:var(--ytc-accent)!important;
+    color:#ffffff!important;
   }
 
-  /* Homepage grid centering and card cleanup. */
-  ytd-rich-grid-renderer,
-  ytd-browse[page-subtype="home"] :is(#primary,ytd-two-column-browse-results-renderer) {
-    margin-left:auto!important;
-    margin-right:auto!important;
-  }
-
-  ytd-rich-grid-renderer {
-    max-width:80%!important;
-  }
-
+/* X Live-chat padding reset */
   ytd-watch-flexy[live-chat-present-and-expanded] #columns {
     padding-right:0!important;
   }
 
-  ytd-watch-metadata #top-row {
-    display:flex!important;
-    justify-content:center!important;
-  }
-
-  ytd-rich-grid-renderer ytd-rich-item-renderer :is(#avatar-container,#avatar,#avatar-link,yt-decorated-avatar-view-model,yt-avatar-shape,.yt-spec-avatar-shape,.yt-spec-avatar-shape__button,.yt-spec-avatar-shape__image) {
-    display:none!important;
-  }
-
-  ytd-rich-grid-renderer ytd-rich-item-renderer #details {
-    grid-template-columns:1fr!important;
-  }
-
-  ytd-rich-grid-renderer ytd-rich-item-renderer #meta {
-    margin-left:0!important;
-  }
-
-  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer ytd-rich-item-renderer:hover,
-  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer ytd-rich-item-renderer:hover :is(*,*::before,*::after) {
-    box-shadow:none!important;
-    outline:none!important;
-    filter:none!important;
-  }
-
-  ytd-browse[page-subtype="home"] :is(#primary,ytd-rich-grid-renderer) yt-lockup-view-model :is(yt-touch-feedback-shape,.ytSpecTouchFeedbackShapeHovered) {
-    display:none!important;
-  }
-
+/* X Frontpage left-side page-manager margin reset */
   ytd-app[guide-persistent-and-visible] ytd-page-manager,
   ytd-app[mini-guide-visible] ytd-page-manager,
   ytd-page-manager {
     margin-left:0!important;
   }
 
+/* X Frontpage centering */
+  ytd-rich-grid-renderer,
+  ytd-browse[page-subtype="home"] :is(#primary,ytd-two-column-browse-results-renderer) {
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+
+/* Shrink frontpage contents to 80% */
+  ytd-rich-grid-renderer {
+    max-width:80%!important;
+  }
+
+/* X Suppress frontpage hover colored background highlight */
+  ytd-browse[page-subtype="home"] :is(#primary,ytd-rich-grid-renderer) yt-lockup-view-model :is(yt-touch-feedback-shape,.ytSpecTouchFeedbackShapeHovered) {
+    display:none!important;
+  }
+
+/* X Frontpage padding reset */
   ytd-browse[page-subtype="home"] :is(ytd-rich-grid-renderer,#contents) {
     padding-left:0!important;
     padding-right:0!important;
   }
 
-  ytd-browse[page-subtype="home"] #contents {
-    justify-content:center!important;
-  }
-
-  /* Pre-play, cued, and ended-state thumbnail treatment */
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .html5-main-video {
-    opacity:0!important;
-    visibility:hidden!important;
-  }
-
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) :is(.ytp-cued-thumbnail-overlay,.ytp-cued-thumbnail-overlay-image,.ytp-large-play-button) {
-    display:block!important;
-    visibility:visible!important;
-    opacity:1!important;
-  }
-
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay {
-    position:absolute!important;
-    inset:0!important;
-  }
-
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay-image {
-    position:absolute!important;
-    left:50%!important;
-    top:50%!important;
-    width:var(--yt-frame-thumb-width)!important;
-    height:var(--yt-frame-thumb-height)!important;
-    margin:0!important;
-    transform:translate(-50%,-50%)!important;
-    outline:1.15px solid var(--yt-frame-border)!important;
-    outline-offset:-1.15px!important;
-    background-size:cover!important;
-    background-position:center!important;
-    background-repeat:no-repeat!important;
-    box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
-  }
-
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) :is(.ytp-chrome-top,.ytp-gradient-top,.ytp-gradient-bottom,.ytp-spinner,.ytp-title,.ytp-show-cards-title) {
-    display:none!important;
-  }
-
-  /* X Hide YouTube in-page hover tooltips, such as like-button labels */ 
+/* X In-page tooltip hides */
   tp-yt-paper-tooltip,
   ytd-tooltip-renderer,
   yt-tooltip-renderer,
@@ -210,35 +225,9 @@
   .yt-tooltip,
   .tp-yt-paper-tooltip {
     display:none!important;
-    visibility:hidden!important;
-    opacity:0!important;
-    pointer-events:none!important;
   }
 
-  /* X Suppress native title-attribute tooltips on homepage video titles.
-     Watch-page channel-name tooltips are native title-attribute tooltips on YouTube's
-     channel-name DOM. CSS cannot remove title attributes while preserving mouse clicks,
-     so the watch-page channel-name title is handled by the companion userscript. */
-  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer :is(
-    a#video-title-link,
-    a#video-title,
-    #video-title-link,
-    #video-title,
-    .yt-lockup-view-model__title,
-    .yt-lockup-metadata-view-model__title
-  ),
-  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer :is(
-    a#video-title-link,
-    a#video-title,
-    #video-title-link,
-    #video-title,
-    .yt-lockup-view-model__title,
-    .yt-lockup-metadata-view-model__title
-  ) * {
-    pointer-events:none!important;
-  }
-
-  /* X Preserve watch-page channel-name clickability. */
+/* X Preserve videoplayer channel-name link clickability */
   ytd-watch-flexy[video-id] ytd-video-owner-renderer ytd-channel-name :is(
     a,
     a *
@@ -247,8 +236,7 @@
     cursor:pointer!important;
   }
 
-  /* X Hide YouTube-rendered watch-page channel hovercard surfaces.
-     This does not affect Firefox's native title tooltip; the companion userscript removes that. */
+/* X Hide videoplayer channel-name hovercards */
   ytd-watch-flexy[video-id] :is(
     ytd-video-owner-renderer tp-yt-paper-tooltip,
     ytd-video-owner-renderer paper-tooltip,
@@ -264,15 +252,23 @@
     tp-yt-iron-dropdown:has(yt-hovercard-view-model)
   ) {
     display:none!important;
-    visibility:hidden!important;
-    opacity:0!important;
-    pointer-events:none!important;
   }
 }
 
-@-moz-document domain("www.youtube.com") {
+/* X Text color, player buttons, cosmetic hides, and like controls */
+@-moz-document domain("youtube.com") {
 
-   /* X Hide selected YouTube player buttons only */
+/* X Global text color */
+  :is(yt-formatted-string,.yt-simple-endpoint,.title,.ytd-video-primary-info-renderer,h1,h2,span) {
+    color:var(--ytc-accent)!important;
+  }
+
+/* X Global icon color */
+  yt-icon path {
+    fill:var(--ytc-accent)!important;
+  }
+
+/* X Videoplayer button hides */
   .ytp-button.ytp-play-button,
   .ytp-button.ytp-prev-button,
   .ytp-button.ytp-replay-button,
@@ -280,7 +276,7 @@
     display:none!important;
   }
 
-  /* Migrated Ublock Origin YouTube cosmetic hides (each needs to be tested for usefulness) */
+/* X Cosmetic hides: overlays, chips, badges, and buttons */
   .ytp-overlay-inline-container,
   .ytp-cards-teaser-text,
   #secondary,
@@ -313,6 +309,7 @@
     display:none!important;
   }
 
+/* X Cosmetic hides: guide, subscribe, chat, and playlist surfaces */
   ytd-guide-section-renderer:nth-of-type(n+2):nth-of-type(-n+5),
   [id^="guide-links-"],
   #copyright,
@@ -339,6 +336,7 @@
     display:none!important;
   }
 
+/* X Cosmetic hides: donations, promos, chipbars, and mini-guide */
   #header-section,
   #donate-section,
   #creator-messages-section,
@@ -363,6 +361,7 @@
     display:none!important;
   }
 
+/* X Cosmetic hides: metadata, panels, guide, and cards */
   .yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--filled>.yt-spec-touch-feedback-shape--touch-response-inverse>.yt-spec-touch-feedback-shape__stroke,
   .smartimation__content yt-button-shape,
   #primary-info,
@@ -386,6 +385,7 @@
     display:none!important;
   }
 
+/* X Cosmetic hides: purchase, button, and like-divider surfaces */
   .ytp-ypc-player-content>.ytp-player-content,
   #button-shape,
   .ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextFilled,
@@ -395,33 +395,28 @@
     display:none!important;
   }
 
-  /* X Global YouTube text and icon color */
-  :is(yt-formatted-string,.yt-simple-endpoint,.title,.ytd-video-primary-info-renderer,h1,h2,span) {
-    color:var(--ytc-accent)!important;
-  }
-
-  yt-icon path {
-    fill:var(--ytc-accent)!important;
-  }
-
-  /* Like/dislike button surface cleanup */
+/* X Like/dislike native appearance reset */
   #top-level-buttons-computed segmented-like-dislike-button-view-model button {
     appearance:none!important;
   }
 
+/* X Like/dislike background cleanup */
   #top-level-buttons-computed segmented-like-dislike-button-view-model :is(button,.ytSpecButtonShapeNext,[class*="Tonal"],[class*="SegmentedStart"],[class*="SegmentedEnd"]) {
     background:transparent!important;
     box-shadow:none!important;
   }
 
+/* X Like/dislike border cleanup */
   #top-level-buttons-computed segmented-like-dislike-button-view-model :is(button,.ytSpecButtonShapeNext) {
     border-color:transparent!important;
   }
 
+/* X Like/dislike radius cleanup. */
   #top-level-buttons-computed segmented-like-dislike-button-view-model :is(button,[class*="SegmentedStart"],[class*="SegmentedEnd"]) {
     border-radius:0!important;
   }
 
+/* X Like/dislike pseudo-element cleanup */
   #top-level-buttons-computed segmented-like-dislike-button-view-model :is(button,.ytSpecButtonShapeNext)::before,
   #top-level-buttons-computed segmented-like-dislike-button-view-model :is(button,.ytSpecButtonShapeNext)::after {
     background:transparent!important;
@@ -430,23 +425,123 @@
   }
 }
 
-@-moz-document url("about:newtab"), url("about:home") {
-
-  /* X Firefox new-tab and home-page background */
-  html,
-  body,
-  #root,
-  .outer-wrapper,
-  .newtab-main,
-  .body-wrapper {
-    background:var(--ytc-page-bg)!important;
-    background-color:var(--ytc-page-bg)!important;
-  }
+/* X Static like/dislike compact-glyph icons */
+#top-level-buttons-computed segmented-like-dislike-button-view-model {
+  --ytc-thumb-outline:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
+  --ytc-thumb-filled:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
 }
 
- @-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
+/* X Preserve the native clickable buttons */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) button {
+  position:relative!important;
+}
 
- /* X Controls time and chapter colors on YouTube videos */
+/* X Keep the icon slot stable */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+) {
+  position:relative!important;
+  display:inline-block!important;
+  width:24px!important;
+  min-width:24px!important;
+  height:24px!important;
+  flex:0 0 24px!important;
+}
+
+/* X Hide YouTube's native icon and animation renderers */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) :is(
+  yt-icon,
+  yt-animated-icon,
+  ytd-lottie-player,
+  lottie-player,
+  lottie-component,
+  svg,
+  canvas,
+  .yt-spec-icon-shape,
+  .ytIconShapeHost,
+  .yt-icon-shape,
+  [class*="lottie" i],
+  [class*="animated" i]
+) {
+  opacity:0!important;
+  visibility:hidden!important;
+  animation:none!important;
+  transition:none!important;
+  pointer-events:none!important;
+}
+
+/* X Draw empty static thumbs by default */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+)::before {
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  width:24px!important;
+  height:24px!important;
+  background:#8a97bf!important;
+  pointer-events:none!important;
+  -webkit-mask:var(--ytc-thumb-outline) center/24px 24px no-repeat!important;
+  mask:var(--ytc-thumb-outline) center/24px 24px no-repeat!important;
+}
+
+/* X Draw filled static thumbs when selected */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) button[aria-pressed="true"] :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+)::before {
+  -webkit-mask:var(--ytc-thumb-filled) center/24px 24px no-repeat!important;
+  mask:var(--ytc-thumb-filled) center/24px 24px no-repeat!important;
+}
+
+/* X Turn static like/dislike icons white on hover */
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+):hover :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+)::before,
+#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  like-button-view-model,
+  dislike-button-view-model
+) button:hover :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+)::before {
+  background:#ffffff!important;
+}
+
+/* X Flip the static thumb for dislike */
+#top-level-buttons-computed segmented-like-dislike-button-view-model
+dislike-button-view-model :is(
+  .yt-spec-button-shape-next__icon,
+  .ytSpecButtonShapeNextIcon
+)::before {
+  transform:scaleY(-1)!important;
+}
+
+/* X Videoplayer text colors */
+@-moz-document domain("youtube.com") {
+
+  /* X Time and chapter text */
   #movie_player .ytp-left-controls :is(
     .ytp-time-display,
     .ytp-time-current,
@@ -477,10 +572,10 @@
   }
 }
 
-@-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
+/* X Videoplayer settings menu colors */
+@-moz-document domain("youtube.com") {
 
-  /* X YouTube player settings menu text: Stable Volume, Voice boost, Ambient mode, Subtitles/CC, Sleep timer, Playback speed, Quality, right-side values, and hover states */
-
+/* X Settings menu base text */
   .html5-video-player [role="menu"],
   .html5-video-player [role="menu"] *,
   .html5-video-player [role="menuitem"],
@@ -495,6 +590,7 @@
     filter: none !important;
   }
 
+/* X Settings menu hover text */
   .html5-video-player [role="menuitem"]:hover,
   .html5-video-player [role="menuitem"]:hover *,
   .html5-video-player [role="menuitemcheckbox"]:hover,
@@ -507,6 +603,7 @@
     filter: none !important;
   }
 
+/* X Settings menu label/content/title text */
   .html5-video-player [class*="menu"] [class*="label"],
   .html5-video-player [class*="menu"] [class*="label"] *,
   .html5-video-player [class*="menu"] [class*="content"],
@@ -520,124 +617,22 @@
   }
 }
 
-@-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
-
-  /* X Hide verified check-mark circles beside channel names. Covers current front-page */
-
-  /* X Front page / recommendations: current YouTube lockup renderer */
-  :is(
-    ytd-browse[page-subtype="home"],
-    ytd-rich-grid-renderer,
-    ytd-rich-item-renderer
-  )
-  yt-lockup-view-model
-  :is(
-    .ytContentMetadataViewModelMetadataRow:first-of-type,
-    .yt-content-metadata-view-model-wiz__metadata-row:first-of-type,
-    .yt-content-metadata-view-model__metadata-row:first-of-type
-  )
-  :is(
-    .ytAttributedStringInlineBlockMod,
-    .ytIconWrapperHost,
-    .yt-icon-shape,
-    yt-icon,
-    badge-shape,
-    yt-badge-shape,
-    yt-badge-view-model,
-    ytd-badge-supported-renderer,
-    [class*="BadgeShape"],
-    [class*="badge-shape"]
-  ) {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* X Older front-page / search result cards */
-  :is(
-    ytd-rich-grid-media,
-    ytd-video-renderer,
-    ytd-grid-video-renderer,
-    ytd-compact-video-renderer
-  )
-  :is(
-    #byline-container,
-    #channel-name,
-    ytd-channel-name
-  )
-  :is(
-    ytd-badge-supported-renderer,
-    badge-shape,
-    yt-badge-shape,
-    yt-badge-view-model,
-    .ytAttributedStringInlineBlockMod,
-    .ytIconWrapperHost,
-    [class*="BadgeShape"],
-    [class*="badge-shape"]
-  ) {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-}
-
-@-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
-
-/* X Hide verified check-mark circles next to channel name under video player */
-  ytd-channel-name ytd-badge-supported-renderer,
-  #channel-name ytd-badge-supported-renderer,
-  #owner ytd-badge-supported-renderer {
+/* X Hide right-click videoplayer context menu */
+@-moz-document domain("youtube.com") {
+  /* Native YouTube context menu. */
+  .ytp-contextmenu,
+  .html5-video-player .ytp-contextmenu {
     display: none !important;
   }
 }
 
-@-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
-
-  /* Inline player row under videos: force channel name and thumbs buttons into fixed-distance left/right columns (being tested) */
-  ytd-rich-grid-media[inline-player-is-playing] #details,
-  ytd-rich-grid-media[is-inline-player-active] #details,
-  ytd-rich-grid-media[has-inline-player] #details {
-    display: grid !important;
-    grid-template-columns: 1fr auto !important;
-    align-items: center !important;
-    column-gap: 96px !important;
-  }
-
-  ytd-rich-grid-media[inline-player-is-playing] #details #meta,
-  ytd-rich-grid-media[is-inline-player-active] #details #meta,
-  ytd-rich-grid-media[has-inline-player] #details #meta,
-  ytd-rich-grid-media[inline-player-is-playing] #details ytd-video-meta-block,
-  ytd-rich-grid-media[is-inline-player-active] #details ytd-video-meta-block,
-  ytd-rich-grid-media[has-inline-player] #details ytd-video-meta-block {
-    grid-column: 1 !important;
-    justify-self: start !important;
-    min-width: 0 !important;
-    margin: 0 !important;
-  }
-
-  ytd-rich-grid-media[inline-player-is-playing] #details #buttons,
-  ytd-rich-grid-media[is-inline-player-active] #details #buttons,
-  ytd-rich-grid-media[has-inline-player] #details #buttons,
-  ytd-rich-grid-media[inline-player-is-playing] #details ytd-menu-renderer,
-  ytd-rich-grid-media[is-inline-player-active] #details ytd-menu-renderer,
-  ytd-rich-grid-media[has-inline-player] #details ytd-menu-renderer {
-    grid-column: 2 !important;
-    justify-self: end !important;
-    margin-left: 96px !important;
-    flex-shrink: 0 !important;
-  }
-}
-
+/* X Frontpage */
 @-moz-document domain("youtube.com") {
 
-/* X Home feed only */
+/* X Frontpage only */
 ytd-browse[page-subtype="home"] {
 
-  /* X Hide YouTube front-page channel names (first metadata item) */
+/* X Hide frontpage channel names under videos */
   yt-lockup-view-model 
   .yt-lockup-metadata-view-model__metadata 
   span:first-of-type,
@@ -648,7 +643,7 @@ ytd-browse[page-subtype="home"] {
     display: none !important;
   }
 
-  /* X Reduce size of dates under title and channel names */
+/* X Resize frontpage dates under videos */
   yt-lockup-view-model 
   .yt-lockup-metadata-view-model__metadata span,
   yt-lockup-view-model 
@@ -658,7 +653,7 @@ ytd-browse[page-subtype="home"] {
     opacity: 0.65 !important;
   }
 
-  /* X Reduce size of separator dot to the left of dates */
+/* X Resize frontpage separator-dot left of dates under videos */
   yt-lockup-view-model 
   .yt-lockup-metadata-view-model__metadata span + span::before,
   yt-lockup-view-model 
@@ -673,22 +668,22 @@ ytd-browse[page-subtype="home"] {
 
 }
 
-/* X Hide green "Fundraiser" label under videos on the front page */
-.ytBadgeShapeTypography.ytBadgeShapeCommerce.ytBadgeShapeHost {
-  display: none !important;
-}
-
-/* X Hide front-page channel avatar junk */
-.ytLockupViewModelFlexNone.ytLockupViewModelRichGridLegacyMargin.content-id-rxSdzapOmzM.ytLockupViewModelVertical.ytLockupViewModelHost > .ytLockupViewModelMetadata > .ytLockupMetadataViewModelRichGridLegacyTypography.ytLockupMetadataViewModelStandard.ytLockupMetadataViewModelVertical.ytLockupMetadataViewModelHost > .ytLockupMetadataViewModelAvatar > .ytAvatarStackViewModelTappable.ytAvatarStackViewModelHost > .ytAvatarStackViewModelAvatars > div {
-  display: none !important;
-}
-
-.ytLockupMetadataViewModelAvatar {
-  display: none !important;
-}
-
+/* X Frontpage labels and avatars */
 @-moz-document domain("youtube.com") {
-    /* X Suppress all hover preview and animation layers on the front page of YouTube */
+  /* Fundraiser badge hide. */
+  .ytBadgeShapeTypography.ytBadgeShapeCommerce.ytBadgeShapeHost {
+    display: none !important;
+  }
+
+/* X Hide channel avatars */
+  .ytLockupMetadataViewModelAvatar {
+    display: none !important;
+  }
+}
+
+/* X Suppress frontpage hover preview */
+@-moz-document domain("youtube.com") {
+    /* X Preview and animation layers */
     ytd-video-preview,
     ytd-moving-thumbnail-renderer,
     #preview,
@@ -696,21 +691,16 @@ ytd-browse[page-subtype="home"] {
     .inline-preview-player,
     yt-thumbnail-hover-overlay-toggle-actions-view-model {
         display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        height: 0 !important;
-        width: 0 !important;
     }
 
-    /* Linked to prior code block. Prevent the base thumbnail container from hiding its layout components */
+/* X Thumbnail layout container */
     ytd-thumbnail #thumbnail.ytd-thumbnail,
     ytd-thumbnail[is-active] #thumbnail.ytd-thumbnail {
         display: block !important;
         overflow: visible !important;
     }
 
-    /* Linked to prior two code blocks. Force the overlay wrapper to remain active during hover states */
+/* X Thumbnail overlay wrapper */
     ytd-thumbnail #overlays,
     ytd-thumbnail[is-active] #overlays,
     ytd-thumbnail:hover #overlays,
@@ -721,7 +711,7 @@ ytd-browse[page-subtype="home"] {
         z-index: 9999 !important;
     }
 
-    /* Linked to prior three code blocks. Keep the time duration badge rendered and visible */
+/* X Duration timestamp in the bottom-right corner */
     ytd-thumbnail-overlay-time-status-renderer,
     yt-thumbnail-overlay-time-status-renderer,
     .ytd-thumbnail-overlay-time-status-renderer,
@@ -733,38 +723,10 @@ ytd-browse[page-subtype="home"] {
     }
 }
 
-/* Hide all front-page multi-video compilation lists. Currently being tested */
+/* Hide frontpage sponsored/featured videos. Currently being tested */
 @-moz-document domain("youtube.com") {
-    ytd-rich-item-renderer:has(ytd-playlist-thumbnail),
-    ytd-rich-item-renderer:has(ytd-playlist-renderer),
-    ytd-rich-item-renderer:has(yt-playlist-thumbnail-view-model),
-    ytd-rich-item-renderer:has(ytd-thumbnail-overlay-bottom-panel-renderer),
-    ytd-rich-item-renderer:has(ytd-thumbnail-overlay-side-panel-renderer) {
-        display: none !important;
-    }
-}
-
-/* Hide front-page members-only content. Currently being tested */
-@-moz-document domain("youtube.com") {
-  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(.badge-style-type-members-only),
-  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(.yt-badge-shape--membership),
-  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(.yt-badge-shape--type-members-only),
-  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has([aria-label*="Members only" i]),
-  ytd-browse[page-subtype="home"] yt-lockup-view-model:has(.badge-style-type-members-only),
-  ytd-browse[page-subtype="home"] yt-lockup-view-model:has(.yt-badge-shape--membership),
-  ytd-browse[page-subtype="home"] yt-lockup-view-model:has(.yt-badge-shape--type-members-only),
-  ytd-browse[page-subtype="home"] yt-lockup-view-model:has([aria-label*="Members only" i]) {
+  ytd-browse[page-subtype="home"]
+  ytd-rich-item-renderer:has([aria-label="YouTube featured"]) {
     display: none !important;
-  }
-}
-
-@-moz-document domain("youtube.com"), domain("youtube-nocookie.com") {
-  /* X Hide YouTube's custom right-click video context menu */
-  .ytp-contextmenu,
-  .html5-video-player .ytp-contextmenu {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
 }
