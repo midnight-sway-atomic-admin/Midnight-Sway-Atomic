@@ -4,25 +4,26 @@
 
 /* Comments tagged with XX are as efficient, non-redundant, well-formed, and precise as possible for what the tagged code does */
 
-/* This file will ideally be no more than 1,500 LoC (exluding comments and blank lines) */
+/* This file will ideally be no more than 1,500 LoC (excluding comments and blank lines) */
+
+/* --------------------------------------------------------------------------
+   1. Main toolbar, tab-bar layout, and chrome frame
+   -------------------------------------------------------------------------- */
 
 /* X Configure responsive single-line URL bar and tab bar layout */
 :root {
-  --3tab-border-radius: 6px !important;
   --NavbarWidth: 24;
   --TabsHeight: 30;
   --TabsBorder: 8;
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
+  --uc-fg: #8a97bf;
+  --uc-selected-bg: #000000;
 }
 
 @media screen and (min-width: 1325px) {
   :root #nav-bar {
     margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px) !important;
-    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px);
-  }
-
-  #TabsToolbar {
-    margin-left: calc(1325px / 100 * var(--NavbarWidth)) !important;
+    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px) !important;
   }
 
   #nav-bar {
@@ -43,11 +44,7 @@
 @media screen and (min-width: 950px) and (max-width: 1324px) {
   :root #nav-bar {
     margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px) !important;
-    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px);
-  }
-
-  #TabsToolbar {
-    margin-left: calc(var(--NavbarWidth) * 1vw) !important;
+    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px) !important;
   }
 
   #nav-bar {
@@ -86,13 +83,6 @@
   }
 }
 
-#nav-bar,
-#PersonalToolbar {
-  background-color: transparent !important;
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
 #nav-bar {
   margin-left: 3px;
 }
@@ -102,60 +92,36 @@
   min-height: calc(var(--TabsHeight) * 1px) !important;
 }
 
-/* X Set custom trust icon image, if #trust-icon exists in this Firefox version */
-#trust-icon {
-  list-style-image: url("trust-shield-icon.svg") !important;
-  width: 16px !important;
-  height: 16px !important;
+/* X Adjustable gap between the end of the URL bar and the start of the tabs. Increase or decrease --uc-urlbar-tabs-gap to tune the spacing */
+:root {
+  --uc-urlbar-tabs-gap: 10px;
 }
 
-/* X Set custom back/forward button icons and sizing */
-#back-button {
-  list-style-image: url("back-arrow-icon.svg") !important;
+@media screen and (min-width: 1325px) {
+  #TabsToolbar {
+    margin-left: calc(calc(1325px / 100 * var(--NavbarWidth)) + var(--uc-urlbar-tabs-gap)) !important;
+  }
 }
 
-#forward-button {
-  list-style-image: url("forward-arrow-icon.svg") !important;
+@media screen and (min-width: 950px) and (max-width: 1324px) {
+  #TabsToolbar {
+    margin-left: calc(calc(var(--NavbarWidth) * 1vw) + var(--uc-urlbar-tabs-gap)) !important;
+  }
 }
 
-#back-button > .toolbarbutton-icon,
-#forward-button > .toolbarbutton-icon {
-  width: 20px !important;
-  height: 20px !important;
-}
-
-#back-button,
-#forward-button {
-  --toolbarbutton-inner-padding: 4px !important;
-}
-
-/* X Hide Firefox's bottom-left gray status/link popups globally */
-#statuspanel,
-#statuspanel[type="overLink"],
-#statuspanel[type="status"],
-#statuspanel #statuspanel-label {
-  display:none!important;
-  visibility:collapse!important;
-  opacity:0!important;
-  pointer-events:none!important;
-}
-
-/* X Hide the right-side hamburger menu button */
-#PanelUI-button {
-  -moz-box-ordinal-group: 0 !important;
-  order: -2 !important;
-  margin: 2px !important;
-  display: none !important;
-}
-
-/* X Hide only the window close button in the title bar */
-.titlebar-close {
-  display: none !important;
-}
-
-/* X Hide the close button on tabs */
-.tab-close-button {
-  display: none !important;
+/* X Toolbar, frame, tabstrip, and find-bar colors */
+#navigator-toolbox,
+#titlebar,
+#TabsToolbar,
+#nav-bar,
+#PersonalToolbar,
+toolbar,
+findbar {
+  background-color: #000000 !important;
+  color: #8a97bf !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
 
 /* X Hide toolbar and tabstrip scroll/overflow buttons */
@@ -182,6 +148,140 @@ toolbar[overflow] .scrollbox-button,
   margin: 0 !important;
   padding: 0 !important;
 }
+
+/* --------------------------------------------------------------------------
+   2. Toolbar buttons, indicators, and global chrome icons
+   -------------------------------------------------------------------------- */
+
+/* XX Set custom trust icon image */
+#trust-icon {
+  list-style-image: url("trust-shield-icon.svg") !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+#trust-icon-container:hover,
+#trust-icon-container[open] {
+  background-color: transparent !important;
+}
+
+#trust-icon-container:hover #trust-icon {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* X Set custom back/forward button icons and sizing */
+#back-button {
+  list-style-image: url("back-arrow-icon.svg") !important;
+}
+
+#forward-button {
+  list-style-image: url("forward-arrow-icon.svg") !important;
+}
+
+#back-button > .toolbarbutton-icon,
+#forward-button > .toolbarbutton-icon {
+  width: 20px !important;
+  height: 20px !important;
+}
+
+#back-button,
+#forward-button {
+  --toolbarbutton-inner-padding: 4px !important;
+  --toolbarbutton-hover-background: transparent !important;
+  --toolbarbutton-active-background: transparent !important;
+}
+
+#back-button:not([disabled]):hover > .toolbarbutton-icon,
+#forward-button:not([disabled]):hover > .toolbarbutton-icon {
+  filter: brightness(0) invert(1) !important;
+}
+
+#back-button:not([disabled]):active > .toolbarbutton-icon,
+#forward-button:not([disabled]):active > .toolbarbutton-icon,
+#back-button[open] > .toolbarbutton-icon,
+#forward-button[open] > .toolbarbutton-icon {
+  background-color: transparent !important;
+}
+
+/* XX Add space between the Firefox left border and back-arrow */
+#back-button {
+  margin-left: 19px !important;
+}
+
+/* X Hide the back/forward buttons' history popup opened by right-click or long-press */
+#backForwardMenu,
+#backForwardMenu::part(content),
+#backForwardMenu::part(arrowscrollbox) {
+  display: none !important;
+}
+
+/* X Hide the right-side hamburger menu button */
+#PanelUI-button,
+#PanelUI-menu-button {
+  display: none !important;
+}
+
+/* XX Hide only the window close button in the title bar */
+.titlebar-close {
+  display: none !important;
+}
+
+/* XX Hide sidebar button */
+#sidebar-button {
+  display: none !important;
+}
+
+/* X Download button: black surface, blue icon/progress/notification */
+#downloads-button {
+  --toolbarbutton-icon-fill: #8a97bf !important;
+
+  --button-background-color: #000000 !important;
+  --button-background-color-hover: #000000 !important;
+  --button-background-color-active: #000000 !important;
+  --button-background-color-selected: #000000 !important;
+
+  background-color: #000000 !important;
+  color: #8a97bf !important;
+  fill: #8a97bf !important;
+  stroke: #8a97bf !important;
+  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
+}
+
+/* X Normal icon/notification parts. Linked to prior codeblock */
+#downloads-button :is(
+  .toolbarbutton-icon,
+  #downloads-indicator-icon,
+  #downloads-indicator-start-image,
+  #downloads-indicator-finish-image,
+  #downloads-indicator-notification,
+  #downloads-notification-anchor
+) {
+  color: #8a97bf !important;
+  fill: #8a97bf !important;
+  stroke: #8a97bf !important;
+  background-color: transparent !important;
+  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
+}
+
+/* X Progress ring/bar. Linked to prior codeblock */
+#downloads-button[progress] #downloads-indicator-progress-outer {
+  background-color: #000000 !important;
+}
+
+#downloads-button[progress] #downloads-indicator-progress-inner {
+  background-color: #8a97bf !important;
+  background-image: none !important;
+}
+
+/* X Hide EME and DRM-content-disabled icons */
+notification[value="drmContentDisabled"],
+#eme-notification-icon {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. URL bar, search fields, page actions, and URL-bar results
+   -------------------------------------------------------------------------- */
 
 /* X URL, search, and find field colors */
 #urlbar,
@@ -213,11 +313,8 @@ findbar input:focus {
   outline: none !important;
 }
 
-#urlbar-input,
-.searchbar-textbox,
-findbar .findbar-textbox,
-findbar input {
-  background-color: #ffffff;
+#urlbar-input {
+  background-color: transparent !important;
   color: #8a97bf !important;
 }
 
@@ -229,125 +326,32 @@ findbar input::selection {
   color: #000000 !important;
 }
 
-/* X Set selected tab text color */
-.tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-label {
-  color: #8a97bf !important;
-}
-
-/* X Hide tab hover highlight */
-.tabbrowser-tab:hover .tab-background {
-  background: none !important;
-}
-
-/* X Hide the URL-bar zoom button */
+/* XX Hide the URL-bar zoom button */
 #urlbar-zoom-button {
   display: none !important;
 }
 
-/* X Hide the reader mode button */
+/* XX Hide the reader mode button */
 #reader-mode-button {
   display: none !important;
 }
 
-/* X Hide the translations button */
+/* XX Hide the translations button */
 #translations-button {
   display: none !important;
 }
 
-/* X Hide tabstrip overflow indicators */ 
-spacer[part="overflow-start-indicator"] {
-  display: none !important;
-}
-
-spacer[part="overflow-end-indicator"] {
-  display: none !important;
-}
-
-/* X Fade inactive tabs */
-.tabbrowser-tab:not(:hover):not([visuallyselected], [multiselected]) {
-  transition: .5s !important;
-  filter: opacity(50%) !important;
-}
-
-/* X Hide the Back/Forward history popup opened by right-click or long-press */
-#backForwardMenu,
-#backForwardMenu::part(content),
-#backForwardMenu::part(arrowscrollbox) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* X Hide the right-click context menu inside the Extensions popup */
-#unified-extensions-context-menu,
-#unified-extensions-context-menu::part(content),
-#unified-extensions-context-menu::part(arrowscrollbox) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* X Hide only the gear/menu buttons inside the Extensions popup */
-#unified-extensions-panel .unified-extensions-item-menu-button {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* X Shrink the Extensions popup to its remaining visible contents */
-#unified-extensions-panel,
-#unified-extensions-panel::part(content),
-#unified-extensions-view,
-#unified-extensions-panel .panel-viewcontainer,
-#unified-extensions-panel .panel-viewstack,
-#unified-extensions-panel .panel-subview-body,
-#unified-extensions-area {
-  min-width: 0 !important;
-  width: fit-content !important;
-  max-width: fit-content !important;
-}
-
-/* X Keep each extension row only as wide as its visible icon/text */
-#unified-extensions-panel .unified-extensions-item,
-#unified-extensions-panel .unified-extensions-item-action-button {
-  min-width: 0 !important;
-  width: max-content !important;
-  max-width: max-content !important;
-}
-
-/* X Remove leftover spacing from the hidden gear column */
-#unified-extensions-panel .unified-extensions-item {
-  padding-right: 0 !important;
-  margin-right: 0 !important;
-}
-
-/* X Hide the text-edit right-click menu from the Bookmarks sidebar search box */
-@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
-  #search-box menupopup,
-  #sidebar-search-container menupopup,
-  menupopup.textbox-contextmenu,
-  #textbox-contextmenu {
-    display: none !important;
-    visibility: collapse !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-}
-
-/* X Hide main search-bar text "Search with Duckduck Go or enter an address" */
+/* X Hide main search-bar text "Search with DuckDuckGo or enter an address" */
 @-moz-document url("chrome://browser/content/browser.xhtml") {
   #urlbar-input::placeholder {
     opacity: 0 !important;
   }
 }
+
+/* XX Add padding between the "s" in the URL bar text -- "Search with..." -- and the left URL border; comment this out when the text is hidden by the prior codeblock
+#urlbar-input {
+  padding-left: 2px !important;
+}*/
 
 /* X Hide right-side URL bar go-arrow icon, and blue globe icon */
 @-moz-document url("chrome://browser/content/browser.xhtml") {
@@ -364,7 +368,12 @@ spacer[part="overflow-end-indicator"] {
   }
 }
 
-/* X Keep Firefox's bookmark page-action anchor alive for Ctrl+D, but shrink and hide the visible star as much as possible. Do not use display:none or visibility:collapse on #star-button-box or #star-button */
+/* X Remove default left-side URL bar magnifying glass after "browser.urlbar.scotchBonnet.enableOverride" in about:config has been set to "false" */
+#identity-box[pageproxystate="invalid"] {
+  display: none !important;
+}
+
+/* X Keep Firefox's bookmark page-action anchor alive for Ctrl+D, but shrink and hide the visible star as much as possible. Do not use "display:none" or "visibility:collapse" on #star-button-box or #star-button */
 #urlbar #star-button-box,
 #urlbar #star-button,
 #urlbar #star-button-animatable-box,
@@ -387,7 +396,7 @@ spacer[part="overflow-end-indicator"] {
   padding: 0 !important;
   border: 0 !important;
   overflow: hidden !important;
-  background: none !important;
+  background-color: transparent !important;
   background-image: none !important;
   list-style-image: none !important;
   box-shadow: none !important;
@@ -403,127 +412,21 @@ spacer[part="overflow-end-indicator"] {
   opacity: 0 !important;
   fill: transparent !important;
   stroke: transparent !important;
-  background: none !important;
+  background-color: transparent !important;
   background-image: none !important;
   list-style-image: none !important;
   box-shadow: none !important;
   outline: 0 !important;
 }
 
-/* X Hide native webpage title-attribute tooltips, but preserve Firefox UI tooltips such as tab tooltips */
-#remoteBrowserTooltip,
-#aHTMLTooltip {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-}
-
-/* X Hide the toolbar/chrome right-click menu only. This is the popup with items such as "Turn on Vertical Tabs", "Menu Bar", "Bookmarks Toolbar", and "Customize Toolbar..." */
-#toolbar-context-menu,
-#toolbar-context-menu[open],
-#toolbar-context-menu[panelopen],
-#toolbar-context-menu[showing],
-#toolbar-context-menu[showing="true"] {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-#toolbar-context-menu::part(content),
-#toolbar-context-menu::part(arrowscrollbox),
-#toolbar-context-menu > .menupopup-arrowscrollbox,
-#toolbar-context-menu .menupopup-arrowscrollbox,
-#toolbar-context-menu menu,
-#toolbar-context-menu menuitem,
-#toolbar-context-menu menuseparator {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-/* X Adjustable gap between the end of the URL bar and the start of the tabs. Increase or decrease --uc-urlbar-tabs-gap to tune the spacing */
-:root {
-  --uc-urlbar-tabs-gap: 14px;
-}
-
-@media screen and (min-width: 1325px) {
-  #TabsToolbar {
-    margin-left: calc(calc(1325px / 100 * var(--NavbarWidth)) + var(--uc-urlbar-tabs-gap)) !important;
-  }
-}
-
-@media screen and (min-width: 950px) and (max-width: 1324px) {
-  #TabsToolbar {
-    margin-left: calc(calc(var(--NavbarWidth) * 1vw) + var(--uc-urlbar-tabs-gap)) !important;
-  }
-}
-
-/* X Hide bookmarks/Places right-click context menus. Covers the Bookmarks Sidebar and other Firefox Places bookmark views */
-#placesContext,
-menupopup#placesContext,
-#bookmarksPanel #placesContext,
-#bookmarks-view #placesContext,
-#BMB_bookmarksPopup #placesContext,
-#PlacesToolbar #placesContext,
-#bookmarks-menu-button #placesContext {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml"),
-               url("chrome://browser/content/places/historySidebar.xhtml"),
-               url("chrome://browser/content/places/places.xhtml") {
-  #placesContext,
-  menupopup#placesContext {
-    display: none !important;
-    visibility: collapse !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
-}
-
-/* X Hide the star icon and Bookmarks dropdown menu button at the top of the bookmarks sidebar */
-#sidebar-header {
-  display: none !important;
-} 
-
-/* X Hide the bookmarks sidebar icons */
-#bookmarks-view treechildren::-moz-tree-image {
-  width: 0px !important;
-  height: 0px !important;
-  margin: 0px !important;
-}
-
-/* X Hide the small animated throbber that replaces the favicon */
-.tab-throbber {
-  display: none !important;
-}
-
-/* X Hide per-site permissions box in the URL bar */
+/* XX Hide per-site permissions box in the URL bar */
 #identity-permission-box {
   display: none !important;
+}
+
+/* X Hide Temporary Extension icon and label */
+#identity-box.extensionPage #identity-icon-box {
+    display: none !important;
 }
 
 /* X Hide the "Switch to Tab" label/badge in Firefox URL-bar results */
@@ -572,18 +475,6 @@ menupopup#placesContext,
 #urlbarView-results .urlbarView-row .urlbarView-action-icon,
 #urlbarView-results .urlbarView-row .urlbarView-button {
   display: none !important;
-  visibility: collapse !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  opacity: 0 !important;
-
 }
 
 /* X Remove the leftover icon column/indent after hiding the images */
@@ -618,6 +509,52 @@ menupopup#placesContext,
   padding-inline-start: 0 !important;
 }
 
+/* X Hide URL-bar right-click/edit context menu */
+#urlbar-context-menu,
+#urlbar-input-context-menu,
+#urlbar .textbox-contextmenu,
+#urlbar-input-container .textbox-contextmenu,
+.urlbar-input-box > menupopup.textbox-contextmenu,
+.urlbar-input-box menupopup.textbox-contextmenu,
+menupopup.textbox-contextmenu:has(> #context-paste-and-go),
+menupopup:has(> #context-paste-and-go) {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Tabs, tab indicators, audio controls, and tab tooltips
+   -------------------------------------------------------------------------- */
+
+/* XX Hide the close button on tabs */
+.tab-close-button {
+  display: none !important;
+}
+
+/* X Set selected tab text color */
+.tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-label {
+  color: #8a97bf !important;
+}
+
+/* X Hide tab hover highlight */
+.tabbrowser-tab:hover .tab-background {
+  background: none !important;
+}
+
+/* X Hide tabstrip overflow indicators */ 
+spacer[part="overflow-start-indicator"] {
+  display: none !important;
+}
+
+spacer[part="overflow-end-indicator"] {
+  display: none !important;
+}
+
+/* X Fade inactive tabs */
+.tabbrowser-tab:not(:hover):not([visuallyselected], [multiselected]) {
+  transition: .5s !important;
+  filter: opacity(50%) !important;
+}
+
 /* X Set selected tab background and remove selected-tab filtering */
 #TabsToolbar #firefox-view-button[open] > .toolbarbutton-icon,
 .tabbrowser-tab:is([visuallyselected], [multiselected]) {
@@ -632,28 +569,97 @@ menupopup#placesContext,
   border-bottom-left-radius: 10px !important;
 }
 
-/* X Hide the brief loading burst that sweeps across the tab */
+/* XX Hide the brief loading burst that sweeps across the tab */
 .tab-loading-burst {
   display: none !important;
-  opacity: 0 !important;
-  transform: none !important;
-  animation: none !important;
-  background-image: none !important;
 }
 
-/* X Toolbar, frame, tabstrip, and find bar colors */
-#navigator-toolbox,
-#titlebar,
-#TabsToolbar,
-#nav-bar,
-#PersonalToolbar,
-toolbar,
-findbar {
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  background-image: none !important;
+/* XX Hide the small animated throbber that replaces the favicon */
+.tab-throbber {
+  display: none !important;
+}
+
+/* X Hide non-audio icons inside tabs, including autoplay-blocked play/video button */
+.tabbrowser-tab :is(
+  .tab-icon-pending,
+  .tab-sharing-icon-overlay
+),
+.tabbrowser-tab[activemedia-blocked] .tab-audio-button,
+.tabbrowser-tab .tab-audio-button[activemedia-blocked] {
+  display: none !important;
+}
+
+/* X Remove all hover/click/focus highlights from tab audio-is-playing without changing live/mute states */
+.tabbrowser-tab .tab-audio-button {
+  --button-icon-fill: #8a97bf !important;
+  --button-background-color-ghost: transparent !important;
+  --button-background-color-ghost-hover: transparent !important;
+  --button-background-color-ghost-active: transparent !important;
+  --button-background-color-ghost-selected: transparent !important;
+  --button-border-color-ghost: transparent !important;
+  --button-border-color-ghost-hover: transparent !important;
+  --button-border-color-ghost-active: transparent !important;
+  --button-border-color-ghost-selected: transparent !important;
+  --focus-outline: 0 solid transparent !important;
+  --focus-outline-color: transparent !important;
+}
+
+.tabbrowser-tab .tab-audio-button::part(button) {
+  background-color: transparent !important;
   border-color: transparent !important;
+  outline: 0 !important;
   box-shadow: none !important;
+}
+
+/* XX Hide tabs' right-click context menu */
+#tabContextMenu {
+  display: none !important;
+}
+
+/* X Tab tooltips */
+tooltip,
+#tabbrowser-tab-tooltip,
+#btTooltip,
+#un-toolbar-tooltip,
+.places-tooltip {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  -moz-window-shadow: none !important;
+  background-color: #060606 !important;
+  color: #8a97bf !important;
+  border: 1px solid #13151b !important;
+  border-radius: 6px !important;
+  outline: 1px solid #13151b !important;
+  outline-offset: -1px !important;
+  box-shadow: none !important;
+}
+
+tooltip label,
+#tabbrowser-tab-tooltip label {
+  color: #8a97bf !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Status panels, native tooltips, and non-URL context menus
+   -------------------------------------------------------------------------- */
+
+/* X Hide Firefox's bottom-left gray status/link popups globally */
+#statuspanel,
+#statuspanel[type="overLink"],
+#statuspanel[type="status"],
+#statuspanel #statuspanel-label {
+  display:none!important;
+}
+
+/* X Hide native webpage title-attribute tooltips, but preserve Firefox UI tooltips such as tab tooltips */
+#remoteBrowserTooltip,
+#aHTMLTooltip {
+  display: none !important;
+}
+
+/* XX Hide the toolbar/chrome right-click menu only. This is the popup with items such as "Turn on Vertical Tabs", "Menu Bar", "Bookmarks Toolbar", and "Customize Toolbar..." */
+#toolbar-context-menu {
+  display: none !important;
 }
 
 /* X Hide page/content-area right-click context menu entirely */
@@ -661,401 +667,40 @@ findbar {
 #contentAreaContextMenu::part(content),
 #contentAreaContextMenu::part(arrowscrollbox) {
   display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
 }
 
-/* X Hide URL-bar right-click/edit context menu only. This hides the popup visually; Firefox may still create it internally */
-#urlbar-context-menu,
-#urlbar-input-context-menu,
-#urlbar .textbox-contextmenu,
-#urlbar-input-container .textbox-contextmenu,
-.urlbar-input-box > menupopup.textbox-contextmenu,
-.urlbar-input-box menupopup.textbox-contextmenu {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  -moz-window-shadow: none !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-}
+/* --------------------------------------------------------------------------
+   6. Sidebar, bookmarks sidebar, Places views, and sidebar search
+   -------------------------------------------------------------------------- */
 
-#urlbar-context-menu::part(content),
-#urlbar-context-menu::part(arrowscrollbox),
-#urlbar-input-context-menu::part(content),
-#urlbar-input-context-menu::part(arrowscrollbox),
-#urlbar .textbox-contextmenu::part(content),
-#urlbar .textbox-contextmenu::part(arrowscrollbox),
-#urlbar-input-container .textbox-contextmenu::part(content),
-#urlbar-input-container .textbox-contextmenu::part(arrowscrollbox),
-.urlbar-input-box > menupopup.textbox-contextmenu::part(content),
-.urlbar-input-box > menupopup.textbox-contextmenu::part(arrowscrollbox),
-.urlbar-input-box menupopup.textbox-contextmenu::part(content),
-.urlbar-input-box menupopup.textbox-contextmenu::part(arrowscrollbox) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-/* X Fallback for Firefox builds where the URL-bar edit menu is only a generic textbox-contextmenu. Keep this separate so unsupported :has() cannot break the exact-ID/urlbar-scoped selectors above. Linked to prior codeblock */
-menupopup.textbox-contextmenu:has(> #context-paste-and-go),
-menupopup:has(> #context-paste-and-go) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  -moz-window-shadow: none !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-}
-
-menupopup.textbox-contextmenu:has(> #context-paste-and-go)::part(content),
-menupopup.textbox-contextmenu:has(> #context-paste-and-go)::part(arrowscrollbox),
-menupopup:has(> #context-paste-and-go)::part(content),
-menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-/* X Hide tabs' right-click context menu. This suppresses #tabContextMenu while leaving other right-click menus alone */
-#tabContextMenu,
-#tabContextMenu::part(content),
-#tabContextMenu::part(arrowscrollbox) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-#tabContextMenu > *,
-#tabContextMenu menu,
-#tabContextMenu menuitem,
-#tabContextMenu menuseparator {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* X Remove the blue active/open underline from the "Alt"-button menubar labels upon click. Scope: the classic File/Edit/View/History/Bookmarks/Tools/Help menu bar only */
-#toolbar-menubar,
-#toolbar-menubar #main-menubar,
-#main-menubar {
-  --toolbarbutton-hover-background: transparent !important;
-  --toolbarbutton-active-background: transparent !important;
-  --button-background-color-hover: transparent !important;
-  --button-background-color-active: transparent !important;
-  --focus-outline-color: transparent !important;
-  --in-content-focus-outline-color: transparent !important;
-}
-
-#main-menubar > menu,
-#main-menubar > menu:hover,
-#main-menubar > menu:focus,
-#main-menubar > menu:focus-visible,
-#main-menubar > menu[_moz-menuactive="true"],
-#main-menubar > menu[open="true"],
-#main-menubar > menu[open] {
-  appearance: none !important;
-  -moz-appearance: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  color: var(--uc-fg) !important;
-  border: 0 !important;
-  border-top: 0 !important;
-  border-right: 0 !important;
-  border-bottom: 0 !important;
-  border-left: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  text-decoration: none !important;
-}
-
-#main-menubar > menu > .menubar-text,
-#main-menubar > menu:hover > .menubar-text,
-#main-menubar > menu:focus > .menubar-text,
-#main-menubar > menu:focus-visible > .menubar-text,
-#main-menubar > menu[_moz-menuactive="true"] > .menubar-text,
-#main-menubar > menu[open="true"] > .menubar-text,
-#main-menubar > menu[open] > .menubar-text {
-  appearance: none !important;
-  -moz-appearance: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  background-image: none !important;
-  color: var(--uc-fg) !important;
-  border: 0 !important;
-  border-bottom: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  text-decoration: none !important;
-}
-
-#main-menubar > menu::before,
-#main-menubar > menu::after,
-#main-menubar > menu > .menubar-text::before,
-#main-menubar > menu > .menubar-text::after {
-  display: none !important;
-  content: none !important;
-  background: transparent !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-/* X Remove horizontal separators from every classic "Alt"-button menubar popup and submenu */
-#main-menubar menupopup menuseparator,
-#menu_FilePopup menuseparator,
-#menu_EditPopup menuseparator,
-#menu_viewPopup menuseparator,
-#goPopup menuseparator,
-#historyMenuPopup menuseparator,
-#bookmarksMenuPopup menuseparator,
-#menu_ToolsPopup menuseparator,
-#menu_HelpPopup menuseparator,
-#menu_FilePopup menupopup menuseparator,
-#menu_EditPopup menupopup menuseparator,
-#menu_viewPopup menupopup menuseparator,
-#goPopup menupopup menuseparator,
-#historyMenuPopup menupopup menuseparator,
-#bookmarksMenuPopup menupopup menuseparator,
-#menu_ToolsPopup menupopup menuseparator,
-#menu_HelpPopup menupopup menuseparator {
-  display: none !important;
-  visibility: collapse !important;
-  appearance: none !important;
-  -moz-appearance: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  opacity: 0 !important;
-}
-
-#main-menubar menupopup menuseparator::before,
-#main-menubar menupopup menuseparator::after,
-#menu_FilePopup menuseparator::before,
-#menu_FilePopup menuseparator::after,
-#menu_EditPopup menuseparator::before,
-#menu_EditPopup menuseparator::after,
-#menu_viewPopup menuseparator::before,
-#menu_viewPopup menuseparator::after,
-#goPopup menuseparator::before,
-#goPopup menuseparator::after,
-#historyMenuPopup menuseparator::before,
-#historyMenuPopup menuseparator::after,
-#bookmarksMenuPopup menuseparator::before,
-#bookmarksMenuPopup menuseparator::after,
-#menu_ToolsPopup menuseparator::before,
-#menu_ToolsPopup menuseparator::after,
-#menu_HelpPopup menuseparator::before,
-#menu_HelpPopup menuseparator::after {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  background: transparent !important;
-  opacity: 0 !important;
-}
-
-/* X "Alt"-button menubar popups: remove icons from File/Edit/View/History/Bookmarks/Tools/Help menus and their nested submenus */
-:root {
-  --uc-menubar-menu-text-indent: 12px;
-}
-
-#menu_FilePopup,
-#menu_EditPopup,
-#menu_viewPopup,
-#goPopup,
-#historyMenuPopup,
-#menu_BookmarksPopup,
-#bookmarksMenuPopup,
-#menu_ToolsPopup,
-#menu_HelpPopup,
-#main-menubar menupopup {
-  --menuitem-icon: none !important;
-  --bookmark-item-icon: none !important;
-  --menu-image: none !important;
-  --menuitem-icon-size: 0px !important;
-  --menuitem-icon-width: 0px !important;
-  --menuitem-icon-space: 0px !important;
-}
-
-#menu_FilePopup :is(menu, menuitem),
-#menu_EditPopup :is(menu, menuitem),
-#menu_viewPopup :is(menu, menuitem),
-#goPopup :is(menu, menuitem),
-#historyMenuPopup :is(menu, menuitem),
-#menu_BookmarksPopup :is(menu, menuitem),
-#bookmarksMenuPopup :is(menu, menuitem),
-#menu_ToolsPopup :is(menu, menuitem),
-#menu_HelpPopup :is(menu, menuitem),
-#main-menubar menupopup :is(menu, menuitem) {
-  --menuitem-icon: none !important;
-  --bookmark-item-icon: none !important;
-  --menu-image: none !important;
-  list-style-image: none !important;
-  background-image: none !important;
-  -moz-image-region: auto !important;
-  padding-inline-start: var(--uc-menubar-menu-text-indent) !important;
-  -moz-padding-start: var(--uc-menubar-menu-text-indent) !important;
-}
-
-/* X Old XUL icon boxes. Keep submenu arrows intact. Linked to prior codeblock */
-#menu_FilePopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_EditPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_viewPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#goPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#historyMenuPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_BookmarksPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#bookmarksMenuPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_ToolsPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_HelpPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#main-menubar menupopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_FilePopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_EditPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_viewPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#goPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#historyMenuPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_BookmarksPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#bookmarksMenuPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_ToolsPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#menu_HelpPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
-#main-menubar menupopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-  background: none !important;
-  background-image: none !important;
-  list-style-image: none !important;
-  -moz-context-properties: none !important;
-}
-
-/* X Newer explicit menu image elements. Do not remove submenu arrows. Linked to prior codeblock */
-#menu_FilePopup :is(menu, menuitem) image:not(.menu-right),
-#menu_EditPopup :is(menu, menuitem) image:not(.menu-right),
-#menu_viewPopup :is(menu, menuitem) image:not(.menu-right),
-#goPopup :is(menu, menuitem) image:not(.menu-right),
-#historyMenuPopup :is(menu, menuitem) image:not(.menu-right),
-#menu_BookmarksPopup :is(menu, menuitem) image:not(.menu-right),
-#bookmarksMenuPopup :is(menu, menuitem) image:not(.menu-right),
-#menu_ToolsPopup :is(menu, menuitem) image:not(.menu-right),
-#menu_HelpPopup :is(menu, menuitem) image:not(.menu-right),
-#main-menubar menupopup :is(menu, menuitem) image:not(.menu-right) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style-image: none !important;
-  background-image: none !important;
-}
-
-/* X Bookmark/history entries in these menus can carry their own Places icon vars. Linked to prior codeblock */
-#menu_FilePopup .bookmark-item,
-#menu_EditPopup .bookmark-item,
-#menu_viewPopup .bookmark-item,
-#goPopup .bookmark-item,
-#historyMenuPopup .bookmark-item,
-#menu_BookmarksPopup .bookmark-item,
-#bookmarksMenuPopup .bookmark-item,
-#menu_ToolsPopup .bookmark-item,
-#menu_HelpPopup .bookmark-item,
-#main-menubar menupopup .bookmark-item,
-#menu_FilePopup .menuitem-iconic,
-#menu_EditPopup .menuitem-iconic,
-#menu_viewPopup .menuitem-iconic,
-#goPopup .menuitem-iconic,
-#historyMenuPopup .menuitem-iconic,
-#menu_BookmarksPopup .menuitem-iconic,
-#bookmarksMenuPopup .menuitem-iconic,
-#menu_ToolsPopup .menuitem-iconic,
-#menu_HelpPopup .menuitem-iconic,
-#main-menubar menupopup .menuitem-iconic {
-  --menuitem-icon: none !important;
-  --bookmark-item-icon: none !important;
-  list-style-image: none !important;
-  background-image: none !important;
-}
-
-/* X Shadow/part fallback used by newer widgets. Linked to prior code block */
-#menu_FilePopup :is(menu, menuitem)::part(icon),
-#menu_EditPopup :is(menu, menuitem)::part(icon),
-#menu_viewPopup :is(menu, menuitem)::part(icon),
-#goPopup :is(menu, menuitem)::part(icon),
-#historyMenuPopup :is(menu, menuitem)::part(icon),
-#menu_BookmarksPopup :is(menu, menuitem)::part(icon),
-#bookmarksMenuPopup :is(menu, menuitem)::part(icon),
-#menu_ToolsPopup :is(menu, menuitem)::part(icon),
-#menu_HelpPopup :is(menu, menuitem)::part(icon),
-#main-menubar menupopup :is(menu, menuitem)::part(icon) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: none !important;
-  background-image: none !important;
-  list-style-image: none !important;
-}
-
-/* X Hide sidebar button */
-#sidebar-button {
+/* XX Hide bookmarks/Places right-click context menus. Covers the Bookmarks Sidebar and other Firefox Places bookmark views */
+#placesContext {
   display: none !important;
 }
 
-/* Add space between the Firefox left border and back-arrow */
-#back-button {
-  margin-left: 19px !important;
+/* XX Hide the star icon and Bookmarks dropdown menu button at the top of the bookmarks sidebar */
+#sidebar-header {
+  display: none !important;
+} 
+
+/* X Hide the bookmarks sidebar icons */
+#bookmarks-view treechildren::-moz-tree-image {
+  width: 0px !important;
+  height: 0px !important;
+  margin: 0px !important;
+}
+
+/* X Hide the text-edit right-click menu from the Bookmarks sidebar search box */
+@-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
+  #search-box menupopup,
+  #sidebar-search-container menupopup,
+  menupopup.textbox-contextmenu,
+  #textbox-contextmenu {
+    display: none !important;
+    visibility: collapse !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 }
 
 /* X Bookmarks sidebar tree: remove the dotted keyboard-focus rectangle from selected/current rows only. Keep the existing the theme accent selected-row background */
@@ -1167,7 +812,6 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
 /* X Sidebar colors */
 #sidebar-box,
 #sidebar,
-#sidebar-header,
 #sidebar-search-container,
 #bookmarks-view,
 #historyTree {
@@ -1185,7 +829,7 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   max-width: 185px !important;
 }
 
-/* X Hide sidebar width-adjuster */
+/* XX Hide sidebar width-adjuster */
 #sidebar-splitter {
   display: none !important;
 }
@@ -1204,7 +848,6 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
 #historyTree treechildren::-moz-tree-cell(hover),
 #bookmarks-view treechildren::-moz-tree-cell(hover, selected),
 #historyTree treechildren::-moz-tree-cell(hover, selected) {
-  background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
 }
@@ -1212,11 +855,6 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
 #bookmarks-view treechildren::-moz-tree-cell-text(hover),
 #historyTree treechildren::-moz-tree-cell-text(hover) {
   color: #ffffff !important;
-}
-
-#bookmarks-view treechildren::-moz-tree-row(selected),
-#historyTree treechildren::-moz-tree-row(selected) {
-  background-color: #000000 !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-cell-text(selected),
@@ -1298,7 +936,8 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, hover),
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, selected),
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, current) {
-    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
     border-color: transparent !important;
     outline: 0 !important;
   }
@@ -1314,38 +953,12 @@ menupopup:has(> #context-paste-and-go)::part(arrowscrollbox) {
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, hover),
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, selected),
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, selected, focus) {
-    background: none !important;
     background-color: transparent !important;
     background-image: none !important;
     border-color: transparent !important;
     outline: 0 !important;
     box-shadow: none !important;
   }
-}
-
-/* X Tab tooltips */
-tooltip,
-#tabbrowser-tab-tooltip,
-#aHTMLTooltip,
-#btTooltip,
-#un-toolbar-tooltip,
-.places-tooltip {
-  appearance: none !important;
-  -moz-appearance: none !important;
-  -moz-window-shadow: none !important;
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  border: 1px solid #8a97bf !important;
-  border-radius: 6px !important;
-  outline: 1px solid #8a97bf !important;
-  outline-offset: -1px !important;
-  box-shadow: none !important;
-}
-
-tooltip label,
-#tabbrowser-tab-tooltip label,
-#aHTMLTooltip label {
-  color: #8a97bf !important;
 }
 
 /* X Bookmarks sidebar search: hide the right-side clear "x" by masking it */
@@ -1368,10 +981,270 @@ tooltip label,
   }
 }
 
-/* X Hide Temporary Extension icon and label */
-#identity-box.extensionPage #identity-icon-box {
-    display: none !important;
+/* --------------------------------------------------------------------------
+   7. Classic Alt-menu bar and menu popups
+   -------------------------------------------------------------------------- */
+
+/* X Remove the blue active/open underline from the "Alt"-button menubar labels upon click. Scope: the classic File/Edit/View/History/Bookmarks/Tools/Help menu bar only */
+#toolbar-menubar,
+#toolbar-menubar #main-menubar,
+#main-menubar {
+  --toolbarbutton-hover-background: transparent !important;
+  --toolbarbutton-active-background: transparent !important;
+  --button-background-color-hover: transparent !important;
+  --button-background-color-active: transparent !important;
+  --focus-outline-color: transparent !important;
+  --in-content-focus-outline-color: transparent !important;
 }
+
+#main-menubar > menu,
+#main-menubar > menu:hover,
+#main-menubar > menu:focus,
+#main-menubar > menu:focus-visible,
+#main-menubar > menu[_moz-menuactive="true"],
+#main-menubar > menu[open="true"],
+#main-menubar > menu[open] {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  color: var(--uc-fg) !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+#main-menubar > menu:not([open]):not([open="true"]):not([_moz-menuactive="true"]) {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+#main-menubar > menu:is([open], [open="true"], [_moz-menuactive="true"]) {
+  background-color: #000000 !important;
+  background-image: none !important;
+  color: var(--uc-fg) !important;
+}
+
+#main-menubar > menu > .menubar-text,
+#main-menubar > menu:hover > .menubar-text,
+#main-menubar > menu:focus > .menubar-text,
+#main-menubar > menu:focus-visible > .menubar-text,
+#main-menubar > menu[_moz-menuactive="true"] > .menubar-text,
+#main-menubar > menu[open="true"] > .menubar-text,
+#main-menubar > menu[open] > .menubar-text {
+  appearance: none !important;
+  -moz-appearance: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  color: var(--uc-fg) !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+#main-menubar > menu::before,
+#main-menubar > menu::after,
+#main-menubar > menu > .menubar-text::before,
+#main-menubar > menu > .menubar-text::after {
+  display: none !important;
+}
+
+/* X Remove horizontal separators from every classic "Alt"-button menubar popup and submenu */
+#main-menubar menupopup menuseparator,
+#menu_FilePopup menuseparator,
+#menu_EditPopup menuseparator,
+#menu_viewPopup menuseparator,
+#goPopup menuseparator,
+#historyMenuPopup menuseparator,
+#bookmarksMenuPopup menuseparator,
+#menu_ToolsPopup menuseparator,
+#menu_HelpPopup menuseparator,
+#menu_FilePopup menupopup menuseparator,
+#menu_EditPopup menupopup menuseparator,
+#menu_viewPopup menupopup menuseparator,
+#goPopup menupopup menuseparator,
+#historyMenuPopup menupopup menuseparator,
+#bookmarksMenuPopup menupopup menuseparator,
+#menu_ToolsPopup menupopup menuseparator,
+#menu_HelpPopup menupopup menuseparator {
+  display: none !important;
+}
+
+#main-menubar menupopup menuseparator::before,
+#main-menubar menupopup menuseparator::after,
+#menu_FilePopup menuseparator::before,
+#menu_FilePopup menuseparator::after,
+#menu_EditPopup menuseparator::before,
+#menu_EditPopup menuseparator::after,
+#menu_viewPopup menuseparator::before,
+#menu_viewPopup menuseparator::after,
+#goPopup menuseparator::before,
+#goPopup menuseparator::after,
+#historyMenuPopup menuseparator::before,
+#historyMenuPopup menuseparator::after,
+#bookmarksMenuPopup menuseparator::before,
+#bookmarksMenuPopup menuseparator::after,
+#menu_ToolsPopup menuseparator::before,
+#menu_ToolsPopup menuseparator::after,
+#menu_HelpPopup menuseparator::before,
+#menu_HelpPopup menuseparator::after {
+  display: none !important;
+}
+
+/* X "Alt"-button menubar popups: remove icons from File/Edit/View/History/Bookmarks/Tools/Help menus and their nested submenus */
+:root {
+  --uc-menubar-menu-text-indent: 3px;
+}
+
+#menu_FilePopup,
+#menu_EditPopup,
+#menu_viewPopup,
+#goPopup,
+#historyMenuPopup,
+#menu_BookmarksPopup,
+#bookmarksMenuPopup,
+#menu_ToolsPopup,
+#menu_HelpPopup,
+#main-menubar menupopup {
+  --menuitem-icon: none !important;
+  --bookmark-item-icon: none !important;
+  --menu-image: none !important;
+  --menuitem-icon-size: 0px !important;
+  --menuitem-icon-width: 0px !important;
+  --menuitem-icon-space: 0px !important;
+}
+
+#menu_FilePopup :is(menu, menuitem),
+#menu_EditPopup :is(menu, menuitem),
+#menu_viewPopup :is(menu, menuitem),
+#goPopup :is(menu, menuitem),
+#historyMenuPopup :is(menu, menuitem),
+#menu_BookmarksPopup :is(menu, menuitem),
+#bookmarksMenuPopup :is(menu, menuitem),
+#menu_ToolsPopup :is(menu, menuitem),
+#menu_HelpPopup :is(menu, menuitem),
+#main-menubar menupopup :is(menu, menuitem) {
+  --menuitem-icon: none !important;
+  --bookmark-item-icon: none !important;
+  --menu-image: none !important;
+  list-style-image: none !important;
+  background-image: none !important;
+  -moz-image-region: auto !important;
+  padding-inline-start: var(--uc-menubar-menu-text-indent) !important;
+  -moz-padding-start: var(--uc-menubar-menu-text-indent) !important;
+}
+
+/* X Old XUL icon boxes. Keep submenu arrows intact. Linked to prior codeblock */
+#menu_FilePopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_EditPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_viewPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#goPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#historyMenuPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_BookmarksPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#bookmarksMenuPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_ToolsPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_HelpPopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#main-menubar menupopup :is(menu, menuitem) > :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_FilePopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_EditPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_viewPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#goPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#historyMenuPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_BookmarksPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#bookmarksMenuPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_ToolsPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#menu_HelpPopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon),
+#main-menubar menupopup :is(menu, menuitem) :is(.menu-iconic-left, .menu-icon, .menu-iconic-icon) {
+  display: none !important;
+}
+
+/* X Newer explicit menu image elements. Do not remove submenu arrows. Linked to prior codeblock */
+#menu_FilePopup :is(menu, menuitem) image:not(.menu-right),
+#menu_EditPopup :is(menu, menuitem) image:not(.menu-right),
+#menu_viewPopup :is(menu, menuitem) image:not(.menu-right),
+#goPopup :is(menu, menuitem) image:not(.menu-right),
+#historyMenuPopup :is(menu, menuitem) image:not(.menu-right),
+#menu_BookmarksPopup :is(menu, menuitem) image:not(.menu-right),
+#bookmarksMenuPopup :is(menu, menuitem) image:not(.menu-right),
+#menu_ToolsPopup :is(menu, menuitem) image:not(.menu-right),
+#menu_HelpPopup :is(menu, menuitem) image:not(.menu-right),
+#main-menubar menupopup :is(menu, menuitem) image:not(.menu-right) {
+  display: none !important;
+}
+
+/* X Bookmark/history entries in these menus can carry their own Places icon vars. Linked to prior codeblock */
+#menu_FilePopup .bookmark-item,
+#menu_EditPopup .bookmark-item,
+#menu_viewPopup .bookmark-item,
+#goPopup .bookmark-item,
+#historyMenuPopup .bookmark-item,
+#menu_BookmarksPopup .bookmark-item,
+#bookmarksMenuPopup .bookmark-item,
+#menu_ToolsPopup .bookmark-item,
+#menu_HelpPopup .bookmark-item,
+#main-menubar menupopup .bookmark-item,
+#menu_FilePopup .menuitem-iconic,
+#menu_EditPopup .menuitem-iconic,
+#menu_viewPopup .menuitem-iconic,
+#goPopup .menuitem-iconic,
+#historyMenuPopup .menuitem-iconic,
+#menu_BookmarksPopup .menuitem-iconic,
+#bookmarksMenuPopup .menuitem-iconic,
+#menu_ToolsPopup .menuitem-iconic,
+#menu_HelpPopup .menuitem-iconic,
+#main-menubar menupopup .menuitem-iconic {
+  --menuitem-icon: none !important;
+  --bookmark-item-icon: none !important;
+  list-style-image: none !important;
+  background-image: none !important;
+}
+
+/* X Shadow/part fallback used by newer widgets. Linked to prior code block */
+#menu_FilePopup :is(menu, menuitem)::part(icon),
+#menu_EditPopup :is(menu, menuitem)::part(icon),
+#menu_viewPopup :is(menu, menuitem)::part(icon),
+#goPopup :is(menu, menuitem)::part(icon),
+#historyMenuPopup :is(menu, menuitem)::part(icon),
+#menu_BookmarksPopup :is(menu, menuitem)::part(icon),
+#bookmarksMenuPopup :is(menu, menuitem)::part(icon),
+#menu_ToolsPopup :is(menu, menuitem)::part(icon),
+#menu_HelpPopup :is(menu, menuitem)::part(icon),
+#main-menubar menupopup :is(menu, menuitem)::part(icon) {
+  display: none !important;
+}
+
+/* X Firefox "Alt"-button menu popups, including nested submenu popups */
+#main-menubar menupopup {
+  --panel-background: #060606 !important;
+  --panel-color: #8a97bf !important;
+  --panel-border-color: #13151b !important;
+}
+
+/* X All menu items inside those popups, including descendants. Linked to prior codeblock */
+#main-menubar menupopup :is(menu, menuitem) {
+  background-color: transparent !important;
+  color: #8a97bf !important;
+}
+
+/* X Hovered / keyboard-selected items inside any level. Linked to prior codeblock */
+#main-menubar menupopup :is(menu, menuitem):not([disabled="true"])[_moz-menuactive="true"] {
+  background-color: #060606 !important;
+  color: #ffffff !important;
+}
+
+/* X Disabled items. Linked to prior codeblock */
+#main-menubar menupopup :is(menu, menuitem)[disabled="true"] {
+  color: #888888 !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. Add/Edit Bookmark popup
+   -------------------------------------------------------------------------- */
 
 /* X Add/Edit Bookmark popup: hide header and divider lines */
 #editBookmarkPanel :is(.panel-header, separator, toolbarseparator, menuseparator, hr, .panel-separator) {
@@ -1396,496 +1269,255 @@ tooltip label,
   box-shadow: none !important;
 }
 
-/* X Download button: black surface, blue icon/progress/notification */
-#downloads-button {
-  --toolbarbutton-icon-fill: #8a97bf !important;
+/* "Add Bookmark" popup theme */
 
-  --button-background-color: #000000 !important;
-  --button-background-color-hover: #000000 !important;
-  --button-background-color-active: #000000 !important;
-  --button-background-color-selected: #000000 !important;
+/* 1. Theme tokens and Firefox panel variables */
+:is(#editBookmarkPanel, #editBMPanel_tagsAutocomplete, #editBMPanel_folderMenuList menupopup) {
+  --bg: #000;
+  --fg: #8a97bf;
+  --hi: #fff;
+  --bd: #1a1a1a;
+  --dim: color-mix(in srgb, var(--fg) 55%, var(--bg));
 
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-  stroke: #8a97bf !important;
+  --panel-background: var(--bg) !important;
+  --panel-color: var(--fg) !important;
+  --panel-border-color: #13151b !important;
+  --arrowpanel-background: var(--bg) !important;
+  --arrowpanel-color: var(--fg) !important;
+  --input-bgcolor: var(--bg) !important;
+  --input-color: var(--fg) !important;
+  --button-background-color: var(--bg) !important;
+  --button-text-color: var(--fg) !important;
+
+  color: var(--fg) !important;
+  accent-color: var(--fg) !important;
+}
+
+/* 2. Make icons follow the current text color */
+#editBookmarkPanel * {
+  fill: currentColor !important;
+  stroke: currentColor !important;
   -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
 }
 
-/* X Normal icon / notification parts. Linked to prior codeblock */
-#downloads-button :is(
-  .toolbarbutton-icon,
-  #downloads-indicator-icon,
-  #downloads-indicator-start-image,
-  #downloads-indicator-finish-image,
-  #downloads-indicator-notification,
-  #downloads-notification-anchor
-) {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-  stroke: #8a97bf !important;
+/* 3. Keep the popup host transparent; paint the actual panel content */
+#editBookmarkPanel {
   background-color: transparent !important;
-  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
-}
-
-/* X Progress ring/bar. Linked to prior codeblock */
-#downloads-button[progress] #downloads-indicator-progress-outer {
-  background-color: #000000 !important;
-}
-
-#downloads-button[progress] #downloads-indicator-progress-inner {
-  background-color: #8a97bf !important;
   background-image: none !important;
+  border: 0 !important;
 }
 
-/* X Hide non-audio icons inside tabs, including autoplay-blocked play/video button */
-.tabbrowser-tab :is(
-  .tab-icon-pending,
-  .tab-sharing-icon-overlay
-),
-.tabbrowser-tab[activemedia-blocked] .tab-audio-button,
-.tabbrowser-tab .tab-audio-button[activemedia-blocked] {
-  display: none !important;
+#editBookmarkPanel::part(content) {
+  background: var(--bg) !important;
+  border: 1px solid #13151b !important;
+  border-radius: var(--panel-border-radius, 6px) !important;
+  overflow: clip !important;
 }
 
-/* X Remove all hover/click/focus highlights from tab audio-is-playing without changing live/mute states */
-.tabbrowser-tab .tab-audio-button {
-  --button-background-color-ghost: transparent !important;
-  --button-background-color-ghost-hover: transparent !important;
-  --button-background-color-ghost-active: transparent !important;
-  --button-background-color-ghost-selected: transparent !important;
-  --button-border-color-ghost: transparent !important;
-  --button-border-color-ghost-hover: transparent !important;
-  --button-border-color-ghost-active: transparent !important;
-  --button-border-color-ghost-selected: transparent !important;
-  --focus-outline: 0 solid transparent !important;
-  --focus-outline-color: transparent !important;
-}
-
-.tabbrowser-tab .tab-audio-button::part(button) {
-  background-color: transparent !important;
-  border-color: transparent !important;
-  outline: 0 !important;
-  box-shadow: none !important;
-}
-
-/* X Hide EME and DRM-content-disabled icons */
-notification[value="drmContentDisabled"],
-#eme-notification-icon {
-  display: none !important;
-}
-
-/* X Firefox "Alt"-button menu popups, including nested submenu popups */
-#main-menubar menupopup {
-  --panel-background: #000000 !important;
-  --panel-color: #8a97bf !important;
-  --panel-border-color: none !important;
-
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  border-color: #none !important;
-}
-
-/* X All menu items inside those popups, including descendants. Linked to prior codeblock */
-#main-menubar menupopup :is(menu, menuitem) {
-  background-color: transparent !important;
-  color: #8a97bf !important;
-}
-
-/* X Hovered / keyboard-selected items inside any level. Linked to prior codeblock */
-#main-menubar menupopup :is(menu, menuitem):not([disabled="true"])[_moz-menuactive="true"] {
-  background-color: #000000 !important;
-  color: #ffffff !important;
-}
-
-/* X Disabled items. Linked to prior codeblock */
-#main-menubar menupopup :is(menu, menuitem)[disabled="true"] {
-  color: #888888 !important;
-}
-
-/* X Top-level menu-bar item while open or active. Linked to prior codeblock */
-#main-menubar > menu:is([open="true"], [_moz-menuactive="true"]) {
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-}
-
-/*----------------------------------------------------------*/
-/* BEGIN LONG CONNECTED ADD-BOOKMARK-POPUP SETTINGS SECTION */
-/*----------------------------------------------------------*/
-
-/* X Add/Edit Bookmark popup colors and controls. Change only these custom properties to retheme the popup */
-#editBookmarkPanel,
-#editBMPanel_tagsAutocomplete,
-#editBMPanel_folderMenuList menupopup {
-  --uc-bm-panel-bg: #000000;
-  --uc-bm-panel-fg: #8a97bf;
-  --uc-bm-panel-fg-hover: #ffffff;
-  --uc-bm-panel-outline: none;
-  --uc-bm-divider: #8a97bf;
-
-  --uc-bm-field-bg: #000000;
-  --uc-bm-field-fg: #8a97bf;
-  --uc-bm-field-fg-hover: #ffffff;
-  --uc-bm-field-border: #8a97bf;
-  --uc-bm-field-border-focus: #8a97bf;
-  --uc-bm-placeholder-fg: #8a97bf;
-  --uc-bm-placeholder-fg-hover: #ffffff;
-
-  --uc-bm-selection-bg: #8a97bf;
-  --uc-bm-selection-fg: #000000;
-
-  --uc-bm-button-bg: #000000;
-  --uc-bm-button-fg: #8a97bf;
-  --uc-bm-button-bg-hover: #000000;
-  --uc-bm-button-fg-hover: #ffffff;
-  --uc-bm-button-bg-active: #8a97bf;
-  --uc-bm-button-fg-active: #000000;
-
-  --uc-bm-item-bg: #000000;
-  --uc-bm-item-fg: #8a97bf;
-  --uc-bm-item-bg-hover: #000000;
-  --uc-bm-item-fg-hover: #ffffff;
-  --uc-bm-item-bg-selected: #000000;
-  --uc-bm-item-fg-selected: #ffffff;
-
-  --uc-bm-disabled-fg: color-mix(in srgb, #8a97bf 55%, #000000);
-  --uc-bm-focus-ring: #8a97bf;
-
-  --panel-background: var(--uc-bm-panel-bg) !important;
-  --panel-color: var(--uc-bm-panel-fg) !important;
-  --panel-border-color: var(--uc-bm-panel-outline) !important;
-  --panel-separator-color: var(--uc-bm-divider) !important;
-
-  --arrowpanel-background: var(--uc-bm-panel-bg) !important;
-  --arrowpanel-color: var(--uc-bm-panel-fg) !important;
-  --arrowpanel-border-color: var(--uc-bm-panel-outline) !important;
-  --arrowpanel-dimmed: var(--uc-bm-item-bg-hover) !important;
-  --arrowpanel-dimmed-further: var(--uc-bm-item-bg-selected) !important;
-
-  --input-bgcolor: var(--uc-bm-field-bg) !important;
-  --input-color: var(--uc-bm-field-fg) !important;
-  --input-border-color: var(--uc-bm-field-border) !important;
-  --input-focus-border-color: var(--uc-bm-field-border-focus) !important;
-
-  --button-background-color: var(--uc-bm-button-bg) !important;
-  --button-background-color-hover: var(--uc-bm-button-bg-hover) !important;
-  --button-background-color-active: var(--uc-bm-button-bg-active) !important;
-  --button-text-color: var(--uc-bm-button-fg) !important;
-  --button-text-color-hover: var(--uc-bm-button-fg-hover) !important;
-  --button-text-color-active: var(--uc-bm-button-fg-active) !important;
-  --button-border: 1px solid var(--uc-bm-field-border) !important;
-  --button-border-color-hover: var(--uc-bm-field-border-focus) !important;
-  --button-border-color-active: var(--uc-bm-button-bg-active) !important;
-
-  --focus-outline: 1px solid var(--uc-bm-focus-ring) !important;
-  --focus-outline-color: var(--uc-bm-focus-ring) !important;
-  --focus-outline-offset: -1px !important;
-
-  color: var(--uc-bm-panel-fg) !important;
-  accent-color: var(--uc-bm-focus-ring) !important;
-}
-
+/* 4. Panel spacing and surfaces */
 #editBookmarkPanelContent {
   padding-top: 20px !important;
 }
 
-/* Color the popup shell and give the popup itself a real border */
-#editBookmarkPanel::part(content),
-#editBMPanel_tagsAutocomplete::part(content),
-#editBMPanel_folderMenuList menupopup::part(content) {
-  background-color: var(--uc-bm-panel-bg) !important;
-  color: var(--uc-bm-panel-fg) !important;
-  border: 1px solid var(--uc-bm-panel-outline) !important;
-  outline: none !important;
-  box-shadow: none !important;
+#editBookmarkPanelBottomContent {
+  display: none !important;
 }
 
-/* Color the folder picker popup scroll area without adding a second border */
+:is(
+  #editBookmarkPanel .panel-header,
+  #editBookmarkPanel .panel-subview-body,
+  #editBookmarkPanel .panel-footer,
+  #editBookmarkPanelContent
+) {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+  border-color: transparent !important;
+}
+
 #editBMPanel_folderMenuList menupopup::part(arrowscrollbox) {
-  background-color: var(--uc-bm-panel-bg) !important;
-  color: var(--uc-bm-panel-fg) !important;
+  background: var(--bg) !important;
+  color: var(--fg) !important;
   border: 0 !important;
   outline: 0 !important;
   box-shadow: none !important;
 }
 
-/* Color the visible sections inside the popup */
-#editBookmarkPanel,
-#editBookmarkPanel .panel-header,
-#editBookmarkPanel .panel-subview-body,
-#editBookmarkPanel .panel-footer,
-#editBookmarkPanelContent,
-#editBookmarkPanelBottomContent {
-  background-color: var(--uc-bm-panel-bg) !important;
-  color: var(--uc-bm-panel-fg) !important;
-  border-color: transparent !important;
-}
-
-/* Color ordinary text in the popup */
+/* 5. Ordinary text */
 #editBookmarkPanel :is(label, description, .caption-label) {
-  color: var(--uc-bm-panel-fg) !important;
+  color: var(--fg) !important;
 }
 
-/* Hide the Name, URL, and folder Location labels, but keep their controls */
-#editBookmarkPanel label[control="editBMPanel_namePicker"],
-#editBookmarkPanel label[control="editBMPanel_locationField"],
-#editBookmarkPanel label[control="editBMPanel_folderMenuList"],
-#editBookmarkPanel label[data-l10n-id="bookmark-overlay-name-2"],
-#editBookmarkPanel label[data-l10n-id="bookmark-overlay-url"],
-#editBookmarkPanel label[data-l10n-id="bookmark-overlay-location-2"] {
+#editBookmarkPanel :is(label, description, .caption-label):hover {
+  color: var(--hi) !important;
+}
+
+/* 6. Hide field labels, but leave the fields themselves in place */
+#editBookmarkPanel label:is(
+  [control="editBMPanel_namePicker"],
+  [control="editBMPanel_locationField"],
+  [control="editBMPanel_folderMenuList"],
+  [data-l10n-id^="bookmark-overlay-name"],
+  [data-l10n-id="bookmark-overlay-url"],
+  [data-l10n-id^="bookmark-overlay-location"]
+) {
   display: none !important;
 }
 
-/* Restore spacing after hiding the Name and Location labels */
-#editBMPanel_namePicker,
-#editBMPanel_locationField {
+/* 7. Small layout adjustments */
+:is(#editBMPanel_namePicker, #editBMPanel_locationField) {
   margin-bottom: 6px !important;
 }
 
-/* Add space above the folder/location picker row */
 #editBookmarkPanel hbox.editBMPanel_folderRow {
   margin-top: 15px !important;
 }
 
-/* Turn ordinary popup text white on hover */
-#editBookmarkPanel :is(label, description, .caption-label):hover {
-  color: var(--uc-bm-panel-fg-hover) !important;
-}
-
-/* Color the header separator, if it is shown */
-#editBookmarkHeaderSeparator {
-  color: var(--uc-bm-divider) !important;
-  border-color: var(--uc-bm-divider) !important;
-}
-
-/* Color text fields, the folder picker, the folder tree, and the tags list */
-#editBMPanel_namePicker,
-#editBMPanel_locationField,
-#editBMPanel_tagsField,
-#editBMPanel_keywordField,
-#editBMPanel_folderMenuList,
-#editBMPanel_folderTree,
-#editBMPanel_tagsSelector {
+/* 8. Text fields, lists, the folder picker, and buttons */
+:is(
+  #editBMPanel_namePicker,
+  #editBMPanel_locationField,
+  #editBMPanel_tagsField,
+  #editBMPanel_keywordField,
+  #editBMPanel_folderMenuList,
+  #editBMPanel_folderTree,
+  #editBMPanel_tagsSelector,
+  #editBookmarkPanel button
+) {
   appearance: none !important;
-  background-color: var(--uc-bm-field-bg) !important;
-  color: var(--uc-bm-field-fg) !important;
-  border: 1px solid var(--uc-bm-field-border) !important;
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+  border: 1px solid var(--bd) !important;
   box-shadow: none !important;
 }
 
-/* Turn normal text-field and list text white on hover */
-#editBMPanel_namePicker:hover,
-#editBMPanel_locationField:hover,
-#editBMPanel_tagsField:hover,
-#editBMPanel_keywordField:hover,
-#editBMPanel_folderTree:hover,
-#editBMPanel_tagsSelector:hover {
-  color: var(--uc-bm-field-fg-hover) !important;
-}
-
-/* Keep the closed folder/location picker text blue by default */
-#editBMPanel_folderMenuList,
-#editBMPanel_folderMenuList > .menulist-label-box,
-#editBMPanel_folderMenuList .menulist-label,
-#editBMPanel_folderMenuList label,
-#editBMPanel_folderMenuList::part(label),
-#editBMPanel_folderMenuList::part(text),
-#editBMPanel_folderMenuList::part(button) {
-  color: var(--uc-bm-field-fg) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Turn the closed folder/location picker text white only on actual hover */
+:is(
+  #editBMPanel_namePicker,
+  #editBMPanel_locationField,
+  #editBMPanel_tagsField,
+  #editBMPanel_keywordField,
+  #editBMPanel_folderTree,
+  #editBMPanel_tagsSelector,
+  #editBookmarkPanel button
+):hover,
 #editBMPanel_folderMenuList:hover,
-#editBMPanel_folderMenuList:hover > .menulist-label-box,
-#editBMPanel_folderMenuList:hover .menulist-label,
-#editBMPanel_folderMenuList:hover label,
-#editBMPanel_folderMenuList:hover::part(label),
-#editBMPanel_folderMenuList:hover::part(text),
-#editBMPanel_folderMenuList:hover::part(button) {
-  color: var(--uc-bm-field-fg-hover) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
+#editBMPanel_folderMenuList:hover * {
+  color: var(--hi) !important;
 }
 
-/* Color focused fields and lists */
-#editBMPanel_namePicker:is(:focus, :focus-visible, :focus-within),
-#editBMPanel_locationField:is(:focus, :focus-visible, :focus-within),
-#editBMPanel_tagsField:is(:focus, :focus-visible, :focus-within),
-#editBMPanel_keywordField:is(:focus, :focus-visible, :focus-within),
-#editBMPanel_folderMenuList:is(:focus, :focus-visible, :focus-within, [focused="true"]),
-#editBMPanel_folderTree:focus-visible,
-#editBMPanel_tagsSelector:focus-visible {
-  border-color: var(--uc-bm-field-border-focus) !important;
-  outline: var(--focus-outline) !important;
-  outline-offset: var(--focus-outline-offset) !important;
-  box-shadow: none !important;
-}
-
-/* Color selected text inside text fields */
-#editBMPanel_namePicker::selection,
-#editBMPanel_locationField::selection,
-#editBMPanel_tagsField::selection,
-#editBMPanel_keywordField::selection {
-  background-color: var(--uc-bm-selection-bg) !important;
-  color: var(--uc-bm-selection-fg) !important;
-}
-
-/* Color placeholder text */
-#editBMPanel_namePicker::placeholder,
-#editBMPanel_locationField::placeholder,
-#editBMPanel_tagsField::placeholder,
-#editBMPanel_keywordField::placeholder {
-  color: var(--uc-bm-placeholder-fg) !important;
-  opacity: 1 !important;
-}
-
-/* Turn placeholder text white when the field is hovered */
-#editBMPanel_namePicker:hover::placeholder,
-#editBMPanel_locationField:hover::placeholder,
-#editBMPanel_tagsField:hover::placeholder,
-#editBMPanel_keywordField:hover::placeholder {
-  color: var(--uc-bm-placeholder-fg-hover) !important;
-}
-
-/* Color all Add/Edit Bookmark buttons */
-#editBookmarkPanel button {
-  appearance: none !important;
-  background-color: var(--uc-bm-button-bg) !important;
-  color: var(--uc-bm-button-fg) !important;
-  border-color: var(--uc-bm-field-border) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
-}
-
-/* Force inner button text and icons to inherit the button color */
-#editBookmarkPanel button :is(.button-box, .button-text, label, description, image),
-#editBookmarkPanel button::part(label),
-#editBookmarkPanel button::part(icon) {
-  color: inherit !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
-}
-
-/* Turn button text and icons white on hover */
-#editBookmarkPanel button:hover,
-#editBookmarkPanel button:hover :is(.button-box, .button-text, label, description, image),
-#editBookmarkPanel button:hover::part(label),
-#editBookmarkPanel button:hover::part(icon) {
-  background-color: var(--uc-bm-button-bg-hover) !important;
-  color: var(--uc-bm-button-fg-hover) !important;
-  border-color: var(--uc-bm-field-border-focus) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Color pressed buttons and their inner text/icons */
-#editBookmarkPanel button:hover:active,
-#editBookmarkPanel button:hover:active :is(.button-box, .button-text, label, description, image),
-#editBookmarkPanel button:hover:active::part(label),
-#editBookmarkPanel button:hover:active::part(icon) {
-  background-color: var(--uc-bm-button-bg-active) !important;
-  color: var(--uc-bm-button-fg-active) !important;
-  border-color: var(--uc-bm-button-bg-active) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Color disabled buttons and their inner text/icons */
-#editBookmarkPanel button[disabled="true"],
-#editBookmarkPanel button[disabled="true"] :is(.button-box, .button-text, label, description, image),
-#editBookmarkPanel button[disabled="true"]::part(label),
-#editBookmarkPanel button[disabled="true"]::part(icon) {
-  color: var(--uc-bm-disabled-fg) !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-}
-
-/* Hide button icons, except expander buttons whose icon is the control itself */
-#editBookmarkPanel button:not(#editBMPanel_foldersExpander):not(#editBMPanel_tagsSelectorExpander) > :is(
-  image,
-  .button-icon,
-  .button-image,
-  .toolbarbutton-icon
-),
-#editBookmarkPanel button:not(#editBMPanel_foldersExpander):not(#editBMPanel_tagsSelectorExpander)::part(icon) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: none !important;
-  list-style-image: none !important;
-}
-
-/* Keep the folder-tree and tag-list expander icons visible */
-#editBMPanel_foldersExpander > :is(image, .button-icon, .button-image, .toolbarbutton-icon),
-#editBMPanel_tagsSelectorExpander > :is(image, .button-icon, .button-image, .toolbarbutton-icon),
-#editBMPanel_foldersExpander::part(icon),
-#editBMPanel_tagsSelectorExpander::part(icon) {
-  display: -moz-box !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  width: auto !important;
-  min-width: unset !important;
-  max-width: unset !important;
-  height: auto !important;
-  min-height: unset !important;
-  max-height: unset !important;
-  margin: revert !important;
-  padding: revert !important;
-  color: currentColor !important;
-  fill: currentColor !important;
-  stroke: currentColor !important;
-  list-style-image: revert !important;
-  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
-}
-
-/* Remove the icon image from the closed folder picker without hiding the picker */
+/* 9. Closed folder picker text and icon handling */
 #editBMPanel_folderMenuList {
   list-style-image: none !important;
   -moz-context-properties: none !important;
 }
 
-/* Color folder-menu rows, tag autocomplete rows, and tag-selector rows */
-#editBMPanel_folderMenuList menupopup > menuitem,
-#editBMPanel_folderMenuList menupopup > menuitem :is(.menu-text, .menu-accel, label),
-#editBMPanel_folderMenuList menupopup > menuitem::part(label),
-#editBMPanel_folderMenuList menupopup > menuitem::part(text),
-#editBMPanel_tagsAutocomplete richlistitem,
-#editBMPanel_tagsSelector > richlistitem {
-  background-color: var(--uc-bm-item-bg) !important;
-  color: var(--uc-bm-item-fg) !important;
+#editBMPanel_folderMenuList :is(.menulist-label-box, .menulist-label, label),
+#editBMPanel_folderMenuList::part(label),
+#editBMPanel_folderMenuList::part(text),
+#editBMPanel_folderMenuList::part(button) {
+  color: inherit !important;
 }
 
-/* Keep menu rows blue if the closed picker is hovered while the dropdown is open */
+/* 10. Focus, selected text, and placeholder text */
+:is(
+  #editBMPanel_namePicker,
+  #editBMPanel_locationField,
+  #editBMPanel_tagsField,
+  #editBMPanel_keywordField,
+  #editBMPanel_folderMenuList
+):is(:focus, :focus-visible, :focus-within, [focused="true"]),
+:is(#editBMPanel_folderTree, #editBMPanel_tagsSelector):focus-visible {
+  outline: 1px solid var(--fg) !important;
+  outline-offset: -1px !important;
+  box-shadow: none !important;
+}
+
+:is(
+  #editBMPanel_namePicker,
+  #editBMPanel_locationField,
+  #editBMPanel_tagsField,
+  #editBMPanel_keywordField
+)::selection {
+  background: var(--fg) !important;
+  color: var(--bg) !important;
+}
+
+:is(
+  #editBMPanel_namePicker,
+  #editBMPanel_locationField,
+  #editBMPanel_tagsField,
+  #editBMPanel_keywordField
+)::placeholder {
+  color: currentColor !important;
+  opacity: 1 !important;
+}
+
+/* 11. Disabled controls */
+#editBookmarkPanel button[disabled="true"],
+#editBMPanel_folderMenuList menupopup > menuitem[disabled="true"] {
+  color: var(--dim) !important;
+}
+
+/* 12. Hide ordinary button icons, but keep the folder and tag expander icons */
+#editBookmarkPanel button:not(:is(#editBMPanel_foldersExpander, #editBMPanel_tagsSelectorExpander)) > :is(
+  image,
+  .button-icon,
+  .button-image,
+  .toolbarbutton-icon
+),
+#editBookmarkPanel button:not(:is(#editBMPanel_foldersExpander, #editBMPanel_tagsSelectorExpander))::part(icon) {
+  display: none !important;
+}
+
+/* Make ordinary button text turn white when the button is hovered */
+#editBookmarkPanel button:hover :is(.button-box, .button-text, label, description),
+#editBookmarkPanel button:hover::part(label) {
+  color: var(--hi) !important;
+}
+
+/* 13. Folder menu rows, tag autocomplete rows, and tag selector rows */
+:is(
+  #editBMPanel_folderMenuList menupopup > menuitem,
+  #editBMPanel_tagsAutocomplete richlistitem,
+  #editBMPanel_tagsSelector > richlistitem
+) {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+}
+
+:is(
+  #editBMPanel_folderMenuList menupopup > menuitem:hover,
+  #editBMPanel_tagsAutocomplete richlistitem:hover,
+  #editBMPanel_tagsSelector > richlistitem:hover,
+  #editBMPanel_tagsAutocomplete richlistitem[selected],
+  #editBMPanel_tagsSelector > richlistitem[selected]
+) {
+  background: var(--bg) !important;
+  color: var(--hi) !important;
+}
+
+/* Keep inactive menu rows blue while the folder menu itself is hovered */
 #editBMPanel_folderMenuList:hover menupopup > menuitem:not(:hover),
-#editBMPanel_folderMenuList:hover menupopup > menuitem:not(:hover) :is(.menu-text, .menu-accel, label),
-#editBMPanel_folderMenuList:hover menupopup > menuitem:not(:hover)::part(label),
-#editBMPanel_folderMenuList:hover menupopup > menuitem:not(:hover)::part(text) {
-  background-color: var(--uc-bm-item-bg) !important;
-  color: var(--uc-bm-item-fg) !important;
+#editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover) {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
 }
 
-/* Hide icons inside the opened folder menu without hiding menu rows */
+/* 14. Strip icons from folder menu rows */
 #editBMPanel_folderMenuList menupopup > menuitem {
   list-style-image: none !important;
   -moz-context-properties: none !important;
-  --menuitem-icon: none !important;
-  --menu-image: none !important;
-  --menuitem-icon-size: 0px !important;
-  --menuitem-icon-width: 0px !important;
-  --menuitem-icon-space: 0px !important;
+  --menuitem-icon-size: 0 !important;
+  --menuitem-icon-width: 0 !important;
+  --menuitem-icon-space: 0 !important;
+}
+
+#editBMPanel_folderMenuList menupopup > menuitem * {
+  background: inherit !important;
+  color: inherit !important;
+}
+
+#editBMPanel_folderMenuList menupopup > menuseparator::before {
+  border-top-color: var(--fg) !important;
 }
 
 #editBMPanel_folderMenuList menupopup > menuitem > :is(
@@ -1893,103 +1525,17 @@ notification[value="drmContentDisabled"],
   .menu-icon,
   .menu-iconic-icon,
   .menu-iconic-left
-) {
-  display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: none !important;
-  list-style-image: none !important;
-}
-
-/* Hide autocomplete and tag-list icons without hiding rows */
-#editBMPanel_tagsAutocomplete richlistitem > :is(
-  image,
-  .ac-site-icon,
-  .richlistitem-icon
 ),
-#editBMPanel_tagsSelector > richlistitem > :is(
-  image,
-  .richlistitem-icon
-) {
+#editBMPanel_tagsAutocomplete richlistitem > :is(image, .ac-site-icon, .richlistitem-icon),
+#editBMPanel_tagsSelector > richlistitem > :is(image, .richlistitem-icon) {
   display: none !important;
-  visibility: collapse !important;
-  opacity: 0 !important;
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
-  height: 0 !important;
-  min-height: 0 !important;
-  max-height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  background: none !important;
-  list-style-image: none !important;
 }
 
-/* Turn menu and list row text white only on actual hover */
-#editBMPanel_folderMenuList menupopup > menuitem:hover,
-#editBMPanel_folderMenuList menupopup > menuitem:hover :is(.menu-text, .menu-accel, label),
-#editBMPanel_folderMenuList menupopup > menuitem:hover::part(label),
-#editBMPanel_folderMenuList menupopup > menuitem:hover::part(text),
-#editBMPanel_tagsAutocomplete richlistitem:hover,
-#editBMPanel_tagsSelector > richlistitem:hover {
-  background-color: var(--uc-bm-item-bg-hover) !important;
-  color: var(--uc-bm-item-fg-hover) !important;
-}
-
-/* Keep keyboard-active folder-menu rows blue unless actually hovered */
-#editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover),
-#editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover) :is(.menu-text, .menu-accel, label),
-#editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover)::part(label),
-#editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover)::part(text) {
-  background-color: var(--uc-bm-item-bg) !important;
-  color: var(--uc-bm-item-fg) !important;
-}
-
-/* Color selected autocomplete and tag-list rows */
-#editBMPanel_tagsAutocomplete richlistitem[selected],
-#editBMPanel_tagsSelector > richlistitem[selected] {
-  background-color: var(--uc-bm-item-bg-selected) !important;
-  color: var(--uc-bm-item-fg-selected) !important;
-}
-
-/* Color disabled menu rows */
-#editBMPanel_folderMenuList menupopup > menuitem[disabled="true"] {
-  color: var(--uc-bm-disabled-fg) !important;
-}
-
-/* Color separators inside the folder menu */
-#editBMPanel_folderMenuList menupopup > menuseparator::before {
-  border-top-color: var(--uc-bm-divider) !important;
-}
-
-/* Color the folder tree background */
+/* 15. Folder tree rows, text, icons, and twisties */
 #editBMPanel_folderTree treechildren::-moz-tree-row {
-  background-color: var(--uc-bm-field-bg) !important;
+  background: var(--bg) !important;
 }
 
-/* Color hovered folder-tree rows */
-#editBMPanel_folderTree treechildren::-moz-tree-row(hover) {
-  background-color: var(--uc-bm-item-bg-hover) !important;
-}
-
-/* Color selected folder-tree rows */
-#editBMPanel_folderTree treechildren::-moz-tree-row(selected),
-#editBMPanel_folderTree treechildren::-moz-tree-row(selected, focus) {
-  background-color: var(--uc-bm-item-bg-selected) !important;
-}
-
-/* Hide folder-tree row icons, but keep twisty arrows visible */
 #editBMPanel_folderTree treechildren::-moz-tree-image {
   width: 0 !important;
   height: 0 !important;
@@ -1997,56 +1543,17 @@ notification[value="drmContentDisabled"],
   list-style-image: none !important;
 }
 
-/* Color folder-tree text */
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text {
-  color: var(--uc-bm-item-fg) !important;
+  color: var(--fg) !important;
 }
 
-/* Turn hovered folder-tree text white */
-#editBMPanel_folderTree treechildren::-moz-tree-cell-text(hover) {
-  color: var(--uc-bm-item-fg-hover) !important;
-}
-
-/* Color selected folder-tree text */
+#editBMPanel_folderTree treechildren::-moz-tree-cell-text(hover),
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text(selected),
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text(selected, focus) {
-  color: var(--uc-bm-item-fg-selected) !important;
+  color: var(--hi) !important;
 }
 
-/* Color folder-tree twisty arrows */
 #editBMPanel_folderTree treechildren::-moz-tree-twisty {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
+  color: var(--fg) !important;
+  fill: var(--fg) !important;
 }
-
-/* Turn hovered folder-tree twisty arrows white */
-#editBMPanel_folderTree treechildren::-moz-tree-twisty(hover) {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-}
-
-/* Color selected folder-tree twisty arrows */
-#editBMPanel_folderTree treechildren::-moz-tree-twisty(selected),
-#editBMPanel_folderTree treechildren::-moz-tree-twisty(selected, focus) {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-}
-
-/* X Hide the "Show editor when saving" checkbox row. Keep "browser.bookmarks.editDialog.showForNewBookmarks" set to true in about:config */
-#editBookmarkPanelBottomContent {
-  display: none !important;
-}
-
-/*-----------------------------------------*/
-/* END ADD-BOOKMARK-POPUP SETTINGS SECTION */
-/*-----------------------------------------*/
-
-/* X Remove default left-side URL bar magnifying glass after "browser.urlbar.scotchBonnet.enableOverride" in about:config has been set to "false" */
-#identity-box[pageproxystate="invalid"] {
-  display: none !important;
-}
-
-/* X Add padding between the "s" in the URL bar text -- "Search with..." -- and the left URL border; comment this out when the text is hidden 
-#urlbar-input {
-  padding-left: 2px !important;
-}*/
