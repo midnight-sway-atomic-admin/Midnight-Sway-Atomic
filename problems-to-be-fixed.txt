@@ -40,12 +40,10 @@
 
 21. Restore subscribe button on YouTube channel profiles;
 
-22. Implement better foot.ini ANSI colors;
+22. Expand and audit commands.txt;
 
-23. Expand and audit commands.txt;
+23. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-24. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+24. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-25. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
-
-26. ...
+25. ...
