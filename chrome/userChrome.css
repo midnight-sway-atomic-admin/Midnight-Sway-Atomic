@@ -609,6 +609,12 @@ spacer[part="overflow-end-indicator"] {
   box-shadow: none !important;
 }
 
+/* X Color the tab audio-is-playing/muted icon #ffffff on hover */
+.tabbrowser-tab[soundplaying]:not([activemedia-blocked]) .tab-audio-button:hover,
+.tabbrowser-tab[muted]:not([activemedia-blocked]) .tab-audio-button:hover {
+  --button-icon-fill: #ffffff !important;
+}
+
 /* XX Hide tabs' right-click context menu */
 #tabContextMenu {
   display: none !important;
