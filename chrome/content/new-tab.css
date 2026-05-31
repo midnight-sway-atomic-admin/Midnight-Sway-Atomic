@@ -36,18 +36,6 @@
   button[title="Customize new tab"],
   button[title="Customize your New Tab page"] {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
-    outline: 0 !important;
-    box-shadow: none !important;
   }
 
   /* Current NTP builds may wrap the pencil button in a fixed-position corner container. This stays narrow: only containers whose class/ID names identify them as customize/personalize/settings UI are hidden */
@@ -57,9 +45,6 @@
   [class*="personalize" i],
   [class*="prefs-button" i] {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
 
   /* Hide the panel too, in case the button was opened before the stylesheet loaded */
@@ -73,9 +58,6 @@
   [class*="customize-menu" i],
   [class*="personalize-menu" i] {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
 }
 
