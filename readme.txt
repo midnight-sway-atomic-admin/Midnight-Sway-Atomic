@@ -6,7 +6,7 @@ For the rice to look correct and be functional, you should:
 
 (b) note that the rofi files here assume you have flatpak Firefox and GIMP installed; if you use other apps, a simple change to the app names in the relevant rofi files is all you need to do; but you might have to manually adjust the rofi width to make the title of your apps cleanly fit fully within the rofi menu. But if you use something besides Firefox, as far as I know, you won't be able to apply Firefox's chrome files, and you won't be able to use the Firefox Temporary Extensions (Speed Dial and YouTube Speed Controller);
 
-(c) install the Firefox Temporary Extensions (they are meant to be used with the rice; without the Speed Dial extension, a new tab on Firefox will be blank black); the number of Speed Dial cubes can be easily adjusted via the extension files themselves;
+(c) install the Firefox Temporary Extensions (they are meant to be used with the rice; without the Speed Dial extension, a new tab on Firefox will be blank black); the number of Speed Dial cubes can be easily adjusted via the extension files themselves by editing newtab.js (change "const TOTAL_CELLS = 60" to your desired total number) and style.css (scroll down to "grid-template-columns" and "grid-template-rows" and change "12" and "5" to your desired numbers). By default, the number of speed-dial cubes is set to 60 (12x5).
 
 (d) install Privacy Badger, Ublock Origin, and NoScript;
 
