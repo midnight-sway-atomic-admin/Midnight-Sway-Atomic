@@ -4,8 +4,6 @@
 
 /* Comments tagged with "XX" are as well-formed, precise, non-redundant, and as efficient as possible for what the tagged code does */
 
-/* This file in its current state is bloated; ideally, it will be whittled down to no more than 500 LoC (exluding comments and blank lines) */
-
 /* Theme variables */
 @-moz-document domain("youtube.com") {
   :root {
@@ -260,6 +258,13 @@ ytd-watch-metadata #top-row > #actions {
 
 /* X Cosmetic hides: purchase, button, and like-divider surfaces */
   .ytp-ypc-player-content>.ytp-player-content,#button-shape,.ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextFilled,#top-level-buttons-computed like-button-view-model .ytSpecButtonShapeNextButtonTextContent,#top-level-buttons-computed ytd-toggle-button-renderer:first-of-type :is(.yt-spec-button-shape-next__button-text-content,#text),#top-level-buttons-computed segmented-like-dislike-button-view-model [class*="Divider"]{display:none!important;}
+}
+
+/* Hide the "Notify me" text and bar below upcoming videos. !CURRENTLY BEING TESTED! */
+@-moz-document domain("www.youtube.com") {
+  .ytLockupViewModelHost > .ytLockupViewModelMetadata > .ytLockupAttachmentsViewModelHost {
+    display: none !important;
+  }
 }
 
 /* X Static like/dislike compact-glyph icons */
