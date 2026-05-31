@@ -1,4 +1,4 @@
-The files here quickly set up a visually austere and elegant base DE after a fresh install of Fedora Sway Atomic. Some of the files -- such as .bashrc -- are opinionated and thus contain stuff you might not need but that I want in a fresh install (for instance: a simple script that makes dunst timer-notifications via CLI commands like "1m" for "1 minute").
+The files here quickly set up a visually austere and elegant base DE after a fresh install of Fedora Sway Atomic. Some of the files -- such as .bashrc -- are opinionated and thus contain stuff you might not need but that I want in a fresh install (for instance: a simple script that makes dunst timer-notifications via CLI commands like "1m" for "1 minute"). The files are a work in progress and will be continually changing.
 
 For the rice to look correct and be functional, you should:
 
