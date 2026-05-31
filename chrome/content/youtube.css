@@ -7,7 +7,7 @@
 /* This file in its current state is bloated; ideally, it will be whittled down to no more than 500 LoC (exluding comments and blank lines) */
 
 /* Theme variables */
-@-moz-document domain("youtube.com"), url("about:newtab"), url("about:home") {
+@-moz-document domain("youtube.com") {
   :root {
     --ytc-page-bg:#000000;
     --ytc-accent:#8A97BF;
