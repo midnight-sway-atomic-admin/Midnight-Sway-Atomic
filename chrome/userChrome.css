@@ -4,8 +4,6 @@
 
 /* Comments tagged with "XX" are as efficient, non-redundant, well-formed, and precise as possible for what the tagged code does */
 
-/* This file will ideally be no more than 1,500 LoC (excluding comments and blank lines) */
-
 /* --------------------------------------------------------------------------
    1. Main toolbar, tab-bar layout, and chrome frame
    -------------------------------------------------------------------------- */
@@ -263,7 +261,7 @@ toolbar[overflow] .scrollbox-button,
   -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
 }
 
-/* X Progress ring/bar. Linked to prior codeblock */
+/* X Progress ring/bar. Linked to prior two codeblocks */
 #downloads-button[progress] #downloads-indicator-progress-outer {
   background-color: #000000 !important;
 }
@@ -961,7 +959,7 @@ tooltip label,
   }
 }
 
-/* X Bookmarks sidebar search: hide the right-side clear "x" by masking it */
+/* X Bookmarks sidebar search: hide the right-side "x" close button by masking it */
 @-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
   #search-box {
     position: relative !important;
@@ -982,7 +980,7 @@ tooltip label,
 }
 
 /* --------------------------------------------------------------------------
-   7. Classic Alt-menu bar and menu popups
+   7. Classic "Alt"-button menubar and menu popups
    -------------------------------------------------------------------------- */
 
 /* X Remove the blue active/open underline from the "Alt"-button menubar labels upon click. Scope: the classic File/Edit/View/History/Bookmarks/Tools/Help menu bar only */
@@ -1163,7 +1161,7 @@ tooltip label,
   display: none !important;
 }
 
-/* X Newer explicit menu image elements. Do not remove submenu arrows. Linked to prior codeblock */
+/* X Newer explicit menu image elements. Do not remove submenu arrows. Linked to prior two codeblocks */
 #menu_FilePopup :is(menu, menuitem) image:not(.menu-right),
 #menu_EditPopup :is(menu, menuitem) image:not(.menu-right),
 #menu_viewPopup :is(menu, menuitem) image:not(.menu-right),
@@ -1177,7 +1175,7 @@ tooltip label,
   display: none !important;
 }
 
-/* X Bookmark/history entries in these menus can carry their own Places icon vars. Linked to prior codeblock */
+/* X Bookmark/history entries in these menus can carry their own Places icon vars. Linked to prior three codeblocks */
 #menu_FilePopup .bookmark-item,
 #menu_EditPopup .bookmark-item,
 #menu_viewPopup .bookmark-item,
@@ -1204,7 +1202,7 @@ tooltip label,
   background-image: none !important;
 }
 
-/* X Shadow/part fallback used by newer widgets. Linked to prior code block */
+/* X Shadow/part fallback used by newer widgets. Linked to prior four codeblocks */
 #menu_FilePopup :is(menu, menuitem)::part(icon),
 #menu_EditPopup :is(menu, menuitem)::part(icon),
 #menu_viewPopup :is(menu, menuitem)::part(icon),
@@ -1231,13 +1229,13 @@ tooltip label,
   color: #8a97bf !important;
 }
 
-/* X Hovered / keyboard-selected items inside any level. Linked to prior codeblock */
+/* X Hovered / keyboard-selected items inside any level. Linked to prior two codeblocks */
 #main-menubar menupopup :is(menu, menuitem):not([disabled="true"])[_moz-menuactive="true"] {
   background-color: #060606 !important;
   color: #ffffff !important;
 }
 
-/* X Disabled items. Linked to prior codeblock */
+/* X Disabled items. Linked to prior three codeblocks */
 #main-menubar menupopup :is(menu, menuitem)[disabled="true"] {
   color: #888888 !important;
 }
