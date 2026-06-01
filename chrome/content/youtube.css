@@ -33,7 +33,7 @@
     --yt-frame-border:var(--ytc-accent);
   }
 
-/* Set videoplayer-controls scale and vertical offset */
+/* X Set videoplayer-controls scale and vertical offset */
   #movie_player .ytp-chrome-bottom {
     transform:translateY(var(--yt-player-controls-y)) scale(var(--yt-player-controls-scale))!important;
     transform-origin:bottom center!important;
@@ -48,7 +48,7 @@ ytd-watch-metadata #top-row {
   justify-content:center!important;
 }
 
-/* Lock the owner block to the first grid column. Linked to prior codeblock */
+/* Lock the owner (channel name) block to the first grid column. Linked to prior codeblock */
 ytd-watch-metadata #top-row > #owner {
   grid-column:1!important;
   margin:0!important;
@@ -56,7 +56,7 @@ ytd-watch-metadata #top-row > #owner {
   max-width:none!important;
 }
 
-/* Lock the action buttons to the second grid column. Linked to prior two codeblocks */
+/* Lock the action buttons (thumbs up-down buttons) to the second grid column. Linked to prior two codeblocks */
 ytd-watch-metadata #top-row > #actions {
   grid-column:2!important;
   margin:0!important;
@@ -71,6 +71,35 @@ ytd-watch-metadata #top-row > #actions {
     outline:1.15px solid var(--yt-frame-border)!important;
     outline-offset:-1.15px!important;
     box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
+  }
+
+/* X Watch-page videoplayer clickbox: limit video clicks to main videoplayer and controls */
+  ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) {
+    pointer-events:none!important;
+  }
+
+  ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) :is(
+    .html5-main-video,
+    .ytp-cued-thumbnail-overlay-image,
+    .ytp-large-play-button,
+    .ytp-chrome-bottom,
+    .ytp-chrome-bottom *,
+    .ytp-chrome-top,
+    .ytp-chrome-top *,
+    .ytp-settings-menu,
+    .ytp-settings-menu *,
+    .ytp-popup,
+    .ytp-popup *,
+    .ytp-panel,
+    .ytp-panel *,
+    .ytp-tooltip,
+    .ytp-tooltip *,
+    .ytp-progress-bar-container,
+    .ytp-progress-bar-container *,
+    .ytp-volume-panel,
+    .ytp-volume-panel *
+  ) {
+    pointer-events:auto!important;
   }
 
 /* X Pre-play thumbnail: hide actual video; this prevents the videoplayer from turning black */
@@ -545,12 +574,12 @@ ytd-browse[page-subtype="home"] {
 /* Hide frontpage sponsored/featured videos. !CURRENTLY BEING TESTED! */
 @-moz-document domain("youtube.com") {
   ytd-browse[page-subtype="home"]
-  ytd-rich-item-renderer:has([aria-label="YouTube featured"]) {
+  ytd-rich-item-renderer:has([aria-label*="featured" i]) {
     display: none !important;
   }
 }
 
-/* X Hover color: front-page titles, front-page dots, and watch-page channel names */
+/* X Hover color: front-page titles, front-page dots, and watch-page channel names. Keep this codeblock last to override earlier rules that set the universal default colors to #8a97bf */
 @-moz-document domain("youtube.com") {
   ytd-browse[page-subtype="home"] :is(yt-lockup-view-model,ytd-rich-item-renderer):hover:not(:has(:is(
     ytd-menu-renderer,
