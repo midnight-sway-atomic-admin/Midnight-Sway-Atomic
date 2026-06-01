@@ -10,7 +10,7 @@ For the rice to look correct and be functional, you should:
 
 (d) install Privacy Badger, Ublock Origin, and NoScript;
 
-(e) enable custom .css in Firefox by setting "toolkit.legacyUserProfileCustomizations.stylesheets" to "true" in about:config;
+(e) enable custom CSS in Firefox by setting "toolkit.legacyUserProfileCustomizations.stylesheets" to "true" in about:config;
 
 (f) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text has been removed from the actual "Add Bookmark" popup.
 
@@ -22,7 +22,7 @@ For the rice to look correct and be functional, you should:
 
 (j) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
 
-(k) store your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks should appear cleanly when you press Ctrl+B to bring up the sidebar;
+(k) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
 (l) use only Ctrl+B to bring up the left-side bookmarks sidebar, while removing the horizontal bookmarks toolbar itself from appearing;
 
