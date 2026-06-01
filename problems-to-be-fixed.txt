@@ -4,42 +4,40 @@
 
 3. Move Speed Controller's popup to a better position;
 
-4. Fix YouTube videoplayer thumbnail-to-videoplaying state jankiness (i.e., the lag between pressing play on the thumbnail and the video playing);
+4. Make YouTube videoplayer thumbnail dimensions strictly identical to those of the videoplayer;
 
-5. Make YouTube videoplayer thumbnail dimensions strictly identical to those of the videoplayer;
+5. Make all gaps between Waybar status bar modules exactly identical;
 
-6. Make all gaps between Waybar status bar modules exactly identical;
+6. Make YouTube front grid dead center (the left-side black-space is currently a few pixels too wide);
 
-7. Make YouTube front grid dead center (the left-side black-space is currently a few pixels too wide);
+7. Standardize the four default wallpapers to various display sizes;
 
-8. Standardize the four default wallpapers to various display sizes;
+8. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
 
-9. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+9. Get a superior, more harmonious, custom set of icons;
 
-10. Get a superior, more harmonious, custom set of icons;
+10. Create .svg versions of all icons;
 
-11. Create .svg versions of all icons;
+11. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
 
-12. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+12. Make sure the Thunar address bar is dead center;
 
-13. Make sure the Thunar address bar is dead center;
+13. Hide the channel-name verified-circle under the YouTube videoplayer;
 
-14. Hide the channel-name verified-circle under the YouTube videoplayer;
+14. Make Waybar power-button menu thinner;
 
-15. Make Waybar power-button menu thinner;
+15. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-16. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+16. Fix current icon coverage by creating robust symlinks;
 
-17. Fix current icon coverage by creating robust symlinks;
+17. Provide more elegant symlink icon;
 
-18. Provide more elegant symlink icon;
+18. Restore subscribe button on YouTube channel profiles;
 
-19. Restore subscribe button on YouTube channel profiles;
+19. Expand and audit commands.txt;
 
-20. Expand and audit commands.txt;
+20. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-21. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+21. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-22. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
-
-23. After the rice is completely finished, create a new set of show-case images.
+22. After the rice is completely finished, create a new set of show-case images.
