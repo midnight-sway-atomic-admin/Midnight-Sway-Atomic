@@ -1,4 +1,8 @@
-/* Thunar GTK 3 theme overrides */
+/* Thunar gtk.css */
+
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+
+/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
 /* X Base reset */
 * {
