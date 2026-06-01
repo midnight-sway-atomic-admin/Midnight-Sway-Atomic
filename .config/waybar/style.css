@@ -1,8 +1,8 @@
 /* Waybar style.css */
 
-/* Comments tagged with "X" are necessary control code that roughly does what the comment says it does; this does not mean that the tagged code is as efficient or well-formed or non-redundant or precise as it should be. When all code here has been tagged with "X" the next step will be to make sure that code is as well-formed, precise, and as efficient as possible for what it does */
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Comments tagged with XX are as well-formed, non-redundant, precise, and efficient as possible for what the tagged code does */
+/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
 * {
     font-family: 'Noto Sans Mono';
@@ -16,9 +16,9 @@ tooltip {
     opacity: 0;
 }
 
-/* Waybar background color */
-window#waybar {
-  background-color: transparent;
+/* Simple Waybar background color total transparency */
+window#waybar { 
+background-color: transparent; 
 }
 
 /* Remove all arbitrary extra padding and margins from all modules */
@@ -102,4 +102,3 @@ window#waybar {
 #battery {
 margin-left: -1px;
 }
-
