@@ -14,8 +14,20 @@
   --TabsHeight: 30;
   --TabsBorder: 8;
   --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
-  --uc-fg: #8a97bf;
-  --uc-selected-bg: #000000;
+
+  /* Color shim. Change colors here; the rest of the file references these variables */
+  --uc-color-bg: #000000;
+  --uc-color-surface: #060606;
+  --uc-color-fg: #8a97bf;
+  --uc-color-hi: #ffffff;
+  --uc-color-field-border: #0e0e0e;
+  --uc-color-border: #13151b;
+  --uc-color-border-muted: #1a1a1a;
+  --uc-color-disabled: #888888;
+  --uc-color-sidebar-search-text: #939393;
+  --uc-color-dim: color-mix(in srgb, var(--uc-color-fg) 55%, var(--uc-color-bg));
+  --uc-color-transparent: transparent;
+  --uc-color-current: currentColor;
 }
 
 @media screen and (min-width: 1325px) {
@@ -115,10 +127,10 @@
 #PersonalToolbar,
 toolbar,
 findbar {
-  background-color: #000000 !important;
-  color: #8a97bf !important;
+  background-color: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
   background-image: none !important;
-  border-color: transparent !important;
+  border-color: var(--uc-color-transparent) !important;
   box-shadow: none !important;
 }
 
@@ -160,7 +172,7 @@ toolbar[overflow] .scrollbox-button,
 
 #trust-icon-container:hover,
 #trust-icon-container[open] {
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
 }
 
 #trust-icon-container:hover #trust-icon {
@@ -185,8 +197,8 @@ toolbar[overflow] .scrollbox-button,
 #back-button,
 #forward-button {
   --toolbarbutton-inner-padding: 4px !important;
-  --toolbarbutton-hover-background: transparent !important;
-  --toolbarbutton-active-background: transparent !important;
+  --toolbarbutton-hover-background: var(--uc-color-transparent) !important;
+  --toolbarbutton-active-background: var(--uc-color-transparent) !important;
 }
 
 #back-button:not([disabled]):hover > .toolbarbutton-icon,
@@ -198,7 +210,7 @@ toolbar[overflow] .scrollbox-button,
 #forward-button:not([disabled]):active > .toolbarbutton-icon,
 #back-button[open] > .toolbarbutton-icon,
 #forward-button[open] > .toolbarbutton-icon {
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
 }
 
 /* XX Add space between the Firefox left border and back-arrow */
@@ -231,17 +243,17 @@ toolbar[overflow] .scrollbox-button,
 
 /* X Download button: black surface, blue icon/progress/notification */
 #downloads-button {
-  --toolbarbutton-icon-fill: #8a97bf !important;
+  --toolbarbutton-icon-fill: var(--uc-color-fg) !important;
 
-  --button-background-color: #000000 !important;
-  --button-background-color-hover: #000000 !important;
-  --button-background-color-active: #000000 !important;
-  --button-background-color-selected: #000000 !important;
+  --button-background-color: var(--uc-color-bg) !important;
+  --button-background-color-hover: var(--uc-color-bg) !important;
+  --button-background-color-active: var(--uc-color-bg) !important;
+  --button-background-color-selected: var(--uc-color-bg) !important;
 
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-  stroke: #8a97bf !important;
+  background-color: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
+  fill: var(--uc-color-fg) !important;
+  stroke: var(--uc-color-fg) !important;
   -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
 }
 
@@ -254,20 +266,20 @@ toolbar[overflow] .scrollbox-button,
   #downloads-indicator-notification,
   #downloads-notification-anchor
 ) {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-  stroke: #8a97bf !important;
-  background-color: transparent !important;
+  color: var(--uc-color-fg) !important;
+  fill: var(--uc-color-fg) !important;
+  stroke: var(--uc-color-fg) !important;
+  background-color: var(--uc-color-transparent) !important;
   -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
 }
 
 /* X Progress ring/bar. Linked to prior two codeblocks */
 #downloads-button[progress] #downloads-indicator-progress-outer {
-  background-color: #000000 !important;
+  background-color: var(--uc-color-bg) !important;
 }
 
 #downloads-button[progress] #downloads-indicator-progress-inner {
-  background-color: #8a97bf !important;
+  background-color: var(--uc-color-fg) !important;
   background-image: none !important;
 }
 
@@ -290,11 +302,11 @@ notification[value="drmContentDisabled"],
 .searchbar-textbox,
 findbar .findbar-textbox,
 findbar input {
-  background-color: transparent !important;
-  color: #8a97bf !important;
-  border-color: #0e0e0e !important;
+  background-color: var(--uc-color-transparent) !important;
+  color: var(--uc-color-fg) !important;
+  border-color: var(--uc-color-field-border) !important;
   box-shadow: none !important;
-  --link-color: #ffffff !important;
+  --link-color: var(--uc-color-hi) !important;
 }
 
 #urlbar[focused="true"] > #urlbar-background,
@@ -304,24 +316,24 @@ findbar input {
 .searchbar-textbox[focused="true"],
 findbar .findbar-textbox:focus,
 findbar input:focus {
-  background-color: #060606 !important;
-  color: #8a97bf !important;
-  border-color: #13151B !important;
+  background-color: var(--uc-color-surface) !important;
+  color: var(--uc-color-fg) !important;
+  border-color: var(--uc-color-border) !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
 #urlbar-input {
-  background-color: transparent !important;
-  color: #8a97bf !important;
+  background-color: var(--uc-color-transparent) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #urlbar-input::selection,
 .searchbar-textbox::selection,
 findbar .findbar-textbox::selection,
 findbar input::selection {
-  background-color: #8a97bf !important;
-  color: #000000 !important;
+  background-color: var(--uc-color-fg) !important;
+  color: var(--uc-color-bg) !important;
 }
 
 /* XX Hide the URL-bar zoom button */
@@ -394,7 +406,7 @@ findbar input::selection {
   padding: 0 !important;
   border: 0 !important;
   overflow: hidden !important;
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
   list-style-image: none !important;
   box-shadow: none !important;
@@ -408,9 +420,9 @@ findbar input::selection {
 #urlbar #star-button :is(image, .toolbarbutton-icon, .urlbar-icon),
 #urlbar #pageAction-urlbar-star-button :is(image, .toolbarbutton-icon, .urlbar-icon) {
   opacity: 0 !important;
-  fill: transparent !important;
-  stroke: transparent !important;
-  background-color: transparent !important;
+  fill: var(--uc-color-transparent) !important;
+  stroke: var(--uc-color-transparent) !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
   list-style-image: none !important;
   box-shadow: none !important;
@@ -437,14 +449,14 @@ findbar input::selection {
 #urlbar[open] .urlbarView-row[selected],
 #urlbar-results .urlbarView-row[selected],
 #urlbarView-results .urlbarView-row[selected] {
-  background-color: transparent !important;
-  color: #ffffff !important;
+  background-color: var(--uc-color-transparent) !important;
+  color: var(--uc-color-hi) !important;
 }
 #urlbar[open] .urlbarView-row[row-selectable]:not([selected]):hover,
 #urlbar-results .urlbarView-row[row-selectable]:not([selected]):hover,
 #urlbarView-results .urlbarView-row[row-selectable]:not([selected]):hover {
-  background-color: transparent !important;
-  color: #ffffff !important;
+  background-color: var(--uc-color-transparent) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* X URL-bar suggestion popup: hide result icons/favicons/bookmark markers. This affects the opened address-bar dropdown only; it does not hide toolbar icons */
@@ -530,7 +542,7 @@ menupopup:has(> #context-paste-and-go) {
 
 /* X Set selected tab text color */
 .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-label {
-  color: #8a97bf !important;
+  color: var(--uc-color-fg) !important;
 }
 
 /* X Hide tab hover highlight */
@@ -561,7 +573,7 @@ spacer[part="overflow-end-indicator"] {
 }
 
 .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
-  background: transparent !important;
+  background: var(--uc-color-transparent) !important;
   box-shadow: none !important;
   border-bottom-right-radius: 10px !important;
   border-bottom-left-radius: 10px !important;
@@ -589,22 +601,22 @@ spacer[part="overflow-end-indicator"] {
 
 /* X Remove all hover/click/focus highlights from tab audio-is-playing without changing live/mute states */
 .tabbrowser-tab .tab-audio-button {
-  --button-icon-fill: #8a97bf !important;
-  --button-background-color-ghost: transparent !important;
-  --button-background-color-ghost-hover: transparent !important;
-  --button-background-color-ghost-active: transparent !important;
-  --button-background-color-ghost-selected: transparent !important;
-  --button-border-color-ghost: transparent !important;
-  --button-border-color-ghost-hover: transparent !important;
-  --button-border-color-ghost-active: transparent !important;
-  --button-border-color-ghost-selected: transparent !important;
-  --focus-outline: 0 solid transparent !important;
-  --focus-outline-color: transparent !important;
+  --button-icon-fill: var(--uc-color-fg) !important;
+  --button-background-color-ghost: var(--uc-color-transparent) !important;
+  --button-background-color-ghost-hover: var(--uc-color-transparent) !important;
+  --button-background-color-ghost-active: var(--uc-color-transparent) !important;
+  --button-background-color-ghost-selected: var(--uc-color-transparent) !important;
+  --button-border-color-ghost: var(--uc-color-transparent) !important;
+  --button-border-color-ghost-hover: var(--uc-color-transparent) !important;
+  --button-border-color-ghost-active: var(--uc-color-transparent) !important;
+  --button-border-color-ghost-selected: var(--uc-color-transparent) !important;
+  --focus-outline: 0 solid var(--uc-color-transparent) !important;
+  --focus-outline-color: var(--uc-color-transparent) !important;
 }
 
 .tabbrowser-tab .tab-audio-button::part(button) {
-  background-color: transparent !important;
-  border-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
+  border-color: var(--uc-color-transparent) !important;
   outline: 0 !important;
   box-shadow: none !important;
 }
@@ -612,7 +624,7 @@ spacer[part="overflow-end-indicator"] {
 /* X Color the tab audio-is-playing/muted icon #ffffff on hover */
 .tabbrowser-tab[soundplaying]:not([activemedia-blocked]) .tab-audio-button:hover,
 .tabbrowser-tab[muted]:not([activemedia-blocked]) .tab-audio-button:hover {
-  --button-icon-fill: #ffffff !important;
+  --button-icon-fill: var(--uc-color-hi) !important;
 }
 
 /* XX Hide tabs' right-click context menu */
@@ -629,18 +641,18 @@ tooltip,
   appearance: none !important;
   -moz-appearance: none !important;
   -moz-window-shadow: none !important;
-  background-color: #060606 !important;
-  color: #8a97bf !important;
-  border: 1px solid #13151b !important;
+  background-color: var(--uc-color-surface) !important;
+  color: var(--uc-color-fg) !important;
+  border: 1px solid var(--uc-color-border) !important;
   border-radius: 6px !important;
-  outline: 1px solid #13151b !important;
+  outline: 1px solid var(--uc-color-border) !important;
   outline-offset: -1px !important;
   box-shadow: none !important;
 }
 
 tooltip label,
 #tabbrowser-tab-tooltip label {
-  color: #8a97bf !important;
+  color: var(--uc-color-fg) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -714,9 +726,9 @@ tooltip label,
   #bookmarks-view treechildren,
   #historyTree treechildren {
     --focus-outline: none !important;
-    --focus-outline-color: transparent !important;
-    --in-content-focus-outline-color: transparent !important;
-    --in-content-item-selected-unfocused: var(--uc-selected-bg) !important;
+    --focus-outline-color: var(--uc-color-transparent) !important;
+    --in-content-focus-outline-color: var(--uc-color-transparent) !important;
+    --in-content-item-selected-unfocused: var(--uc-color-bg) !important;
   }
 
   #bookmarks-view treechildren::-moz-tree-row(focus),
@@ -735,7 +747,7 @@ tooltip label,
   #historyTree treechildren::-moz-tree-row(hover, current) {
     border: none !important;
     outline: none !important;
-    outline-color: transparent !important;
+    outline-color: var(--uc-color-transparent) !important;
     box-shadow: none !important;
   }
 
@@ -745,7 +757,7 @@ tooltip label,
   #historyTree treechildren::-moz-tree-row(selected),
   #historyTree treechildren::-moz-tree-row(selected, focus),
   #historyTree treechildren::-moz-tree-row(selected, current) {
-    background-color: var(--uc-selected-bg) !important;
+    background-color: var(--uc-color-bg) !important;
   }
 
   #bookmarks-view treechildren::-moz-tree-cell(focus),
@@ -766,7 +778,7 @@ tooltip label,
   #historyTree treechildren::-moz-tree-cell-text(selected, current) {
     border: none !important;
     outline: none !important;
-    outline-color: transparent !important;
+    outline-color: var(--uc-color-transparent) !important;
     box-shadow: none !important;
   }
 }
@@ -777,23 +789,23 @@ tooltip label,
   #bookmarksPanel,
   #sidebar-search-container,
   #search-box {
-    --focus-outline: 0 solid transparent !important;
-    --focus-outline-color: transparent !important;
-    --in-content-focus-outline-color: transparent !important;
-    --input-border-color: transparent !important;
-    --input-focus-border-color: transparent !important;
-    --input-text-border: 1px solid transparent !important;
-    --input-text-border-color: transparent !important;
-    --toolbar-field-border-color: transparent !important;
-    --toolbar-field-focus-border-color: transparent !important;
+    --focus-outline: 0 solid var(--uc-color-transparent) !important;
+    --focus-outline-color: var(--uc-color-transparent) !important;
+    --in-content-focus-outline-color: var(--uc-color-transparent) !important;
+    --input-border-color: var(--uc-color-transparent) !important;
+    --input-focus-border-color: var(--uc-color-transparent) !important;
+    --input-text-border: 1px solid var(--uc-color-transparent) !important;
+    --input-text-border-color: var(--uc-color-transparent) !important;
+    --toolbar-field-border-color: var(--uc-color-transparent) !important;
+    --toolbar-field-focus-border-color: var(--uc-color-transparent) !important;
   }
 
   #search-box,
   #search-box:is(:hover, :focus, :focus-visible, :focus-within, :-moz-focusring, [focused], [focused="true"]) {
-    background-color: transparent !important;
-    color: transparent !important;
-    border: 1px solid transparent !important;
-    outline: 0 solid transparent !important;
+    background-color: var(--uc-color-transparent) !important;
+    color: var(--uc-color-transparent) !important;
+    border: 1px solid var(--uc-color-transparent) !important;
+    outline: 0 solid var(--uc-color-transparent) !important;
     box-shadow: none !important;
   }
 
@@ -805,10 +817,10 @@ tooltip label,
   #search-box input:is(:hover, :focus, :focus-visible, :-moz-focusring),
   input#input[type="search"],
   input#input[type="search"]:is(:hover, :focus, :focus-visible, :-moz-focusring) {
-    background-color: transparent !important;
-    color: #939393 !important;
-    border: 1px solid transparent !important;
-    outline: 0 solid transparent !important;
+    background-color: var(--uc-color-transparent) !important;
+    color: var(--uc-color-sidebar-search-text) !important;
+    border: 1px solid var(--uc-color-transparent) !important;
+    outline: 0 solid var(--uc-color-transparent) !important;
     box-shadow: none !important;
   }
 }
@@ -819,9 +831,9 @@ tooltip label,
 #sidebar-search-container,
 #bookmarks-view,
 #historyTree {
-  background-color: #000000 !important;
-  color: #8a97bf !important;
-  border-color: #000000 !important;
+  background-color: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
+  border-color: var(--uc-color-bg) !important;
 }
 
 /* X Control the sidebar width */
@@ -831,6 +843,7 @@ tooltip label,
   width: 185px !important;
   min-width: 185px !important;
   max-width: 185px !important;
+  padding-top: 85px !important; /* Adjust to vertically center bookmarks content within the sidebar */
 }
 
 /* XX Hide sidebar width-adjuster */
@@ -841,7 +854,7 @@ tooltip label,
 /* X Bookmarks sidebar color controls */
 #bookmarks-view treechildren::-moz-tree-cell-text,
 #historyTree treechildren::-moz-tree-cell-text {
-  color: #8a97bf !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-row(hover),
@@ -852,18 +865,18 @@ tooltip label,
 #historyTree treechildren::-moz-tree-cell(hover),
 #bookmarks-view treechildren::-moz-tree-cell(hover, selected),
 #historyTree treechildren::-moz-tree-cell(hover, selected) {
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-cell-text(hover),
 #historyTree treechildren::-moz-tree-cell-text(hover) {
-  color: #ffffff !important;
+  color: var(--uc-color-hi) !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-cell-text(selected),
 #historyTree treechildren::-moz-tree-cell-text(selected) {
-  color: #8a97bf !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-twisty(selected),
@@ -882,9 +895,9 @@ tooltip label,
 #historyTree treechildren::-moz-tree-twisty(open, selected, focus),
 #historyTree treechildren::-moz-tree-twisty(open, selected, current),
 #historyTree treechildren::-moz-tree-twisty(open, selected, hover) {
-  color: #8a97bf !important;
-  fill: #8a97bf !important;
-  stroke: #8a97bf !important;
+  color: var(--uc-color-fg) !important;
+  fill: var(--uc-color-fg) !important;
+  stroke: var(--uc-color-fg) !important;
 }
 
 /* X Bookmarks sidebar search: selected text highlight colors */
@@ -892,8 +905,8 @@ tooltip label,
   #search-box input::selection,
   #search-box #input::selection,
   input#input[type="search"]::selection {
-    background-color: #939393 !important; /* highlight color */
-    color: #000000 !important; /* text color while highlighted */
+    background-color: var(--uc-color-sidebar-search-text) !important; /* highlight color */
+    color: var(--uc-color-bg) !important; /* text color while highlighted */
   }
 }
 
@@ -902,7 +915,7 @@ tooltip label,
   #search-box input::placeholder,
   #search-box #input::placeholder,
   input#input[type="search"]::placeholder {
-    color: transparent !important;
+    color: var(--uc-color-transparent) !important;
     opacity: 0 !important;
   }
 }
@@ -922,8 +935,8 @@ tooltip label,
   .sidebar-placesTreechildren::-moz-tree-cell-text(container, queryFolder_unfiled_____) {
     visibility: hidden !important;
     opacity: 0 !important;
-    color: transparent !important;
-    fill: transparent !important;
+    color: var(--uc-color-transparent) !important;
+    fill: var(--uc-color-transparent) !important;
   }
 
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_toolbar_____),
@@ -940,9 +953,9 @@ tooltip label,
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, hover),
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, selected),
   .sidebar-placesTreechildren::-moz-tree-row(container, queryFolder_unfiled_____, current) {
-    background-color: transparent !important;
+    background-color: var(--uc-color-transparent) !important;
     background-image: none !important;
-    border-color: transparent !important;
+    border-color: var(--uc-color-transparent) !important;
     outline: 0 !important;
   }
 
@@ -957,9 +970,9 @@ tooltip label,
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, hover),
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, selected),
   .sidebar-placesTreechildren::-moz-tree-cell(container, queryFolder_unfiled_____, selected, focus) {
-    background-color: transparent !important;
+    background-color: var(--uc-color-transparent) !important;
     background-image: none !important;
-    border-color: transparent !important;
+    border-color: var(--uc-color-transparent) !important;
     outline: 0 !important;
     box-shadow: none !important;
   }
@@ -978,7 +991,7 @@ tooltip label,
     right: 2px !important;
     bottom: 2px !important;
     width: 24px !important;
-    background-color: #000000 !important;
+    background-color: var(--uc-color-bg) !important;
     border-radius: 0 6px 6px 0 !important;
     pointer-events: auto !important;
     z-index: 2147483647 !important;
@@ -993,12 +1006,12 @@ tooltip label,
 #toolbar-menubar,
 #toolbar-menubar #main-menubar,
 #main-menubar {
-  --toolbarbutton-hover-background: transparent !important;
-  --toolbarbutton-active-background: transparent !important;
-  --button-background-color-hover: transparent !important;
-  --button-background-color-active: transparent !important;
-  --focus-outline-color: transparent !important;
-  --in-content-focus-outline-color: transparent !important;
+  --toolbarbutton-hover-background: var(--uc-color-transparent) !important;
+  --toolbarbutton-active-background: var(--uc-color-transparent) !important;
+  --button-background-color-hover: var(--uc-color-transparent) !important;
+  --button-background-color-active: var(--uc-color-transparent) !important;
+  --focus-outline-color: var(--uc-color-transparent) !important;
+  --in-content-focus-outline-color: var(--uc-color-transparent) !important;
 }
 
 #main-menubar > menu,
@@ -1010,7 +1023,7 @@ tooltip label,
 #main-menubar > menu[open] {
   appearance: none !important;
   -moz-appearance: none !important;
-  color: var(--uc-fg) !important;
+  color: var(--uc-color-fg) !important;
   border: 0 !important;
   border-top: 0 !important;
   border-right: 0 !important;
@@ -1022,14 +1035,14 @@ tooltip label,
 }
 
 #main-menubar > menu:not([open]):not([open="true"]):not([_moz-menuactive="true"]) {
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
 }
 
 #main-menubar > menu:is([open], [open="true"], [_moz-menuactive="true"]) {
-  background-color: #000000 !important;
+  background-color: var(--uc-color-bg) !important;
   background-image: none !important;
-  color: var(--uc-fg) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #main-menubar > menu > .menubar-text,
@@ -1041,9 +1054,9 @@ tooltip label,
 #main-menubar > menu[open] > .menubar-text {
   appearance: none !important;
   -moz-appearance: none !important;
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
-  color: var(--uc-fg) !important;
+  color: var(--uc-color-fg) !important;
   border: 0 !important;
   border-bottom: 0 !important;
   outline: 0 !important;
@@ -1224,26 +1237,26 @@ tooltip label,
 
 /* X Firefox "Alt"-button menu popups, including nested submenu popups */
 #main-menubar menupopup {
-  --panel-background: #060606 !important;
-  --panel-color: #8a97bf !important;
-  --panel-border-color: #13151b !important;
+  --panel-background: var(--uc-color-surface) !important;
+  --panel-color: var(--uc-color-fg) !important;
+  --panel-border-color: var(--uc-color-border) !important;
 }
 
 /* X All menu items inside those popups, including descendants. Linked to prior codeblock */
 #main-menubar menupopup :is(menu, menuitem) {
-  background-color: transparent !important;
-  color: #8a97bf !important;
+  background-color: var(--uc-color-transparent) !important;
+  color: var(--uc-color-fg) !important;
 }
 
-/* X Hovered / keyboard-selected items inside any level. Linked to prior two codeblocks */
+/* X Hovered/keyboard-selected items inside any level. Linked to prior two codeblocks */
 #main-menubar menupopup :is(menu, menuitem):not([disabled="true"])[_moz-menuactive="true"] {
-  background-color: #060606 !important;
-  color: #ffffff !important;
+  background-color: var(--uc-color-surface) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* X Disabled items. Linked to prior three codeblocks */
 #main-menubar menupopup :is(menu, menuitem)[disabled="true"] {
-  color: #888888 !important;
+  color: var(--uc-color-disabled) !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -1277,43 +1290,37 @@ tooltip label,
 
 /* 1. Theme tokens and Firefox panel variables */
 :is(#editBookmarkPanel, #editBMPanel_tagsAutocomplete, #editBMPanel_folderMenuList menupopup) {
-  --bg: #000;
-  --fg: #8a97bf;
-  --hi: #fff;
-  --bd: #1a1a1a;
-  --dim: color-mix(in srgb, var(--fg) 55%, var(--bg));
+  --panel-background: var(--uc-color-bg) !important;
+  --panel-color: var(--uc-color-fg) !important;
+  --panel-border-color: var(--uc-color-border) !important;
+  --arrowpanel-background: var(--uc-color-bg) !important;
+  --arrowpanel-color: var(--uc-color-fg) !important;
+  --input-bgcolor: var(--uc-color-bg) !important;
+  --input-color: var(--uc-color-fg) !important;
+  --button-background-color: var(--uc-color-bg) !important;
+  --button-text-color: var(--uc-color-fg) !important;
 
-  --panel-background: var(--bg) !important;
-  --panel-color: var(--fg) !important;
-  --panel-border-color: #13151b !important;
-  --arrowpanel-background: var(--bg) !important;
-  --arrowpanel-color: var(--fg) !important;
-  --input-bgcolor: var(--bg) !important;
-  --input-color: var(--fg) !important;
-  --button-background-color: var(--bg) !important;
-  --button-text-color: var(--fg) !important;
-
-  color: var(--fg) !important;
-  accent-color: var(--fg) !important;
+  color: var(--uc-color-fg) !important;
+  accent-color: var(--uc-color-fg) !important;
 }
 
 /* 2. Make icons follow the current text color */
 #editBookmarkPanel * {
-  fill: currentColor !important;
-  stroke: currentColor !important;
+  fill: var(--uc-color-current) !important;
+  stroke: var(--uc-color-current) !important;
   -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
 }
 
 /* 3. Keep the popup host transparent; paint the actual panel content */
 #editBookmarkPanel {
-  background-color: transparent !important;
+  background-color: var(--uc-color-transparent) !important;
   background-image: none !important;
   border: 0 !important;
 }
 
 #editBookmarkPanel::part(content) {
-  background: var(--bg) !important;
-  border: 1px solid #13151b !important;
+  background: var(--uc-color-bg) !important;
+  border: 1px solid var(--uc-color-border) !important;
   border-radius: var(--panel-border-radius, 6px) !important;
   overflow: clip !important;
 }
@@ -1333,14 +1340,14 @@ tooltip label,
   #editBookmarkPanel .panel-footer,
   #editBookmarkPanelContent
 ) {
-  background: var(--bg) !important;
-  color: var(--fg) !important;
-  border-color: transparent !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
+  border-color: var(--uc-color-transparent) !important;
 }
 
 #editBMPanel_folderMenuList menupopup::part(arrowscrollbox) {
-  background: var(--bg) !important;
-  color: var(--fg) !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
   border: 0 !important;
   outline: 0 !important;
   box-shadow: none !important;
@@ -1348,11 +1355,11 @@ tooltip label,
 
 /* 5. Ordinary text */
 #editBookmarkPanel :is(label, description, .caption-label) {
-  color: var(--fg) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #editBookmarkPanel :is(label, description, .caption-label):hover {
-  color: var(--hi) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* 6. Hide field labels, but leave the fields themselves in place */
@@ -1388,9 +1395,9 @@ tooltip label,
   #editBookmarkPanel button
 ) {
   appearance: none !important;
-  background: var(--bg) !important;
-  color: var(--fg) !important;
-  border: 1px solid var(--bd) !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
+  border: 1px solid var(--uc-color-border-muted) !important;
   box-shadow: none !important;
 }
 
@@ -1405,7 +1412,7 @@ tooltip label,
 ):hover,
 #editBMPanel_folderMenuList:hover,
 #editBMPanel_folderMenuList:hover * {
-  color: var(--hi) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* 9. Closed folder picker text and icon handling */
@@ -1430,7 +1437,7 @@ tooltip label,
   #editBMPanel_folderMenuList
 ):is(:focus, :focus-visible, :focus-within, [focused="true"]),
 :is(#editBMPanel_folderTree, #editBMPanel_tagsSelector):focus-visible {
-  outline: 1px solid var(--fg) !important;
+  outline: 1px solid var(--uc-color-fg) !important;
   outline-offset: -1px !important;
   box-shadow: none !important;
 }
@@ -1441,8 +1448,8 @@ tooltip label,
   #editBMPanel_tagsField,
   #editBMPanel_keywordField
 )::selection {
-  background: var(--fg) !important;
-  color: var(--bg) !important;
+  background: var(--uc-color-fg) !important;
+  color: var(--uc-color-bg) !important;
 }
 
 :is(
@@ -1451,14 +1458,14 @@ tooltip label,
   #editBMPanel_tagsField,
   #editBMPanel_keywordField
 )::placeholder {
-  color: currentColor !important;
+  color: var(--uc-color-current) !important;
   opacity: 1 !important;
 }
 
 /* 11. Disabled controls */
 #editBookmarkPanel button[disabled="true"],
 #editBMPanel_folderMenuList menupopup > menuitem[disabled="true"] {
-  color: var(--dim) !important;
+  color: var(--uc-color-dim) !important;
 }
 
 /* 12. Hide ordinary button icons, but keep the folder and tag expander icons */
@@ -1475,7 +1482,7 @@ tooltip label,
 /* Make ordinary button text turn white when the button is hovered */
 #editBookmarkPanel button:hover :is(.button-box, .button-text, label, description),
 #editBookmarkPanel button:hover::part(label) {
-  color: var(--hi) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* 13. Folder menu rows, tag autocomplete rows, and tag selector rows */
@@ -1484,8 +1491,8 @@ tooltip label,
   #editBMPanel_tagsAutocomplete richlistitem,
   #editBMPanel_tagsSelector > richlistitem
 ) {
-  background: var(--bg) !important;
-  color: var(--fg) !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 :is(
@@ -1495,15 +1502,15 @@ tooltip label,
   #editBMPanel_tagsAutocomplete richlistitem[selected],
   #editBMPanel_tagsSelector > richlistitem[selected]
 ) {
-  background: var(--bg) !important;
-  color: var(--hi) !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 /* Keep inactive menu rows blue while the folder menu itself is hovered */
 #editBMPanel_folderMenuList:hover menupopup > menuitem:not(:hover),
 #editBMPanel_folderMenuList menupopup > menuitem[_moz-menuactive]:not(:hover) {
-  background: var(--bg) !important;
-  color: var(--fg) !important;
+  background: var(--uc-color-bg) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 /* 14. Strip icons from folder menu rows */
@@ -1521,7 +1528,7 @@ tooltip label,
 }
 
 #editBMPanel_folderMenuList menupopup > menuseparator::before {
-  border-top-color: var(--fg) !important;
+  border-top-color: var(--uc-color-fg) !important;
 }
 
 #editBMPanel_folderMenuList menupopup > menuitem > :is(
@@ -1537,7 +1544,7 @@ tooltip label,
 
 /* 15. Folder tree rows, text, icons, and twisties */
 #editBMPanel_folderTree treechildren::-moz-tree-row {
-  background: var(--bg) !important;
+  background: var(--uc-color-bg) !important;
 }
 
 #editBMPanel_folderTree treechildren::-moz-tree-image {
@@ -1548,16 +1555,16 @@ tooltip label,
 }
 
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text {
-  color: var(--fg) !important;
+  color: var(--uc-color-fg) !important;
 }
 
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text(hover),
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text(selected),
 #editBMPanel_folderTree treechildren::-moz-tree-cell-text(selected, focus) {
-  color: var(--hi) !important;
+  color: var(--uc-color-hi) !important;
 }
 
 #editBMPanel_folderTree treechildren::-moz-tree-twisty {
-  color: var(--fg) !important;
-  fill: var(--fg) !important;
+  color: var(--uc-color-fg) !important;
+  fill: var(--uc-color-fg) !important;
 }
