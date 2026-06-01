@@ -1,6 +1,6 @@
-1. Create shims of the relevant config files to make changing the main rice colors simple;
+1. Create shims of all the relevant config files to make changing the main rice colors simple;
 
-2. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as well-formed, precise, non-redundant, and as efficient as possible (such code is tagged with "XX");
+2. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as efficient, non-redundant, well-formed, and precise as possible (such code is tagged with "XX");
 
 3. Move Speed Controller's popup to a better position;
 
