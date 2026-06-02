@@ -8,36 +8,34 @@
 
 5. Make all gaps between Waybar status bar modules exactly identical;
 
-6. Make YouTube front grid dead center (the left-side black-space is currently a few pixels too wide);
+6. Standardize the four default wallpapers to various display sizes;
 
-7. Standardize the four default wallpapers to various display sizes;
+7. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
 
-8. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+8. Get a superior, more harmonious, custom set of icons;
 
-9. Get a superior, more harmonious, custom set of icons;
+9. Create .svg versions of all icons;
 
-10. Create .svg versions of all icons;
+10. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
 
-11. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+11. Make sure the Thunar address bar is dead center;
 
-12. Make sure the Thunar address bar is dead center;
+12. Hide the channel-name verified-circle under the YouTube videoplayer;
 
-13. Hide the channel-name verified-circle under the YouTube videoplayer;
+13. Make Waybar power-button menu thinner;
 
-14. Make Waybar power-button menu thinner;
+14. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-15. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+15. Fix current icon coverage by creating robust symlinks;
 
-16. Fix current icon coverage by creating robust symlinks;
+16. Provide more elegant symlink icon;
 
-17. Provide more elegant symlink icon;
+17. Restore subscribe button on YouTube channel profiles;
 
-18. Restore subscribe button on YouTube channel profiles;
+18. Expand and audit commands.txt;
 
-19. Expand and audit commands.txt;
+19. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-20. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+20. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
 
-21. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
-
-22. After the rice is completely finished, create a new set of show-case images.
+21. After the rice is completely finished, create a new set of show-case images.
