@@ -30,12 +30,10 @@
 
 16. Provide more elegant symlink icon;
 
-17. Restore subscribe button on YouTube channel profiles;
+17. Expand and audit commands.txt;
 
-18. Expand and audit commands.txt;
+18. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-19. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+19. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-20. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, and the trust panel);
-
-21. After the rice is completely finished, create a new set of show-case images.
+20. After the rice is completely finished, create a new set of show-case images.
