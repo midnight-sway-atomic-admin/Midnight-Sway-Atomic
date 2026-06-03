@@ -36,4 +36,8 @@
 
 19. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-20. After the rice is completely finished, create a new set of show-case images.
+20. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+
+21. Make all comments identical in tense and more exact and concise;
+
+22. After the rice is completely finished, create a new set of show-case images.
