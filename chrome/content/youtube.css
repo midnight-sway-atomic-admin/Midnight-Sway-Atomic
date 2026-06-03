@@ -7,75 +7,76 @@
 /* Theme variables */
 @-moz-document domain("youtube.com") {
   :root {
-    --ytc-page-bg:#000000;
-    --ytc-accent:#8A97BF;
-    --ytc-player-text:#FFFFFF;
+    --ytc-page-bg: #000000;
+    --ytc-accent: #8A97BF;
+    --ytc-player-text: #FFFFFF;
+    --ytc-surface-bg: #1a1a1a;
   }
 }
 
 /* Base, player, watch, home, and tooltip rules */
 @-moz-document domain("youtube.com") {
 
-/* Base page background */
+  /* Base page background */
   html,
   ytd-app {
-    background-color:var(--ytc-page-bg)!important;
+    background-color: var(--ytc-page-bg) !important;
   }
 
-/* Player sizing variables */
+  /* Player sizing variables */
   #movie_player {
-    --yt-player-controls-scale:0.65;
-    --yt-player-controls-y:-60px;
-    --yt-frame-video-scale:.87;
-    --yt-frame-thumb-width:68.91%; /* Tune by comparing screenshots of states: videoplayer pre-play thumbnail was 1436px, video was 1384px */
-    --yt-frame-thumb-height:87%;
-    --yt-frame-bg:var(--ytc-page-bg);
-    --yt-frame-border:var(--ytc-accent);
+    --yt-player-controls-scale: 0.65;
+    --yt-player-controls-y: -60px;
+    --yt-frame-video-scale: .87;
+    --yt-frame-thumb-width: 68.91%; /* Tune by comparing screenshots of states: videoplayer pre-play thumbnail was 1436px, video was 1384px */
+    --yt-frame-thumb-height: 87%;
+    --yt-frame-bg: var(--ytc-page-bg);
+    --yt-frame-border: var(--ytc-accent);
   }
 
-/* X Set videoplayer-controls scale and vertical offset */
+  /* X Set videoplayer-controls scale and vertical offset */
   #movie_player .ytp-chrome-bottom {
-    transform:translateY(var(--yt-player-controls-y)) scale(var(--yt-player-controls-scale))!important;
-    transform-origin:bottom center!important;
+    transform: translateY(var(--yt-player-controls-y)) scale(var(--yt-player-controls-scale)) !important;
+    transform-origin: bottom center !important;
   }
 
-/* Set strict channel-name-to-thumbs spacing. !CURRENTLY BEING TESTED! */
-ytd-watch-metadata #top-row {
-  display:grid!important;
-  grid-template-columns:max-content max-content!important;
-  column-gap:275px!important; /* Change this pixel value to control spacing */
-  align-items:center!important;
-  justify-content:center!important;
-}
+  /* Set strict channel-name-to-thumbs spacing. !CURRENTLY BEING TESTED! */
+  ytd-watch-metadata #top-row {
+    display: grid !important;
+    grid-template-columns: max-content max-content !important;
+    column-gap: 275px !important; /* Change this pixel value to control spacing */
+    align-items: center !important;
+    justify-content: center !important;
+  }
 
-/* Lock the owner (channel name) block to the first grid column. Linked to prior codeblock */
-ytd-watch-metadata #top-row > #owner {
-  grid-column:1!important;
-  margin:0!important;
-  width:max-content!important;
-  max-width:none!important;
-}
+  /* Lock the owner (channel name) block to the first grid column. Linked to prior codeblock */
+  ytd-watch-metadata #top-row > #owner {
+    grid-column: 1 !important;
+    margin: 0 !important;
+    width: max-content !important;
+    max-width: none !important;
+  }
 
-/* Lock the action buttons (thumbs up-down buttons) to the second grid column. Linked to prior two codeblocks */
-ytd-watch-metadata #top-row > #actions {
-  grid-column:2!important;
-  margin:0!important;
-  width:max-content!important;
-  max-width:none!important;
-}
+  /* Lock the action buttons (thumbs up-down buttons) to the second grid column. Linked to prior two codeblocks */
+  ytd-watch-metadata #top-row > #actions {
+    grid-column: 2 !important;
+    margin: 0 !important;
+    width: max-content !important;
+    max-width: none !important;
+  }
 
-/* Watch video frame. */
+  /* Videoplayer frame */
   ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) .html5-main-video {
-    left:50%!important;
-    transform:translateX(-50%) scale(var(--yt-frame-video-scale))!important;
-    outline:1.15px solid var(--yt-frame-border)!important;
-    outline-offset:-1.15px!important;
-    box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
+    left: 50% !important;
+    transform: translateX(-50%) scale(var(--yt-frame-video-scale)) !important;
+    outline: 1.15px solid var(--yt-frame-border) !important;
+    outline-offset: -1.15px !important;
+    box-shadow: 0 0 0 9999px var(--yt-frame-bg) !important;
   }
 
-/* X Watch-page videoplayer clickbox: limit video clicks to main videoplayer and controls */
+  /* X Limits video clicks to main videoplayer surface and its controls */
   ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) {
-    pointer-events:none!important;
+    pointer-events: none !important;
   }
 
   ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) :is(
@@ -99,318 +100,575 @@ ytd-watch-metadata #top-row > #actions {
     .ytp-volume-panel,
     .ytp-volume-panel *
   ) {
-    pointer-events:auto!important;
+    pointer-events: auto !important;
   }
 
-/* X Pre-play thumbnail: hide actual video; this prevents the videoplayer from turning black */
+  /* X Pre-play thumbnail: hide actual video; this prevents the videoplayer from turning black */
   #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .html5-main-video {
-    opacity:0!important;
-    visibility:hidden!important;
+    opacity: 0 !important;
+    visibility: hidden !important;
   }
 
-/* X Pre-play thumbnail: show thumbnail overlay after video has ended */
+  /* X Pre-play thumbnail: show thumbnail overlay after video has ended */
   #movie_player:is(.ended-mode) :is(.ytp-cued-thumbnail-overlay,.ytp-cued-thumbnail-overlay-image,.ytp-large-play-button) {
-    display:block!important;
-    visibility:visible!important;
-    opacity:1!important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 
   /* X Pre-play thumbnail: centered and bordered */
   #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay-image {
-    position:absolute!important;
-    left:50%!important;
-    top:50%!important;
-    width:var(--yt-frame-thumb-width)!important;
-    height:var(--yt-frame-thumb-height)!important;
-    margin:0!important;
-    transform:translate(-50%,-50%)!important;
-    outline:1.15px solid var(--yt-frame-border)!important;
-    outline-offset:-1.15px!important;
-    background-size:cover!important;
-    background-position:center!important;
-    background-repeat:no-repeat!important;
-    box-shadow:0 0 0 9999px var(--yt-frame-bg)!important;
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    width: var(--yt-frame-thumb-width) !important;
+    height: var(--yt-frame-thumb-height) !important;
+    margin: 0 !important;
+    transform: translate(-50%,-50%) !important;
+    outline: 1.15px solid var(--yt-frame-border) !important;
+    outline-offset: -1.15px !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    box-shadow: 0 0 0 9999px var(--yt-frame-bg) !important;
   }
 
-  /* X Site chrome and sidebar hides */
-  .ytp-gradient-bottom,
-  .ytp-spinner,
-  ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]),
-  ytd-app #masthead,
-  .yt-spec-touch-feedback-shape__hover-effect,
-  .ytSpecTouchFeedbackShapeHoverEffect,
-  like-button-view-model .yt-spec-button-shape-next__button-text-content,
-  like-button-view-model .ytSpecButtonShapeNextButtonTextContent,
-  .yt-spec-button-shape-next--segmented-start::after,
-  .ytSpecButtonShapeNextSegmentedStart::after,
-  [id^="chat"],
-  ytd-comments,
-  ytd-watch-metadata #bottom-row,
-  ytd-watch-metadata #avatar,
-  #subscribe-button,
+  /* Various hides */
+
+  .ytp-spinner, /* XX Hides the spinning loading circle in the center of the videoplayer */
+  ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]), /* X Attempts to hide frontpage music mixes */
+  ytd-app #masthead, /* XX Hides frontpage and videoplayer top search-box and the panel behind it */
+  .yt-spec-touch-feedback-shape__hover-effect, .ytSpecTouchFeedbackShapeHoverEffect, /* XX The first hides the frontpage thumbnail background color on hover; the second is likely a guard for this effect elsewhere */
+  [id^="chat"], /* XX Hides chat box to the right of upcoming-video pre-play thumbnail and fixes the sizing of that thumbnail */
+  ytd-comments, /* XX Hides comments below the videoplayer */
   #sponsor-button,
-  ytd-menu-renderer #flexible-item-buttons,
   ytd-merch-shelf-renderer,
   #ticket-shelf {
-    display:none!important;
+    display: none !important;
   }
 
-/* X Live-chat padding reset */
+  /* X Live-chat padding reset */
   ytd-watch-flexy[live-chat-present-and-expanded] #columns {
-    padding-right:0!important;
+    padding-right: 0 !important;
   }
 
-/* X Frontpage left-side page-manager margin reset */
-  ytd-app[guide-persistent-and-visible] ytd-page-manager,
-  ytd-app[mini-guide-visible] ytd-page-manager,
+  /* XX Resets frontpage left-side page-manager margin */
   ytd-page-manager {
-    margin-left:0!important;
+    margin-left: 0 !important;
   }
 
-/* X Frontpage centering */
-  ytd-browse[page-subtype="home"] :is(
-    #primary,
-    ytd-two-column-browse-results-renderer,
-    ytd-rich-grid-renderer
-  ) {
-    margin-left:auto!important;
-    margin-right:auto!important;
-  }
-
-/* X Shrink frontpage contents to 80% */
+  /* XX Centers frontpage content */
   ytd-browse[page-subtype="home"] ytd-rich-grid-renderer {
-    max-width:80%!important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
-/* X Suppress frontpage hover colored background highlight */
-  ytd-browse[page-subtype="home"] :is(#primary,ytd-rich-grid-renderer) yt-lockup-view-model :is(yt-touch-feedback-shape,.ytSpecTouchFeedbackShapeHovered) {
-    display:none!important;
+  /* XX Shrinks frontpage content to 80% */
+  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer {
+    max-width: 80% !important;
   }
 
-/* X Frontpage padding reset */
-  ytd-browse[page-subtype="home"] :is(ytd-rich-grid-renderer,#contents) {
-    padding-left:0!important;
-    padding-right:0!important;
-  }
-
-/* X In-page tooltip hides */
-  tp-yt-paper-tooltip,
-  ytd-tooltip-renderer,
-  yt-tooltip-renderer,
-  yt-tooltip,
-  paper-tooltip,
-  #tooltip,
-  #tooltip-text,
-  [id*="tooltip" i],
-  [class*="tooltip" i],
-  [role="tooltip"],
-  .ytp-tooltip,
-  .ytp-tooltip-text,
-  .ytp-tooltip-bg,
-  .yt-tooltip,
-  .tp-yt-paper-tooltip {
-    display:none!important;
-  }
-
-/* X Preserve videoplayer channel-name link clickability */
-  ytd-watch-flexy[video-id] ytd-video-owner-renderer ytd-channel-name :is(
-    a,
-    a *
+  /* X Hides various tooltips. The extra, seemingly redundant controls below "display:none" are useful guard code here  */
+  :is(
+    #tooltip,
+    #tooltip-text,
+    [id*="tooltip" i],
+    [class*="tooltip" i],
+    [part*="tooltip" i],
+    [role="tooltip"],
+    tp-yt-paper-tooltip,
+    ytd-tooltip-renderer,
+    yt-tooltip-renderer,
+    yt-tooltip,
+    paper-tooltip,
+    ytd-thumbnail-overlay-tooltip-renderer,
+    ytcp-paper-tooltip,
+    ytcp-tooltip
   ) {
-    pointer-events:auto!important;
-    cursor:pointer!important;
-  }
-
-/* X Hide videoplayer channel-name hovercards */
-  ytd-watch-flexy[video-id] :is(
-    ytd-video-owner-renderer tp-yt-paper-tooltip,
-    ytd-video-owner-renderer paper-tooltip,
-    ytd-video-owner-renderer ytd-tooltip-renderer,
-    ytd-video-owner-renderer yt-tooltip-renderer,
-    ytd-video-owner-renderer yt-tooltip,
-    ytd-channel-hovercard-renderer,
-    yt-hovercard-view-model,
-    yt-hovercard
-  ),
-  ytd-app:has(ytd-watch-flexy[video-id]) :is(
-    ytd-popup-container:has(ytd-channel-hovercard-renderer),
-    ytd-popup-container:has(yt-hovercard-view-model),
-    ytd-popup-container:has(yt-hovercard),
-    tp-yt-iron-dropdown:has(ytd-channel-hovercard-renderer),
-    tp-yt-iron-dropdown:has(yt-hovercard-view-model),
-    tp-yt-iron-dropdown:has(yt-hovercard)
-  ),
-  body:has(ytd-watch-flexy[video-id]) :is(
-    ytd-popup-container:has(ytd-channel-hovercard-renderer),
-    ytd-popup-container:has(yt-hovercard-view-model),
-    ytd-popup-container:has(yt-hovercard),
-    tp-yt-iron-dropdown:has(ytd-channel-hovercard-renderer),
-    tp-yt-iron-dropdown:has(yt-hovercard-view-model),
-    tp-yt-iron-dropdown:has(yt-hovercard)
-  ) {
-    display:none!important;
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
   }
 }
 
 /* X Text color, player buttons, cosmetic hides, and like controls */
 @-moz-document domain("youtube.com") {
 
-/* X Global text color */
+  /* X Global text color */
   :is(yt-formatted-string,.yt-simple-endpoint,.title,.ytd-video-primary-info-renderer,h1,h2,span) {
-    color:var(--ytc-accent)!important;
+    color: var(--ytc-accent) !important;
   }
 
-/* X Global icon color */
+  /* X Global icon color */
   yt-icon path {
-    fill:var(--ytc-accent)!important;
+    fill: var(--ytc-accent) !important;
   }
 
-/* X Videoplayer button hides */
+  /* XX Hides various videoplayer buttons */
   .ytp-button.ytp-play-button,
   .ytp-button.ytp-prev-button,
   .ytp-button.ytp-replay-button,
-  .ytp-button.ytp-fullscreen-button {
-    display:none!important;
+  .ytp-button.ytp-fullscreen-button,
+  .ytp-button.ytp-subtitles-button {
+    display: none !important;
   }
 
-/* X Cosmetic hides: overlays, chips, badges, and buttons */
-  .ytp-overlay-inline-container,.ytp-cards-teaser-text,#secondary,#chips-wrapper>*,ytd-rich-section-renderer,.yt-spec-icon-badge-shape__icon .yt-spec-icon-shape>div,.ytSpecIconBadgeShapeIcon .ytSpecIconShapeHost>div,.ytSpecIconBadgeShapeIcon .yt-icon-shape>div,#icon>.yt-icon-button,.ytd-notification-topbar-button-renderer,.ytd-mini-guide-entry-renderer,.ytd-badge-supported-renderer:is(.badge-style-type-verified,.badge-style-type-verified-artist) .yt-spec-icon-shape>div,.yt-spec-avatar-shape__button--button-medium,.ytSpecAvatarShapeButtonButtonMedium,.ytp-paid-content-overlay-link,#voice-search-button,#buttons>.ytd-masthead,#snippet,.bold.yt-formatted-string,#description-inline-expander,.undefined>yt-button-shape,.ytp-miniplayer-button,.ytp-next-button,#bottom-row>.item,.videowall-endscreen,.ytd-topbar-menu-button-renderer,#flexible-item-buttons,.ytd-info-panel-container-renderer,.ytd-info-panel-content-renderer,.ytVideoMetadataCarouselViewModelHost,#top-level-buttons-computed>yt-button-view-model>*{display:none!important;}
+  /* XX Hides YouTube's default end-of-video dark gradient overlay */
+  #movie_player.ended-mode .ytp-gradient-bottom {
+    display: none !important;
+  }
 
-/* X Cosmetic hides: guide, subscribe, chat, and playlist surfaces */
-  ytd-guide-section-renderer:nth-of-type(n+2):nth-of-type(-n+5),[id^="guide-links-"],#copyright,.ytd-video-owner-renderer.yt-simple-endpoint,ytd-guide-entry-renderer:nth-of-type(1),ytd-guide-entry-renderer:nth-of-type(n+3):nth-of-type(-n+4),#header>.ytd-guide-collapsible-section-entry-renderer,#subscribe-button-shape,.yt-spec-button-shape-next--icon-leading-trailing.yt-spec-button-shape-next--tonal,.ytd-subscribe-button-renderer>*,yt-icon.ytd-badge-supported-renderer,ytd-badge-supported-renderer.ytd-watch-metadata:nth-of-type(2),#avatar-btn,.ytd-live-chat-frame,ytd-watch-next-secondary-results-renderer>.ytd-watch-next-secondary-results-renderer,#logo-icon>.ytSpecIconShapeHost>div,#chatframe,.ytdTalkToRecsFlowRendererFlowContent,.ytd-playlist-panel-renderer,#playlist>*,#middle-row>*{display:none!important;}
-
-/* X Cosmetic hides: donations, promos, chipbars, and mini-guide */
-  #header-section,#donate-section,#creator-messages-section,#nonprofit-section,#collapse-controls-section,#donation-shelf>*,h1.ytd-watch-metadata>.ytd-watch-metadata,.ytd-background-promo-renderer.image>.ytSpecIconShapeHost>div,.promo-message,h2.ytd-simple-menu-header-renderer>.ytd-simple-menu-header-renderer,.video-badge,.yt-badge-shape--commerce,.ytd-rich-grid-renderer>.ytd-feed-filter-chip-bar-renderer,#header>.ytd-rich-grid-renderer,.with-chipbar,ytd-mini-guide-renderer.ytd-app,#contentContainer,.yt-spec-touch-feedback-shape__fill,.ytSpecTouchFeedbackShapeFill,.yt-spec-touch-feedback-shape__stroke,.ytSpecTouchFeedbackShapeStroke,#always-shown>*{display:none!important;}
-
-/* X Cosmetic hides: metadata, panels, guide, and cards */
-  .smartimation__content yt-button-shape,#primary-info,#video-owner>.flex-1,#top-row>:is(.flex-1,.skeleton-bg-color),.loading-with-chipbar,.ytd-watch-flexy>.ytd-expandable-metadata-renderer,.yt-spec-button-shape-next--size-s.yt-spec-button-shape-next--tonal,.ytp-fullscreen-grid-stills-container,.yt-content-metadata-view-model__metadata-row--metadata-row-wrap,#panels-full-bleed-container,#scrim,#guide,.ytd-video-owner-renderer>*>.yt-spec-button-shape-next--size-m.yt-spec-button-shape-next--filled,.yt-spec-touch-feedback-shape--overlay-touch-response-inverse,.ytSpecTouchFeedbackShapeOverlayTouchResponseInverse,.yt-spec-button-shape-next--overlay.yt-spec-button-shape-next--filled,.paper-toast-open.toast-button,#owner-sub-count,.ytp-cards-button-icon-default>*,.yt-core-attributed-string__image-element--image-alignment-vertical-center{display:none!important;}
-
-/* X Cosmetic hides: purchase, button, and like-divider surfaces */
-  .ytp-ypc-player-content>.ytp-player-content,#button-shape,.ytSpecButtonShapeNextOverlay.ytSpecButtonShapeNextFilled,#top-level-buttons-computed like-button-view-model .ytSpecButtonShapeNextButtonTextContent,#top-level-buttons-computed ytd-toggle-button-renderer:first-of-type :is(.yt-spec-button-shape-next__button-text-content,#text),#top-level-buttons-computed segmented-like-dislike-button-view-model [class*="Divider"]{display:none!important;}
+  /* X Hides end-of-video popups */
+  .html5-video-player :is(
+    .ytp-endscreen-content,
+    .html5-endscreen,
+    .ytp-ce-element,
+    .ytp-autonav-endscreen-upnext-container,
+    .ytp-autonav-endscreen-countdown-container,
+    .ytp-fullscreen-grid,
+    .ytp-ce-hide-button-container
+  ) {
+    display: none !important;
+  }
 }
 
-/* Hide the "Notify me" text and bar below upcoming videos. !CURRENTLY BEING TESTED! */
+/* X Hides ghostly pre-load elements below the videoplayer */
+@-moz-document domain("youtube.com") {
+  #primary-info,
+  #top-row > :is(.flex-1, .skeleton-bg-color) {
+    display: none !important;
+  }
+}
+
+/* X Set channel-profile search-box colors */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="channels"]
+  tp-yt-paper-input.ytd-expandable-tab-renderer {
+    --paper-input-container-color: var(--ytc-accent) !important;
+    --paper-input-container-input-color: var(--ytc-accent) !important;
+    --paper-input-container-focus-color: var(--ytc-page-bg) !important; /* The underline when the search-box is focused */
+  }
+
+  ytd-browse[page-subtype="channels"]
+  tp-yt-paper-input.ytd-expandable-tab-renderer input {
+    color: var(--ytc-accent) !important;
+    caret-color: var(--ytc-accent) !important;
+  }
+
+  ytd-browse[page-subtype="channels"]
+  tp-yt-paper-input.ytd-expandable-tab-renderer input::selection {
+    background-color: var(--ytc-accent) !important;
+    color: var(--ytc-page-bg) !important;
+  }
+}
+
+/* X Hide frontpage "explore" section */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"]
+  ytd-rich-section-renderer:has([title="Explore"]) {
+    display: none !important;
+  }
+}
+
+/* X Hides Shorts-page junk */
+@-moz-document domain("youtube.com") {
+  ytd-shorts .ytReelMetapanelViewModelHost,
+  ytd-shorts .navigation-container,
+  ytd-shorts #back-nav-button,
+  ytd-shorts button-view-model.ytwReelActionBarViewModelHostDesktopActionButton,
+  ytd-shorts .ytwReelActionBarViewModelHostDesktopActionButton.ytwPivotButtonViewModelHost,
+  ytd-shorts ytd-shorts-player-controls.ytd-reel-video-renderer.style-scope {
+    display: none !important;
+  }
+}
+
+/* X Hides frontpage frosted header panel and topic chip bar */
+@-moz-document domain("youtube.com") {
+  #frosted-glass,
+  ytd-feed-filter-chip-bar-renderer {
+    display: none !important;
+  }
+}
+
+/* X Removes videoplayer channel avatar */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata ytd-video-owner-renderer #avatar {
+    display: none !important;
+  }
+}
+
+/* Removes videoplayer combined channel avatar shown when a video is multi-authored. Needs to be tested */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata ytd-video-owner-renderer .yt-simple-endpoint.ytd-video-owner-renderer {
+    display: none !important;
+  }
+}
+
+/* XX Removes the channel-profile self-description text */
+@-moz-document domain("youtube.com") {
+  .ytPageHeaderViewModelDescription {
+    display: none !important;
+  }
+}
+
+/* XX Sets background color for channel-profile posts */
+@-moz-document domain("youtube.com") {
+  ytd-post-renderer[uses-compact-lockup] {
+    background-color: var(--ytc-surface-bg) !important;
+  }
+}
+
+/* XX Sets colors for the channel-profile "Latest", "Popular", "Oldest", ect., buttons  */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="channels"] .ytChipShapeInactive {
+    background-color: transparent !important;
+    color: var(--ytc-accent) !important;
+  }
+}
+
+/* X Sets channel-profile subscribe button background and font color when not yet subscribed */
+@-moz-document domain("youtube.com") {
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled {
+    background-color: var(--ytc-surface-bg) !important;
+    color: var(--ytc-accent) !important;
+  }
+
+  /* X Sets hover colors. Linked to prior codeblock */
+  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled:hover {
+    background-color: var(--ytc-surface-bg) !important;
+    color: var(--ytc-player-text) !important;
+  }
+}
+
+/* X Sets channel-profile subscribe button background and font color when subscribed */
+@-moz-document domain("youtube.com") {
+  ytd-tabbed-page-header .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal {
+    background-color: var(--ytc-surface-bg) !important;
+    color: var(--ytc-accent) !important;
+  }
+
+  /* X Sets hover colors. Linked to prior codeblock */
+  ytd-tabbed-page-header .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal:hover {
+    background-color: var(--ytc-surface-bg) !important;
+    color: var(--ytc-player-text) !important;
+  }
+}
+
+/* X Sets the color for the button-bar tab text  */
+@-moz-document domain("youtube.com") {
+  ytd-tabbed-page-header .ytTabShapeTab {
+    color: var(--ytc-accent) !important;
+  }
+}
+
+/* X Sets the color for the button-bar tab text when the tab is selected  */
+@-moz-document domain("youtube.com") {
+  ytd-tabbed-page-header .ytTabShapeTabSelected {
+    color: var(--ytc-player-text) !important;
+  }
+}
+
+/* X Sets color of the panel behind the channel-profile name and subscribe button */
+@-moz-document domain("youtube.com") {
+  #page-header.ytd-tabbed-page-header {
+    background-color: var(--ytc-page-bg) !important;
+  }
+}
+
+/* X Sets the background color for the button bar at the top of the channel-profile */
+@-moz-document domain("youtube.com") {
+  #tabs-inner-container.ytd-tabbed-page-header {
+    background-color: var(--ytc-page-bg) !important;
+  }
+}
+
+/* XX Hides related videos from appearing below the videoplayer when Sway creates a second window in the same workspace  */
+@-moz-document domain("youtube.com") {
+  #related {
+    display: none !important;
+  }
+}
+
+/* X Hides the frontpage rich sections (shorts) */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer ytd-rich-section-renderer {
+    display: none !important;
+  }
+}
+
+/* X Hides the videoplayer report button (and more?) */
+@-moz-document domain("youtube.com") {
+  #button-shape {
+    display: none !important;
+  }
+}
+
+/* X Hides the videoplayer share button (and more?) */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #top-level-buttons-computed
+  > yt-button-view-model.ytd-menu-renderer {
+    display: none !important;
+  }
+}
+
+/* X Hides the big bubble, below the videoplayer, that describes the channel's origins. !CURRENTLY BEING TESTED! */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #middle-row {
+    display: none !important;
+  }
+}
+
+/* X Hides the videoplayer save-for-later button */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #flexible-item-buttons {
+    display: none !important;
+  }
+}
+
+/* X Hides the notification bell/dropdown next to the subscribed button under videos */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #owner
+  yt-button-view-model:has(button[aria-label*="notification" i]),
+  ytd-watch-metadata #owner
+  yt-button-shape:has(button[aria-label*="notification" i]),
+  ytd-watch-metadata #owner
+  yt-button-view-model:has(button[title*="notification" i]),
+  ytd-watch-metadata #owner
+  yt-button-shape:has(button[title*="notification" i]) {
+    display: none !important;
+  }
+}
+
+/* XX Hides the pill-shaped videoplayer subscribe button. Linked to prior codeblock */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #subscribe-button-shape {
+    display: none !important;
+  }
+}
+
+/* X Hides the videoplayer number of thumbs-up */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata
+  segmented-like-dislike-button-view-model
+  like-button-view-model
+  .yt-spec-button-shape-next__button-text-content,
+  ytd-watch-metadata
+  segmented-like-dislike-button-view-model
+  like-button-view-model
+  .ytSpecButtonShapeNextButtonTextContent {
+    display: none !important;
+  }
+}
+
+/* XX Hides the videoplayer subscriber count */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #owner-sub-count {
+    display: none !important;
+  }
+}
+
+/* XX Hides the videoplayer video title */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata h1 {
+    display: none !important;
+  }
+}
+
+/* XX Hides the list of other videos to the right of the videoplayer */
+@-moz-document domain("youtube.com") {
+  #secondary {
+    display: none !important;
+  }
+}
+
+/* XX Hides the large description bubble below the videoplayer */
+@-moz-document domain("youtube.com") {
+  #bottom-row {
+    display: none !important;
+  }
+}
+
+/* XX Hides channel-profile giant avatar */
+@-moz-document domain("youtube.com") {
+  .ytDecoratedAvatarViewModelHost {
+    display: none !important;
+  }
+}
+
+/* XX Hides a bit of text in the channel-profile header */
+@-moz-document domain("youtube.com") {
+  .ytPageHeaderViewModelAttribution {
+    display: none !important;
+  }
+}
+
+/* XX Hides channel-profile banner */
+@-moz-document domain("youtube.com") {
+  #page-header-banner {
+    display: none !important;
+  }
+}
+
+/* XX Hides channel-profile shoutout to paying subscribers */
+@-moz-document domain("youtube.com") {
+  ytd-recognition-shelf-renderer {
+    display: none !important;
+  }
+}
+/* X Hides the frontpage circular loading spinner when you scroll down and new videos load */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"]
+  ytd-continuation-item-renderer #spinner {
+    display: none !important;
+  }
+}
+
+/* XX Hides the frontpage left-side vertical mini-guide bar and buttons */
+@-moz-document domain("youtube.com") {
+  ytd-mini-guide-renderer {
+    display: none !important;
+  }
+}
+
+/* X Hides the "Notify me" button on the watch-page of an upcoming video. !CURRENTLY BEING TESTED! */
+@-moz-document domain("youtube.com") {
+  /* Hide only the \u201cNotify me\u201d button shown over scheduled/upcoming videos */
+  ytd-watch-flexy .ytp-offline-slate button,
+  ytd-watch-flexy .ytp-offline-slate .ytp-button {
+    display: none !important;
+  }
+}
+
+/* X Hides the frontpage "Notify me" text and bar below upcoming videos */
 @-moz-document domain("www.youtube.com") {
   .ytLockupViewModelHost > .ytLockupViewModelMetadata > .ytLockupAttachmentsViewModelHost {
     display: none !important;
   }
 }
 
-/* X Static like/dislike compact-glyph icons */
+/*-----------------------------------------------*/
+/* START OF CODE FOR CUSTOM THUMBS-UP-DOWN ICONS */
+/*-----------------------------------------------*/
+
+/* X Sets static like/dislike compact-glyph icons */
 @-moz-document domain("youtube.com") {
-#top-level-buttons-computed segmented-like-dislike-button-view-model {
-  --ytc-thumb-outline:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
-  --ytc-thumb-filled:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
+  #top-level-buttons-computed segmented-like-dislike-button-view-model {
+    --ytc-thumb-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
+    --ytc-thumb-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
+  }
+
+  /* X Preserves the native clickable buttons. Linked to prior codeblock */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) button {
+    position: relative !important;
+  }
+
+  /* X Keeps the icon slot stable. Linked to prior two codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  ) {
+    position: relative !important;
+    display: inline-block !important;
+    width: 24px !important;
+    min-width: 24px !important;
+    height: 24px !important;
+    flex: 0 0 24px !important;
+  }
+
+  /* X Hides YouTube's native icon and animation renderers. Linked to prior three codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) :is(
+    yt-icon,
+    yt-animated-icon,
+    ytd-lottie-player,
+    lottie-player,
+    lottie-component,
+    svg,
+    canvas,
+    .yt-spec-icon-shape,
+    .ytIconShapeHost,
+    .yt-icon-shape,
+    [class*="lottie" i],
+    [class*="animated" i]
+  ) {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    animation: none !important;
+    transition: none !important;
+    pointer-events: none !important;
+  }
+
+  /* X Draws empty static thumbs by default. Linked to prior four codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 21px !important;
+    height: 21px !important;
+    background: var(--ytc-accent) !important;
+    pointer-events: none !important;
+    -webkit-mask: var(--ytc-thumb-outline) center/21px 21px no-repeat !important;
+    mask: var(--ytc-thumb-outline) center/21px 21px no-repeat !important;
+  }
+
+  /* X Draws filled static thumbs when selected. Linked to prior five codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) button[aria-pressed="true"] :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before {
+    -webkit-mask: var(--ytc-thumb-filled) center/21px 21px no-repeat !important;
+    mask: var(--ytc-thumb-filled) center/21px 21px no-repeat !important;
+  }
+
+  /* X Turns static like/dislike icons white on hover. Linked to prior six codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ):hover :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before,
+  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ) button:hover :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before {
+    background: var(--ytc-player-text) !important;
+  }
+
+  /* X Flips the static thumb for dislike. Linked to prior seven codeblocks */
+  #top-level-buttons-computed segmented-like-dislike-button-view-model
+  dislike-button-view-model :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before {
+    transform: scaleY(-1) !important;
+  }
 }
 
-/* X Preserve the native clickable buttons */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) button {
-  position:relative!important;
-}
-
-/* X Keep the icon slot stable */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-) {
-  position:relative!important;
-  display:inline-block!important;
-  width:24px!important;
-  min-width:24px!important;
-  height:24px!important;
-  flex:0 0 24px!important;
-}
-
-/* X Hide YouTube's native icon and animation renderers */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) :is(
-  yt-icon,
-  yt-animated-icon,
-  ytd-lottie-player,
-  lottie-player,
-  lottie-component,
-  svg,
-  canvas,
-  .yt-spec-icon-shape,
-  .ytIconShapeHost,
-  .yt-icon-shape,
-  [class*="lottie" i],
-  [class*="animated" i]
-) {
-  opacity:0!important;
-  visibility:hidden!important;
-  animation:none!important;
-  transition:none!important;
-  pointer-events:none!important;
-}
-
-/* X Draw empty static thumbs by default */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-)::before {
-  content:""!important;
-  position:absolute!important;
-  inset:0!important;
-  width:21px!important;
-  height:21px!important;
-  background:var(--ytc-accent)!important;
-  pointer-events:none!important;
-  -webkit-mask:var(--ytc-thumb-outline) center/21px 21px no-repeat!important;
-  mask:var(--ytc-thumb-outline) center/21px 21px no-repeat!important;
-}
-
-/* X Draw filled static thumbs when selected */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) button[aria-pressed="true"] :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-)::before {
-  -webkit-mask:var(--ytc-thumb-filled) center/24px 24px no-repeat!important;
-  mask:var(--ytc-thumb-filled) center/24px 24px no-repeat!important;
-}
-
-/* X Turn static like/dislike icons white on hover */
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-):hover :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-)::before,
-#top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-  like-button-view-model,
-  dislike-button-view-model
-) button:hover :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-)::before {
-  background:var(--ytc-player-text)!important;
-}
-
-/* X Flip the static thumb for dislike */
-#top-level-buttons-computed segmented-like-dislike-button-view-model
-dislike-button-view-model :is(
-  .yt-spec-button-shape-next__icon,
-  .ytSpecButtonShapeNextIcon
-)::before {
-  transform:scaleY(-1)!important;
-}
-
-}
+/*---------------------------------------------*/
+/* END OF CODE FOR CUSTOM THUMBS-UP-DOWN ICONS */
+/*---------------------------------------------*/
 
 /* X Videoplayer text colors */
 @-moz-document domain("youtube.com") {
@@ -449,7 +707,7 @@ dislike-button-view-model :is(
 /* X Videoplayer settings menu colors */
 @-moz-document domain("youtube.com") {
 
-/* X Settings menu base text */
+  /* X Settings menu base text */
   .html5-video-player [role="menu"],
   .html5-video-player [role="menu"] *,
   .html5-video-player [role="menuitem"],
@@ -464,7 +722,7 @@ dislike-button-view-model :is(
     filter: none !important;
   }
 
-/* X Settings menu hover text */
+  /* X Settings menu hover text */
   .html5-video-player [role="menuitem"]:hover,
   .html5-video-player [role="menuitem"]:hover *,
   .html5-video-player [role="menuitemcheckbox"]:hover,
@@ -477,7 +735,7 @@ dislike-button-view-model :is(
     filter: none !important;
   }
 
-/* X Settings menu label/content/title text */
+  /* X Settings menu label/content/title text */
   .html5-video-player [class*="menu"] [class*="label"],
   .html5-video-player [class*="menu"] [class*="label"] *,
   .html5-video-player [class*="menu"] [class*="content"],
@@ -491,11 +749,9 @@ dislike-button-view-model :is(
   }
 }
 
-/* X Hide right-click videoplayer context menu */
+/* XX Hides right-click videoplayer context menu */
 @-moz-document domain("youtube.com") {
-  /* Native YouTube context menu */
-  .ytp-contextmenu,
-  .html5-video-player .ytp-contextmenu {
+  .ytp-contextmenu {
     display: none !important;
   }
 }
@@ -503,47 +759,47 @@ dislike-button-view-model :is(
 /* X Frontpage */
 @-moz-document domain("youtube.com") {
 
-/* X Frontpage only */
-ytd-browse[page-subtype="home"] {
+  /* X Frontpage only */
+  ytd-browse[page-subtype="home"] {
 
-/* X Hide frontpage channel names and view counts while preserving dates. The yt-lockup-view-model selectors rely on YouTube\u2019s current metadata order: first metadata span is the non-date field to hide */
-  yt-lockup-view-model 
-  .yt-lockup-metadata-view-model__metadata 
-  span:first-of-type,
-  yt-lockup-view-model 
-  .ytLockupMetadataViewModelMetadata 
-  span:first-of-type,
-  ytd-rich-item-renderer :is(
-    #byline-container,
-    #channel-name,
-    ytd-channel-name,
-    .ytd-channel-name
-  ) {
-    display: none !important;
-  }
+    /* X Hide frontpage channel names and view counts while preserving dates. The yt-lockup-view-model selectors rely on YouTube\u2019s current metadata order: first metadata span is the non-date field to hide */
+    yt-lockup-view-model
+    .yt-lockup-metadata-view-model__metadata
+    span:first-of-type,
+    yt-lockup-view-model
+    .ytLockupMetadataViewModelMetadata
+    span:first-of-type,
+    ytd-rich-item-renderer :is(
+      #byline-container,
+      #channel-name,
+      ytd-channel-name,
+      .ytd-channel-name
+    ) {
+      display: none !important;
+    }
 
-/* X Resize frontpage dates under videos */
-  yt-lockup-view-model 
-  .yt-lockup-metadata-view-model__metadata span,
-  yt-lockup-view-model 
-  .ytLockupMetadataViewModelMetadata span,
-  ytd-rich-item-renderer #metadata-line span {
-    font-size: 11px !important;
-    opacity: 0.65 !important;
-  }
+    /* X Resize frontpage dates under videos */
+    yt-lockup-view-model
+    .yt-lockup-metadata-view-model__metadata span,
+    yt-lockup-view-model
+    .ytLockupMetadataViewModelMetadata span,
+    ytd-rich-item-renderer #metadata-line span {
+      font-size: 11px !important;
+      opacity: 0.65 !important;
+    }
 
-/* X Resize frontpage separator-dot left of dates under videos */
-  yt-lockup-view-model 
-  .yt-lockup-metadata-view-model__metadata span + span::before,
-  yt-lockup-view-model 
-  .ytLockupMetadataViewModelMetadata span + span::before,
-  ytd-rich-item-renderer #metadata-line span + span::before {
-    font-size: 11px !important;
-    opacity: 0.65 !important;
-    content: "" !important;
-   }
+    /* X Resize frontpage separator-dot left of dates under videos */
+    yt-lockup-view-model
+    .yt-lockup-metadata-view-model__metadata span + span::before,
+    yt-lockup-view-model
+    .ytLockupMetadataViewModelMetadata span + span::before,
+    ytd-rich-item-renderer #metadata-line span + span::before {
+      font-size: 11px !important;
+      opacity: 0.65 !important;
+      content: "" !important;
+    }
   }
- }
+}
 
 /* X Frontpage labels and avatars */
 @-moz-document domain("youtube.com") {
@@ -552,7 +808,7 @@ ytd-browse[page-subtype="home"] {
     display: none !important;
   }
 
-/* X Hide channel avatars */
+  /* X Hides channel avatars */
   .ytLockupMetadataViewModelAvatar {
     display: none !important;
   }
@@ -560,14 +816,13 @@ ytd-browse[page-subtype="home"] {
 
 /* X Suppress frontpage hover preview, bottom-right-corner timestamp fade, and other animations */
 @-moz-document domain("youtube.com") {
-    /* X Preview and animation layers */
-    ytd-video-preview,
-    ytd-moving-thumbnail-renderer,
-    #preview,
-    #inline-preview-player,
-    .inline-preview-player,
-    yt-thumbnail-hover-overlay-toggle-actions-view-model {
-        display: none !important;
+  ytd-video-preview,
+  ytd-moving-thumbnail-renderer,
+  #preview,
+  #inline-preview-player,
+  .inline-preview-player,
+  yt-thumbnail-hover-overlay-toggle-actions-view-model {
+    display: none !important;
   }
 }
 
@@ -579,14 +834,14 @@ ytd-browse[page-subtype="home"] {
   }
 }
 
-/* X Hover color: front-page titles, front-page dots, and watch-page channel names. Keep this codeblock last to override earlier rules that set the universal default colors to #8a97bf */
+/* X Sets hover color: frontpage titles, frontpage dots, and watch-page channel names. Keep this codeblock last to override earlier rules that set the universal default colors to #8a97bf */
 @-moz-document domain("youtube.com") {
   ytd-browse[page-subtype="home"] :is(yt-lockup-view-model,ytd-rich-item-renderer):hover:not(:has(:is(
     ytd-menu-renderer,
     yt-lockup-menu-button-view-model,
     .ytLockupMenuButtonViewModelHost,
     button-view-model
-  ):hover)) :is(
+    ):hover)) :is(
     .yt-lockup-metadata-view-model__title,
     .ytLockupMetadataViewModelTitle,
     #video-title,
@@ -610,8 +865,8 @@ ytd-browse[page-subtype="home"] {
     yt-attributed-string,
     .yt-core-attributed-string
   ):hover * {
-    color:var(--ytc-player-text)!important;
-    -webkit-text-fill-color:var(--ytc-player-text)!important;
+    color: var(--ytc-player-text) !important;
+    -webkit-text-fill-color: var(--ytc-player-text) !important;
   }
 
   ytd-browse[page-subtype="home"] :is(
@@ -626,6 +881,30 @@ ytd-browse[page-subtype="home"] {
     .ytLockupMenuButtonViewModelHost,
     button-view-model
   ):hover * {
-    color:var(--ytc-player-text)!important;
+    color: var(--ytc-player-text) !important;
+  }
+}
+
+/* X Sets colors for channel-profile circular carousel arrow buttons' background and border */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="channels"] :is(
+    #left-arrow,
+    #right-arrow,
+    .arrow
+  ) :is(
+    button,
+    .yt-spec-button-shape-next,
+    .ytSpecButtonShapeNext
+  ) {
+    background: var(--ytc-surface-bg) !important;
+    background-color: var(--ytc-surface-bg) !important;
+    border: 1px solid var(--ytc-accent) !important;
+  }
+}
+
+/* XX Prevents channel-profile 3-second hover previews */
+@-moz-document domain("youtube.com") {
+  img[src*="/an_webp/"] {
+    display: none !important;
   }
 }
