@@ -1568,3 +1568,46 @@ tooltip label,
   color: var(--uc-color-fg) !important;
   fill: var(--uc-color-fg) !important;
 }
+
+/* XX Sets color for search shortcut pill inside the URL bar */
+#urlbar-search-mode-indicator {
+  background-color: #1a1a1a !important;
+  color: #8a97bf !important;
+  border-radius: 6px !important;
+}
+
+/* XX Keeps the same color after the URL bar loses focus. Linked to prior codeblock */
+#urlbar:not([focused]) #urlbar-search-mode-indicator {
+  background-color: #1a1a1a !important;
+  color: #8a97bf !important;
+}
+
+/* XX Keeps the X icon consistent too. Linked to prior two codeblocks */
+#urlbar-search-mode-indicator-close {
+  color: #8a97bf !important;
+  opacity: 1 !important;
+}
+
+/* X Sets color for page identity chip to the left of URL */
+#urlbar #identity-box.chromeUI > .identity-box-button,
+#urlbar #identity-box.chromeUI > #identity-icon-box {
+  background-color: #1a1a1a !important;
+  color: #8a97bf !important;
+  border-radius: 6px !important;
+}
+
+/* X Keeps it after the URL bar loses focus. Linked to prior codeblock */
+#urlbar:not([focused]) #identity-box.chromeUI > .identity-box-button,
+#urlbar:not([focused]) #identity-box.chromeUI > #identity-icon-box {
+  background-color: #1a1a1a !important;
+  color: #8a97bf !important;
+}
+
+/* X Sets text and icon inside the chip. Linked to prior two codeblocks */
+#urlbar #identity-box.chromeUI #identity-icon,
+#urlbar #identity-box.chromeUI #identity-icon-label,
+#urlbar #identity-box.chromeUI #identity-icon-labels {
+  color: #8a97bf !important;
+  opacity: 1 !important;
+  fill-opacity: 1 !important;
+}
