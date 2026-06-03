@@ -40,4 +40,8 @@
 
 21. Make all comments identical in tense and more exact and concise;
 
-22. After the rice is completely finished, create a new set of show-case images.
+22. Fix all hover colors for text on channel-profile YouTube pages;
+
+23. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
+
+24. After the rice is completely finished, create a new set of show-case images.
