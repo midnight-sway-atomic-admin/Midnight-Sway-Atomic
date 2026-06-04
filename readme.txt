@@ -38,7 +38,7 @@ For the rice to look correct and be functional, you should:
 
 (r) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(s) use Firefox and Ublock Origin in dark mode.
+(s) set Firefox to dark mode.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
