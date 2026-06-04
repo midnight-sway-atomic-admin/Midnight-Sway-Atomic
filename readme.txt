@@ -34,7 +34,7 @@ For the rice to look correct and be functional, you should:
 
 (p) in Thunar, press Ctrl+M, click "View," and uncheck "Show File Highlight";
 
-(q) get used to used opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
+(q) get used opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
 
 (r) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
