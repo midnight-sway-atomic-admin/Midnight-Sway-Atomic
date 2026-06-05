@@ -8,134 +8,88 @@
 @-moz-document domain("youtube.com") {
   :root {
     --ytc-page-bg: #000000;
-    --ytc-accent: #8A97BF;
-    --ytc-player-text: #FFFFFF;
+    --ytc-accent: #8a97bf;
+    --ytc-player-text: #ffffff;
     --ytc-surface-bg: #1a1a1a;
+    --yt-watch-player-scale: 0.90;
+    --yt-watch-player-radius: 0px;
+    --yt-watch-player-y-offset: 35px;
   }
 }
 
 /* Base, player, watch, home, and tooltip rules */
 @-moz-document domain("youtube.com") {
 
-  /* Base page background */
+  /* X Base page background */
   html,
   ytd-app {
     background-color: var(--ytc-page-bg) !important;
   }
 
-  /* Player sizing variables */
-  #movie_player {
-    --yt-player-controls-scale: 0.65;
-    --yt-player-controls-y: -60px;
-    --yt-frame-video-scale: .87;
-    --yt-frame-thumb-width: 68.91%; /* Tune by comparing screenshots of states: videoplayer pre-play thumbnail was 1436px, video was 1384px */
-    --yt-frame-thumb-height: 87%;
-    --yt-frame-bg: var(--ytc-page-bg);
-    --yt-frame-border: var(--ytc-accent);
-  }
+/* Watch-player scale, vertical offset, and inner border */
+ytd-watch-flexy:not([fullscreen]) #player {
+  position: relative !important;
+  transform: translateY(var(--yt-watch-player-y-offset)) scale(var(--yt-watch-player-scale)) !important;
+  transform-origin: top center !important;
+  border-radius: var(--yt-watch-player-radius, 12px) !important;
+}
 
-  /* X Set videoplayer-controls scale and vertical offset */
-  #movie_player .ytp-chrome-bottom {
-    transform: translateY(var(--yt-player-controls-y)) scale(var(--yt-player-controls-scale)) !important;
-    transform-origin: bottom center !important;
-  }
+ytd-watch-flexy:not([fullscreen]) #player::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+  border-radius: inherit !important;
+  box-shadow: inset 0 0 0 1.15px var(--ytc-accent) !important;
+}
 
-  /* Set strict channel-name-to-thumbs spacing. !CURRENTLY BEING TESTED! */
-  ytd-watch-metadata #top-row {
-    display: grid !important;
-    grid-template-columns: max-content max-content !important;
-    column-gap: 275px !important; /* Change this pixel value to control spacing */
-    align-items: center !important;
-    justify-content: center !important;
-  }
+/* X Removes rounded corners from the watch-page player stack. Comment out this codeblock and set "--yt-watch-player-radius: 0px;" to 12px if you want YouTube's default rounded videplayer corners */
+ytd-watch-flexy:not([fullscreen]) :is(
+  #player,
+  #player-container,
+  #player-container-inner,
+  #player-api,
+  ytd-player,
+  #movie_player,
+  .html5-video-player,
+  .html5-video-container,
+  .html5-main-video,
+  .ytp-cued-thumbnail-overlay,
+  .ytp-cued-thumbnail-overlay-image
+) {
+  border-radius: 0 !important;
+}
 
-  /* Lock the owner (channel name) block to the first grid column. Linked to prior codeblock */
-  ytd-watch-metadata #top-row > #owner {
-    grid-column: 1 !important;
-    margin: 0 !important;
-    width: max-content !important;
-    max-width: none !important;
-  }
+/* Set strict channel-name-to-thumbs spacing */
+ytd-watch-metadata #top-row {
+  display: grid !important;
+  grid-template-columns: max-content max-content !important;
+  column-gap: 275px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 
-  /* Lock the action buttons (thumbs up-down buttons) to the second grid column. Linked to prior two codeblocks */
-  ytd-watch-metadata #top-row > #actions {
-    grid-column: 2 !important;
-    margin: 0 !important;
-    width: max-content !important;
-    max-width: none !important;
-  }
+/* Lock owner block */
+ytd-watch-metadata #top-row > #owner {
+  grid-column: 1 !important;
+  margin: 0 !important;
+  width: max-content !important;
+  max-width: none !important;
+}
 
-  /* Videoplayer frame */
-  ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) .html5-main-video {
-    left: 50% !important;
-    transform: translateX(-50%) scale(var(--yt-frame-video-scale)) !important;
-    outline: 1.15px solid var(--yt-frame-border) !important;
-    outline-offset: -1.15px !important;
-    box-shadow: 0 0 0 9999px var(--yt-frame-bg) !important;
-  }
-
-  /* X Limits video clicks to main videoplayer surface and its controls */
-  ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) {
-    pointer-events: none !important;
-  }
-
-  ytd-watch-flexy[video-id]:not([fullscreen]) #movie_player:not(.ytp-fullscreen) :is(
-    .html5-main-video,
-    .ytp-cued-thumbnail-overlay-image,
-    .ytp-large-play-button,
-    .ytp-chrome-bottom,
-    .ytp-chrome-bottom *,
-    .ytp-chrome-top,
-    .ytp-chrome-top *,
-    .ytp-settings-menu,
-    .ytp-settings-menu *,
-    .ytp-popup,
-    .ytp-popup *,
-    .ytp-panel,
-    .ytp-panel *,
-    .ytp-tooltip,
-    .ytp-tooltip *,
-    .ytp-progress-bar-container,
-    .ytp-progress-bar-container *,
-    .ytp-volume-panel,
-    .ytp-volume-panel *
-  ) {
-    pointer-events: auto !important;
-  }
-
-  /* X Pre-play thumbnail: hide actual video; this prevents the videoplayer from turning black */
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .html5-main-video {
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-
-  /* X Pre-play thumbnail: show thumbnail overlay after video has ended */
-  #movie_player:is(.ended-mode) :is(.ytp-cued-thumbnail-overlay,.ytp-cued-thumbnail-overlay-image,.ytp-large-play-button) {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  /* X Pre-play thumbnail: centered and bordered */
-  #movie_player:is(.unstarted-mode,.cued-mode,.ended-mode) .ytp-cued-thumbnail-overlay-image {
-    position: absolute !important;
-    left: 50% !important;
-    top: 50% !important;
-    width: var(--yt-frame-thumb-width) !important;
-    height: var(--yt-frame-thumb-height) !important;
-    margin: 0 !important;
-    transform: translate(-50%,-50%) !important;
-    outline: 1.15px solid var(--yt-frame-border) !important;
-    outline-offset: -1.15px !important;
-    background-size: cover !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    box-shadow: 0 0 0 9999px var(--yt-frame-bg) !important;
-  }
+/* Lock action buttons */
+ytd-watch-metadata #top-row > #actions {
+  grid-column: 2 !important;
+  margin: 0 !important;
+  width: max-content !important;
+  max-width: none !important;
+}
 
   /* Various hides */
 
-  .ytp-spinner, /* XX Hides the spinning loading circle in the center of the videoplayer */
   ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]), /* X Attempts to hide frontpage music mixes */
   ytd-app #masthead, /* XX Hides frontpage and videoplayer top search-box and the panel behind it */
   .yt-spec-touch-feedback-shape__hover-effect, .ytSpecTouchFeedbackShapeHoverEffect, /* XX The first hides the frontpage thumbnail background color on hover; the second is likely a guard for this effect elsewhere */
@@ -210,23 +164,17 @@
   .ytp-button.ytp-prev-button,
   .ytp-button.ytp-replay-button,
   .ytp-button.ytp-fullscreen-button,
-  .ytp-button.ytp-subtitles-button {
+  .ytp-button.ytp-subtitles-button,
+  .ytp-button.ytp-size-button {
     display: none !important;
   }
 
-  /* XX Hides YouTube's default end-of-video dark gradient overlay */
-  #movie_player.ended-mode .ytp-gradient-bottom {
-    display: none !important;
-  }
-
-  /* X Hides end-of-video popups */
+  /* X Hides end-of-video popups. Comment out what you want to hide; by default, only the little gray "Hide" button is hidden  */
   .html5-video-player :is(
-    .ytp-endscreen-content,
+   /* .ytp-endscreen-content,
     .html5-endscreen,
     .ytp-ce-element,
-    .ytp-autonav-endscreen-upnext-container,
-    .ytp-autonav-endscreen-countdown-container,
-    .ytp-fullscreen-grid,
+    .ytp-fullscreen-grid,*/
     .ytp-ce-hide-button-container
   ) {
     display: none !important;
@@ -756,6 +704,35 @@
   }
 }
 
+/* X Removes rounded corners from front-page thumbnails */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] :is(
+    ytd-thumbnail,
+    ytd-thumbnail a#thumbnail,
+    ytd-thumbnail img,
+    yt-thumbnail-view-model,
+    .yt-thumbnail-view-model,
+    .yt-thumbnail-view-model__image,
+    .ytThumbnailViewModelHost,
+    .ytThumbnailViewModelImage
+  ) {
+    border-radius: 0 !important;
+  }
+}
+
+/* X Adds a thin border around front-page thumbnails */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] :is(
+    ytd-thumbnail a#thumbnail,
+    yt-thumbnail-view-model,
+    .yt-thumbnail-view-model,
+    .ytThumbnailViewModelHost
+  ) {
+    outline: 1px solid var(--ytc-accent) !important;
+    outline-offset: 0 !important;
+  }
+}
+
 /* X Frontpage */
 @-moz-document domain("youtube.com") {
 
@@ -907,4 +884,22 @@
   img[src*="/an_webp/"] {
     display: none !important;
   }
+}
+
+/* XX Hides "AI"-content-warning button */
+@-moz-document domain("youtube.com") {
+
+  ytd-watch-metadata ytd-badge-supported-renderer {
+    display: none !important;
+  }
+
+}
+
+/* X Removes the watch-page videoplayer loading spinner behind the central play button */
+@-moz-document domain("youtube.com") {
+
+  ytd-watch-flexy #movie_player .ytp-spinner {
+    display: none !important;
+  }
+
 }
