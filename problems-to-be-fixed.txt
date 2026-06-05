@@ -4,44 +4,42 @@
 
 3. Move Speed Controller's popup to a better position;
 
-4. Make YouTube videoplayer thumbnail dimensions strictly identical to those of the videoplayer;
+4. Make all gaps between Waybar status bar modules exactly identical;
 
-5. Make all gaps between Waybar status bar modules exactly identical;
+5. Standardize the four default wallpapers to various display sizes;
 
-6. Standardize the four default wallpapers to various display sizes;
+6. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
 
-7. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+7. Get a superior, more harmonious, custom set of icons;
 
-8. Get a superior, more harmonious, custom set of icons;
+8. Create .svg versions of all icons;
 
-9. Create .svg versions of all icons;
+9. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
 
-10. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+10. Make sure the Thunar address bar is dead center;
 
-11. Make sure the Thunar address bar is dead center;
+11. Hide the channel-name verified-circle under the YouTube videoplayer;
 
-12. Hide the channel-name verified-circle under the YouTube videoplayer;
+12. Make Waybar power-button menu thinner;
 
-13. Make Waybar power-button menu thinner;
+13. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-14. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+14. Fix current icon coverage by creating robust symlinks;
 
-15. Fix current icon coverage by creating robust symlinks;
+15. Provide more elegant symlink icon;
 
-16. Provide more elegant symlink icon;
+16. Expand and audit commands.txt;
 
-17. Expand and audit commands.txt;
+17. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-18. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+18. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-19. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
+19. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-20. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+20. Make all comments identical in tense and more exact and concise;
 
-21. Make all comments identical in tense and more exact and concise;
+21. Fix all hover colors for text on channel-profile YouTube pages;
 
-22. Fix all hover colors for text on channel-profile YouTube pages;
+22. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
 
-23. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
-
-24. After the rice is completely finished, create a new set of show-case images.
+23. After the rice is completely finished, create a new set of show-case images.
