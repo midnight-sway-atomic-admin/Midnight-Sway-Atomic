@@ -4,7 +4,7 @@
 
 /* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Theme variables */
+/* Color shim. Change these to change the theme */
 @-moz-document domain("youtube.com") {
   :root {
     --ytc-page-bg: #000000;
@@ -31,7 +31,7 @@ ytd-watch-flexy:not([fullscreen]) #player {
   position: relative !important;
   transform: translateY(var(--yt-watch-player-y-offset)) scale(var(--yt-watch-player-scale)) !important;
   transform-origin: top center !important;
-  border-radius: var(--yt-watch-player-radius, 12px) !important;
+  border-radius: var(--yt-watch-player-radius, 0px) !important;
 }
 
 ytd-watch-flexy:not([fullscreen]) #player::after {
@@ -41,7 +41,7 @@ ytd-watch-flexy:not([fullscreen]) #player::after {
   pointer-events: none !important;
   z-index: 10 !important;
   border-radius: inherit !important;
-  box-shadow: inset 0 0 0 1.15px var(--ytc-accent) !important;
+  box-shadow: inset 0 0 0 0.50px var(--ytc-accent) !important;
 }
 
 /* X Removes rounded corners from the watch-page player stack. Comment out this codeblock and set "--yt-watch-player-radius: 0px;" to 12px if you want YouTube's default rounded videplayer corners */
@@ -90,11 +90,16 @@ ytd-watch-metadata #top-row > #actions {
 
   /* Various hides */
 
-  ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]), /* X Attempts to hide frontpage music mixes */
+  ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]), /* X Tries to hide frontpage music mixes */
+
   ytd-app #masthead, /* XX Hides frontpage and videoplayer top search-box and the panel behind it */
+
   .yt-spec-touch-feedback-shape__hover-effect, .ytSpecTouchFeedbackShapeHoverEffect, /* XX The first hides the frontpage thumbnail background color on hover; the second is likely a guard for this effect elsewhere */
+
   [id^="chat"], /* XX Hides chat box to the right of upcoming-video pre-play thumbnail and fixes the sizing of that thumbnail */
+
   ytd-comments, /* XX Hides comments below the videoplayer */
+
   #sponsor-button,
   ytd-merch-shelf-renderer,
   #ticket-shelf {
@@ -895,11 +900,23 @@ ytd-watch-metadata #top-row > #actions {
 
 }
 
-/* X Removes the watch-page videoplayer loading spinner behind the central play button */
+/* X Removes the watch-page videoplayer loading spinner that's behind the central play button */
 @-moz-document domain("youtube.com") {
 
   ytd-watch-flexy #movie_player .ytp-spinner {
     display: none !important;
   }
 
+}
+
+/* X YouTube popup menus like the one invoked by the frontpage dots.!NEEDS TO BE FIXED! */
+@-moz-document domain("youtube.com") {
+  ytd-popup-container
+  :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]) {
+    background: #060606 !important;
+    background-color: #060606 !important;
+    border: 1px solid #13151b !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+  }
 }
