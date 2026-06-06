@@ -30,9 +30,9 @@ For the rice to look correct and be functional, you should:
 
 (n) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(o) set Firefox to dark mode.
+(o) set Firefox to dark mode;
 
-(p) Via Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
+(p) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
