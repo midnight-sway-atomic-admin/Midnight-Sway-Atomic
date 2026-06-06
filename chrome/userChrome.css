@@ -8,14 +8,8 @@
    1. Main toolbar, tab-bar layout, and chrome frame
    -------------------------------------------------------------------------- */
 
-/* X Configure responsive single-line URL bar and tab bar layout */
 :root {
-  --NavbarWidth: 24;
-  --TabsHeight: 30;
-  --TabsBorder: 8;
-  --NavbarHeightSmall: calc(var(--TabsHeight) + var(--TabsBorder));
-
-  /* Color shim. Change colors here; the rest of the file references these variables */
+  /* X Global color shim. Change these variables to change the theme */
   --uc-color-bg: #000000;
   --uc-color-surface: #060606;
   --uc-color-fg: #8a97bf;
@@ -23,100 +17,44 @@
   --uc-color-field-border: #0e0e0e;
   --uc-color-border: #13151b;
   --uc-color-border-muted: #1a1a1a;
-  --uc-color-disabled: #888888;
+  --uc-color-disabled: #888888; /* For instance, some "Alt"-button menu items are naturally disabled */
   --uc-color-sidebar-search-text: #939393;
   --uc-color-dim: color-mix(in srgb, var(--uc-color-fg) 55%, var(--uc-color-bg));
   --uc-color-transparent: transparent;
   --uc-color-current: currentColor;
+
+  /* X Single-line URL bar + tabs configuration */
+  --uc-tab-height: 30px;
+  --uc-bar-height: 38px;
+  --uc-navbar-width: min(24vw, 318px);
+  --uc-urlbar-tabs-gap: 10px;
 }
 
-@media screen and (min-width: 1325px) {
-  :root #nav-bar {
-    margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px) !important;
-    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px) !important;
+@media (min-width: 950px) {
+  #nav-bar {
+    margin-top: calc(-1 * var(--uc-bar-height)) !important;
+    margin-right: calc(100vw - var(--uc-navbar-width)) !important;
+    margin-left: 3px !important;
+    height: var(--uc-bar-height) !important;
   }
 
-  #nav-bar {
-    margin-right: calc(100vw - calc(1325px / 100 * var(--NavbarWidth))) !important;
-    vertical-align: middle !important;
+  #TabsToolbar {
+    margin-left: calc(var(--uc-navbar-width) + var(--uc-urlbar-tabs-gap)) !important;
   }
 
   #urlbar-container {
-    min-width: 0px !important;
-    flex: auto !important;
-  }
-
-  toolbarspring {
-    display: none !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
   }
 }
 
-@media screen and (min-width: 950px) and (max-width: 1324px) {
-  :root #nav-bar {
-    margin-top: calc(var(--TabsHeight) * -1px - var(--TabsBorder) * 1px) !important;
-    height: calc(var(--TabsHeight) * 1px + var(--TabsBorder) * 1px) !important;
-  }
-
-  #nav-bar {
-    margin-right: calc(100vw - calc(var(--NavbarWidth) * 1vw)) !important;
-    vertical-align: middle !important;
-  }
-
-  #urlbar-container {
-    min-width: 0px !important;
-    flex: auto !important;
-  }
-
-  toolbarspring {
-    display: none !important;
-  }
-
-  #TabsToolbar,
-  #nav-bar {
-    transition: margin-top .25s !important;
-  }
-}
-
-@media screen and (max-width: 949px) {
-  :root #nav-bar {
-    padding: 0 5px 0 5px !important;
-    height: calc(var(--NavbarHeightSmall) * 1px) !important;
-  }
-
-  toolbarspring {
-    display: none !important;
-  }
-
-  #TabsToolbar,
-  #nav-bar {
-    transition: margin-top .25s !important;
-  }
-}
-
-#nav-bar {
-  margin-left: 3px;
+toolbarspring {
+  display: none !important;
 }
 
 .tab-background,
 .tab-stack {
-  min-height: calc(var(--TabsHeight) * 1px) !important;
-}
-
-/* X Adjustable gap between the end of the URL bar and the start of the tabs. Increase or decrease --uc-urlbar-tabs-gap to tune the spacing */
-:root {
-  --uc-urlbar-tabs-gap: 10px;
-}
-
-@media screen and (min-width: 1325px) {
-  #TabsToolbar {
-    margin-left: calc(calc(1325px / 100 * var(--NavbarWidth)) + var(--uc-urlbar-tabs-gap)) !important;
-  }
-}
-
-@media screen and (min-width: 950px) and (max-width: 1324px) {
-  #TabsToolbar {
-    margin-left: calc(calc(var(--NavbarWidth) * 1vw) + var(--uc-urlbar-tabs-gap)) !important;
-  }
+  min-height: var(--uc-tab-height) !important;
 }
 
 /* X Toolbar, frame, tabstrip, and find-bar colors */
