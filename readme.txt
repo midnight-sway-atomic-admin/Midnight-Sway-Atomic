@@ -12,27 +12,25 @@ For the rice to look correct and be functional, you should:
 
 (e) enable custom CSS in Firefox by setting "toolkit.legacyUserProfileCustomizations.stylesheets" to "true" in about:config;
 
-(f) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text has been removed from the actual "Add Bookmark" popup;
+(f) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text have been removed from the actual "Add Bookmark" popup;
 
 (g) in Firefox's about:config, set "full-screen-api.enabled" to "false" (this prevents tapping to fullscreen on a YouTube video while preserving Mod+F for an enlarged player);
 
 (h) set "browser.urlbar.scotchBonnet.enableOverride" to "false" in about:config; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords, making sure that even for these the blue left-side check mark is not set. (Unchecking the blue check mark prevents the ugly addition of icons and "This time search with" text to the bottom of your URL-bar dropdown.) Ultimately, it is much faster and more natural to type "yt [your query]" and press enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press enter;
 
-(i) via Customize Toolbar, set Density to "Compact"; this prevents a weird, unpleasant zoom effect when dragging tabs;
+(i) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
-(j) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
+(j) use only Ctrl+B to bring up the left-side bookmarks sidebar, while removing the horizontal bookmarks toolbar itself from appearing;
 
-(k) use only Ctrl+B to bring up the left-side bookmarks sidebar, while removing the horizontal bookmarks toolbar itself from appearing;
+(k) use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
 
-(l) use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
+(l) in Thunar, press Ctrl+M, click "View," and uncheck "Show File Highlight";
 
-(m) in Thunar, press Ctrl+M, click "View," and uncheck "Show File Highlight";
+(m) get used to opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
 
-(n) get used to opening external drives in Thunar via the CLI (this is not the same as managing external drives fully through the CLI and requires enabling volume management in Thunar preferences); currently, external drives are not visible upon plug due to the sidebar text being hidden; this is one of the listed problems in problems-to-be-fixed.txt;
+(n) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(o) get used to operating without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
-
-(p) set Firefox to dark mode.
+(o) set Firefox to dark mode.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
