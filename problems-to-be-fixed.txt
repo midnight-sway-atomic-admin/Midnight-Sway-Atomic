@@ -2,40 +2,42 @@
 
 2. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as efficient, non-redundant, well-formed, and precise as possible (such code is tagged with "XX");
 
-3. Make all gaps between Waybar status bar modules exactly identical;
+3. Standardize the four default wallpapers to various display sizes;
 
-4. Standardize the four default wallpapers to various display sizes;
+4. Get a superior, more harmonious, custom set of icons;
 
-5. Get a superior, more harmonious, custom set of icons;
+5. Create .svg versions of all icons;
 
-6. Create .svg versions of all icons;
+6. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
 
-7. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+7. Make sure the Thunar address bar is dead center;
 
-8. Make sure the Thunar address bar is dead center;
+8. Hide the channel-name verified-circle under the YouTube videoplayer;
 
-9. Hide the channel-name verified-circle under the YouTube videoplayer;
+9. Make Waybar power-button menu thinner;
 
-10. Make Waybar power-button menu thinner;
+10. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-11. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+11. Fix current icon coverage by creating robust symlinks;
 
-12. Fix current icon coverage by creating robust symlinks;
+12. Provide more elegant symlink icon;
 
-13. Provide more elegant symlink icon;
+13. Expand and audit commands.txt;
 
-14. Expand and audit commands.txt;
+14. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-15. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+15. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-16. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
+16. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-17. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+17. Make all comments identical in tense and more exact and concise;
 
-18. Make all comments identical in tense and more exact and concise;
+18. Fix all hover colors for text on channel-profile YouTube pages;
 
-19. Fix all hover colors for text on channel-profile YouTube pages;
+19. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
 
-20. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
+20. After the rice is completely finished, create a new set of show-case images;
 
-21. After the rice is completely finished, create a new set of show-case images.
+21. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon;
+
+22. Provide ClamAV, TeX Live, and External Drives scripts;
