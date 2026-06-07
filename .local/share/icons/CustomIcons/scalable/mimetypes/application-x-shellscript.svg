@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="addons json file icon">
+  <defs>
+    <linearGradient id="paper" x1="56" y1="38" x2="200" y2="218" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#F4F6FA"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="158" y1="40" x2="197" y2="84" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#EEF1F6"/>
+      <stop offset="1" stop-color="#D9DEE8"/>
+    </linearGradient>
+    <linearGradient id="badgeShade" x1="-44" y1="-44" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9DA8CB"/>
+      <stop offset="0.48" stop-color="#8A97BF"/>
+      <stop offset="1" stop-color="#7887B2"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.13"/>
+    </filter>
+    <clipPath id="badgeClip">
+      <rect x="-44" y="-44" width="88" height="88" rx="9" ry="9"/>
+    </clipPath>
+  </defs>
+
+  <!-- document -->
+  <path filter="url(#softShadow)" fill="url(#paper)" d="M68 38h88l44 44v128c0 4.418-3.582 8-8 8H64c-4.418 0-8-3.582-8-8V50c0-6.627 5.373-12 12-12z"/>
+  <path fill="url(#fold)" d="M156 38l44 44h-31c-7.18 0-13-5.82-13-13V38z"/>
+  <path fill="#CED5E2" opacity="0.42" d="M156 69c0 7.18 5.82 13 13 13h31v1h-31c-7.732 0-14-6.268-14-14V38h1v31z"/>
+
+  <!-- emblem -->
+  <g transform="translate(128 138) rotate(-45)">
+    <rect x="-44" y="-44" width="88" height="88" rx="9" ry="9" fill="#8A97BF"/>
+    <g clip-path="url(#badgeClip)">
+      <path d="M 33.126 -28.746 L 38.514 -27.194 L 38.921 -15.138 L 42.749 -13.022 L 53.174 -19.092 L 57.355 -15.355 L 52.491 -4.316 L 55.022 -0.749 L 67.048 -1.694 L 69.194 3.486 L 60.022 11.322 L 60.755 15.633 L 72.000 20.000 L 71.686 25.598 L 60.022 28.678 L 58.811 32.881 L 67.048 41.694 L 64.336 46.602 L 52.491 44.316 L 49.577 47.577 L 53.174 59.092 L 48.602 62.336 L 38.921 55.138 L 34.881 56.811 L 33.126 68.746 L 27.598 69.686 L 22.000 59.000 L 17.633 58.755 L 10.874 68.746 L 5.486 67.194 L 5.079 55.138 L 1.251 53.022 L -9.174 59.092 L -13.355 55.355 L -8.491 44.316 L -11.022 40.749 L -23.048 41.694 L -25.194 36.514 L -16.022 28.678 L -16.755 24.367 L -28.000 20.000 L -27.686 14.402 L -16.022 11.322 L -14.811 7.119 L -23.048 -1.694 L -20.336 -6.602 L -8.491 -4.316 L -5.577 -7.577 L -9.174 -19.092 L -4.602 -22.336 L 5.079 -15.138 L 9.119 -16.811 L 10.874 -28.746 L 16.402 -29.686 L 22.000 -19.000 L 26.367 -18.755 Z M -2.000 20.000 C -2.000 6.745 8.745 -4.000 22.000 -4.000 C 35.255 -4.000 46.000 6.745 46.000 20.000 C 46.000 33.255 35.255 44.000 22.000 44.000 C 8.745 44.000 -2.000 33.255 -2.000 20.000 Z" fill="#C8CFE4" fill-rule="evenodd"/>
+      <path d="M-54 30 C-25 11 -13 -3 -22 -37 L-44 -44 H-54 Z" fill="#7584B0" opacity="0.42"/>
+      <circle cx="22" cy="20" r="24" fill="#8A97BF"/>
+      <path d="M-44 -44 H44 V-30 C11 -29 -18 -17 -36 4 C-44 13 -48 23 -44 34 Z" fill="#AEB7D3" opacity="0.24"/>
+    </g>
+    <rect x="-44" y="-44" width="88" height="88" rx="9" ry="9" fill="none" stroke="#6F7FAB" stroke-opacity="0.10"/>
+  </g>
+</svg>
