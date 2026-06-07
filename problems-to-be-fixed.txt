@@ -6,38 +6,36 @@
 
 4. Standardize the four default wallpapers to various display sizes;
 
-5. Fix external-drive Thunar invisibility upon plug, and when the fix is implemented enable volume managament in preferences;
+5. Get a superior, more harmonious, custom set of icons;
 
-6. Get a superior, more harmonious, custom set of icons;
+6. Create .svg versions of all icons;
 
-7. Create .svg versions of all icons;
+7. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
 
-8. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+8. Make sure the Thunar address bar is dead center;
 
-9. Make sure the Thunar address bar is dead center;
+9. Hide the channel-name verified-circle under the YouTube videoplayer;
 
-10. Hide the channel-name verified-circle under the YouTube videoplayer;
+10. Make Waybar power-button menu thinner;
 
-11. Make Waybar power-button menu thinner;
+11. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-12. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
+12. Fix current icon coverage by creating robust symlinks;
 
-13. Fix current icon coverage by creating robust symlinks;
+13. Provide more elegant symlink icon;
 
-14. Provide more elegant symlink icon;
+14. Expand and audit commands.txt;
 
-15. Expand and audit commands.txt;
+15. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-16. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+16. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-17. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
+17. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-18. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+18. Make all comments identical in tense and more exact and concise;
 
-19. Make all comments identical in tense and more exact and concise;
+19. Fix all hover colors for text on channel-profile YouTube pages;
 
-20. Fix all hover colors for text on channel-profile YouTube pages;
+20. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
 
-21. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
-
-22. After the rice is completely finished, create a new set of show-case images.
+21. After the rice is completely finished, create a new set of show-case images.
