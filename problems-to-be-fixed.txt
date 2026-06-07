@@ -18,26 +18,26 @@
 
 10. Replace janky folder icons in Firefox's, and thunar's, popup windows for saving and opening content;
 
-11. Fix current icon coverage by creating robust symlinks;
+11. Provide more elegant symlink icon;
 
-12. Provide more elegant symlink icon;
+12. Expand and audit commands.txt;
 
-13. Expand and audit commands.txt;
+13. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-14. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+14. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
 
-15. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
+15. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-16. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+16. Make all comments identical in tense and more exact and concise;
 
-17. Make all comments identical in tense and more exact and concise;
+17. Fix all hover colors for text on channel-profile YouTube pages;
 
-18. Fix all hover colors for text on channel-profile YouTube pages;
+18. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
 
-19. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
+19. After the rice is completely finished, create a new set of show-case images;
 
-20. After the rice is completely finished, create a new set of show-case images;
+20. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
-21. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon;
+21. Provide ClamAV, TeX Live, and External Drives scripts;
 
-22. Provide ClamAV, TeX Live, and External Drives scripts;
+22. Prevent selected icons in a window from darkening when that window is unfocused.
