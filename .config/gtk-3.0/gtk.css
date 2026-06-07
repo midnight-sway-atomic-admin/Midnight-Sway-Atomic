@@ -8,6 +8,12 @@
 @define-color thunar_bg #000000;
 @define-color thunar_accent #8A97BF;
 
+/* XX Controls GTK selected-item colors used by Thunar's icon-view renderers */
+@define-color theme_selected_bg_color #2C303D;
+@define-color theme_selected_fg_color #ffffff;
+@define-color theme_unfocused_selected_bg_color #1C1E26;
+@define-color theme_unfocused_selected_fg_color #ffffff;
+
 /* X Resets base defaults */
 * {
   font-size: 12px;
@@ -167,14 +173,14 @@ ThunarPathEntry image,
 .thunar scrolledwindow.shortcuts-pane treeview.view:selected:focus,
 .thunar .sidebar .view:selected,
 .thunar .sidebar .view:selected:focus {
-  background-color: #31364A;
+  background-color: @theme_selected_bg_color;
   color: @thunar_accent;
 }
 
 /* X Sets colors for selected sidebar row */
 .thunar treeview.view:selected,
 .thunar treeview.view:selected:focus {
-  background-color: #31364A;
+  background-color: @theme_selected_bg_color;
   color: @thunar_accent;
 }
 
