@@ -40,4 +40,6 @@
 
 21. Provide ClamAV, TeX Live, and External Drives scripts;
 
-22. Prevent selected icons in a window from darkening when that window is unfocused.
+22. Prevent selected icons in a window from darkening when that window is unfocused;
+
+23. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
