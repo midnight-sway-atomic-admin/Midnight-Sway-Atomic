@@ -2,6 +2,8 @@ set mouse
 set softwrap
 set nohelp
 set emptyline
+set linenumbers
+set numbercolor #222,normal # "normal" makes the background transparent
 
 # copy marked region -> Wayland clipboard (Ctrl-C)
 bind ^C "{execute}| wl-copy --type text/plain{enter}{undo}" main
