@@ -24,7 +24,7 @@ For the rice to look correct and be functional, you should:
 
 (k) use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
 
-(l) in Thunar, press Ctrl+M, click "View," and uncheck "Show File Highlight";
+(l) in Thunar, press Ctrl+M, click "View," and check "Show File Highlight";
 
 (m) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
