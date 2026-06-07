@@ -88,7 +88,7 @@ Thunar Preferences Configuration
 
    4.5 Volume Management
 
-       - Enable Volume Management: Disabled
+       - Enable Volume Management: enabled
 
 5. Shortcuts Tab
 
