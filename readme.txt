@@ -20,11 +20,11 @@ For the rice to look correct and be functional, you should:
 
 (i) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
-(j) use only Ctrl+B to bring up the left-side bookmarks sidebar, while removing the horizontal bookmarks toolbar itself from appearing;
+(j) use only Ctrl+B to bring up the left-side bookmarks sidebar (there is no sidebar button), while removing the horizontal bookmarks toolbar itself from appearing;
 
-(k) use Ctrl+D to bookmark pages; there is no URL-bar bookmark icon;
+(k) use Ctrl+D to bookmark pages (there is no URL-bar bookmark button);
 
-(l) in Thunar, press Ctrl+M, click "View," and check "Show File Highlight";
+(l) in Thunar, press Ctrl+M, click "View," and check "Show File Highlight" (this is now recommended whereas before it was not; the gtk.css file now includes color controls for the highlight);
 
 (m) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
