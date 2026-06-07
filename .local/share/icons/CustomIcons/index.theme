@@ -1,15 +1,34 @@
 [Icon Theme]
 Name=CustomIcons
 Comment=Specific icon overrides
-Inherits=Adwaita
-Directories=scalable/places,scalable/mimetypes
+Inherits=Adwaita,hicolor
+
+Directories=scalable/places,scalable/devices,scalable/actions,scalable/mimetypes
 
 [scalable/places]
 Size=256
 Context=Places
 Type=Scalable
+MinSize=8
+MaxSize=512
+
+[scalable/devices]
+Size=256
+Context=Devices
+Type=Scalable
+MinSize=8
+MaxSize=512
+
+[scalable/actions]
+Size=256
+Context=Actions
+Type=Scalable
+MinSize=8
+MaxSize=512
 
 [scalable/mimetypes]
 Size=256
 Context=MimeTypes
 Type=Scalable
+MinSize=8
+MaxSize=512
