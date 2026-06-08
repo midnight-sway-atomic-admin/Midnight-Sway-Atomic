@@ -1565,7 +1565,7 @@ tooltip label,
   --button-border-color-primary-active: transparent !important;
 }
 
-/* X Sets the black check box black. Linked to prior codeblock */
+/* X Sets the check box black. Linked to prior codeblock */
 #commonDialog #checkbox > .checkbox-check {
   accent-color: #000000 !important;
 }
