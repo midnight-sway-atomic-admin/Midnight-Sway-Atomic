@@ -1549,3 +1549,23 @@ tooltip label,
   opacity: 1 !important;
   fill-opacity: 1 !important;
 }
+
+/* X Sets colors for close-tabs popup  */
+#commonDialog {
+  --button-background-color-primary: #000000 !important;
+  --button-background-color-primary-hover: #2a2a2a !important;
+  --button-background-color-primary-active: #000000 !important;
+
+  --button-text-color-primary: #ffffff !important;
+  --button-text-color-primary-hover: #ffffff !important;
+  --button-text-color-primary-active: #8a97bf !important;
+
+  --button-border-color-primary: transparent !important;
+  --button-border-color-primary-hover: transparent !important;
+  --button-border-color-primary-active: transparent !important;
+}
+
+/* X Sets the black check box black. Linked to prior codeblock */
+#commonDialog #checkbox > .checkbox-check {
+  accent-color: #000000 !important;
+}
