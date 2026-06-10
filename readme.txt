@@ -32,7 +32,9 @@ For the rice to look correct and be functional, you should:
 
 (o) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
 
-(p) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably.
+(p) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
+
+(q) set YouTube to 90% zoom (text looks better this way).
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
