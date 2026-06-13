@@ -1,27 +1,45 @@
 /* Waybar style.css */
 
-/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed, or precise as it should be. When all code here has been tagged with "X", the next step is to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
 /* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
+
+/* --------------------------------------------------------------------------
+   1. Color controls
+   -------------------------------------------------------------------------- */
+
+@define-color waybar_fg #8a97bf;
+@define-color waybar_fg_dim rgba(138, 151, 191, 0.5);
+@define-color waybar_urgent #ff1a1a;
+@define-color waybar_transparent transparent;
+
+/* --------------------------------------------------------------------------
+   2. Global reset
+   -------------------------------------------------------------------------- */
 
 * {
     font-family: 'Noto Sans Mono';
     font-size: 13px;
     border: none;
     border-radius: 0;
+    transition: none;
 }
 
-/* X Suppression of all tooltips at the CSS level */
+/* X Suppresses all tooltips at the CSS level */
 tooltip {
     opacity: 0;
 }
 
-/* Simple Waybar background color total transparency */
-window#waybar { 
-background-color: transparent; 
+/* Makes the Waybar background fully transparent */
+window#waybar {
+    background-color: @waybar_transparent;
 }
 
-/* Remove all arbitrary extra padding and margins from all modules */
+/* --------------------------------------------------------------------------
+   3. Shared module reset
+   -------------------------------------------------------------------------- */
+
+/* Removes all arbitrary extra padding and margins from all modules */
 #workspaces,
 #window,
 #clock,
@@ -31,48 +49,77 @@ background-color: transparent;
 #custom-power {
     padding: 0;
     margin: 0;
-    color: #8A97BF; /* Important for rice */
+    color: @waybar_fg;
 }
 
-/* Workspace button internal padding (space between numbers) */
-#workspaces button {
+/* --------------------------------------------------------------------------
+   4. Workspaces
+   -------------------------------------------------------------------------- */
+
+/* Controls workspace button internal padding, non-active number coloring, and GTK button-effect suppression */
+#workspaces button,
+#workspaces button:hover,
+#workspaces button:focus,
+#workspaces button:active,
+#workspaces button:checked {
     min-width: 0;
     min-height: 0;
     margin: 0;
     padding: 0 5px;
-    background-color: transparent;
-    color: #494F65; /* Important for rice */
+    border: none;
+    border-radius: 0;
+    background-color: @waybar_transparent;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+    color: @waybar_fg_dim;
 }
 
-#workspaces button.focused {
-    color: #8A97BF; /* Important for rice */
+/* Sets active workspace number coloring */
+#workspaces button.focused,
+#workspaces button.active,
+#workspaces button.visible {
+    color: @waybar_fg;
 }
 
-#workspaces button.urgent {
-    background-color: transparent;
-    color: #FF1A1A;
+/* Sets urgent workspace coloring */
+#workspaces button.urgent,
+#workspaces button.urgent:hover {
+    background-color: @waybar_transparent;
+    background-image: none;
+    color: @waybar_urgent;
 }
 
-/* Power icon font control with zero padding */
-#custom-power {
+/* --------------------------------------------------------------------------
+   5. Power button
+   -------------------------------------------------------------------------- */
+
+/* Controls power icon font with zero padding */
+#custom-power,
+#custom-power label {
     font-size: 23px;
-    color: #8A97BF; /* Important for rice */
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    background-color: @waybar_transparent;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+    color: @waybar_fg;
 }
 
-#temperature.critical {
-    background-color: transparent;
-    color: #FF1A1A;
-}
-
-#battery.critical:not(.charging) {
-    background-color: transparent;
-    color: #FF1A1A;
-}
+/* --------------------------------------------------------------------------
+   6. Battery
+   -------------------------------------------------------------------------- */
 
 #battery {
     background: none;
     padding: 0;
     margin: 0;
+    margin-left: -1px; /* XX Pulls battery icon 1px to the left; "2px" distorts the battery icon during workspace jumping */
     min-width: 0;
     min-height: 0;
 }
@@ -90,15 +137,16 @@ background-color: transparent;
     background-position: center;
 }
 
-/* X Power-button menu background color on hover */
-#custom-power menu menuitem:hover,
-#custom-power menu menuitem:selected {
-    background: #8A97BF; /* Important for rice */
-    background-image: none;
-
+#battery.critical:not(.charging) {
+    background-color: @waybar_transparent;
+    color: @waybar_urgent;
 }
 
-/* XX Pulls battery icon 1px to the left; "2px" distorts the battery icon during workspace jumping */
-#battery {
-margin-left: -1px;
+/* --------------------------------------------------------------------------
+   7. Temperature
+   -------------------------------------------------------------------------- */
+
+#temperature.critical {
+    background-color: @waybar_transparent;
+    color: @waybar_urgent;
 }
