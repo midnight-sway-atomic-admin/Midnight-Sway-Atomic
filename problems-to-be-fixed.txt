@@ -44,4 +44,6 @@
 
 23. Fix any missed problems with Thunar's theme;
 
+24. Fix the trust-shield icon overriding the insecure-state icon;
+
 24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
