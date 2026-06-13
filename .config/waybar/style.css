@@ -56,7 +56,7 @@ window#waybar {
    4. Workspaces
    -------------------------------------------------------------------------- */
 
-/* Controls workspace button internal padding, non-active number coloring, and GTK button-effect suppression */
+/* Controls workspace button internal padding and suppresses GTK button effects */
 #workspaces button,
 #workspaces button:hover,
 #workspaces button:focus,
@@ -73,19 +73,35 @@ window#waybar {
     box-shadow: none;
     text-shadow: none;
     transition: none;
+}
+
+/* Keeps non-active workspace numbers dim and prevents hover color changes */
+#workspaces button:not(.focused):not(.active):not(.urgent),
+#workspaces button:not(.focused):not(.active):not(.urgent):hover,
+#workspaces button:not(.focused):not(.active):not(.urgent):focus,
+#workspaces button:not(.focused):not(.active):not(.urgent):active,
+#workspaces button:not(.focused):not(.active):not(.urgent):checked,
+#workspaces button:not(.focused):not(.active):not(.urgent) label,
+#workspaces button:not(.focused):not(.active):not(.urgent):hover label,
+#workspaces button:not(.focused):not(.active):not(.urgent):focus label,
+#workspaces button:not(.focused):not(.active):not(.urgent):active label,
+#workspaces button:not(.focused):not(.active):not(.urgent):checked label {
     color: @waybar_fg_dim;
 }
 
 /* Sets active workspace number coloring */
 #workspaces button.focused,
+#workspaces button.focused label,
 #workspaces button.active,
-#workspaces button.visible {
+#workspaces button.active label {
     color: @waybar_fg;
 }
 
 /* Sets urgent workspace coloring */
 #workspaces button.urgent,
-#workspaces button.urgent:hover {
+#workspaces button.urgent:hover,
+#workspaces button.urgent label,
+#workspaces button.urgent:hover label {
     background-color: @waybar_transparent;
     background-image: none;
     color: @waybar_urgent;
