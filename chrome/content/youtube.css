@@ -170,6 +170,7 @@ ytd-watch-metadata #top-row > #actions {
 
   /* XX Hides various videoplayer buttons */
   .ytp-button.ytp-play-button,
+  .ytp-next-button.ytp-playlist-ui,
   .ytp-button.ytp-prev-button,
   .ytp-button.ytp-replay-button,
   .ytp-button.ytp-fullscreen-button,
