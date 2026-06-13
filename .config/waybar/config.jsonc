@@ -13,8 +13,13 @@
         "custom/power"
     ],
 
+    "sway/workspaces": {
+        "cursor": 60
+    },
+
     "tray": {
-        "tooltip": false
+        "tooltip": false,
+        "cursor": 60
     },
 
     "clock#date": {
@@ -28,8 +33,8 @@
     },
 
     "temperature": {
+        "interval": 5,
         "critical-threshold": 80,
-        "format": "{temperatureC}°C",
         "tooltip": false
     },
 
@@ -48,7 +53,7 @@
     },
 
     "custom/power": {
-        "format": "⏻ ",
+        "format": "\u23fb ",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml",
@@ -57,7 +62,7 @@
             "reboot": "reboot",
             "suspend": "systemctl suspend",
             "lock": "swaylock",
-	    "log off": "loginctl terminate-session $XDG_SESSION_ID"
+            "log off": "loginctl terminate-session $XDG_SESSION_ID"
         }
     }
 }
