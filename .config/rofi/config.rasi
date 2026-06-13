@@ -10,30 +10,30 @@ configuration {
     shim-selected-text:          rgba ( 199, 208, 234, 100 % ); /* selected-item text color / #c7d0ea  */
 
     red:                         rgba ( 220, 50, 47, 100 % );
-    selected-active-foreground:  var(background);
+    selected-active-foreground:  var(shim-selected-text);
     lightfg:                     var(shim-accent);
-    separatorcolor:              var(foreground);
+    separatorcolor:              var(shim-border);
     urgent-foreground:           var(red);
     alternate-urgent-background: var(lightbg);
     lightbg:                     var(shim-base);
     background-color:            transparent;
-    border-color:                var(foreground);
+    border-color:                var(shim-border);
     normal-background:           var(background);
-    selected-urgent-background:  var(red);
+    selected-urgent-background:  transparent;
     alternate-active-background: var(lightbg);
     spacing:                     2;
     blue:                        rgba ( 0, 0, 0, 100 % );
     alternate-normal-foreground: var(foreground);
     urgent-background:           var(background);
-    selected-normal-foreground:  var(lightbg);
+    selected-normal-foreground:  var(shim-selected-text);
     active-foreground:           var(blue);
     background:                  var(shim-base);
-    selected-active-background:  var(blue);
+    selected-active-background:  transparent;
     active-background:           var(background);
-    selected-normal-background:  var(lightfg);
+    selected-normal-background:  transparent;
     alternate-normal-background: var(lightbg);
     foreground:                  var(shim-accent);
-    selected-urgent-foreground:  var(background);
+    selected-urgent-foreground:  var(shim-selected-text);
     normal-foreground:           var(foreground);
     alternate-urgent-foreground: var(red);
     alternate-active-foreground: var(blue);
