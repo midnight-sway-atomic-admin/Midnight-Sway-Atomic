@@ -1,3 +1,5 @@
+13 June 2026, UPDATE: I published a pretty big overhaul of many of the files today; make sure to replace all old files with the updated ones (the wallpapers, for instance, are no longer pure black but tinged almost imperceptibly blue).
+
 The files here quickly set up a visually austere and elegant base DE after a fresh install of Fedora Sway Atomic. Some of the files -- such as .bashrc -- are opinionated and thus contain stuff you might not need but that I want in a fresh install (for instance: a simple script that makes dunst timer-notifications via CLI commands like "1m" for "1 minute"). The files are a work in progress and will be changing continually.
 
 For the rice to look correct and be functional, you should:
