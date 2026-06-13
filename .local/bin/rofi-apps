@@ -25,6 +25,6 @@ case "$choice" in
     ;;
 
   "Bluetooth")
-    blueman-manager
+    GTK_THEME=blueman-skin blueman-manager
     ;;
 esac
