@@ -38,4 +38,10 @@
 
 20. Provide ClamAV, TeX Live, and External Drives scripts;
 
-21. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
+21: Fix GIMP's theme;
+
+22. Fix any missed problems with blueman-manager's theme;
+
+23. Fix any missed problems with Thunar's theme;
+
+24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
