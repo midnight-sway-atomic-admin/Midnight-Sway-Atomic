@@ -3,9 +3,11 @@ configuration {
 }
 
 * {
-    /* Color shim: edit only these two values for color control */
-    shim-base:                   rgba ( 26, 26, 26, 100 % );     /* dark grey background color / #1a1a1a */
-    shim-accent:                 rgba ( 138, 151, 191, 100 % );  /* purple-blue accents and font colors / #8a97bf */
+    /* Color shim: edit these values for color control */
+    shim-base:                   rgba ( 6, 6, 6, 100 % ); /* background color / #060606 */
+    shim-accent:                 rgba ( 138, 151, 191, 100 % ); /* font color / #8a97bf */
+    shim-border:                 rgba ( 83, 91, 116, 70.2 % ); /* border color / #535b74b3 */
+    shim-selected-text:          rgba ( 199, 208, 234, 100 % ); /* selected-item text color / #c7d0ea  */
 
     red:                         rgba ( 220, 50, 47, 100 % );
     selected-active-foreground:  var(background);
