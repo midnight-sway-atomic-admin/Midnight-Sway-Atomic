@@ -1,0 +1,1004 @@
+/* blueman-manager GTK 3 skin */
+
+/* Save as: ~/.themes/blueman-skin/gtk-3.0/gtk.css */
+
+/* Launch with: "GTK_THEME=blueman-skin blueman-manager" */
+
+/* --------------------------------------------------------------------------
+   1. Color controls
+   -------------------------------------------------------------------------- */
+
+/* Core palette */
+@define-color bm_bg                       #010305;
+@define-color bm_surface                  #060606;
+@define-color bm_fg                       #8a97bf;
+@define-color bm_hi                       #c7d0ea;
+@define-color bm_border                   rgba(34,38,48,0.50);
+@define-color bm_border_solid             #222630;
+@define-color bm_hover_bg                 #1a1a1a;
+@define-color bm_button_text              #b8c2e0;
+@define-color bm_disabled                 #333333;
+@define-color bm_muted                    #939393;
+@define-color bm_fill                     #0b0b0b;                 
+
+/* Refined surfaces */
+@define-color bm_surface_soft             #010305;                 
+@define-color bm_surface_raised           #0b0b0b;                 
+@define-color bm_surface_inset            #010305;                 
+@define-color bm_surface_active           #0f0f0f;
+
+/* Text */
+@define-color bm_text_primary             #8a97bf;
+@define-color bm_text_hover               #c7d0ea;
+@define-color bm_text_soft                #b8c2e0;
+@define-color bm_text_muted               #939393;
+@define-color bm_text_dim                 #5f6985;
+@define-color bm_text_disabled            #333333;
+
+/* Borders and focus */
+@define-color bm_border_soft              rgba(34,38,48,0.35);
+@define-color bm_border_normal            rgba(34,38,48,0.50);
+@define-color bm_border_strong            #222630;
+@define-color bm_focus                    #222630;
+
+/* Selection and hover */
+@define-color bm_selection_bg             rgba(138,151,191,0.10);
+@define-color bm_selection_fg             #c7d0ea;
+@define-color bm_hover_text               #c7d0ea;
+@define-color bm_hover_surface            #010306;
+
+/* Menus */
+@define-color bm_menu_bg                  #060606;
+@define-color bm_menu_fg                  #8a97bf;
+@define-color bm_menu_hover_bg            #010305;
+@define-color bm_menu_hover_fg            #c7d0ea;
+@define-color bm_menu_border              rgba(34,38,48,0.50);
+
+/* Buttons */
+@define-color bm_button_bg                #060606;
+@define-color bm_button_hover_bg          #1a1a1a;
+@define-color bm_button_active_bg         #060606;
+@define-color bm_button_border            rgba(34,38,48,0.35);
+@define-color bm_button_hover_border      rgba(34,38,48,0.50);
+
+/* Inputs */
+@define-color bm_entry_bg                 #010305;
+@define-color bm_entry_fg                 #8a97bf;
+@define-color bm_entry_border             rgba(34,38,48,0.50);
+@define-color bm_entry_focus_border       #222630;
+@define-color bm_text_selection_bg        #8a97bf;
+@define-color bm_text_selection_fg        #010305;
+
+/* Device list */
+@define-color bm_list_bg                  #010305;
+@define-color bm_list_fg                  #8a97bf;
+@define-color bm_list_hover_fg            #c7d0ea;
+@define-color bm_list_selected_bg         rgba(138,151,191,0.10);
+@define-color bm_list_selected_fg         #c7d0ea;
+@define-color bm_list_header_bg           #060606;
+@define-color bm_list_header_fg           #8a97bf;
+
+/* Toolbar */
+@define-color bm_toolbar_bg               #060606;
+@define-color bm_toolbar_fg               #8a97bf;
+@define-color bm_toolbar_hover_fg         #c7d0ea;
+
+/* Switch */
+@define-color bm_switch_bg                #060606;
+@define-color bm_switch_checked_bg        rgba(138,151,191,0.14);
+@define-color bm_switch_slider            #8a97bf;
+@define-color bm_switch_slider_checked    #8a97bf;
+@define-color bm_switch_border            rgba(34,38,48,0.50);
+
+/* Scrollbars */
+@define-color bm_scrollbar_bg             #010305;
+@define-color bm_scrollbar_slider         #222630;
+@define-color bm_scrollbar_slider_hover   #8a97bf;
+
+/* Progress bar */
+@define-color bm_progress_trough          #010305;
+@define-color bm_progress_fill            #8a97bf;
+@define-color bm_progress_text            #c7d0ea;
+
+/* Infobar */
+@define-color bm_infobar_bg               #060606;
+@define-color bm_infobar_fg               #b8c2e0;
+@define-color bm_infobar_border           rgba(34,38,48,0.50);
+
+/* Tooltips */
+@define-color bm_tooltip_bg               #060606;
+@define-color bm_tooltip_fg               #8a97bf;
+@define-color bm_tooltip_border           rgba(34,38,48,0.50);
+
+/* Icons */
+@define-color bm_icon                     #8a97bf;
+@define-color bm_icon_hover               #c7d0ea;
+@define-color bm_icon_disabled            #333333;
+
+/* Radio rows */
+@define-color bm_radio_row_bg             #010305;
+
+
+/* --------------------------------------------------------------------------
+   2. Base window and text
+   -------------------------------------------------------------------------- */
+
+* {
+  -gtk-icon-shadow: none;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+window,
+dialog,
+messagedialog {
+  background-color: @bm_surface_soft;
+  background-image: none;
+  color: @bm_text_primary;
+}
+
+grid,
+paned,
+stack,
+notebook,
+frame,
+eventbox {
+  background-color: @bm_surface_soft;
+  background-image: none;
+  color: @bm_text_primary;
+}
+
+grid:backdrop {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_text_primary;
+}
+
+box,
+viewport {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_text_primary;
+}
+
+label,
+text {
+  color: @bm_text_primary;
+}
+
+label:disabled,
+text:disabled,
+*:disabled {
+  color: @bm_text_disabled;
+}
+
+image {
+  color: @bm_icon;
+}
+
+separator {
+  background-color: @bm_border_soft;
+  color: @bm_border_soft;
+  min-width: 1px;
+  min-height: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   3. Main menu bar
+   -------------------------------------------------------------------------- */
+
+menubar,
+menubar:backdrop {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_toolbar_fg;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid @bm_border_soft;
+  border-left: 0;
+  padding: 0;
+}
+
+menubar > menuitem,
+menubar > menuitem:backdrop {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_toolbar_fg;
+  padding: 4px 9px;
+  border: 0;
+}
+
+menubar > menuitem:hover,
+menubar > menuitem:active,
+menubar > menuitem:checked,
+menubar > menuitem:hover:backdrop,
+menubar > menuitem:active:backdrop,
+menubar > menuitem:checked:backdrop {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_toolbar_hover_fg;
+  border: 0;
+}
+
+menubar > menuitem:disabled,
+menubar > menuitem:disabled:backdrop {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_disabled;
+}
+
+/* Keep the menubar container painted when the window is unfocused. */
+menubar box,
+menubar box:backdrop,
+menubar eventbox,
+menubar eventbox:backdrop {
+  background-color: @bm_surface_raised;
+  background-image: none;
+}
+
+/* --------------------------------------------------------------------------
+   4. Menus and Blueman device menu
+   -------------------------------------------------------------------------- */
+
+menu,
+#ManagerDeviceMenu {
+  background-color: @bm_menu_bg;
+  background-image: none;
+  color: @bm_menu_fg;
+  border: 1px solid @bm_menu_border;
+  border-radius: 3px;
+  padding: 3px;
+}
+
+menuitem,
+#ManagerDeviceMenu menuitem {
+  background-color: @bm_menu_bg;
+  background-image: none;
+  color: @bm_menu_fg;
+  border: 0;
+  border-radius: 2px;
+  padding: 5px 10px;
+}
+
+menuitem:hover,
+menuitem:active,
+menuitem:selected,
+#ManagerDeviceMenu menuitem:hover,
+#ManagerDeviceMenu menuitem:active,
+#ManagerDeviceMenu menuitem:selected {
+  background-color: @bm_menu_hover_bg;
+  background-image: none;
+  color: @bm_menu_hover_fg;
+}
+
+menuitem:disabled,
+#ManagerDeviceMenu menuitem:disabled {
+  background-color: @bm_menu_bg;
+  color: @bm_disabled;
+}
+
+menu separator,
+#ManagerDeviceMenu separator {
+  background-color: @bm_border_soft;
+  color: @bm_border_soft;
+  margin: 4px 8px;
+  min-height: 1px;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Main toolbar
+   -------------------------------------------------------------------------- */
+
+toolbar,
+toolbar.primary-toolbar,
+.primary-toolbar {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_toolbar_fg;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid @bm_border_soft;
+  border-left: 0;
+  padding: 3px 4px;
+}
+
+toolbar toolbutton,
+.primary-toolbar toolbutton {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_toolbar_fg;
+}
+
+toolbar toolbutton > button,
+.primary-toolbar toolbutton > button,
+toolbar button,
+.primary-toolbar button {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_toolbar_fg;
+  border: 1px solid @bm_fill;
+  border-radius: 3px;
+  padding: 4px 7px;
+}
+
+toolbar toolbutton > button:hover,
+.primary-toolbar toolbutton > button:hover,
+toolbar button:hover,
+.primary-toolbar button:hover {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_toolbar_hover_fg;
+  border-color: @bm_fill;
+}
+
+toolbar toolbutton > button:active,
+.primary-toolbar toolbutton > button:active,
+toolbar button:active,
+.primary-toolbar button:active,
+toolbar toolbutton > button:checked,
+.primary-toolbar toolbutton > button:checked,
+toolbar button:checked,
+.primary-toolbar button:checked {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_toolbar_hover_fg;
+  border-color: @bm_fill;
+}
+
+toolbar toolbutton > button:disabled,
+.primary-toolbar toolbutton > button:disabled,
+toolbar button:disabled,
+.primary-toolbar button:disabled {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_disabled;
+  border-color: @bm_fill;
+}
+
+toolbar separator,
+.primary-toolbar separator {
+  background-color: @bm_border_soft;
+  color: @bm_border_soft;
+  margin: 5px 4px;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Generic buttons
+   -------------------------------------------------------------------------- */
+
+button {
+  background-color: @bm_button_bg;
+  background-image: none;
+  color: @bm_button_text;
+  border: 1px solid @bm_button_border;
+  border-radius: 3px;
+  padding: 4px 9px;
+}
+
+button:hover {
+  background-color: @bm_button_hover_bg;
+  background-image: none;
+  color: @bm_hi;
+  border-color: @bm_button_hover_border;
+}
+
+button:active,
+button:checked {
+  background-color: @bm_button_active_bg;
+  background-image: none;
+  color: @bm_hi;
+  border-color: @bm_button_hover_border;
+}
+
+button:disabled {
+  background-color: @bm_bg;
+  background-image: none;
+  color: @bm_disabled;
+  border-color: @bm_border_soft;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Entries, combo boxes, and editable fields
+   -------------------------------------------------------------------------- */
+
+entry,
+spinbutton,
+combobox,
+combobox box,
+combobox button {
+  background-color: @bm_entry_bg;
+  background-image: none;
+  color: @bm_entry_fg;
+  border: 1px solid @bm_entry_border;
+  border-radius: 3px;
+  padding: 3px 6px;
+}
+
+entry:hover,
+spinbutton:hover,
+combobox:hover,
+combobox button:hover {
+  background-color: @bm_entry_bg;
+  background-image: none;
+  color: @bm_hi;
+  border-color: @bm_entry_border;
+}
+
+entry:focus,
+spinbutton:focus,
+combobox:focus,
+combobox button:focus {
+  background-color: @bm_entry_bg;
+  background-image: none;
+  color: @bm_entry_fg;
+  border-color: @bm_entry_focus_border;
+}
+
+entry selection,
+label selection,
+textview selection {
+  background-color: @bm_text_selection_bg;
+  color: @bm_text_selection_fg;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Bluetooth switch
+   -------------------------------------------------------------------------- */
+
+switch {
+  background-color: @bm_switch_bg;
+  background-image: none;
+  color: @bm_fg;
+  border: 1px solid @bm_switch_border;
+  border-radius: 10px;
+  padding: 1px;
+}
+
+switch:hover {
+  border-color: @bm_border_solid;
+}
+
+switch:checked {
+  background-color: @bm_switch_checked_bg;
+  background-image: none;
+  border-color: @bm_border_solid;
+}
+
+switch slider {
+  background-color: @bm_switch_slider;
+  background-image: none;
+  border: 0;
+  border-radius: 9px;
+  min-width: 15px;
+  min-height: 15px;
+}
+
+switch:checked slider {
+  background-color: @bm_switch_slider_checked;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Main device list
+   -------------------------------------------------------------------------- */
+
+#ManagerDeviceList,
+treeview#ManagerDeviceList,
+treeview#ManagerDeviceList.view,
+#ManagerDeviceList.view {
+  background-color: @bm_list_bg;
+  background-image: none;
+  color: @bm_list_fg;
+  border: 0;
+  padding: 0;
+}
+
+#ManagerDeviceList:hover,
+treeview#ManagerDeviceList:hover,
+treeview#ManagerDeviceList.view:hover,
+#ManagerDeviceList.view:hover {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_list_hover_fg;
+}
+
+#ManagerDeviceList:selected,
+#ManagerDeviceList:selected:focus,
+treeview#ManagerDeviceList:selected,
+treeview#ManagerDeviceList:selected:focus,
+treeview#ManagerDeviceList.view:selected,
+treeview#ManagerDeviceList.view:selected:focus,
+#ManagerDeviceList.view:selected,
+#ManagerDeviceList.view:selected:focus {
+  background-color: @bm_list_selected_bg;
+  background-image: none;
+  color: @bm_list_selected_fg;
+}
+
+#ManagerDeviceList:disabled,
+treeview#ManagerDeviceList:disabled,
+treeview#ManagerDeviceList.view:disabled,
+#ManagerDeviceList.view:disabled {
+  color: @bm_disabled;
+}
+
+#ManagerDeviceList header,
+#ManagerDeviceList header button,
+treeview#ManagerDeviceList header,
+treeview#ManagerDeviceList header button {
+  background-color: @bm_list_header_bg;
+  background-image: none;
+  color: @bm_list_header_fg;
+  border: 0;
+  border-bottom: 1px solid @bm_border_soft;
+  border-radius: 0;
+}
+
+#ManagerDeviceList header button:hover,
+treeview#ManagerDeviceList header button:hover {
+  background-color: @bm_list_header_bg;
+  background-image: none;
+  color: @bm_hi;
+}
+
+#ManagerDeviceList cell,
+treeview#ManagerDeviceList cell {
+  color: @bm_list_fg;
+}
+
+#ManagerDeviceList cell:selected,
+treeview#ManagerDeviceList cell:selected {
+  color: @bm_list_selected_fg;
+}
+
+/* --------------------------------------------------------------------------
+   10. Generic tree/list fallbacks
+   -------------------------------------------------------------------------- */
+
+treeview,
+treeview.view,
+list,
+list row {
+  background-color: @bm_list_bg;
+  background-image: none;
+  color: @bm_list_fg;
+}
+
+treeview:hover,
+treeview.view:hover,
+list row:hover {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_list_hover_fg;
+}
+
+treeview:selected,
+treeview:selected:focus,
+treeview.view:selected,
+treeview.view:selected:focus,
+list row:selected,
+list row:selected:focus {
+  background-color: @bm_list_selected_bg;
+  background-image: none;
+  color: @bm_list_selected_fg;
+}
+
+
+/* --------------------------------------------------------------------------
+   11. Scrolled window and scrollbars
+   -------------------------------------------------------------------------- */
+
+scrolledwindow {
+  background-color: @bm_surface_inset;
+  background-image: none;
+  border: 1px solid @bm_border_soft;
+  border-radius: 3px;
+}
+
+scrolledwindow viewport {
+  background-color: @bm_surface_inset;
+  background-image: none;
+}
+
+scrolledwindow undershoot,
+scrolledwindow overshoot {
+  background-color: @bm_surface;
+  background-image: none;
+}
+
+scrollbar {
+  background-color: @bm_surface_inset;
+  background-image: none;
+  border: 0;
+}
+
+scrollbar slider {
+  background-color: @bm_scrollbar_slider;
+  background-image: none;
+  border: 0;
+  border-radius: 3px;
+  min-width: 5px;
+  min-height: 5px;
+}
+
+scrollbar slider:hover,
+scrollbar slider:active {
+  background-color: @bm_scrollbar_slider_hover;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Status strip and progress bar
+   -------------------------------------------------------------------------- */
+
+statusbar {
+  background-color: @bm_surface_raised;
+  background-image: none;
+  color: @bm_text_dim;
+  border-top: 1px solid @bm_border_soft;
+  padding: 2px 4px;
+}
+
+statusbar label {
+  color: @bm_text_dim;
+}
+
+#ManagerProgressbar,
+progressbar#ManagerProgressbar {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_progress_text;
+  border: 1px solid @bm_border_soft;
+  border-radius: 3px;
+  min-height: 12px;
+}
+
+#ManagerProgressbar trough,
+progressbar#ManagerProgressbar trough {
+  background-color: @bm_progress_trough;
+  background-image: none;
+  border: 0;
+  border-radius: 3px;
+}
+
+#ManagerProgressbar progress,
+progressbar#ManagerProgressbar progress {
+  background-color: @bm_progress_fill;
+  background-image: none;
+  border: 0;
+  border-radius: 3px;
+}
+
+progressbar {
+  background-color: @bm_progress_trough;
+  background-image: none;
+  color: @bm_progress_text;
+  border-radius: 3px;
+}
+
+progressbar trough {
+  background-color: @bm_progress_trough;
+  background-image: none;
+  border: 1px solid @bm_border_soft;
+  border-radius: 3px;
+}
+
+progressbar progress {
+  background-color: @bm_progress_fill;
+  background-image: none;
+  border-radius: 3px;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. Infobar
+   -------------------------------------------------------------------------- */
+
+#MessageArea,
+infobar#MessageArea {
+  background-color: @bm_infobar_bg;
+  background-image: none;
+  color: @bm_infobar_fg;
+  border-top: 1px solid @bm_infobar_border;
+  border-right: 0;
+  border-bottom: 1px solid @bm_infobar_border;
+  border-left: 0;
+}
+
+#MessageArea label,
+#MessageArea image,
+infobar#MessageArea label,
+infobar#MessageArea image {
+  color: @bm_infobar_fg;
+}
+
+#MessageArea button,
+infobar#MessageArea button {
+  background-color: @bm_surface;
+  background-image: none;
+  color: @bm_infobar_fg;
+  border: 1px solid @bm_infobar_border;
+  border-radius: 3px;
+}
+
+#MessageArea button:hover,
+infobar#MessageArea button:hover {
+  background-color: @bm_hover_bg;
+  background-image: none;
+  color: @bm_hi;
+  border-color: @bm_border_solid;
+}
+
+
+/* --------------------------------------------------------------------------
+   14. Dialogs and popovers
+   -------------------------------------------------------------------------- */
+
+dialog,
+messagedialog,
+popover,
+popover.background {
+  background-color: @bm_bg;
+  background-image: none;
+  color: @bm_fg;
+  border: 1px solid @bm_border;
+  border-radius: 3px;
+}
+
+dialog label,
+messagedialog label,
+popover label {
+  color: @bm_fg;
+}
+
+dialog button,
+messagedialog button,
+popover button {
+  background-color: @bm_button_bg;
+  background-image: none;
+  color: @bm_button_text;
+  border: 1px solid @bm_button_border;
+  border-radius: 3px;
+}
+
+dialog button:hover,
+messagedialog button:hover,
+popover button:hover {
+  background-color: @bm_button_hover_bg;
+  background-image: none;
+  color: @bm_hi;
+  border-color: @bm_button_hover_border;
+}
+
+
+/* --------------------------------------------------------------------------
+   15. Tooltips
+   -------------------------------------------------------------------------- */
+
+tooltip,
+tooltip.background {
+  background-color: @bm_tooltip_bg;
+  background-image: none;
+  color: @bm_tooltip_fg;
+  border: 1px solid @bm_tooltip_border;
+  border-radius: 3px;
+}
+
+tooltip label {
+  color: @bm_tooltip_fg;
+}
+
+
+/* --------------------------------------------------------------------------
+   16. Focus and outlines
+   -------------------------------------------------------------------------- */
+
+*:focus {
+  outline-color: @bm_focus;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-offset: -1px;
+}
+
+button:focus,
+entry:focus,
+switch:focus,
+menuitem:focus,
+treeview:focus,
+#ManagerDeviceList:focus {
+  box-shadow: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   17. Symbolic icons
+   -------------------------------------------------------------------------- */
+
+button image,
+toolbutton image,
+menuitem image,
+toolbar image,
+.primary-toolbar image,
+#ManagerDeviceMenu image {
+  color: @bm_icon;
+}
+
+button:hover image,
+toolbutton:hover image,
+menuitem:hover image,
+toolbar button:hover image,
+.primary-toolbar button:hover image,
+#ManagerDeviceMenu menuitem:hover image {
+  color: @bm_icon_hover;
+}
+
+button:disabled image,
+toolbutton:disabled image,
+menuitem:disabled image,
+toolbar button:disabled image,
+.primary-toolbar button:disabled image,
+#ManagerDeviceMenu menuitem:disabled image {
+  color: @bm_icon_disabled;
+}
+
+
+/* --------------------------------------------------------------------------
+   18. Check and radio controls
+   -------------------------------------------------------------------------- */
+
+checkbutton {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_fg;
+}
+
+checkbutton:hover {
+  color: @bm_hi;
+}
+
+checkbutton check {
+  background-color: @bm_surface;
+  background-image: none;
+  color: @bm_fg;
+  border: 1px solid @bm_border;
+  border-radius: 3px;
+}
+
+checkbutton check:checked {
+  background-color: @bm_fg;
+  background-image: none;
+  color: @bm_bg;
+  border-color: @bm_fg;
+}
+
+checkbutton check:disabled {
+  background-color: @bm_bg;
+  color: @bm_disabled;
+  border-color: @bm_border_soft;
+}
+
+/* Radio buttons: checked state is a plain blue dot.
+ * The row strip behind each option is controlled by bm_radio_row_bg.
+ */
+
+radiobutton,
+radiobutton:hover,
+radiobutton:active,
+radiobutton:checked,
+radiobutton:backdrop,
+radiobutton label,
+radiobutton label:hover,
+radiobutton label:backdrop {
+  background-color: @bm_radio_row_bg;
+  background-image: none;
+  color: @bm_fg;
+  box-shadow: none;
+}
+
+radiobutton:disabled,
+radiobutton label:disabled {
+  background-color: @bm_radio_row_bg;
+  background-image: none;
+  color: @bm_disabled;
+  box-shadow: none;
+}
+
+/* Invisible placeholder beside each option */
+radiobutton radio {
+  background-color: transparent;
+  background-image: none;
+  color: transparent;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  min-width: 6px;
+  min-height: 6px;
+  margin: 3px 9px 3px 3px;
+  padding: 0;
+  -gtk-icon-source: none;
+}
+
+/* Selected option: simple #8a97bf dot */
+radiobutton radio:checked {
+  background-color: @bm_fg;
+  background-image: none;
+  color: transparent;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  min-width: 6px;
+  min-height: 6px;
+  margin: 3px 9px 3px 3px;
+  padding: 0;
+  -gtk-icon-source: none;
+}
+
+/* Selected option on hover: brighter dot */
+radiobutton radio:checked:hover {
+  background-color: @bm_hi;
+  background-image: none;
+  color: transparent;
+  border: 0;
+  border-radius: 999px;
+  box-shadow: none;
+  -gtk-icon-source: none;
+}
+
+radiobutton radio:disabled {
+  background-color: transparent;
+  background-image: none;
+  color: transparent;
+  border: 0;
+  box-shadow: none;
+  -gtk-icon-source: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   19. Miscellaneous GTK surfaces
+   -------------------------------------------------------------------------- */
+
+expander,
+expander title,
+revealer {
+  background-color: @bm_fill;
+  background-image: none;
+  color: @bm_fg;
+}
+
+calendar {
+  background-color: @bm_surface;
+  background-image: none;
+  color: @bm_fg;
+  border: 1px solid @bm_border;
+  border-radius: 3px;
+}
+
+calendar:selected {
+  background-color: @bm_selection_bg;
+  color: @bm_selection_fg;
+}
+
+scale,
+scale trough {
+  background-color: @bm_surface;
+  background-image: none;
+  color: @bm_fg;
+  border-radius: 3px;
+}
+
+scale slider {
+  background-color: @bm_fg;
+  background-image: none;
+  border: 1px solid @bm_border;
+  border-radius: 3px;
+}
+
+scale highlight {
+  background-color: @bm_fg;
+  background-image: none;
+}
