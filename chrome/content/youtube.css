@@ -4,13 +4,16 @@
 
 /* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
+/* After all comments have been tagged with "XX", all code will be folded under one "@-moz-document domain("youtube.com")" header */
+
 /* Color shim. Change these to change the theme */
 @-moz-document domain("youtube.com") {
   :root {
-    --ytc-page-bg: #000000;
-    --ytc-accent: #8a97bf;
-    --ytc-player-text: #ffffff;
-    --ytc-surface-bg: #1a1a1a;
+    --ytc-page-bg: #010305;
+    --ytc-accent: #8a97bfe6;
+    --ytc-player-text: #c7d0ea;
+    --ytc-player-white: #ffffff;
+    --ytc-surface-bg: #060606;
     --yt-watch-player-scale: 0.90;
     --yt-watch-player-radius: 0px;
     --yt-watch-player-y-offset: 35px;
@@ -269,7 +272,7 @@ ytd-watch-metadata #top-row > #actions {
 /* XX Sets background color for channel-profile posts */
 @-moz-document domain("youtube.com") {
   ytd-post-renderer[uses-compact-lockup] {
-    background-color: var(--ytc-surface-bg) !important;
+    background-color: #0a0a0a !important;
   }
 }
 
@@ -652,9 +655,24 @@ ytd-watch-metadata #top-row > #actions {
     yt-formatted-string,
     a
   ) {
-    color: var(--ytc-player-text) !important;
-    -webkit-text-fill-color: var(--ytc-player-text) !important;
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
     opacity: 1 !important;
+  }
+
+  /* X Videoplayer bottom-control button/icon colors */
+  #movie_player .ytp-chrome-controls :is(
+    .ytp-button,
+    .ytp-button *,
+    .ytp-button svg,
+    .ytp-button path,
+    .ytp-button use
+  ) {
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
+    fill: var(--ytc-player-white) !important;
+    opacity: 1 !important;
+    filter: none !important;
   }
 }
 
@@ -670,8 +688,8 @@ ytd-watch-metadata #top-row > #actions {
   .html5-video-player [role="menuitemcheckbox"] *,
   .html5-video-player [role="menuitemradio"],
   .html5-video-player [role="menuitemradio"] * {
-    color: var(--ytc-player-text) !important;
-    -webkit-text-fill-color: var(--ytc-player-text) !important;
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
     opacity: 1 !important;
     filter: none !important;
   }
@@ -683,8 +701,8 @@ ytd-watch-metadata #top-row > #actions {
   .html5-video-player [role="menuitemcheckbox"]:hover *,
   .html5-video-player [role="menuitemradio"]:hover,
   .html5-video-player [role="menuitemradio"]:hover * {
-    color: var(--ytc-player-text) !important;
-    -webkit-text-fill-color: var(--ytc-player-text) !important;
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
     opacity: 1 !important;
     filter: none !important;
   }
@@ -696,8 +714,54 @@ ytd-watch-metadata #top-row > #actions {
   .html5-video-player [class*="menu"] [class*="content"] *,
   .html5-video-player [class*="menu"] [class*="title"],
   .html5-video-player [class*="menu"] [class*="title"] * {
-    color: var(--ytc-player-text) !important;
-    -webkit-text-fill-color: var(--ytc-player-text) !important;
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
+    opacity: 1 !important;
+    filter: none !important;
+  }
+
+  /* X Force YouTube watch-page settings-menu text and icons to use player text color */
+  .html5-video-player :is(
+    .ytp-settings-menu,
+    .ytp-panel,
+    .ytp-panel-menu,
+    .ytp-menuitem,
+    .ytp-menuitem-label,
+    .ytp-menuitem-content,
+    .ytp-menuitem-icon,
+    .ytp-menuitem-arrow,
+    .ytp-menuitem-toggle-checkbox,
+    [role="menu"],
+    [role="menuitem"],
+    [role="menuitemcheckbox"],
+    [role="menuitemradio"]
+  ),
+  .html5-video-player :is(
+    .ytp-settings-menu,
+    .ytp-panel,
+    .ytp-panel-menu,
+    .ytp-menuitem,
+    .ytp-menuitem-label,
+    .ytp-menuitem-content,
+    .ytp-menuitem-icon,
+    .ytp-menuitem-arrow,
+    .ytp-menuitem-toggle-checkbox,
+    [role="menu"],
+    [role="menuitem"],
+    [role="menuitemcheckbox"],
+    [role="menuitemradio"]
+  ) *,
+  .html5-video-player :is(
+    .ytp-settings-menu,
+    .ytp-panel,
+    .ytp-panel-menu,
+    .ytp-menuitem,
+    .ytp-menuitem-icon,
+    .ytp-menuitem-arrow
+  ) :is(svg, path, use) {
+    color: var(--ytc-player-white) !important;
+    -webkit-text-fill-color: var(--ytc-player-white) !important;
+    fill: var(--ytc-player-white) !important;
     opacity: 1 !important;
     filter: none !important;
   }
@@ -734,7 +798,7 @@ ytd-watch-metadata #top-row > #actions {
     .yt-thumbnail-view-model,
     .ytThumbnailViewModelHost
   ) {
-    outline: 1px solid var(--ytc-accent) !important;
+    outline: 0.5px solid var(--ytc-accent) !important;
     outline-offset: 0 !important;
   }
 }
@@ -809,24 +873,38 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* Hide frontpage sponsored/featured videos. !CURRENTLY BEING TESTED! */
+/* X Sets hover color: video-card titles on home, channel-profile, search, and Shorts pages, plus watch-page channel names. Keep this codeblock last to override earlier rules that set the universal default colors to #8a97bf */
 @-moz-document domain("youtube.com") {
-  ytd-browse[page-subtype="home"]
-  ytd-rich-item-renderer:has([aria-label*="featured" i]) {
-    display: none !important;
-  }
-}
-
-/* X Sets hover color: frontpage titles, frontpage dots, and watch-page channel names. Keep this codeblock last to override earlier rules that set the universal default colors to #8a97bf */
-@-moz-document domain("youtube.com") {
-  ytd-browse[page-subtype="home"] :is(yt-lockup-view-model,ytd-rich-item-renderer):hover:not(:has(:is(
+  :is(
+    ytd-browse[page-subtype="home"],
+    ytd-browse[page-subtype="channels"],
+    ytd-search,
+    ytd-shorts
+  ) :is(
+    yt-lockup-view-model,
+    ytd-rich-item-renderer,
+    ytd-video-renderer,
+    ytd-grid-video-renderer,
+    ytd-playlist-renderer,
+    ytd-channel-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    .ytShortsLockupViewModelHost
+  ):hover:not(:has(:is(
     ytd-menu-renderer,
     yt-lockup-menu-button-view-model,
     .ytLockupMenuButtonViewModelHost,
-    button-view-model
-    ):hover)) :is(
+    button-view-model,
+    button,
+    tp-yt-paper-icon-button
+  ):hover)) :is(
     .yt-lockup-metadata-view-model__title,
     .ytLockupMetadataViewModelTitle,
+    .yt-shorts-lockup-view-model__title,
+    .ytShortsLockupViewModelTitle,
+    .ytShortsLockupViewModelEntityTitle,
     #video-title,
     #video-title-link
   ),
@@ -852,6 +930,99 @@ ytd-watch-metadata #top-row > #actions {
     -webkit-text-fill-color: var(--ytc-player-text) !important;
   }
 
+  /* X Keeps channel-profile and search-page bylines/channel names from turning black under YouTube's native link-hover styling */
+  :is(
+    ytd-browse[page-subtype="channels"],
+    ytd-search
+  ) :is(
+    yt-lockup-view-model,
+    ytd-rich-item-renderer,
+    ytd-video-renderer,
+    ytd-grid-video-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    .ytShortsLockupViewModelHost
+  ) :is(
+    ytd-channel-name,
+    #channel-name,
+    #text.ytd-channel-name,
+    a.yt-simple-endpoint.ytd-channel-name,
+    .yt-lockup-metadata-view-model__metadata a,
+    .ytLockupMetadataViewModelMetadata a
+  ),
+  :is(
+    ytd-browse[page-subtype="channels"],
+    ytd-search
+  ) :is(
+    yt-lockup-view-model,
+    ytd-rich-item-renderer,
+    ytd-video-renderer,
+    ytd-grid-video-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    .ytShortsLockupViewModelHost
+  ) :is(
+    ytd-channel-name,
+    #channel-name,
+    #text.ytd-channel-name,
+    a.yt-simple-endpoint.ytd-channel-name,
+    .yt-lockup-metadata-view-model__metadata a,
+    .ytLockupMetadataViewModelMetadata a
+  ) * {
+    color: var(--ytc-accent) !important;
+    -webkit-text-fill-color: var(--ytc-accent) !important;
+  }
+
+  :is(
+    ytd-browse[page-subtype="channels"],
+    ytd-search
+  ) :is(
+    yt-lockup-view-model,
+    ytd-rich-item-renderer,
+    ytd-video-renderer,
+    ytd-grid-video-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    .ytShortsLockupViewModelHost
+  ) :is(
+    ytd-channel-name,
+    #channel-name,
+    #text.ytd-channel-name,
+    a.yt-simple-endpoint.ytd-channel-name,
+    .yt-lockup-metadata-view-model__metadata a,
+    .ytLockupMetadataViewModelMetadata a
+  ):hover,
+  :is(
+    ytd-browse[page-subtype="channels"],
+    ytd-search
+  ) :is(
+    yt-lockup-view-model,
+    ytd-rich-item-renderer,
+    ytd-video-renderer,
+    ytd-grid-video-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    .ytShortsLockupViewModelHost
+  ) :is(
+    ytd-channel-name,
+    #channel-name,
+    #text.ytd-channel-name,
+    a.yt-simple-endpoint.ytd-channel-name,
+    .yt-lockup-metadata-view-model__metadata a,
+    .ytLockupMetadataViewModelMetadata a
+  ):hover * {
+    color: var(--ytc-player-text) !important;
+    -webkit-text-fill-color: var(--ytc-player-text) !important;
+  }
+
   ytd-browse[page-subtype="home"] :is(
     ytd-menu-renderer,
     yt-lockup-menu-button-view-model,
@@ -865,6 +1036,149 @@ ytd-watch-metadata #top-row > #actions {
     button-view-model
   ):hover * {
     color: var(--ytc-player-text) !important;
+  }
+}
+
+
+/* X Disables browser-rendered ellipsis dots on home-page video titles by clipping long titles instead */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] :is(
+    .yt-lockup-metadata-view-model__title,
+    .ytLockupMetadataViewModelTitle,
+    #video-title,
+    #video-title-link
+  ) {
+    display: block !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    -webkit-line-clamp: unset !important;
+    line-clamp: unset !important;
+    max-height: 2.6em !important;
+  }
+}
+
+/* X Dedicated Shorts-card hover fix. Shorts shelves use different lockup wrappers from normal video cards, so this block catches cards by their /shorts/ links and title/byline class names. Keep this after the general hover block. */
+@-moz-document domain("youtube.com") {
+  :is(
+    ytd-browse[page-subtype="home"],
+    ytd-browse[page-subtype="channels"],
+    ytd-search,
+    ytd-shorts
+  ) :is(
+    ytd-rich-item-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    ytd-grid-video-renderer,
+    yt-lockup-view-model,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    shorts-lockup-view-model,
+    [class*="shortsLockup" i],
+    [class*="ShortsLockup" i]
+  ):has(a[href*="/shorts/"]) :is(
+    a[href*="/shorts/"],
+    yt-formatted-string,
+    yt-attributed-string,
+    .yt-core-attributed-string,
+    [class*="title" i],
+    [class*="metadata" i],
+    [class*="subhead" i]
+  ),
+  :is(
+    ytd-browse[page-subtype="home"],
+    ytd-browse[page-subtype="channels"],
+    ytd-search,
+    ytd-shorts
+  ) :is(
+    ytd-rich-item-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    ytd-grid-video-renderer,
+    yt-lockup-view-model,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    shorts-lockup-view-model,
+    [class*="shortsLockup" i],
+    [class*="ShortsLockup" i]
+  ):has(a[href*="/shorts/"]) :is(
+    a[href*="/shorts/"],
+    yt-formatted-string,
+    yt-attributed-string,
+    .yt-core-attributed-string,
+    [class*="title" i],
+    [class*="metadata" i],
+    [class*="subhead" i]
+  ) * {
+    color: var(--ytc-accent) !important;
+    -webkit-text-fill-color: var(--ytc-accent) !important;
+  }
+
+  :is(
+    ytd-browse[page-subtype="home"],
+    ytd-browse[page-subtype="channels"],
+    ytd-search,
+    ytd-shorts
+  ) :is(
+    ytd-rich-item-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    ytd-grid-video-renderer,
+    yt-lockup-view-model,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    shorts-lockup-view-model,
+    [class*="shortsLockup" i],
+    [class*="ShortsLockup" i]
+  ):has(a[href*="/shorts/"]):hover:not(:has(:is(
+    ytd-menu-renderer,
+    yt-lockup-menu-button-view-model,
+    .ytLockupMenuButtonViewModelHost,
+    button-view-model,
+    button,
+    tp-yt-paper-icon-button
+  ):hover)) :is(
+    a[href*="/shorts/"],
+    yt-formatted-string,
+    yt-attributed-string,
+    .yt-core-attributed-string,
+    [class*="title" i],
+    [class*="metadata" i],
+    [class*="subhead" i]
+  ),
+  :is(
+    ytd-browse[page-subtype="home"],
+    ytd-browse[page-subtype="channels"],
+    ytd-search,
+    ytd-shorts
+  ) :is(
+    ytd-rich-item-renderer,
+    ytd-reel-item-renderer,
+    ytd-reel-video-renderer,
+    ytd-grid-video-renderer,
+    yt-lockup-view-model,
+    yt-shorts-lockup-view-model,
+    ytm-shorts-lockup-view-model,
+    shorts-lockup-view-model,
+    [class*="shortsLockup" i],
+    [class*="ShortsLockup" i]
+  ):has(a[href*="/shorts/"]):hover:not(:has(:is(
+    ytd-menu-renderer,
+    yt-lockup-menu-button-view-model,
+    .ytLockupMenuButtonViewModelHost,
+    button-view-model,
+    button,
+    tp-yt-paper-icon-button
+  ):hover)) :is(
+    a[href*="/shorts/"],
+    yt-formatted-string,
+    yt-attributed-string,
+    .yt-core-attributed-string,
+    [class*="title" i],
+    [class*="metadata" i],
+    [class*="subhead" i]
+  ) * {
+    color: var(--ytc-player-text) !important;
+    -webkit-text-fill-color: var(--ytc-player-text) !important;
   }
 }
 
@@ -920,4 +1234,99 @@ ytd-watch-metadata #top-row > #actions {
     box-shadow: none !important;
     outline: 0 !important;
   }
+}
+
+/* Hides frontpage playlists. !CURRENTLY BEING TESTED! */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(a[href*="list="]) {
+    display: none !important;
+  }
+}
+
+/* Linked to prior codeblock */
+@-moz-document domain("youtube.com") {
+  ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(a[href*="list="]) {
+    display: none !important;
+  }
+}
+
+@-moz-document domain("youtube.com") {
+
+/* --------------------------------------------------------------------------
+   YouTube search-page chipbar
+   -------------------------------------------------------------------------- */
+
+ytd-search {
+  --yt-search-chipbar-bg: #010306;
+
+  --yt-search-chip-bg: #010306;
+  --yt-search-chip-bg-hover: #080a10;
+
+  --yt-search-chip-text: #8a97bf;
+  --yt-search-chip-text-hover: #c7d0ea;
+
+  --yt-search-chip-border: #1a1d28;
+  --yt-search-chip-border-hover: #8a97bf;
+
+  --yt-search-chipbar-arrow-bg: #010306;
+  --yt-search-chipbar-arrow-text: #8a97bf;
+  --yt-search-chipbar-shadow: transparent;
+}
+
+/* X Sets color for main chipbar background/scroll area. Linked to prior codeblock */
+ytd-search yt-chip-cloud-renderer,
+ytd-search yt-chip-cloud-renderer #scroll-container,
+ytd-search yt-chip-cloud-renderer #chips {
+  background: var(--yt-search-chipbar-bg) !important;
+  box-shadow: none !important;
+}
+
+/* X Sets colors/border for individual chips. Linked to prior two codeblocks */
+ytd-search yt-chip-cloud-chip-renderer {
+  background: var(--yt-search-chip-bg) !important;
+  color: var(--yt-search-chip-text) !important;
+  border: 1px solid var(--yt-search-chip-border) !important;
+  box-shadow: none !important;
+}
+
+/* X Sets color of chip text. Linked to prior three codeblocks */
+ytd-search yt-chip-cloud-chip-renderer *,
+ytd-search yt-chip-cloud-chip-renderer #text {
+  color: inherit !important;
+}
+
+/* X Sets color of hovered chips. Linked to prior four codeblocks */
+ytd-search yt-chip-cloud-chip-renderer:hover {
+  background: var(--yt-search-chip-bg-hover) !important;
+  color: var(--yt-search-chip-text-hover) !important;
+  border-color: var(--yt-search-chip-border-hover) !important;
+}
+
+/* X Sets color of selected chip: identical to hover styling. Linked to prior five codeblocks */
+ytd-search yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"],
+ytd-search yt-chip-cloud-chip-renderer[aria-selected="true"],
+ytd-search yt-chip-cloud-chip-renderer[selected] {
+  background: var(--yt-search-chip-bg-hover) !important;
+  color: var(--yt-search-chip-text-hover) !important;
+  border-color: var(--yt-search-chip-border-hover) !important;
+}
+
+/* X Sets colors for left/right scroll arrow areas. Linked to prior six codeblocks */
+ytd-search yt-chip-cloud-renderer #left-arrow,
+ytd-search yt-chip-cloud-renderer #right-arrow,
+ytd-search yt-chip-cloud-renderer .arrow,
+ytd-search yt-chip-cloud-renderer tp-yt-paper-icon-button {
+  background: var(--yt-search-chipbar-arrow-bg) !important;
+  color: var(--yt-search-chipbar-arrow-text) !important;
+  box-shadow: none !important;
+}
+
+/* X Removes edge fade/gradient shadows. Linked to prior seven codeblocks */
+ytd-search yt-chip-cloud-renderer #left-arrow::after,
+ytd-search yt-chip-cloud-renderer #right-arrow::before,
+ytd-search yt-chip-cloud-renderer::before,
+ytd-search yt-chip-cloud-renderer::after {
+  background: var(--yt-search-chipbar-shadow) !important;
+  box-shadow: none !important;
+}
 }
