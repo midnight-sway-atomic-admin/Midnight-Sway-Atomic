@@ -46,4 +46,4 @@
 
 24. Fix the trust-shield icon overriding the insecure-state icon;
 
-24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
+25. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
