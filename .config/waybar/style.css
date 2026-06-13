@@ -75,17 +75,28 @@ window#waybar {
     transition: none;
 }
 
+/* Suppresses GTK label-level hover/focus effects inside workspace buttons */
+#workspaces button label,
+#workspaces button:hover label,
+#workspaces button:focus label,
+#workspaces button:active label,
+#workspaces button:checked label {
+    background-color: @waybar_transparent;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+}
+
 /* Keeps non-active workspace numbers dim and prevents hover color changes */
-#workspaces button:not(.focused):not(.active):not(.urgent),
-#workspaces button:not(.focused):not(.active):not(.urgent):hover,
-#workspaces button:not(.focused):not(.active):not(.urgent):focus,
-#workspaces button:not(.focused):not(.active):not(.urgent):active,
-#workspaces button:not(.focused):not(.active):not(.urgent):checked,
-#workspaces button:not(.focused):not(.active):not(.urgent) label,
-#workspaces button:not(.focused):not(.active):not(.urgent):hover label,
-#workspaces button:not(.focused):not(.active):not(.urgent):focus label,
-#workspaces button:not(.focused):not(.active):not(.urgent):active label,
-#workspaces button:not(.focused):not(.active):not(.urgent):checked label {
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent),
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):hover,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):focus,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):active,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent) label,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):hover label,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):focus label,
+#workspaces button:not(.focused):not(.active):not(:checked):not(.urgent):active label {
     color: @waybar_fg_dim;
 }
 
@@ -93,7 +104,9 @@ window#waybar {
 #workspaces button.focused,
 #workspaces button.focused label,
 #workspaces button.active,
-#workspaces button.active label {
+#workspaces button.active label,
+#workspaces button:checked,
+#workspaces button:checked label {
     color: @waybar_fg;
 }
 
