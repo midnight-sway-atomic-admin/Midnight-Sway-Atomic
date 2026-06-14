@@ -6,7 +6,7 @@
 
 /* After all comments have been tagged with "XX", all code will be folded under one "@-moz-document domain("youtube.com")" header */
 
-/* Color shim. Change these to change the theme */
+/* X Color shim. Change these to change the theme */
 @-moz-document domain("youtube.com") {
   :root {
     --ytc-page-bg: #010305;
@@ -14,13 +14,10 @@
     --ytc-player-text: #c7d0ea;
     --ytc-player-white: #ffffff;
     --ytc-surface-bg: #060606;
-    --yt-watch-player-scale: 0.90;
-    --yt-watch-player-radius: 0px;
-    --yt-watch-player-y-offset: 35px;
   }
 }
 
-/* Base, player, watch, home, and tooltip rules */
+/* X Base, player, watch, home, and tooltip rules */
 @-moz-document domain("youtube.com") {
 
   /* X Base page background */
@@ -29,26 +26,7 @@
     background-color: var(--ytc-page-bg) !important;
   }
 
-/* X Watch-player scale, vertical offset, and inner border */
-ytd-watch-flexy:not([fullscreen]) #player {
-  position: relative !important;
-  transform: translateY(var(--yt-watch-player-y-offset)) scale(var(--yt-watch-player-scale)) !important;
-  transform-origin: top center !important;
-  border-radius: var(--yt-watch-player-radius, 0px) !important;
-}
-
-ytd-watch-flexy:not([fullscreen]) #player::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  box-sizing: border-box !important;
-  border: 0.5px solid var(--ytc-accent) !important;
-  border-radius: inherit !important;
-  pointer-events: none !important;
-  z-index: 10 !important;
-}
-
-/* X Removes rounded corners from the watch-page player stack. Comment out this codeblock and set "--yt-watch-player-radius: 0px;" to 12px if you want YouTube's default rounded videplayer corners */
+/* X Watch-player square corners */
 ytd-watch-flexy:not([fullscreen]) :is(
   #player,
   #player-container,
@@ -65,7 +43,23 @@ ytd-watch-flexy:not([fullscreen]) :is(
   border-radius: 0 !important;
 }
 
-/* Set strict channel-name-to-thumbs spacing */
+/* X Watch-page inner border */
+ytd-watch-flexy:not([fullscreen]) #player {
+  position: relative !important;
+}
+
+ytd-watch-flexy:not([fullscreen]) #player::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  box-sizing: border-box !important;
+  border: 0.5px solid var(--ytc-accent) !important;
+  border-radius: 0 !important;
+  pointer-events: none !important;
+  z-index: 10 !important;
+}
+
+/* X Set strict channel-name-to-thumbs spacing */
 ytd-watch-metadata #top-row {
   display: grid !important;
   grid-template-columns: max-content max-content !important;
@@ -76,7 +70,7 @@ ytd-watch-metadata #top-row {
   padding-top: 0 !important;
 }
 
-/* Lock owner block */
+/* X Lock owner block */
 ytd-watch-metadata #top-row > #owner {
   grid-column: 1 !important;
   margin: 0 !important;
@@ -84,7 +78,7 @@ ytd-watch-metadata #top-row > #owner {
   max-width: none !important;
 }
 
-/* Lock action buttons */
+/* X Lock action buttons */
 ytd-watch-metadata #top-row > #actions {
   grid-column: 2 !important;
   margin: 0 !important;
@@ -92,7 +86,7 @@ ytd-watch-metadata #top-row > #actions {
   max-width: none !important;
 }
 
-  /* Various hides */
+  /* X Various hides */
 
   ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"],a[href*="list=RD"]), /* X Tries to hide frontpage music mixes */
 
@@ -256,7 +250,7 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* Removes videoplayer combined channel avatar shown when a video is multi-authored. Needs to be tested */
+/* X Removes videoplayer combined channel avatar shown when a video is multi-authored. Needs to be tested */
 @-moz-document domain("youtube.com") {
   ytd-watch-metadata ytd-video-owner-renderer .yt-simple-endpoint.ytd-video-owner-renderer {
     display: none !important;
@@ -1040,7 +1034,6 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-
 /* X Disables browser-rendered ellipsis dots on home-page video titles by clipping long titles instead */
 @-moz-document domain("youtube.com") {
   ytd-browse[page-subtype="home"] :is(
@@ -1213,7 +1206,6 @@ ytd-watch-metadata #top-row > #actions {
   ytd-watch-metadata ytd-badge-supported-renderer {
     display: none !important;
   }
-
 }
 
 /* X Removes the watch-page videoplayer loading spinner that's behind the central play button */
@@ -1222,7 +1214,6 @@ ytd-watch-metadata #top-row > #actions {
   ytd-watch-flexy #movie_player .ytp-spinner {
     display: none !important;
   }
-
 }
 
 /* X YouTube popup menus like the one invoked by the frontpage dots.!NEEDS TO BE FIXED! */
@@ -1244,7 +1235,7 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* Linked to prior codeblock */
+/* X Linked to prior codeblock */
 @-moz-document domain("youtube.com") {
   ytd-browse[page-subtype="home"] ytd-rich-section-renderer:has(a[href*="list="]) {
     display: none !important;
@@ -1258,9 +1249,9 @@ ytd-watch-metadata #top-row > #actions {
    -------------------------------------------------------------------------- */
 
 ytd-search {
-  --yt-search-chipbar-bg: #010306;
+  --yt-search-chipbar-bg: #010305;
 
-  --yt-search-chip-bg: #010306;
+  --yt-search-chip-bg: #010305;
   --yt-search-chip-bg-hover: #080a10;
 
   --yt-search-chip-text: #8a97bf;
@@ -1269,7 +1260,7 @@ ytd-search {
   --yt-search-chip-border: #1a1d28;
   --yt-search-chip-border-hover: #8a97bf;
 
-  --yt-search-chipbar-arrow-bg: #010306;
+  --yt-search-chipbar-arrow-bg: #010305;
   --yt-search-chipbar-arrow-text: #8a97bf;
   --yt-search-chipbar-shadow: transparent;
 }
@@ -1329,5 +1320,5 @@ ytd-search yt-chip-cloud-renderer::before,
 ytd-search yt-chip-cloud-renderer::after {
   background: var(--yt-search-chipbar-shadow) !important;
   box-shadow: none !important;
-}
+  }
 }
