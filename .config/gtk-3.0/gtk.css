@@ -193,6 +193,23 @@ window.thunar toolbar entry selection {
   -GtkTreeView-horizontal-separator: 6;
 }
 
+/* X Removes/colors the vertical divider at the right edge of the Thunar sidebar */
+window.thunar paned > separator,
+window.thunar paned > separator:backdrop,
+.thunar paned > separator,
+.thunar paned > separator:backdrop,
+window.thunar scrolledwindow.shortcuts-pane,
+window.thunar scrolledwindow.shortcuts-pane:backdrop,
+window.thunar scrolledwindow.shortcuts-pane > viewport,
+window.thunar scrolledwindow.shortcuts-pane > viewport:backdrop,
+window.thunar scrolledwindow.shortcuts-pane.frame,
+window.thunar scrolledwindow.shortcuts-pane.frame:backdrop {
+  background-color: @thunar_bg;
+  background-image: none;
+  border-color: @thunar_bg;
+  box-shadow: none;
+}
+
 /* X Makes selected sidebar rows visually match the file-grid selected-item highlight */
 .thunar scrolledwindow.shortcuts-pane treeview.view:selected,
 .thunar scrolledwindow.shortcuts-pane treeview.view:selected:focus,
@@ -506,6 +523,221 @@ window.dialog buttonbox {
   background-color: #0b0b0b;
   background-image: none;
   color: #8a97bf;
+}
+
+/* Thunar Properties dialog: notebook/page background */
+dialog notebook,
+dialog notebook *,
+window.dialog notebook,
+window.dialog notebook *,
+window.background.dialog notebook,
+window.background.dialog notebook * {
+  background-color: #0b0b0b;
+  background-image: none;
+  color: #8a97bf;
+  border-color: #222630;
+  box-shadow: none;
+}
+
+/* Thunar Properties dialog: selected/hovered tab text */
+dialog notebook > header > tabs > tab:hover label,
+dialog notebook > header > tabs > tab:checked label,
+window.dialog notebook > header > tabs > tab:hover label,
+window.dialog notebook > header > tabs > tab:checked label,
+window.background.dialog notebook > header > tabs > tab:hover label,
+window.background.dialog notebook > header > tabs > tab:checked label {
+  color: #c7d0ea;
+}
+
+/* Thunar Properties dialog: plain label hover */
+dialog notebook label:hover,
+window.dialog notebook label:hover,
+window.background.dialog notebook label:hover {
+  color: #c7d0ea;
+}
+
+/* Thunar Properties dialog: buttons, tabs, combo boxes, and child text/images */
+dialog notebook button:hover,
+dialog notebook button:hover *,
+dialog notebook tab:hover,
+dialog notebook tab:hover *,
+dialog notebook combobox:hover,
+dialog notebook combobox:hover *,
+window.dialog notebook button:hover,
+window.dialog notebook button:hover *,
+window.dialog notebook tab:hover,
+window.dialog notebook tab:hover *,
+window.dialog notebook combobox:hover,
+window.dialog notebook combobox:hover *,
+window.background.dialog notebook button:hover,
+window.background.dialog notebook button:hover *,
+window.background.dialog notebook tab:hover,
+window.background.dialog notebook tab:hover *,
+window.background.dialog notebook combobox:hover,
+window.background.dialog notebook combobox:hover * {
+  color: #c7d0ea;
+}
+
+/* Dropdown popup rows: normal state */
+window.popup menuitem,
+window.popup menuitem *,
+window.background.popup menuitem,
+window.background.popup menuitem *,
+window.popup row,
+window.popup row *,
+window.background.popup row,
+window.background.popup row *,
+window.popup treeview.view,
+window.background.popup treeview.view,
+window.popup treeview.view cell,
+window.background.popup treeview.view cell {
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+  color: #8a97bf;
+}
+
+/* Dropdown popup rows: hover/selected state; text-only hover, no side bars */
+window.popup menuitem:hover,
+window.popup menuitem:hover *,
+window.popup menuitem:selected,
+window.popup menuitem:selected *,
+window.background.popup menuitem:hover,
+window.background.popup menuitem:hover *,
+window.background.popup menuitem:selected,
+window.background.popup menuitem:selected *,
+window.popup row:hover,
+window.popup row:hover *,
+window.popup row:selected,
+window.popup row:selected *,
+window.background.popup row:hover,
+window.background.popup row:hover *,
+window.background.popup row:selected,
+window.background.popup row:selected *,
+window.popup treeview.view:hover,
+window.popup treeview.view:selected,
+window.background.popup treeview.view:hover,
+window.background.popup treeview.view:selected,
+window.popup treeview.view cell:hover,
+window.popup treeview.view cell:selected,
+window.background.popup treeview.view cell:hover,
+window.background.popup treeview.view cell:selected {
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  outline: none;
+  color: #c7d0ea;
+}
+
+/* Text selection inside Properties dialog entries, selectable labels, and text views */
+dialog notebook selection,
+dialog notebook label selection,
+dialog notebook entry selection,
+dialog notebook textview text selection,
+window.dialog notebook selection,
+window.dialog notebook label selection,
+window.dialog notebook entry selection,
+window.dialog notebook textview text selection,
+window.background.dialog notebook selection,
+window.background.dialog notebook label selection,
+window.background.dialog notebook entry selection,
+window.background.dialog notebook textview text selection {
+  background-color: #8a97bf;
+  color: #060606;
+}
+
+/* Text selection inside popup/dropdown text widgets, where GTK exposes selection nodes */
+window.popup selection,
+window.popup label selection,
+window.popup entry selection,
+window.popup textview text selection,
+window.background.popup selection,
+window.background.popup label selection,
+window.background.popup entry selection,
+window.background.popup textview text selection {
+  background-color: #8a97bf;
+  color: #060606;
+}
+
+/* Xarchiver archive-operation progress popup */
+
+/* Likely internal content containers: no bare window.background selector */
+window.background,
+window.background > box > box > box,
+window.background > box > box > grid,
+window.background > box > box > frame,
+window.background > box > box > alignment,
+window.background > box > box > viewport,
+window.background > box > box > revealer,
+window.background > box > box > separator {
+  background-color: #0b0b0b;
+  background-image: none;
+  color: #8a97bf;
+  border-color: #222630;
+  box-shadow: none;
+}
+
+/* Text and icons */
+window.background > box > box label,
+window.background > box > box image {
+  color: #8a97bf;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+}
+
+/* Hover text */
+window.background > box > box label:hover,
+window.background > box > box button:hover label,
+window.background > box > box button:hover image {
+  color: #c7d0ea;
+}
+
+/* Cancel button */
+window.background > box > box button,
+window.background > box > box button:hover,
+window.background > box > box button:focus,
+window.background > box > box button:active,
+window.background > box > box button:checked {
+  background-color: transparent;
+  background-image: none;
+  color: #8a97bf;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  -gtk-outline-radius: 0;
+}
+
+/* Progress bar trough */
+window.background > box > box progressbar,
+window.background > box > box progressbar trough {
+  background-color: #060606;
+  background-image: none;
+  border: 0.3px solid #222630;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+/* Progress bar active segment */
+window.background > box > box progressbar progress {
+  background-color: #8a97bf;
+  background-image: none;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+/* Text selection */
+window.background > box > box selection,
+window.background > box > box label selection,
+window.background > box > box entry selection,
+window.background > box > box textview text selection {
+  background-color: #8a97bf;
+  color: #060606;
 }
 
 /* Rename/input field */
