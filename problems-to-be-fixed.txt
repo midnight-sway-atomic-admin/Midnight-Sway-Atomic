@@ -32,7 +32,7 @@
 
 17. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
 
-18. After the rice is completely finished, create a new set of show-case images;
+18. After the rice is completely finished, create a new set of high-res showcase images;
 
 19. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
@@ -44,4 +44,6 @@
 
 23. Fix any missed problems with Thunar's theme;
 
-24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
+24. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
+
+25. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
