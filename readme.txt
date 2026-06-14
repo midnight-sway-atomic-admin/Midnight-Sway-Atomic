@@ -36,7 +36,7 @@ For the rice to look correct and be functional, you should:
 
 (p) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(q) set YouTube to 90% zoom (text looks better this way).
+(q) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way).
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
