@@ -106,8 +106,15 @@ toolbar[overflow] .scrollbox-button,
    2. Toolbar buttons, indicators, and global chrome icons
    -------------------------------------------------------------------------- */
 
-/* XX Set custom trust icon image */
-#trust-icon {
+/* XX Set custom trust-panel icon without overriding Firefox's native warning states */
+
+/* Custom masked icon for ordinary trust-panel states.
+   Do not exclude .inactive: normal HTTPS can use that state depending on trust-panel state. */
+#trust-icon-container:not(.insecure):not(.warning):not(.file):not(.chickletShown) {
+  list-style-image: none !important;
+}
+
+#trust-icon-container:not(.insecure):not(.warning):not(.file):not(.chickletShown) > #trust-icon {
   list-style-image: none !important;
 
   width: 16px !important;
@@ -126,13 +133,32 @@ toolbar[overflow] .scrollbox-button,
   -webkit-mask-position: center !important;
 }
 
+/* For Firefox's native insecure/warning/file states, remove only our masking.
+   Do not restate Firefox's native list-style-image URLs. */
+#trust-icon-container:is(.insecure, .warning, .file) > #trust-icon {
+  background-color: var(--uc-color-transparent) !important;
+
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+
+  fill: currentColor !important;
+  stroke: currentColor !important;
+  -moz-context-properties: fill, stroke, fill-opacity, stroke-opacity !important;
+}
+
 #trust-icon-container:hover,
 #trust-icon-container[open] {
   background-color: var(--uc-color-transparent) !important;
 }
 
-#trust-icon-container:hover #trust-icon {
+/* Hover color for the custom masked icon */
+#trust-icon-container:not(.insecure):not(.warning):not(.file):not(.chickletShown):hover > #trust-icon {
   background-color: var(--uc-color-hi) !important;
+}
+
+/* Do not recolor Firefox's native insecure/warning/file icons by background-mask rules */
+#trust-icon-container:is(.insecure, .warning, .file):hover > #trust-icon {
+  background-color: var(--uc-color-transparent) !important;
 }
 
 /* X Set custom back/forward button icons and sizing */
@@ -347,13 +373,13 @@ findbar input::selection {
 
 /* X Hide right-side URL bar go-arrow icon, and blue globe icon */
 @-moz-document url("chrome://browser/content/browser.xhtml") {
-  /* Blue globe: search-terms “show address” / revert button. Linked to prior codeblock */
+  /* X Blue globe: search-terms “show address” / revert button. Linked to prior codeblock */
   #urlbar-revert-button-container,
   #urlbar-revert-button {
     display: none !important;
   }
 
-  /* Right arrow: URL-bar Go button shown while editing/typing. Linked to prior codeblock */
+  /* X Right arrow: URL-bar Go button shown while editing/typing. Linked to prior codeblock */
   #urlbar-go-button,
   .urlbar-go-button {
     display: none !important;
