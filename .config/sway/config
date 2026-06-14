@@ -145,5 +145,11 @@ for_window [window_type="splash"] floating enable, move position center
 # Thunar Wayland dialogs: float any Thunar window whose title is not a normal folder window
 for_window [app_id="thunar" title="^(?!.* - Thunar$).+"] floating enable, move position center
 
-# Make Xarchiver's "Create a new archive" dialog fill the workspace without fullscreening
-for_window [app_id="xarchiver" title="^Create a new archive$"] floating enable, resize set width 100 ppt height 100 ppt, move position 0 0
+# Xarchiver: fill archive creation/options dialogs without fullscreening
+for_window [app_id="xarchiver" title="^(Create a new archive|Add files)$"] floating enable, resize set width 100 ppt height 100 ppt, move position 0 0
+
+# Xarchiver: fill error dialogs without catching the archive progress popup
+for_window [app_id="xarchiver" title="^(An error occurred!|An error occurred while accessing the archive:|Can't add files to the archive:|Sorry, I could not perform the operation!|Can't perform this action:)$"] floating enable, resize set width 100 ppt height 100 ppt, move position 0 0
+
+# Xarchiver: keep progress/cancel popups small and centered
+for_window [app_id="xarchiver" title="^(Adding to archive:|Extracting from archive:|Opening archive:|xarchiver)$"] floating enable, move position center
