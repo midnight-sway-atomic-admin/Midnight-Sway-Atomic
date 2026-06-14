@@ -283,8 +283,37 @@ combobox window.popup * {
   -gtk-icon-shadow: none;
 }
 
-/* X Sets the font size of the hover tooltip */
-tooltip label {
+/* X Controls GTK tooltip colors, including Thunar sidebar bookmark hover tooltips */
+tooltip,
+tooltip.background,
+window.tooltip,
+window.background.tooltip {
+  background-color: @thunar_bg;
+  background-image: none;
+  color: @thunar_accent;
+  border: 1px solid #222630;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+tooltip box,
+tooltip.background box,
+window.tooltip box,
+window.background.tooltip box {
+  background-color: @thunar_bg;
+  background-image: none;
+  color: @thunar_accent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+tooltip label,
+tooltip.background label,
+window.tooltip label,
+window.background.tooltip label {
+  background-color: transparent;
+  background-image: none;
+  color: @thunar_accent;
   font-size: 10px;
 }
 
@@ -357,149 +386,331 @@ window.thunar spinner,
 }
 
 /* --------------------------------------------------------------------------
-   Menu popup background color control
+   GTK menu / popup / dropdown color controls
    -------------------------------------------------------------------------- */
 
-@define-color gtk_popup_menu_bg #060606;
-
-menu,
-menu.background,
-.menu,
-.context-menu,
-popover,
-popover.background,
-popover > contents,
-popover contents {
-  background-color: @gtk_popup_menu_bg;
-  background-image: none;
-}
-
-/* --------------------------------------------------------------------------
-   Menu popup border color controls
-   -------------------------------------------------------------------------- */
-
-@define-color gtk_popup_menu_border #222630;
-
-menu,
-menu.background,
-.menu,
-.context-menu,
-popover,
-popover.background,
-popover > contents,
-popover contents {
-  border: 0.5px solid @gtk_popup_menu_border;
-}
-
-/* --------------------------------------------------------------------------
-   Menu popup text color controls
-   -------------------------------------------------------------------------- */
-
-@define-color gtk_popup_menu_text #8a97bf;
-@define-color gtk_popup_menu_text_hover #c7d0ea;
-
-/* Normal menu-option text */
-menu menuitem,
-menu menuitem label,
-.menu menuitem,
-.menu menuitem label,
-.context-menu menuitem,
-.context-menu menuitem label,
-popover modelbutton,
-popover modelbutton label,
-popover button,
-popover button label,
-popover row,
-popover row label {
-  color: @gtk_popup_menu_text;
-}
-
-/* Hovered menu-option text: white text, no hover background */
-menu menuitem:hover,
-menu menuitem:hover label,
-menu menuitem:selected,
-menu menuitem:selected label,
-.menu menuitem:hover,
-.menu menuitem:hover label,
-.menu menuitem:selected,
-.menu menuitem:selected label,
-.context-menu menuitem:hover,
-.context-menu menuitem:hover label,
-.context-menu menuitem:selected,
-.context-menu menuitem:selected label,
-popover modelbutton:hover,
-popover modelbutton:hover label,
-popover button:hover,
-popover button:hover label,
-popover row:hover,
-popover row:hover label,
-popover modelbutton:selected,
-popover modelbutton:selected label,
-popover button:selected,
-popover button:selected label,
-popover row:selected,
-popover row:selected label {
-  color: @gtk_popup_menu_text_hover;
-  background-color: transparent;
-  background-image: none;
-}
-
-/* --------------------------------------------------------------------------
-   Menu popup inactive / disabled text color controls
-   -------------------------------------------------------------------------- */
-
+@define-color gtk_popup_menu_bg            #060606;
+@define-color gtk_popup_menu_border        #222630;
+@define-color gtk_popup_menu_border_soft   alpha(@gtk_popup_menu_border, 0.55);
+@define-color gtk_popup_menu_text          #8a97bf;
+@define-color gtk_popup_menu_text_hover    #c7d0ea;
 @define-color gtk_popup_menu_text_disabled alpha(#333333, 1);
 
-menu menuitem:disabled,
-menu menuitem:disabled label,
-.menu menuitem:disabled,
-.menu menuitem:disabled label,
-.context-menu menuitem:disabled,
-.context-menu menuitem:disabled label,
-popover modelbutton:disabled,
-popover modelbutton:disabled label,
-popover button:disabled,
-popover button:disabled label,
-popover row:disabled,
-popover row:disabled label {
-  color: @gtk_popup_menu_text_disabled;
-}
-
-/* --------------------------------------------------------------------------
-   Waybar XML power-button border
-   -------------------------------------------------------------------------- */
-
-@define-color gtk_popup_menu_border #222630;
-
+/* Popup windows: neutral container only. The actual menu border is drawn on
+   the menu node below, not on rows and not on a generic window fallback. */
 window.popup,
 window.background.popup,
-window.popup menu,
-window.background.popup menu,
-menu,
-menu.background,
-.menu,
-.context-menu {
-  box-shadow: inset 0 0 0 1px @gtk_popup_menu_border;
-}
-
-/* X Forces GTK popup/menu corners fully square, including the inner painted layer */
-window.popup,
-window.background.popup,
-window.popup decoration,
-window.background.popup decoration,
-window.popup menu,
-window.background.popup menu,
-menu,
-menu.background,
-.menu,
-.context-menu,
-popover,
-popover.background,
-popover > contents,
-popover contents {
+window.popup.background {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Menus, including nested submenus and Waybar XML power menus.
+   The border is a single background ring: the menu node is border-colored;
+   its 1px padding exposes that color around the painted menuitem rows. */
+window.popup menu,
+window.background.popup menu,
+window.popup.background menu,
+window.popup > menu,
+window.background.popup > menu,
+window.popup.background > menu,
+menu,
+menu.background,
+menuitem > menu,
+menuitem > menu.background,
+.menu,
+.context-menu {
+  background-color: @gtk_popup_menu_border_soft;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  padding: 1px;
+  border: none;
+  border-radius: 0;
+  -gtk-outline-radius: 0;
+  box-shadow: none;
+  outline: none;
   background-clip: border-box;
+}
+
+/* Menu rows: painted directly, with no row borders. */
+window.popup menuitem,
+window.background.popup menuitem,
+window.popup.background menuitem,
+menu menuitem,
+menu > menuitem,
+menuitem > menu menuitem,
+.menu menuitem,
+.context-menu menuitem {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  border: none;
+  border-radius: 0;
+  -gtk-outline-radius: 0;
+  box-shadow: none;
+  outline: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+/* Menu row children. Avoid wildcard descendants: a submenu can be a descendant
+   of a hovered menuitem, and wildcard rules can erase the submenu surface. */
+window.popup menuitem label,
+window.popup menuitem accelerator,
+window.popup menuitem image,
+window.popup menuitem box,
+window.popup menuitem check,
+window.popup menuitem radio,
+window.popup menuitem arrow,
+window.background.popup menuitem label,
+window.background.popup menuitem accelerator,
+window.background.popup menuitem image,
+window.background.popup menuitem box,
+window.background.popup menuitem check,
+window.background.popup menuitem radio,
+window.background.popup menuitem arrow,
+menu menuitem label,
+menu menuitem accelerator,
+menu menuitem image,
+menu menuitem box,
+menu menuitem check,
+menu menuitem radio,
+menu menuitem arrow,
+menuitem > menu menuitem label,
+menuitem > menu menuitem accelerator,
+menuitem > menu menuitem image,
+menuitem > menu menuitem box,
+menuitem > menu menuitem check,
+menuitem > menu menuitem radio,
+menuitem > menu menuitem arrow {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: inherit;
+  border: none;
+  border-radius: 0;
+  -gtk-outline-radius: 0;
+  box-shadow: none;
+  outline: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+/* Hover/selected menu rows: text/icon color only. */
+window.popup menuitem:hover,
+window.popup menuitem:selected,
+window.background.popup menuitem:hover,
+window.background.popup menuitem:selected,
+window.popup.background menuitem:hover,
+window.popup.background menuitem:selected,
+menu menuitem:hover,
+menu menuitem:selected,
+menuitem > menu menuitem:hover,
+menuitem > menu menuitem:selected,
+.menu menuitem:hover,
+.menu menuitem:selected,
+.context-menu menuitem:hover,
+.context-menu menuitem:selected {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text_hover;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+window.popup menuitem:hover label,
+window.popup menuitem:selected label,
+window.popup menuitem:hover accelerator,
+window.popup menuitem:selected accelerator,
+window.popup menuitem:hover image,
+window.popup menuitem:selected image,
+window.popup menuitem:hover check,
+window.popup menuitem:selected check,
+window.popup menuitem:hover radio,
+window.popup menuitem:selected radio,
+window.popup menuitem:hover arrow,
+window.popup menuitem:selected arrow,
+menu menuitem:hover label,
+menu menuitem:selected label,
+menu menuitem:hover accelerator,
+menu menuitem:selected accelerator,
+menu menuitem:hover image,
+menu menuitem:selected image,
+menu menuitem:hover check,
+menu menuitem:selected check,
+menu menuitem:hover radio,
+menu menuitem:selected radio,
+menu menuitem:hover arrow,
+menu menuitem:selected arrow,
+menuitem > menu menuitem:hover label,
+menuitem > menu menuitem:selected label,
+menuitem > menu menuitem:hover accelerator,
+menuitem > menu menuitem:selected accelerator,
+menuitem > menu menuitem:hover image,
+menuitem > menu menuitem:selected image,
+menuitem > menu menuitem:hover check,
+menuitem > menu menuitem:selected check,
+menuitem > menu menuitem:hover radio,
+menuitem > menu menuitem:selected radio,
+menuitem > menu menuitem:hover arrow,
+menuitem > menu menuitem:selected arrow {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: inherit;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Disabled menu rows. */
+window.popup menuitem:disabled,
+window.background.popup menuitem:disabled,
+window.popup.background menuitem:disabled,
+menu menuitem:disabled,
+menuitem > menu menuitem:disabled,
+.menu menuitem:disabled,
+.context-menu menuitem:disabled {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text_disabled;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+window.popup menuitem:disabled label,
+window.popup menuitem:disabled accelerator,
+window.popup menuitem:disabled image,
+window.popup menuitem:disabled check,
+window.popup menuitem:disabled radio,
+window.popup menuitem:disabled arrow,
+menu menuitem:disabled label,
+menu menuitem:disabled accelerator,
+menu menuitem:disabled image,
+menu menuitem:disabled check,
+menu menuitem:disabled radio,
+menu menuitem:disabled arrow,
+menuitem > menu menuitem:disabled label,
+menuitem > menu menuitem:disabled accelerator,
+menuitem > menu menuitem:disabled image,
+menuitem > menu menuitem:disabled check,
+menuitem > menu menuitem:disabled radio,
+menuitem > menu menuitem:disabled arrow {
+  color: inherit;
+}
+
+/* Non-menu popup/dropdown content. */
+window.popup row,
+window.background.popup row,
+window.popup.background row,
+window.popup treeview.view,
+window.background.popup treeview.view,
+window.popup.background treeview.view,
+window.popup treeview.view cell,
+window.background.popup treeview.view cell,
+window.popup.background treeview.view cell,
+popover modelbutton,
+popover button,
+popover row {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  border: none;
+  border-radius: 0;
+  -gtk-outline-radius: 0;
+  box-shadow: none;
+  outline: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+window.popup row:hover,
+window.popup row:selected,
+window.background.popup row:hover,
+window.background.popup row:selected,
+window.popup.background row:hover,
+window.popup.background row:selected,
+window.popup treeview.view:hover,
+window.popup treeview.view:selected,
+window.background.popup treeview.view:hover,
+window.background.popup treeview.view:selected,
+window.popup.background treeview.view:hover,
+window.popup.background treeview.view:selected,
+window.popup treeview.view cell:hover,
+window.popup treeview.view cell:selected,
+window.background.popup treeview.view cell:hover,
+window.background.popup treeview.view cell:selected,
+window.popup.background treeview.view cell:hover,
+window.popup.background treeview.view cell:selected,
+popover modelbutton:hover,
+popover modelbutton:selected,
+popover button:hover,
+popover button:selected,
+popover row:hover,
+popover row:selected {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text_hover;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Separators: preserve GTK spacing, but hide visible divider lines. */
+window.popup separator,
+window.background.popup separator,
+window.popup.background separator,
+window.popup menu separator,
+window.background.popup menu separator,
+window.popup.background menu separator,
+menu separator,
+menu.background separator,
+.menu separator,
+.context-menu separator,
+popover separator,
+popover.background separator {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_bg;
+  border-color: @gtk_popup_menu_bg;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Top menubar: do not let popup rules create dividers between File / Edit /
+   View / Go / Bookmarks / Help. */
+.thunar menubar > menuitem,
+window.thunar menubar > menuitem,
+.thunar menubar > menuitem:hover,
+window.thunar menubar > menuitem:hover,
+.thunar menubar > menuitem:active,
+window.thunar menubar > menuitem:active,
+.thunar menubar > menuitem:checked,
+window.thunar menubar > menuitem:checked {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* X Ctrl+M menubar background */
+window.thunar menubar,
+window.thunar menubar:backdrop,
+.thunar menubar,
+.thunar menubar:backdrop {
+  background-color: #0b0b0b;
+  background-image: none;
+  border-color: #0b0b0b;
+  box-shadow: none;
 }
 
 /* Dialog windows, including Thunar rename dialog */
@@ -578,60 +789,6 @@ window.background.dialog notebook combobox:hover * {
   color: #c7d0ea;
 }
 
-/* Dropdown popup rows: normal state */
-window.popup menuitem,
-window.popup menuitem *,
-window.background.popup menuitem,
-window.background.popup menuitem *,
-window.popup row,
-window.popup row *,
-window.background.popup row,
-window.background.popup row *,
-window.popup treeview.view,
-window.background.popup treeview.view,
-window.popup treeview.view cell,
-window.background.popup treeview.view cell {
-  background-color: transparent;
-  background-image: none;
-  border-color: transparent;
-  box-shadow: none;
-  outline: none;
-  color: #8a97bf;
-}
-
-/* Dropdown popup rows: hover/selected state; text-only hover, no side bars */
-window.popup menuitem:hover,
-window.popup menuitem:hover *,
-window.popup menuitem:selected,
-window.popup menuitem:selected *,
-window.background.popup menuitem:hover,
-window.background.popup menuitem:hover *,
-window.background.popup menuitem:selected,
-window.background.popup menuitem:selected *,
-window.popup row:hover,
-window.popup row:hover *,
-window.popup row:selected,
-window.popup row:selected *,
-window.background.popup row:hover,
-window.background.popup row:hover *,
-window.background.popup row:selected,
-window.background.popup row:selected *,
-window.popup treeview.view:hover,
-window.popup treeview.view:selected,
-window.background.popup treeview.view:hover,
-window.background.popup treeview.view:selected,
-window.popup treeview.view cell:hover,
-window.popup treeview.view cell:selected,
-window.background.popup treeview.view cell:hover,
-window.background.popup treeview.view cell:selected {
-  background-color: transparent;
-  background-image: none;
-  border-color: transparent;
-  box-shadow: none;
-  outline: none;
-  color: #c7d0ea;
-}
-
 /* Text selection inside Properties dialog entries, selectable labels, and text views */
 dialog notebook selection,
 dialog notebook label selection,
@@ -662,17 +819,21 @@ window.background.popup textview text selection {
   color: #060606;
 }
 
-/* Xarchiver archive-operation progress popup */
+/* --------------------------------------------------------------------------
+   Xarchiver archive-operation progress popup
+   -------------------------------------------------------------------------- */
 
-/* Likely internal content containers: no bare window.background selector */
-window.background,
-window.background > box > box > box,
-window.background > box > box > grid,
-window.background > box > box > frame,
-window.background > box > box > alignment,
-window.background > box > box > viewport,
-window.background > box > box > revealer,
-window.background > box > box > separator {
+/* Progress popup surface and internal containers.
+   Do not target window.popup, menu, menuitem, or popover here. */
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip),
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > box,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > grid,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > frame,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > alignment,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > viewport,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box > revealer {
   background-color: #0b0b0b;
   background-image: none;
   color: #8a97bf;
@@ -681,89 +842,69 @@ window.background > box > box > separator {
 }
 
 /* Text and icons */
-window.background > box > box label,
-window.background > box > box image {
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box label,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box image {
   color: #8a97bf;
   background-color: transparent;
   background-image: none;
   box-shadow: none;
 }
 
-/* Hover text */
-window.background > box > box label:hover,
-window.background > box > box button:hover label,
-window.background > box > box button:hover image {
-  color: #c7d0ea;
-}
-
 /* Cancel button */
-window.background > box > box button,
-window.background > box > box button:hover,
-window.background > box > box button:focus,
-window.background > box > box button:active,
-window.background > box > box button:checked {
-  background-color: transparent;
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:focus,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:active,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:checked {
+  background-color: #060606;
   background-image: none;
   color: #8a97bf;
-  border: 1px solid transparent;
+  border: 0.7px solid #222630;
   border-radius: 0;
   box-shadow: none;
   outline: none;
   -gtk-outline-radius: 0;
 }
 
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button label {
+  color: #8a97bf;
+}
+
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover label,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover image {
+  color: #c7d0ea;
+}
+
 /* Progress bar trough */
-window.background > box > box progressbar,
-window.background > box > box progressbar trough {
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box progressbar,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box progressbar trough {
   background-color: #060606;
   background-image: none;
-  border: 0.3px solid #222630;
-  border-radius: 3px;
+  border: 0.7px solid #222630;
+  border-radius: 0;
   box-shadow: none;
 }
 
 /* Progress bar active segment */
-window.background > box > box progressbar progress {
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box progressbar progress {
   background-color: #8a97bf;
   background-image: none;
   border: none;
-  border-radius: 3px;
+  border-radius: 0;
   box-shadow: none;
 }
 
-/* Text selection */
-window.background > box > box selection,
-window.background > box > box label selection,
-window.background > box > box entry selection,
-window.background > box > box textview text selection {
-  background-color: #8a97bf;
-  color: #060606;
-}
-
-/* Rename/input field */
-entry,
-entry:focus {
-  background-color: #0b0b0b;
+/* X Keep Waybar transparent after broad Xarchiver window.background rules */
+window#waybar,
+window#waybar.background,
+window#waybar > box,
+window#waybar.background > box,
+window#waybar > box > box,
+window#waybar.background > box > box {
+  background: transparent;
+  background-color: transparent;
   background-image: none;
-  color: #8a97bf;
-  border: 0.7px solid #222630;
   box-shadow: none;
-}
-
-/* Selected text inside the rename field */
-entry selection,
-entry:selected {
-  background-color: #8a97bf;
-  color: #060606;
-}
-
-/* Dialog button text: Cancel / Rename */
-button label {
-  color: #8a97bf;
-}
-
-button:hover label {
-  color: #c7d0ea;
 }
 
 /* --------------------------------------------------------------------------
@@ -1226,4 +1367,19 @@ entry:focus-within {
   outline: none;
   -gtk-outline-radius: 3px;
   background-clip: border-box;
+}
+
+/* X Rename/input-field selected text color */
+entry selection,
+entry:focus selection,
+entry:focus-within selection,
+window.dialog entry selection,
+window.dialog entry:focus selection,
+window.dialog entry:focus-within selection,
+dialog entry selection,
+dialog entry:focus selection,
+dialog entry:focus-within selection {
+  background-color: #8a97bf;
+  background-image: none;
+  color: #060606;
 }
