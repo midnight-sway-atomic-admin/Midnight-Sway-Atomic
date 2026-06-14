@@ -36,7 +36,9 @@ For the rice to look correct and be functional, you should:
 
 (p) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(q) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way).
+(q) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
+
+(r) don't use the new-tab feature (Ctrl-T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
