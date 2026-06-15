@@ -1322,3 +1322,12 @@ ytd-search yt-chip-cloud-renderer::after {
   box-shadow: none !important;
   }
 }
+
+/* X Hides YouTube-movies watch-page metadata bar (parental rating, company, etc. */
+@-moz-document domain("youtube.com") {
+  .ytd-watch-flexy.watch-active-metadata
+    > ytd-metadata-row-container-renderer.ytd-watch-metadata
+    > .ytd-metadata-row-container-renderer {
+    display: none !important;
+  }
+}
