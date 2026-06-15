@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/slideshow.gif" alt="Fedora Sway Atomic rice slideshow" width="900">
+  <img src="assets/slideshow.png" alt="Fedora Sway Atomic rice slideshow" width="900">
 </p>
 
 13 June 2026, UPDATE: I published a pretty big overhaul of many of the files today; make sure to replace all old files with the updated ones (the wallpapers, for instance, are no longer pure black but tinged almost imperceptibly blue).
