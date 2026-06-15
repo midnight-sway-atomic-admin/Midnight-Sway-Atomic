@@ -92,15 +92,118 @@ Thunar Preferences Configuration
 
 5. Shortcuts Tab
 
-   5.1 Window Shortcuts
+Window
 
-       - New Tab: Ctrl+T
-       - New Window: Ctrl+N
-       - Detach Tab: Unassigned (...)
-       - Close Tab: Ctrl+W
-       - Close Window: Ctrl+Q
-       - Close All Windows: Shift+Ctrl+W
-       - Undo: Ctrl+Z
-       - Redo: Shift+Ctrl+Z
-       - Preferences...: Unassigned (...)
-       - Reload: Ctrl+R, F5, Reload
+New Tab: none
+New Window: Ctrl+N
+Detach Tab: none
+Close Tab: Ctrl+W
+Close Window: none
+Close All Windows: Shift+Ctrl+W
+Undo: Ctrl+Z
+Redo: Shift+Ctrl+Z
+Preferences...: none
+Reload: Ctrl+R
+Split View: none
+Switch Focused Split View Pane: none
+Text Style: none
+Buttons Style: none
+Shortcuts: Ctrl+B
+Tree: none
+Image Preview: none
+Statusbar: none
+Menubar: Ctrl+M
+Configure Toolbar...: none
+Clear Saved Folder View Settings: none
+
+
+View
+
+Show Hidden Files: Ctrl+H
+Show File Highlight: none
+Zoom In: Ctrl++
+Zoom Out: Ctrl+-
+Normal Size: none
+Icon View: none
+List View: none
+Compact View: none
+Select all Files: Ctrl+A
+Select by Pattern...: Ctrl+S
+Invert Selection: Shift+Ctrl+I
+Unselect all Files: Escape
+Reversed Order: none
+By Name: none
+By Size: none
+By Type: none
+By Modification Date: none
+By Deletion Date: none
+Ascending: none
+Descending: none
+
+
+Go/Places
+
+File System: none
+Home: none
+Desktop: none
+Computer: none
+Recent: none
+Trash: Shift+Ctrl+T
+Open Parent: Alt+Up
+Open Location...: none
+Templates: none
+Browse Network: none
+
+
+Help/Navigation
+
+Contents: none
+About: none
+Back: Alt+Left
+Forward: Alt+Right
+
+
+Launcher/File Actions
+
+Open: Ctrl+O
+Execute: none
+Open in new Tab: none
+Open in new Window: Shift+Ctrl+O
+Open Item Location: none
+Open With Other Application...: none
+Set Default Application...: none
+Add Bookmark: Ctrl+D
+Send to Desktop: none
+Properties...: none
+Make Link: none
+Duplicate: none
+Rename...: none
+Empty Trash: none
+Remove from Recent: none
+Create Folder...: Shift+Ctrl+N
+Restore: none
+Restore and Show: none
+Move to Trash: none
+Delete: Delete
+Paste: Ctrl+V
+Copy: Ctrl+C
+Cut: none
+
+
+Search/Tabs
+
+Previous Tab: none
+Next Tab: none
+Search for Files...: Ctrl+F
+Cancel search for files: Escape
+Menu: none
+
+
+Status Bar
+
+Size: none
+Size in bytes: none
+Filetype: none
+Display Name: none
+Last Modified: none
+Hidden Files Count: none
