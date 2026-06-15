@@ -349,18 +349,53 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* X Hides the videoplayer report button (and more?) */
+/* X Hides the videoplayer report button */
 @-moz-document domain("youtube.com") {
-  #button-shape {
+  ytd-watch-metadata #top-level-buttons-computed
+  :is(yt-button-view-model, yt-button-shape, button-view-model):has(button[aria-label*="report" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  :is(yt-button-view-model, yt-button-shape, button-view-model):has(button[title*="report" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  :is(yt-button-view-model, yt-button-shape, button-view-model):has([aria-label*="report" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  :is(yt-button-view-model, yt-button-shape, button-view-model):has([title*="report" i]) {
     display: none !important;
   }
 }
 
-/* X Hides the videoplayer share button (and more?) */
+/* X Hides the watch-page three-dot report menu button */
+@-moz-document domain("youtube.com") {
+  ytd-watch-flexy[video-id]
+  ytd-watch-metadata
+  #menu
+  #button-shape
+  > .ytSpecButtonShapeNextEnableBackdropFilterExperiment.ytSpecButtonShapeNextIconButton.ytSpecButtonShapeNextSizeM.ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal.ytSpecButtonShapeNextHost {
+    display: none !important;
+  }
+}
+
+/* X Hides the videoplayer share button */
 @-moz-document domain("youtube.com") {
   ytd-watch-metadata #top-level-buttons-computed
-  > yt-button-view-model.ytd-menu-renderer {
+  > :is(yt-button-view-model, yt-button-shape, button-view-model):has(button[aria-label*="share" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  > :is(yt-button-view-model, yt-button-shape, button-view-model):has(button[title*="share" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  > :is(yt-button-view-model, yt-button-shape, button-view-model):has([aria-label*="share" i]),
+  ytd-watch-metadata #top-level-buttons-computed
+  > :is(yt-button-view-model, yt-button-shape, button-view-model):has([title*="share" i]) {
     display: none !important;
+  }
+}
+
+/* X Keeps thumbs-up/down visible across YouTube's watch-page button variants */
+@-moz-document domain("youtube.com") {
+  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model,
+  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model
+  :is(like-button-view-model, dislike-button-view-model, yt-button-shape, #button-shape, button) {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
@@ -476,9 +511,21 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* XX Hides the frontpage left-side vertical mini-guide bar and buttons */
+/* XX Hides the left-side guide/sidebar drawer surfaces */
 @-moz-document domain("youtube.com") {
+  tp-yt-app-drawer #contentContainer,
+  tp-yt-app-drawer #scrim,
+  tp-yt-app-drawer #guide,
   ytd-mini-guide-renderer {
+    display: none !important;
+  }
+}
+
+/* X Hides YouTube's page-top ad banner */
+@-moz-document domain("youtube.com") {
+  ytd-page-top-ad-layout-renderer,
+  ytd-rich-section-renderer:has(ytd-page-top-ad-layout-renderer),
+  ytd-rich-item-renderer:has(ytd-page-top-ad-layout-renderer) {
     display: none !important;
   }
 }
@@ -1323,7 +1370,7 @@ ytd-search yt-chip-cloud-renderer::after {
   }
 }
 
-/* X Hides YouTube-movies watch-page metadata bar (parental rating, company, etc. */
+/* X Hides YouTube-movies watch-page metadata (parental rating, company, etc.) */
 @-moz-document domain("youtube.com") {
   .ytd-watch-flexy.watch-active-metadata
     > ytd-metadata-row-container-renderer.ytd-watch-metadata
