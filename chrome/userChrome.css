@@ -665,6 +665,11 @@ tooltip label,
   color: var(--uc-color-fg) !important;
 }
 
+/* Hides sidebar tooltips */
+#bhTooltip {
+    display: none !important;
+  }
+
 /* --------------------------------------------------------------------------
    5. Status panels, native tooltips, and non-URL context menus
    -------------------------------------------------------------------------- */
@@ -887,6 +892,13 @@ tooltip label,
 #bookmarks-view treechildren::-moz-tree-cell-text(selected),
 #historyTree treechildren::-moz-tree-cell-text(selected) {
   color: var(--uc-color-fg) !important;
+}
+
+#bookmarks-view treechildren::-moz-tree-cell-text(hover, selected),
+#bookmarks-view treechildren::-moz-tree-cell-text(hover, current),
+#historyTree treechildren::-moz-tree-cell-text(hover, selected),
+#historyTree treechildren::-moz-tree-cell-text(hover, current) {
+  color: var(--uc-color-hi) !important;
 }
 
 #bookmarks-view treechildren::-moz-tree-twisty(selected),
