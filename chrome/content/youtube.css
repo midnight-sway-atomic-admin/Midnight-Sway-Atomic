@@ -173,12 +173,8 @@ ytd-watch-metadata #top-row > #actions {
     display: none !important;
   }
 
-  /* X Hides end-of-video popups. Comment out what you want to hide; by default, only the little gray "Hide" button is hidden  */
+  /* X Hides end-of-video gray "Hide"-button popup */
   .html5-video-player :is(
-   /* .ytp-endscreen-content,
-    .html5-endscreen,
-    .ytp-ce-element,
-    .ytp-fullscreen-grid,*/
     .ytp-ce-hide-button-container
   ) {
     display: none !important;
