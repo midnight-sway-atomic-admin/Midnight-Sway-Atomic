@@ -120,9 +120,9 @@ ytd-watch-metadata #top-row > #actions {
     margin-right: auto !important;
   }
 
-  /* XX Shrinks frontpage content to 80% */
+  /* XX Shrinks frontpage content to 85% */
   ytd-browse[page-subtype="home"] ytd-rich-grid-renderer {
-    max-width: 80% !important;
+    max-width: 85% !important;
   }
 
   /* X Hides various tooltips. The extra, seemingly redundant controls below "display:none" are useful guard code here  */
@@ -1375,6 +1375,20 @@ ytd-search yt-chip-cloud-renderer::after {
   .ytd-watch-flexy.watch-active-metadata
     > ytd-metadata-row-container-renderer.ytd-watch-metadata
     > .ytd-metadata-row-container-renderer {
+    display: none !important;
+  }
+}
+
+/* XX Hides watch-page purchase button */
+@-moz-document domain("youtube.com") {
+  ytd-watch-flexy #purchase-button {
+    display: none !important;
+  }
+}
+
+/* XX Hides the thin top-of-page red progress bar */
+@-moz-document domain("youtube.com") {
+  yt-page-navigation-progress {
     display: none !important;
   }
 }
