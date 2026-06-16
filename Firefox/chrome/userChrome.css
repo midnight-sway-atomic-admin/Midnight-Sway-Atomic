@@ -1663,3 +1663,7 @@ tooltip label,
 #commonDialog #checkbox > .checkbox-check {
   accent-color: var(--uc-color-surface) !important;
 }
+
+/* XX Hides URL-bar dropdown bottom "This time search with" section */
+#urlbar .search-one-offs {
+  display: none !important;
