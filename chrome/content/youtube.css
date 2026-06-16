@@ -511,14 +511,14 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* XX Hides the left-side mini-guide/sidebar */
+/* X Hides the left-side mini-guide/sidebar */
 @-moz-document domain("youtube.com") {
   ytd-mini-guide-renderer.ytd-app.style-scope {
     display: none !important;
   }
 }
 
-/* XX Hides the left-side guide/sidebar */
+/* X Hides the left-side guide/sidebar */
 @-moz-document domain("youtube.com") {
   #guide {
     display: none !important;
