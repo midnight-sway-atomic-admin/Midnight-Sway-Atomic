@@ -1,8 +1,0 @@
-/* X Removes Firefox logo from new tabs */
-@-moz-document url("about:newtab"), url("about:home") {
-  .logo-and-wordmark,
-  .logo,
-  .wordmark {
-    display: none !important;
-  }
-}
