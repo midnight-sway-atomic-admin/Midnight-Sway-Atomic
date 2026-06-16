@@ -511,12 +511,16 @@ ytd-watch-metadata #top-row > #actions {
   }
 }
 
-/* XX Hides the left-side guide/sidebar drawer surfaces */
+/* XX Hides the left-side mini-guide/sidebar */
 @-moz-document domain("youtube.com") {
-  tp-yt-app-drawer #contentContainer,
-  tp-yt-app-drawer #scrim,
-  tp-yt-app-drawer #guide,
-  ytd-mini-guide-renderer {
+  ytd-mini-guide-renderer.ytd-app.style-scope {
+    display: none !important;
+  }
+}
+
+/* XX Hides the left-side guide/sidebar */
+@-moz-document domain("youtube.com") {
+  #guide {
     display: none !important;
   }
 }
