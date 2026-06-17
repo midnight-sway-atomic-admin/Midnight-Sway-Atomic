@@ -7,5 +7,14 @@ user_pref("browser.chrome.toolbar_tips", false);
 user_pref("browser.tabs.hoverPreview.enabled", true);
 user_pref("browser.tabs.hoverPreview.showThumbnails", false);
 
-/* Suppresses "This time search with..." URL-button */
+/* X Suppresses "This time search with..." URL-button */
 user_pref("browser.urlbar.scotchBonnet.enableOverride", false);
+
+/* X Ensures the "Add Bookmark" popup is always shown after pressing Ctrl+D; the "Add Bookmark" popup no longer contains the text or check box for enabling the editor for every new bookmark */
+user_pref("browser.bookmarks.editDialog.showForNewBookmarks", true);
+
+/* X Enables CSS customization via userChrome.css and userContent.css */
+user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+
+/* X Prevents the full-screening of videos by tapping the touchpad or otherwise; on YouTube use Ctrl+F to enlarge the videoplayer */
+user_pref("full-screen-api.enabled", false);
