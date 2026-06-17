@@ -16,7 +16,7 @@ For the rice to look correct and be functional, you should:
 
 (d) install Privacy Badger, Ublock Origin, and NoScript;
 
-(e) in Firefox, install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs; to enable CSS styling; etc.;
+(e) install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs; to enable CSS styling; etc.;
 
 (f) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
