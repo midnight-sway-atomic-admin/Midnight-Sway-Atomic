@@ -16,27 +16,27 @@ For the rice to look correct and be functional, you should:
 
 (d) install Privacy Badger, Ublock Origin, and NoScript;
 
-(h) in Firefox, install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs; to enable CSS styling; etc.;
+(e) in Firefox, install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs; to enable CSS styling; etc.;
 
-(i) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
+(f) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
-(j) use only Ctrl+B to bring up the left-side bookmarks sidebar (there is no sidebar button), while removing the horizontal bookmarks toolbar itself from appearing;
+(g) use only Ctrl+B to bring up the left-side bookmarks sidebar (there is no sidebar button), while removing the horizontal bookmarks toolbar itself from appearing;
 
-(k) use Ctrl+D to bookmark pages (there is no URL-bar bookmark button);
+(h) use Ctrl+D to bookmark pages (there is no URL-bar bookmark button);
 
-(l) in Thunar, press Ctrl+M, click "View," and check "Show File Highlight" (this is now recommended whereas before it was not; the gtk.css file now includes color controls for the highlight);
+(i) in Thunar, press Ctrl+M, click "View," and check "Show File Highlight" (this is now recommended whereas before it was not; the gtk.css file now includes color controls for the highlight);
 
-(m) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
+(j) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(n) set Firefox to dark mode;
+(k) set Firefox to dark mode;
 
-(o) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
+(l) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
 
-(p) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
+(m) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(q) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
+(n) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
 
-(r) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
+(o) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
