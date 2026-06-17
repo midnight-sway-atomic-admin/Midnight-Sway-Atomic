@@ -2,7 +2,7 @@
   <img src="assets/slideshow.png" alt="Fedora Sway Atomic rice slideshow" width="900">
 </p>
 
-13 June 2026, UPDATE: I published a pretty big overhaul of many of the files today; make sure to replace all old files with the updated ones (the wallpapers, for instance, are no longer pure black but tinged almost imperceptibly blue).
+UPDATE: Firefox's latest update has broken a few (sloppy) CSS configurations; the relevant sections (the Alt-menubar popups, the "Add Bookmark" popup, tooltips, etc.)  are gradually being fixed and targeted more precisely.
 
 The files here quickly set up a visually austere and elegant base DE after a fresh install of Fedora Sway Atomic. Some of the files -- such as .bashrc -- are opinionated and thus contain stuff you might not need but that I want in a fresh install (for instance: a simple script that makes dunst timer-notifications via CLI commands like "1m" for "1 minute"). The files are a work in progress and will be changing continually.
 
@@ -16,13 +16,7 @@ For the rice to look correct and be functional, you should:
 
 (d) install Privacy Badger, Ublock Origin, and NoScript;
 
-(e) enable custom CSS in Firefox by setting "toolkit.legacyUserProfileCustomizations.stylesheets" to "true" in about:config;
-
-(f) keep "browser.bookmarks.editDialog.showForNewBookmarks" set to "true" in about:config; the checkbox for this setting and the associated text have been removed from the actual "Add Bookmark" popup;
-
-(g) in Firefox's about:config, set "full-screen-api.enabled" to "false" (this prevents tapping to fullscreen on a YouTube video while preserving Mod+F for an enlarged player);
-
-(h) in Firefox, install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs;
+(h) in Firefox, install the user.js file; this removes the "This time search with" icon on the left-side of the URL bar; it is useless bloat. Go to "settings" > "search" and disable all default "Search Shortcuts"; then create your own with brief keywords. Ultimately, it is much faster and more natural to type "yt [your query]" and press Enter to invoke a YouTube search than it is to navigate your mouse to the shortcuts icon, click it, click on the YouTube icon, and then type your query and press Enter. The user.js file is also now used to aggressively suppress all Firefox tooltips except those for tabs; to enable CSS styling; etc.;
 
 (i) store all your main bookmarks under the default "Bookmarks Toolbar". Via userChrome.css, the bookmarks sidebar has been modified to hide (but not remove) the text label "Bookmarks Toolbar", "Bookmarks Menu", and "Other Bookmarks", so your main bookmarks -- when stored correctly -- should appear cleanly when you press Ctrl+B to bring up the sidebar;
 
