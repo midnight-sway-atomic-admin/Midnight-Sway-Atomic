@@ -106,7 +106,7 @@ toolbar[overflow] .scrollbox-button,
    2. Toolbar buttons, indicators, and global chrome icons
    -------------------------------------------------------------------------- */
 
-/* XX Set custom trust-panel icon without overriding Firefox's native warning states */
+/* X Set custom trust-panel icon without overriding Firefox's native warning states */
 
 /* Custom masked icon for ordinary trust-panel states.
    Do not exclude .inactive: normal HTTPS can use that state depending on trust-panel state. */
