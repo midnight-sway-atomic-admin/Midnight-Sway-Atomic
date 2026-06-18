@@ -1085,7 +1085,7 @@ menubar > menu {
 /* XX Sets tab hover-preview tooltip background and border color only */
 #tab-preview-panel {
   --panel-background-color: #060606 !important;
-  --panel-border-color: #222630 !important;
+  --panel-border-color: #222630b3 !important;
   --panel-border-radius: 3px !important;
 }
 
