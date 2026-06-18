@@ -19,5 +19,5 @@ user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 /* X Prevents the full-screening of videos by tapping the touchpad or otherwise; on YouTube use Mod+F to enlarge the videoplayer */
 user_pref("full-screen-api.enabled", false);
 
-/* Warns before closing Firefox */
+/* X Warns before closing Firefox */
 user_pref("browser.tabs.warnOnClose", true);
