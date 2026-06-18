@@ -77,6 +77,12 @@ findbar {
   box-shadow: none !important;
 }
 
+/* Dims the page area more when Firefox shows a modal warning dialog */
+browser[primary="true"][tabDialogShowing="true"],
+#main-window[window-modal-open="true"] > body > #browser {
+  filter: brightness(35%) !important;
+}
+
 /* X Hide toolbar and tabstrip scroll/overflow buttons */
 #nav-bar [anonid^="scroll"],
 #nav-bar [anonid*="scroll"],
@@ -464,64 +470,23 @@ findbar input::selection {
   color: var(--uc-color-hi) !important;
 }
 
-/* X URL-bar suggestion popup: hide result icons/favicons/bookmark markers. This affects the opened address-bar dropdown only; it does not hide toolbar icons */
-#urlbar[open] .urlbarView-row image,
-#urlbar[open] .urlbarView-row img,
-#urlbar[open] .urlbarView-row .urlbarView-favicon,
-#urlbar[open] .urlbarView-row .urlbarView-type-icon,
-#urlbar[open] .urlbarView-row .urlbarView-persistence-indicator,
-#urlbar[open] .urlbarView-row .urlbarView-dynamic-icon,
-#urlbar[open] .urlbarView-row .urlbarView-action-icon,
-#urlbar[open] .urlbarView-row .urlbarView-button,
-#urlbar-results .urlbarView-row image,
-#urlbar-results .urlbarView-row img,
-#urlbar-results .urlbarView-row .urlbarView-favicon,
-#urlbar-results .urlbarView-row .urlbarView-type-icon,
-#urlbar-results .urlbarView-row .urlbarView-persistence-indicator,
-#urlbar-results .urlbarView-row .urlbarView-dynamic-icon,
-#urlbar-results .urlbarView-row .urlbarView-action-icon,
-#urlbar-results .urlbarView-row .urlbarView-button,
-#urlbarView-results .urlbarView-row image,
-#urlbarView-results .urlbarView-row img,
-#urlbarView-results .urlbarView-row .urlbarView-favicon,
-#urlbarView-results .urlbarView-row .urlbarView-type-icon,
-#urlbarView-results .urlbarView-row .urlbarView-persistence-indicator,
-#urlbarView-results .urlbarView-row .urlbarView-dynamic-icon,
-#urlbarView-results .urlbarView-row .urlbarView-action-icon,
-#urlbarView-results .urlbarView-row .urlbarView-button {
+/* X URL-bar suggestion popup: hide result icons/favicons/bookmark markers/buttons */
+.urlbarView-row :is(
+  image,
+  img,
+  .urlbarView-favicon,
+  .urlbarView-type-icon,
+  .urlbarView-persistence-indicator,
+  .urlbarView-dynamic-icon,
+  .urlbarView-action-icon,
+  .urlbarView-button
+) {
   display: none !important;
 }
 
-/* X Remove the leftover icon column/indent after hiding the images */
-#urlbar[open] .urlbarView-row,
-#urlbar-results .urlbarView-row,
-#urlbarView-results .urlbarView-row {
-  padding-inline-start: 0 !important;
-}
-
-#urlbar[open] .urlbarView-row-inner,
-#urlbar-results .urlbarView-row-inner,
-#urlbarView-results .urlbarView-row-inner {
-  padding-inline-start: 10px !important;
-  padding-inline-end: 10px !important;
-  margin-inline-start: 0 !important;
-  grid-template-columns: minmax(0, 1fr) !important;
-}
-
-#urlbar[open] .urlbarView-no-wrap,
-#urlbar[open] .urlbarView-title,
-#urlbar[open] .urlbarView-url,
-#urlbar[open] .urlbarView-action,
-#urlbar-results .urlbarView-no-wrap,
-#urlbar-results .urlbarView-title,
-#urlbar-results .urlbarView-url,
-#urlbar-results .urlbarView-action,
-#urlbarView-results .urlbarView-no-wrap,
-#urlbarView-results .urlbarView-title,
-#urlbarView-results .urlbarView-url,
-#urlbarView-results .urlbarView-action {
-  margin-inline-start: 0 !important;
-  padding-inline-start: 0 !important;
+/* X Remove leftover second-line icon indent */
+.urlbarView .urlbarView-row {
+  --urlbarView-second-line-indent: 0px !important;
 }
 
 /* X Hide URL-bar right-click/edit context menu */
@@ -1117,20 +1082,23 @@ menubar > menu {
   color: #060606 !important;
 }
 
-/* XX Sets tab tooltip text color */
-#tab-preview-panel .tab-preview-title {
-color: #c7d0ea !important;
-}
-
-/* X Sets tab hover-preview tooltip background and border color only */
+/* XX Sets tab hover-preview tooltip background and border color only */
 #tab-preview-panel {
   --panel-background-color: #060606 !important;
   --panel-border-color: #222630 !important;
+  --panel-border-radius: 3px !important;
 }
 
 /* XX Hides tab tooltip URL */
 #tab-preview-panel .tab-preview-uri {
   display: none !important;
+}
+
+/* XX Tab tooltip title text */
+#tab-preview-panel .tab-preview-title {
+  color: #c7d0ea !important;
+  font-size: 9px !important;
+  font-weight: 400 !important;
 }
 
 /* XX Hides Add Bookmark popup title */
@@ -1247,7 +1215,7 @@ panelview {
   margin-inline-end: 0 !important;
 }
 
-/* X Makes all tab-preview tooltip text less bold */
-#tab-preview-panel .tab-preview-title {
-  font-weight: 400 !important;
+/* X Removes horizontal bar below the URL border when a keyword is entered */
+#urlbar[searchmode] > .urlbarView {
+  display: none !important;
 }
