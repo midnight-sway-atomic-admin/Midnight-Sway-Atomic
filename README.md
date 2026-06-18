@@ -28,7 +28,7 @@ For the rice to look correct and be functional, you should:
 
 (j) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(k) set Firefox to dark mode;
+(k) set Firefox to dark mode (this isn't necessary for the theme: dark mode darkens only the settings UI);
 
 (l) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
 
