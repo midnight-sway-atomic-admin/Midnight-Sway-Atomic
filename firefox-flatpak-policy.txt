@@ -1,0 +1,37 @@
+flatpak override --user --reset org.mozilla.firefox
+
+flatpak override --user \
+  --nofilesystem=home \
+  --nofilesystem=host \
+  --nofilesystem=xdg-desktop \
+  --nofilesystem=xdg-documents \
+  --nofilesystem=xdg-pictures \
+  --nofilesystem=xdg-music \
+  --nofilesystem=xdg-templates \
+  --nofilesystem=xdg-public-share \
+  --nofilesystem=xdg-videos \
+  --nofilesystem=xdg-download \
+  --nofilesystem=/tmp \
+  --nofilesystem=/media \
+  --nofilesystem=/run/media \
+  --nofilesystem=xdg-config \
+  --nofilesystem=xdg-cache \
+  --nofilesystem=xdg-data \
+  --socket=wayland \
+  --nosocket=x11 \
+  --nosocket=fallback-x11 \
+  --nosocket=session-bus \
+  --nosocket=system-bus \
+  --socket=pulseaudio \
+  --nosocket=cups \
+  --nosocket=gpg-agent \
+  --nosocket=pcsc \
+  --nosocket=ssh-auth \
+  --no-talk-name=org.freedesktop.Notifications \
+  --share=network \
+  --unshare=ipc \
+  --nodevice=all \
+  --device=dri \
+  --disallow=bluetooth \
+  --disallow=devel \
+  org.mozilla.firefox
