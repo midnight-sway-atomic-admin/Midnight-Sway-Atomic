@@ -8,7 +8,7 @@ The files here quickly set up a visually austere and elegant base DE after a fre
 
 For the rice to look correct and be functional, you should:
 
-(a) configure the appropriate scaling settings for your display in ~/.config/sway/config;
+(a) configure the appropriate scaling settings for your display in ~/.config/sway/config (the rice is being built on a 2560x1600 display, and other display sizes have not been tested);
 
 (b) note that the rofi files here assume you have flatpak Firefox and GIMP installed; if you use other apps, a simple change to the app names in the relevant rofi files is all you need to do; but you might have to manually adjust the rofi width to make the title of your apps cleanly fit fully within the rofi menu. But if you use something besides Firefox, as far as I know, you won't be able to apply Firefox's chrome files, and you won't be able to use the Firefox Temporary Extensions (Speed Dial and YouTube Speed Controller);
 
