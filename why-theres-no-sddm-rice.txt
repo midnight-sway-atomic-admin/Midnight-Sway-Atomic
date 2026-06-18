@@ -1,0 +1,9 @@
+There's no rice of the Fedora Sway Atomic login manager (SDDM) because I currently use the text console login; if you want to do so also, run the following:
+
+	sudo systemctl set-default multi-user.target
+
+	sudo reboot
+
+On reboot, you will be dropped into the text console login; input your username and press Enter; then input its password and press Enter; then input "sway" and press Enter. And the Midnight Sway Atomic DE will load.
+
+In the future, the SDDM will be riced in accord with the theme.
