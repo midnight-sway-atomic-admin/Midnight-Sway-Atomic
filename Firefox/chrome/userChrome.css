@@ -1045,24 +1045,17 @@ spacer[part="overflow-end-indicator"] {
   fill-opacity: 1 !important;
 }
 
-/* X Sets colors for close-tabs popup  */
+/* X Sets colors for close-tabs popup */
 #commonDialog {
+    background-color: #e6ebf5 !important;
   --button-background-color-primary: #060606 !important;
-  --button-background-color-primary-hover: #9aa6c9 !important;
+  --button-background-color-primary-hover: #2a2a2a !important;
   --button-background-color-primary-active: #6f7aa0 !important;
 
-  --button-text-color-primary: #ffffff !important;
-  --button-text-color-primary-hover: #ffffff !important;
-  --button-text-color-primary-active: #ffffff !important;
+  --button-text-color-primary: #c7d0ea !important;
+  --button-text-color-primary-hover: #c7d0ea !important;
+  --button-text-color-primary-active: #c7d0ea !important;
 
-  --button-border-color-primary: var(--uc-color-transparent) !important;
-  --button-border-color-primary-hover: var(--uc-color-transparent) !important;
-  --button-border-color-primary-active: var(--uc-color-transparent) !important;
-}
-
-/* X Sets the check box black. Linked to prior codeblock */
-#commonDialog #checkbox > .checkbox-check {
-  accent-color: #060606 !important;
 }
 
 /* XX Hides the URL-bar dropdown bottom "This time search with" strip */
@@ -1088,40 +1081,173 @@ menubar > menu {
 /* X Sets color of trust-panel "See All" button color */
 #trustpanel-popup [data-l10n-id="trustpanel-blocker-see-all"] {
   --button-background-color-primary: #060606 !important;
-  --button-background-color-primary-hover: #9aa6c9 !important;
+  --button-background-color-primary-hover: #2a2a2a !important;
   --button-background-color-primary-active: #6f7aa0 !important;
+
+  --button-text-color-primary: #c7d0ea !important;
+  --button-text-color-primary-hover: #c7d0ea !important;
+  --button-text-color-primary-active: #c7d0ea !important;
 }
 
-/* X Trust panel: blue See All button and ETP switch */
+/* X Trust panel ETP switch */
 #trustpanel-popup [data-l10n-id^="trustpanel-etp-toggle"] {
   --toggle-background-color-pressed: #060606 !important;
-  --toggle-background-color-pressed-hover: #060606 !important;
-  --toggle-background-color-pressed-active: #060606 !important;
+  --toggle-background-color-pressed-hover: #2a2a2a !important;
+  --toggle-background-color-pressed-active: #6f7aa0 !important;
 }
 
 /* X Sets color of trust-panel "Privacy settings" link */
 #trustpanel-popup [data-l10n-id="trustpanel-privacy-link"] {
-  color: #8a97bf !important;
+  color: #060606 !important;
 }
 
 /* X Sets color of trust-panel "Clear cookies" confirmation button */
 #trustpanel-popup [data-l10n-id="trustpanel-clear-cookies-subview-button-clear"] {
   --button-background-color-primary: #060606 !important;
-  --button-background-color-primary-hover: #9aa6c9 !important;
+  --button-background-color-primary-hover: #2a2a2a !important;
   --button-background-color-primary-active: #6f7aa0 !important;
+
+  --button-text-color-primary: #c7d0ea !important;
+  --button-text-color-primary-hover: #c7d0ea !important;
+  --button-text-color-primary-active: #c7d0ea !important;
 }
 
 /* X Sets color of trust-panel "More site information" link */
 #trustpanel-popup [data-l10n-id="trustpanel-siteinformation-morelink"] {
-  color: #8a97bf !important;
+  color: #060606 !important;
 }
 
 /* XX Sets tab tooltip text color */
 #tab-preview-panel .tab-preview-title {
-color: #060606 !important;
+color: #c7d0ea !important;
+}
+
+/* X Sets tab hover-preview tooltip background and border color only */
+#tab-preview-panel {
+  --panel-background-color: #060606 !important;
+  --panel-border-color: #222630 !important;
 }
 
 /* XX Hides tab tooltip URL */
 #tab-preview-panel .tab-preview-uri {
   display: none !important;
+}
+
+/* XX Hides Add Bookmark popup title */
+#editBookmarkPanelTitle,
+
+/* XX Hides Add Bookmark popup separator below title */
+#editBookmarkHeaderSeparator,
+
+/* XX Hides Add Bookmark popup Name label */
+#editBookmarkPanel label[control="editBMPanel_namePicker"],
+
+/* XX Hides Add Bookmark popup Location label */
+#editBookmarkPanel label[control="editBMPanel_folderMenuList"],
+
+/* XX Hides Add Bookmark popup "Show editor when saving" checkbox and text */
+#editBookmarkPanel_showForNewBookmarks {
+  display: none !important;
+}
+
+/* XX Add spacing below Add Bookmark popup Name field */
+#editBMPanel_namePicker {
+  margin-bottom: 20px !important;
+}
+
+/* X Add Bookmark: Location dropdown, hide folder icons */
+#editBMPanel_folderMenuList menupopup menuitem {
+  --menuitem-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E") !important;
+  list-style-image: var(--menuitem-icon) !important;
+}
+
+/* XX Sets Add Bookmark popup Save button color */
+#editBookmarkPanelDoneButton {
+  --button-background-color-primary: #060606 !important;
+  --button-background-color-primary-hover: #2a2a2a !important;
+  --button-background-color-primary-active: #2a2a2a !important;
+
+  --button-text-color-primary: #c7d0ea !important;
+  --button-text-color-primary-hover: #c7d0ea !important;
+  --button-text-color-primary-active: #c7d0ea !important;
+}
+
+/* X Sets Add Bookmark name-field border color */
+#editBMPanel_namePicker {
+  appearance: none !important;
+  background-color: #f2f6ff !important;
+  border: 1px solid #d7dbe6 !important;
+  color: #000000 !important; /* Sets color of name field text */
+}
+
+#editBMPanel_namePicker:focus-visible {
+  outline: none !important;
+}
+
+/* X Sets Add Bookmark name-field text selection colors */
+#editBMPanel_namePicker::selection {
+  background-color: #2a2a2a !important;
+  color: #c7d0ea !important;
+}
+
+/* X Add Bookmark popup header */
+#editBookmarkPanel > .panel-header {
+  background-color: #e6ebf5 !important;
+  /*color: #8a97bf !important;*/
+}
+
+/* X Add Bookmark popup body background */
+#editBookmarkPanel > .panel-subview-body {
+  background-color: #e6ebf5 !important;
+}
+
+/* XX Trust-panel background */
+panelview {
+  background-color: #e6ebf5 !important;
+  color: #060606 !important;
+}
+
+/*#trustpanel-popup {
+  --panel-border-color: #8a97bf !important;
+  --panel-shadow: 0 0 0 1px #8a97bf !important;
+}*/
+
+/* X Removes the "Ask before closing multiple tabs" checkbox row; this is set permanently in user.js, so the checkbox and text are redundant */
+@-moz-document url("chrome://global/content/commonDialog.xhtml") {
+  #checkboxContainer:has(> #checkbox[label="Ask before closing multiple tabs"]) {
+    display: none !important;
+  }
+}
+
+/* X Add Bookmark: grey Cancel/Remove button, Location capsule, and arrow capsule */
+#editBookmarkPanelRemoveButton,
+#editBMPanel_folderMenuList,
+#editBMPanel_foldersExpander {
+  appearance: none !important;
+  background-color: #d7dbe6 !important;
+  background-image: none !important;
+  color: #060606 !important;
+ /* border: 0.5px solid #222630 !important;*/
+ /* border-radius: 0 !important;*/
+  box-shadow: none !important;
+}
+
+/* X Hover state. Linked to prior codeblock */
+#editBookmarkPanelRemoveButton:hover,
+#editBMPanel_folderMenuList:hover,
+#editBMPanel_foldersExpander:hover {
+  background-color: #c9cdd6 !important;
+  color: #060606 !important;
+}
+
+/* X Add Bookmark: hide folder icons inside expanded Choose tree */
+#editBMPanel_folderTree treechildren::-moz-tree-image {
+  list-style-image: none !important;
+  width: 0 !important;
+  margin-inline-end: 0 !important;
+}
+
+/* X Makes all tab-preview tooltip text less bold */
+#tab-preview-panel .tab-preview-title {
+  font-weight: 400 !important;
 }
