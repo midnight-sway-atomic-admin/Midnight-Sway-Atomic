@@ -21,3 +21,9 @@ user_pref("full-screen-api.enabled", false);
 
 /* X Warns before closing Firefox */
 user_pref("browser.tabs.warnOnClose", true);
+
+/* Enables the ability to set Density to Compact via Customize Toolbar */
+user_pref("browser.compactmode.show", true);
+
+/* Controls the size of Firefox's UI; for a 2560x1600 display with scaling set to 2, "1.6" is a good value; the default is "-1.0" 
+user_pref("layout.css.devPixelsPerPx", 1.6); */
