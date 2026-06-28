@@ -10,7 +10,7 @@ UPDATE: A major refactor of userChrome.css has dramatically simplified the file 
 
 (e) Bookmarks appear more cleanly, without twisties.
 
-(f) There is now the option (by default turned off) to make the URL-bar search box sweep across the page from end to end when clicked; to enable this, go to line 141 of userChrome.css and make the required changes specified in the comment.
+(f) There is now the option (by default turned off) to make the URL-bar search box sweep across the page from end to end when clicked; to enable this, go to line 144 of userChrome.css and make the required changes specified in the comment.
 
 (g) The refactor also now tags almost all the current code as XX, meaning that the file is currently nearly final in terms of maturity. There are many minor additions still to be made in terms of capturing and styling all surfaces, but the end--a state of pure maintainability--is in sight, and the final LoC should be able to stay below 750.
 
