@@ -1,8 +1,29 @@
-<p align="center">
-  <img src="assets/slideshow.png" alt="Fedora Sway Atomic rice slideshow" width="900">
-</p>
+UPDATE: A major refactor of userChrome.css has dramatically simplified the file to ~500 LoC (excluding comments and blank lines). 
 
-UPDATE: Firefox's latest update has broken a few (sloppy) CSS configurations; the relevant sections (the Alt-menubar popups, the "Add Bookmark" popup, tooltips, etc.)  are gradually being fixed and targeted more precisely.
+(a) The refactor removes the back-forward arrows (if Alt+< and > is sufficient for Thunar, why shouldn't it be sufficient for Firefox?).
+
+(b) The custom trust-icon has also been removed: the default Firefox icon is uglier, but removing the custom icon helps future-proof the code and decrease the fragility of messing with the browser's security-states indicators.  
+
+(c) Density=Compact is now no longer recommended; it now distorts the appearance of the URL bar and tabs, and so Density=Normal should be set if you are currently using Compact mode. This is a win as it minimizes setup hassle and fragility.
+
+(d) Both sides of the tab-bar now have a fade, preventing an unpleasant blunt cutoff on the left.
+
+(e) Bookmarks appear more cleanly, without twisties.
+
+(f) There is now the option (by default turned off) to make the URL-bar search box sweep across the page from end to end when clicked; to enable this, go to line 141 of userChrome.css and make the required changes specified in the comment.
+
+(g) The refactor also now tags almost all the current code as XX, meaning that the file is currently nearly final in terms of maturity. There are many minor additions still to be made in terms of capturing and styling all surfaces, but the end--a state of pure maintainability--is in sight, and the final LoC should be able to stay below 750.
+
+(h) The "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their right corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly.
+
+(i) The updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notiifcation, you type:
+
+1d23h59m "This is my note!"
+
+You now cannot set the timer for more than 59 minutes by minutes alone; nor can you set the timer for more than 23 hours by hours alone; nor can you set the timer for more than 9 days 23 hours and 59 minutes. The shortest possible timer is "1m" for 1 minute.
+
+/* END OF UPDATE NOTIFICATION */
+
 
 The files here quickly set up a visually austere and elegant base DE after a fresh install of Fedora Sway Atomic. Some of the files -- such as .bashrc -- are opinionated and thus contain stuff you might not need but that I want in a fresh install (for instance: a simple script that makes dunst timer-notifications via CLI commands like "1m" for "1 minute"). The files are a work in progress and will be changing continually.
 
