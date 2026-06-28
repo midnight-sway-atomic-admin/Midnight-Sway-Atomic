@@ -4,7 +4,7 @@ UPDATE: A major refactor of userChrome.css has dramatically simplified the file 
 
 (b) The custom trust-icon has also been removed: the default Firefox icon is uglier, but removing the custom icon helps future-proof the code and decrease the fragility of messing with the browser's security-states indicators.  
 
-(c) Density=Compact is now no longer recommended; it now distorts the appearance of the URL bar and tabs, and so Density=Normal should be set if you are currently using Compact mode. This is a win as it minimizes setup hassle and fragility.
+(c) Density=Compact is now no longer recommended; it now distorts the appearance of the URL bar and tabs, and so Density=Normal should be set if you are currently using Compact mode. This is a win as it minimizes setup hassle and fragility. Make sure to update your user.js file with the new one.
 
 (d) Both sides of the tab-bar now have a fade, preventing an unpleasant blunt cutoff on the left.
 
