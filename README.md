@@ -14,7 +14,7 @@ UPDATE: A major refactor of userChrome.css has dramatically simplified the file 
 
 (g) The refactor also now tags almost all the current code as XX, meaning that the file is currently nearly final in terms of maturity. There are many minor additions still to be made in terms of capturing and styling all surfaces, but the end--a state of pure maintainability--is in sight, and the final LoC should be able to stay below 750.
 
-(h) The "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their right corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly.
+(h) The "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their top-left corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly.
 
 (i) The updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notiifcation, you type:
 
