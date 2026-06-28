@@ -49,15 +49,11 @@ For the rice to look correct and be functional, you should:
 
 (j) get used to operating Firefox without right-click menus, most of which have been disabled (they are usually redundant clutter; for instance, if Ctrl+A copies highlighted text, why do you need an explicit "Copy" command in a right-click menu?);
 
-(k) set Firefox to dark mode (this isn't necessary for the theme: dark mode darkens only the settings UI);
+(k) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(l) via Firefox's Customize Toolbar, set Density to Compact if (1) you want the tabs and URL-box and back-forward arrows to align perfectly and (2) you want to remove an unpleasant tab-drag zoom effect;
+(l) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
 
-(m) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
-
-(n) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
-
-(o) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
+(m) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
