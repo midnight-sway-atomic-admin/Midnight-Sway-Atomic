@@ -51,3 +51,5 @@
 26. Rice the SDDM.
 
 27. Turn the Firefox Temporary Extensions into genuine extensions.
+
+28. After the userChrome.css file is completed and in a state of pure maintainability, re-add in the option for custom back-forward arrows.
