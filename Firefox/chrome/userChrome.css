@@ -574,6 +574,11 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
     display: none !important;
 }
 
+/* XX Hides all link-underlines for sidebar bookmark links */
+.sidebar-placesTreechildren::-moz-tree-cell-text {
+  text-decoration: none !important;
+}
+
 /*.............*/
 /* SIDEBAR END */
 /*.............*/
