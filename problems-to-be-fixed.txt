@@ -22,7 +22,7 @@
 
 12. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-13. Harmoniously theme all remaining Firefox UI popups (the quit popup, the downloads popup, the save-file popup, the trust panel, etc.);
+13. Harmoniously theme all remaining Firefox UI popups;
 
 14. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
@@ -49,3 +49,5 @@
 25. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
 
 26. Rice the SDDM.
+
+27. Turn the Firefox Temporary Extensions into genuine extensions.
