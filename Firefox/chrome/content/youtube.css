@@ -1325,4 +1325,9 @@
  .ytp-bezel {
     display: none !important;
   }
+
+  #comments > .ytd-comments.style-scope {
+  display: none !important;
+}
+
 }
