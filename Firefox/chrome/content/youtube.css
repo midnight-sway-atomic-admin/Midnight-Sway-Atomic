@@ -4,7 +4,7 @@
 
 /* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* The file is grouped under one "@-moz-document domain("youtube.com")" wrapper so cascade order is explicit. */
+/* The file is grouped under one "@-moz-document domain("youtube.com")" wrapper so cascade order is explicit */
 
 @-moz-document domain("youtube.com") {
 
