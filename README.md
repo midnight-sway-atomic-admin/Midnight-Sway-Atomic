@@ -20,7 +20,7 @@ UPDATE: A major refactor of userChrome.css has dramatically simplified the file 
 
 1d23h59m "This is my note!"
 
-You now cannot set the timer for more than 59 minutes by minutes alone; nor can you set the timer for more than 23 hours by hours alone; nor can you set the timer for more than 9 days 23 hours and 59 minutes. The shortest possible timer is "1m" for 1 minute.
+The quotation marks are only necessary when your note contains spaces. You now cannot set the timer for more than 59 minutes by minutes alone; nor can you set the timer for more than 23 hours by hours alone; nor can you set the timer for more than 9 days 23 hours and 59 minutes. The shortest possible timer is "1m" for 1 minute.
 
 /* END OF UPDATE NOTIFICATION */
 
