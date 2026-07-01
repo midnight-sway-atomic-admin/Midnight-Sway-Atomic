@@ -62,7 +62,7 @@
 
   [id^="chat"], /* XX Hides every element whose id starts with "chat"; this broad selector removes live/upcoming chat surfaces and fixes related sizing */
 
-  ytd-comments, /* XX Hides comments below the videoplayer */
+  ytd-watch-flexy ytd-comments, /* XX Hides comments below the videoplayer */
 
   #sponsor-button, /* XX Obvious */
 
