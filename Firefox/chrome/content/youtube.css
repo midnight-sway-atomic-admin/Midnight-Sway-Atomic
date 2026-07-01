@@ -1002,15 +1002,13 @@
      Shorts
      -------------------------------------------------------------------------- */
 
-  /* X Hides Shorts-page junk */
-  ytd-shorts .ytReelMetapanelViewModelHost,
-  ytd-shorts .navigation-container,
-  ytd-shorts #back-nav-button,
-  ytd-shorts button-view-model.ytwReelActionBarViewModelHostDesktopActionButton,
-  ytd-shorts .ytwReelActionBarViewModelHostDesktopActionButton.ytwPivotButtonViewModelHost,
-  ytd-shorts ytd-shorts-player-controls.ytd-reel-video-renderer.style-scope {
-    display: none !important;
-  }
+ /* XX Hides the Shorts metadata panel */
+.ytReelPlayerOverlayViewModelMetadataContainerMetapanel,
+
+/* XX Hides the Shorts right-side up-down navigation container */
+.ytd-shorts.style-scope.navigation-container {
+  display: none !important;
+}
 
   /* --------------------------------------------------------------------------
      Popups
