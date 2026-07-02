@@ -24,6 +24,7 @@
   --uc-color-button-active: #6f7aa0;
   --uc-color-light-surface: #e6ebf5;
   --uc-color-light-control: #d7dbe6;
+  --uc-color-faded: #454c61;
   --uc-color-mask-opaque: #000;
 
 /* XX Configures single-line URL bar + tabs settings */
@@ -305,7 +306,7 @@ notification[value="drmContentDisabled"] {
 
 /* XX Fade inactive tabs */
 .tabbrowser-tab:not([visuallyselected]):not([multiselected]):not(:hover) {
-  opacity: .5 !important;
+  color: var(--uc-color-faded) !important;
   transition: opacity .5s !important;
 }
 
@@ -751,22 +752,25 @@ panelview {
 /* TRUST-ICON START */
 /*..................*/
 
+/* xx */
 #trust-icon {
-  opacity: 0.50 !important;
   transform: scale(0.70) !important;
   margin-inline: -4px !important;
   margin-inline-end: -7px !important;
+  color: var(--uc-color-faded) !important;
 }
-
+/* XX */
 #trust-icon:hover {
-color: var(--uc-color-fg-hover);
+color: var(--uc-color-fg-hover) !important;
 }
 
+/* XX */
 #trust-icon-container:hover,
 #trust-icon-container[open] {
   background-color: transparent !important;
 }
 
+/* XX */
 #trust-icon-container:is(.insecure, .warning, .file) {
   background-color: transparent !important;
 }
@@ -855,6 +859,10 @@ color: var(--uc-color-fg-hover);
 /* CLOSE-TABS DIALOG END */
 /*.......................*/
 
+/*........................*/
+/* SAVE-FILE DIALOG START */
+/*........................*/
+
 /* XX Removes the outter blue focus circle from the save-file dialogue selection dot */
 radio[focused="true"] > .radio-check {
   outline: none !important;
@@ -862,10 +870,14 @@ radio[focused="true"] > .radio-check {
 
 /* XX Colors the selection dot black */
 radio {
-  accent-color: #060606 !important;
+  accent-color: var(--uc-color-surface) !important;
 }
 
-/* XX Changes the save-file dialog checkbox to black */
+/* XX Changes the dialog check box to black */
 checkbox {
-  accent-color: #060606 !important;
+  accent-color: var(--uc-color-surface) !important;
 }
+
+/*......................*/
+/* SAVE-FILE DIALOG END */
+/*......................*/
