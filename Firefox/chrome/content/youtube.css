@@ -409,6 +409,24 @@
     filter: none !important;
   }
 
+/* X Grayscales watch-page videoplayer progress bar and buttons */
+    .ytp-chrome-top,
+    .ytp-chrome-bottom,
+    .ytp-popup {
+        filter: grayscale(100%) !important;
+    }
+
+/* XX Removes progress-bar dot */
+  .ytp-scrubber-button {
+    display: none !important;
+  }
+
+/* X Removes the progress-bar gradient */
+  .ytp-cairo-refresh-signature-moments .ytp-play-progress,
+  .ytp-play-progress {
+    background: #FF0000 !important;
+  }
+
   /* --------------------------------------------------------------------------
      Player menus
      -------------------------------------------------------------------------- */
@@ -1002,7 +1020,7 @@
      Shorts
      -------------------------------------------------------------------------- */
 
- /* XX Hides the Shorts metadata panel */
+/* XX Hides the Shorts metadata panel */
 .ytReelPlayerOverlayViewModelMetadataContainerMetapanel,
 
 /* XX Hides the Shorts right-side up-down navigation container */
@@ -1325,5 +1343,20 @@
  .ytp-bezel {
     display: none !important;
   }
+
+/* X Hides the verified badge beside channel names and removes the extra space created by the badge */
+.ytAttributedStringLinkCallToActionColor.ytAttributedStringLink > span.ytAttributedStringLinkInheritColor > .ytAttributedStringInlineBlockMod {
+    display: none !important;
+}
+
+/* X Hides the playlist queue panel on the video playback page. */
+#playlist > .ytd-playlist-panel-renderer.style-scope {
+    display: none !important;
+}
+
+/* X Hides buttons embedded within contextual information panels */
+.ytInfoPanelOverviewViewModelHostButton.ytButtonOrAnchorButton.ytButtonOrAnchorHos {
+    display: none !important;
+}
 
 }
