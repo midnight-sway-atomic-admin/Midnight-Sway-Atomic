@@ -2,7 +2,7 @@
 
 /* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
+/* Comments tagged with "XX" mean that the code is (seemingly) as efficient, non-redundant, well-formed, and precise as possible */
 
 /*........................*/
 /* GLOBAL VARIABLES START */
@@ -14,20 +14,21 @@
 
 :root {
 
-/* XX Configures reused color tokens */
-  --uc-color-bg: #010305;
-  --uc-color-surface: #060606;
-  --uc-color-fg: #8a97bf;
-  --uc-color-fg-hover: #c7d0ea;
-  --uc-color-border-muted: #222630b3;
-  --uc-color-button-hover: #2a2a2a;
-  --uc-color-button-active: #6f7aa0;
-  --uc-color-light-surface: #e6ebf5;
-  --uc-color-light-control: #d7dbe6;
-  --uc-color-faded: #454c61;
-  --uc-color-mask-opaque: #000;
+/* Configures reused color tokens */
+  --uc-color-bg: #010305;                 /* Main chrome background */
+  --uc-color-surface: #060606;            /* Dark focused panels/buttons */
+  --uc-color-fg: #8a97bf;                 /* Primary text/icons */
+  --uc-color-fg-hover: #c7d0ea;           /* Hovered text/icons */
+  --uc-color-border-muted: #222630b3;     /* Subtle borders */
+  --uc-color-button-hover: #2a2a2a;       /* Button hover fill */
+  --uc-color-button-active: #6f7aa0;      /* Button active fill */
+  --uc-color-light-surface: #e6ebf5;      /* Light dialog background */
+  --uc-color-light-control: #d7dbe6;      /* Light dialog controls */
+  --uc-color-faded: #454c61;              /* Inactive text/icons */
+  --uc-color-mask-opaque: #000000;        /* Tabstrip fade mask, and some text */
+  --uc-color-bg-hover-light: #f1f3fa;     /* Light hover background */
 
-/* XX Configures single-line URL bar + tabs settings */
+/* Configures single-line URL bar + tabs settings */
   --uc-tab-height: 30px;
   --uc-bar-height: 38px;
   --uc-navbar-width: min(24vw, 250px);
@@ -45,7 +46,7 @@
 /* MAIN LAYOUT START */
 /*...................*/
 
-/* X Configures the single-line URL bar + tabs */
+/* XX Configures the single-line URL bar + tabs */
 @media (min-width: 950px) {
   #navigator-toolbox {
     padding-top: var(--uc-nav-tabs-y-offset) !important;
@@ -62,12 +63,12 @@
     transform: translateY(3.5px) !important; 
   }
 
-/* ? */
+/* XX Shifts tabs right to accommodate custom left sidebar/nav area */
   #TabsToolbar {
     margin-left: calc(var(--uc-navbar-width) + var(--uc-urlbar-tabs-gap)) !important;
   }
 
-/* ? */
+/* XX Makes the URL bar shrinkable and flexible within the toolbar flex layout */
   #urlbar-container {
     min-width: 0 !important;
     flex: 1 1 auto !important;
@@ -228,17 +229,8 @@ notification[value="drmContentDisabled"] {
   display: none !important;
 }*/ /* Reintroduce if the icon reappears */
 
-/* X URL-bar suggestion popup: hides result icons/favicons/bookmark markers/buttons */ /* Needs to be simplified */
-.urlbarView-row :is(
-  image,
-  img,
-  .urlbarView-favicon,
-  .urlbarView-type-icon,
-  .urlbarView-persistence-indicator,
-  .urlbarView-dynamic-icon,
-  .urlbarView-action-icon,
-  .urlbarView-button
-) {
+/* XX URL-bar suggestion popup: hide result icons, type badges, and row buttons */
+.urlbarView-row :is(img, .urlbarView-type-icon, .urlbarView-button) {
   display: none !important;
 }
 
@@ -271,8 +263,7 @@ notification[value="drmContentDisabled"] {
 /* TABS AND TABSTRIP START */
 /*.........................*/
 
-/* ? */
-.tab-background,
+/* XX Sets tabs height */
 .tab-stack {
   min-height: var(--uc-tab-height) !important; 
 }
@@ -385,10 +376,10 @@ spacer[part="overflow-end-indicator"] {
   --button-background-color-ghost-active: transparent !important;
 }
 
-/* X Hides non-audio icons inside tabs, including autoplay-blocked play/video button */
-.tabbrowser-tab .tab-icon-pending, /* Test */
-.tabbrowser-tab .tab-sharing-icon-overlay, /* Test */
-.tabbrowser-tab[activemedia-blocked] .tab-audio-button /* Test */ {
+/* XX Hides non-audio tab icons, incl. the autoplay-blocked play button */
+.tab-icon-pending,
+.tab-sharing-icon-overlay,
+.tab-audio-button[activemedia-blocked] {
   display: none !important;
 }
 
@@ -436,10 +427,10 @@ menupopup menuseparator {
   display: none !important;
 }
 
-/* X Sets the Alt-menubar popup hover colors for items */
-menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
-  background-color: #f1f3fa !important;
-  color: #0b0b0b !important;
+/* XX XUL menupopup hover colors */
+menupopup > [_moz-menuactive]:not([disabled]) {
+  background-color: var(--uc-color-bg-hover-light) !important;
+  color: var(--uc-color-mask-opaque) !important;
 }
 
 /* XX Hides page/content-area right-click context menu */
@@ -468,7 +459,7 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
 /* XX Controls the sidebar width */
 #sidebar-box {
   width: 185px !important;
-  padding-top: 85px !important; /* Adjust to vertically center bookmarks content within the sidebar */
+  padding-top: 85px !important; /* Adjust to vertically position bookmarks content within the sidebar */
 }
 
 /* XX Hides the star icon and Bookmarks dropdown menu button at the top of the bookmarks sidebar */
@@ -497,12 +488,12 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
   background-color: var(--uc-color-bg) !important;
 }
 
-/* X Hides sidebar-search placeholder text */
-  input#input[type="search"]::placeholder  {
+/* XX Hides sidebar-search placeholder text */
+#input::placeholder  {
     opacity: 0 !important;
   }
 
-/* X Bookmarks sidebar */
+/* XX Bookmarks */
 @-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
   
   /* XX Remove dotted focus ring from tree rows, cells, and text */
@@ -515,9 +506,8 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
     background-color: var(--uc-color-bg) !important;
   }
 
-  /* X Remove hover background highlight */
-  #bookmarks-view treechildren::-moz-tree-row(hover),
-  #bookmarks-view treechildren::-moz-tree-cell(hover) {
+  /* XX Remove hover background highlight */
+  #bookmarks-view treechildren::-moz-tree-row(hover) {
     background: transparent !important;
   }
 
@@ -568,16 +558,16 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
   .sidebar-placesTreechildren::-moz-tree-cell-text(container, queryFolder_unfiled_____) {
     opacity: 0 !important;
   }
-}
 
-/* XX Hides the sidebar searchbox "x" to the right of entered text */
-::-moz-search-clear-button {
+  /* XX Hides the sidebar searchbox "x" to the right of entered text */
+  ::-moz-search-clear-button {
     display: none !important;
 }
 
-/* XX Hides all link-underlines for sidebar bookmark links */
-.sidebar-placesTreechildren::-moz-tree-cell-text {
-  text-decoration: none !important;
+  /* XX Hides all link-underlines for sidebar bookmark links */
+  .sidebar-placesTreechildren::-moz-tree-cell-text {
+    text-decoration: none !important;
+}
 }
 
 /*.............*/
@@ -628,12 +618,12 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
 
 /* XX Sets "Add Bookmark" name-field border color */
 #editBMPanel_namePicker {
-  /*appearance: none !important;*/
   background-color: #f2f6ff !important;
   border: 1px solid var(--uc-color-light-control) !important;
-  color: #000000 !important; /* Sets color of name field text */
+  color: var(--uc-color-mask-opaque) !important; /* Sets color of name field text */
 }
 
+/* XX Removes the blue focus outline from the name field */
 #editBMPanel_namePicker:focus-visible {
   outline: none !important;
 }
@@ -658,13 +648,8 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
 #editBookmarkPanelRemoveButton,
 #editBMPanel_folderMenuList,
 #editBMPanel_foldersExpander {
-  /*appearance: none !important;*/
   background-color: var(--uc-color-light-control) !important;
- /* background-image: none !important;*/
   color: var(--uc-color-surface) !important;
-  /*border: 0.5px solid var(--uc-color-border-muted) !important;
-  border-radius: 3 !important;
-  box-shadow: none !important;*/
 }
 
 /* XX Hover state. Linked to prior codeblock */
@@ -675,46 +660,47 @@ menupopup > :is(menuitem, menu)[_moz-menuactive="true"]:not([disabled]) {
   color: var(--uc-color-surface) !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree {
+/* XX */
+#editBMPanel_folderTree {
   -moz-appearance: none !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-row(selected),
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-row(selected, focus) {
-  background-color: #d7dbe6 !important;
+/* XX */
+#editBMPanel_folderTree > treechildren::-moz-tree-row(selected),
+#editBMPanel_folderTree > treechildren::-moz-tree-row(selected, focus) {
+  background-color: var(--uc-color-light-control) !important;
   border: none !important;
   outline: none !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected),
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected, focus) {
-  color: #0b0b0b !important;
+/* XX */
+#editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected),
+#editBMPanel_folderTree > treechildren::-moz-tree-cell-text(selected, focus) {
+  color: var(--uc-color-mask-opaque) !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-image(container, selected),
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-image(container, selected, focus) {
-  fill: #0b0b0b !important;
+/* XX */
+#editBMPanel_folderTree > treechildren::-moz-tree-twisty(selected),
+#editBMPanel_folderTree > treechildren::-moz-tree-twisty(selected, focus) {
+  color: var(--uc-color-mask-opaque) !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-twisty(selected),
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-twisty(selected, focus) {
-  color: #0b0b0b !important;
+/* XX Sets the hover color for the dropdown inner items */
+#editBMPanel_folderTree > treechildren::-moz-tree-row(hover) {
+  background-color: var(--uc-color-bg-hover-light) !important;
 }
 
-/* X Sets the hover color for the dropdown inner items */
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-row(hover) {
-  background-color: #f1f3fa !important;
+/* XX */
+#editBMPanel_folderTree > treechildren::-moz-tree-row(selected, hover),
+#editBMPanel_folderTree > treechildren::-moz-tree-row(selected, hover, focus) {
+  background-color: var(--uc-color-light-control) !important;
 }
 
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-row(selected, hover),
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-row(selected, hover, focus) {
-  background-color: #d7dbe6 !important;
-}
-
-/* X Hides "Add Bookmark" dropdown inner icons */
-#editBookmarkPanelContent #editBMPanel_folderTree > treechildren::-moz-tree-image {
+/* XX Hides "Add Bookmark" dropdown inner icons */
+#editBMPanel_folderTree > treechildren::-moz-tree-image {
   visibility: hidden !important;
   width: 0 !important;
+  height: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -752,62 +738,48 @@ panelview {
 /* TRUST-ICON START */
 /*..................*/
 
-/* xx */
+/* xx Obvious */
 #trust-icon {
   transform: scale(0.70) !important;
   margin-inline: -4px !important;
   margin-inline-end: -7px !important;
   color: var(--uc-color-faded) !important;
 }
-/* XX */
+/* XX Obvious */
 #trust-icon:hover {
 color: var(--uc-color-fg-hover) !important;
 }
 
-/* XX */
+/* XX Obvious */
 #trust-icon-container:hover,
 #trust-icon-container[open] {
   background-color: transparent !important;
 }
 
-/* XX */
+/* XX Obvious */
 #trust-icon-container:is(.insecure, .warning, .file) {
   background-color: transparent !important;
 }
 
-/* X Trust-panel buttons */
-#trustpanel-popup [data-l10n-id^="trustpanel-"] {
+/* XX Trust panel: primary buttons (inherits into every moz-button) */
+#trustpanel-popup {
   --button-background-color-primary: var(--uc-color-surface) !important;
   --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
   --button-background-color-primary-active: var(--uc-color-button-active) !important;
-
   --button-text-color-primary: var(--uc-color-fg-hover) !important;
   --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
   --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
 }
-
-/* X ETP toggle */
-#trustpanel-popup [data-l10n-id^="trustpanel-etp-toggle"] {
+/* XX ETP toggle: moz-toggle re-declares these on :host, so the element must be hit directly */
+#trustpanel-toggle {
   --toggle-background-color-pressed: var(--uc-color-surface) !important;
   --toggle-background-color-pressed-hover: var(--uc-color-button-hover) !important;
   --toggle-background-color-pressed-active: var(--uc-color-button-active) !important;
 }
-
-/* X Links */
-#trustpanel-popup [data-l10n-id="trustpanel-privacy-link"],
-#trustpanel-popup [data-l10n-id$="siteinformation-morelink"] {
+/* XX Links */
+#trustpanel-privacy-link,
+#trustpanel-siteinformation-morelink {
   color: var(--uc-color-surface) !important;
-}
-
-/* X Clear cookies */
-#trustpanel-popup [data-l10n-id^="trustpanel-clear-cookies"] {
-  --button-background-color-primary: var(--uc-color-surface) !important;
-  --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
-  --button-background-color-primary-active: var(--uc-color-button-active) !important;
-
-  --button-text-color-primary: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
 }
 
 /*......................*/
@@ -848,11 +820,9 @@ color: var(--uc-color-fg-hover) !important;
   --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
 }
 
-/* X Removes the "Ask before closing multiple tabs" checkbox row; this is set permanently in user.js, so the checkbox and text are redundant */
-@-moz-document url("chrome://global/content/commonDialog.xhtml") {
-  #checkboxContainer:has(> #checkbox[label="Ask before closing multiple tabs"]) {
-    display: none !important;
-  }
+/* XX Hide "Ask before closing multiple tabs" checkbox row (pref fixed in user.js) */
+#checkboxContainer:has([label="Ask before closing multiple tabs"]) {
+  display: none !important;
 }
 
 /*.......................*/
