@@ -33,7 +33,7 @@
   --uc-bar-height: 38px;
   --uc-navbar-width: min(24vw, 250px);
   --uc-urlbar-tabs-gap: 10px;
-  --uc-urlbar-box-vertical-margin: 4px; /* Sets height of main URL box; the bigger the number, the shorter the box */
+  --uc-urlbar-box-vertical-margin: 3px; /* Sets height of main URL box; the bigger the number, the shorter the box */
   --uc-nav-tabs-y-offset: -25px; /* Controls vertical position of URL-bar and tabs as a single unit; there is an unknown limit, but -25px surpasses it, maximizing the offset */
 
 }
@@ -581,7 +581,7 @@ menupopup > [_moz-menuactive]:not([disabled]) {
 /* XX "Add Bookmark" manual positioning */
 #editBookmarkPanel {
   margin-top: 24px !important; /* positive = lower */
-  margin-inline-start: 30px !important; /* negative = left; positive = right */
+  margin-inline-start: -225px !important; /* negative = left; positive = right */
 }
 
 /* XX Hides "Add Bookmark" popup title */
@@ -742,7 +742,7 @@ panelview {
 #trust-icon {
   transform: scale(0.70) !important;
   margin-inline: -4px !important;
-  margin-inline-end: -7px !important;
+  margin-inline-end: 0px !important;
   color: var(--uc-color-faded) !important;
 }
 /* XX Obvious */
