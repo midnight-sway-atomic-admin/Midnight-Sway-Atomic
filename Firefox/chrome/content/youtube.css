@@ -468,39 +468,91 @@
      Like/dislike icons
      -------------------------------------------------------------------------- */
 
-  /* X Keeps thumbs-up/down visible across YouTube's watch-page button variants */
+  /* XX Keeps only the two native click targets; every YouTube-supplied surface is transparent */
   ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model,
-  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model
-  :is(like-button-view-model, dislike-button-view-model, yt-button-shape, #button-shape, button) {
+  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model * {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* XX Removes every decorative pseudo-element, including the capsule and its divider */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model *::before,
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model *::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* XX Removes YouTube's own glyphs, animations, labels, lighting, and feedback layers */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
+    yt-icon,
+    yt-animated-icon,
+    ytd-lottie-player,
+    lottie-player,
+    lottie-component,
+    svg,
+    canvas,
+    .yt-spec-icon-shape,
+    .ytIconShapeHost,
+    .yt-icon-shape,
+    [class*="lottie" i],
+    [class*="animated" i],
+    .yt-spec-button-shape-next__button-text-content,
+    .ytSpecButtonShapeNextButtonTextContent,
+    yt-light-shape,
+    [class*="lightShape" i],
+    yt-touch-feedback-shape,
+    .yt-spec-touch-feedback-shape,
+    [class*="touchFeedback" i]
+  ) {
+    display: none !important;
+  }
+
+  /* XX Keeps the two transparent native buttons clickable */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model,
+    yt-button-shape,
+    #button-shape,
+    button
+  ) {
     display: inline-flex !important;
     visibility: visible !important;
     opacity: 1 !important;
   }
 
-  /* X Hides the videoplayer number of thumbs-up */
-  ytd-watch-metadata
-  segmented-like-dislike-button-view-model
-  like-button-view-model
-  :is(.yt-spec-button-shape-next__button-text-content, .ytSpecButtonShapeNextButtonTextContent) {
-    display: none !important;
-  }
-
-  /* X Sets static like/dislike compact-glyph icons */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model {
-    --ytc-thumb-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
-    --ytc-thumb-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
-  }
-
-  /* X Preserves the native clickable buttons. Linked to prior codeblock */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
     like-button-view-model,
     dislike-button-view-model
   ) button {
     position: relative !important;
   }
 
-  /* X Keeps the icon slot stable. Linked to prior two codeblocks */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  /* XX Static custom thumbs. SVG backgrounds replace masks, so no solid square can appear */
+  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model {
+    --ytc-thumb-outline-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
+    --ytc-thumb-filled-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
+    --ytc-thumb-outline-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
+    --ytc-thumb-filled-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
+  }
+
+  /* XX Stable 24 px icon slots */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
     like-button-view-model,
     dislike-button-view-model
   ) :is(
@@ -515,33 +567,9 @@
     flex: 0 0 24px !important;
   }
 
-  /* X Hides YouTube's native icon and animation renderers. Linked to prior three codeblocks */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ) :is(
-    yt-icon,
-    yt-animated-icon,
-    ytd-lottie-player,
-    lottie-player,
-    lottie-component,
-    svg,
-    canvas,
-    .yt-spec-icon-shape,
-    .ytIconShapeHost,
-    .yt-icon-shape,
-    [class*="lottie" i],
-    [class*="animated" i]
-  ) {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    animation: none !important;
-    transition: none !important;
-    pointer-events: none !important;
-  }
-
-  /* X Draws empty static thumbs by default. Linked to prior four codeblocks */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  /* XX Outline thumb by default */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
     like-button-view-model,
     dislike-button-view-model
   ) :is(
@@ -549,41 +577,54 @@
     .ytSpecButtonShapeNextIcon
   )::before {
     content: "" !important;
+    display: block !important;
     position: absolute !important;
-    inset: 0 !important;
-    width: 21px !important;
-    height: 21px !important;
-    background: var(--ytc-accent) !important;
+    inset: 1.5px !important;
+    background: transparent var(--ytc-thumb-outline-accent) center / 21px 21px no-repeat !important;
+    border: 0 !important;
+    box-shadow: none !important;
     pointer-events: none !important;
-    -webkit-mask: var(--ytc-thumb-outline) center/21px 21px no-repeat !important;
-    mask: var(--ytc-thumb-outline) center/21px 21px no-repeat !important;
   }
 
-  /* X Draws filled static thumbs when selected. Linked to prior five codeblocks */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  /* XX Filled thumb when selected */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
     like-button-view-model,
     dislike-button-view-model
   ) button[aria-pressed="true"] :is(
     .yt-spec-button-shape-next__icon,
     .ytSpecButtonShapeNextIcon
   )::before {
-    -webkit-mask: var(--ytc-thumb-filled) center/21px 21px no-repeat !important;
-    mask: var(--ytc-thumb-filled) center/21px 21px no-repeat !important;
+    background-image: var(--ytc-thumb-filled-accent) !important;
   }
 
-  /* X Turns static like/dislike icons white on hover. Linked to prior six codeblocks. A separate button:hover variant is unnecessary: hovering the inner button also puts its ancestor view-model in the :hover state */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model :is(
+  /* XX Pale-blue outline on hover */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
     like-button-view-model,
     dislike-button-view-model
   ):hover :is(
     .yt-spec-button-shape-next__icon,
     .ytSpecButtonShapeNextIcon
   )::before {
-    background: var(--ytc-player-text) !important;
+    background-image: var(--ytc-thumb-outline-hover) !important;
   }
 
-  /* X Flips the static thumb for dislike. Linked to prior seven codeblocks */
-  #top-level-buttons-computed segmented-like-dislike-button-view-model
+  /* XX Pale-blue filled thumb when selected and hovered */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model :is(
+    like-button-view-model,
+    dislike-button-view-model
+  ):hover button[aria-pressed="true"] :is(
+    .yt-spec-button-shape-next__icon,
+    .ytSpecButtonShapeNextIcon
+  )::before {
+    background-image: var(--ytc-thumb-filled-hover) !important;
+  }
+
+  /* XX Flips the custom thumb for dislike */
+  ytd-watch-metadata #top-level-buttons-computed
+  segmented-like-dislike-button-view-model
   dislike-button-view-model :is(
     .yt-spec-button-shape-next__icon,
     .ytSpecButtonShapeNextIcon
@@ -1049,6 +1090,15 @@ ytd-browse[page-subtype="channels"] :is(
   [aria-label*="personalized" i]
 ) * {
   fill: var(--ytc-accent-solid) !important;
+}
+
+/* Reverts watch-page videoplayer to prior setting for space below the videoplayer */
+ytd-watch-flexy[video-id] {
+  --ytd-watch-flexy-space-below-player: 136px !important;
+}
+
+#title-row {
+    display: none !important;
 }
 
 }
