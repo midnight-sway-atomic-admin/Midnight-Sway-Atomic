@@ -25,5 +25,5 @@ user_pref("browser.tabs.warnOnClose", true);
 /* Hides tab site icons */
 user_pref("browser.chrome.site_icons", false);
 
-/* Changes the size of Firefox's UI; for a 2560x1600 display with scaling set to 2, "1.6" is a good value; the default is "-1.0" */ 
-/* user_pref("layout.css.devPixelsPerPx", 1.6); */
+/* Changes the size of Firefox's UI; for a 2560x1600 display with scaling set to 2, "1.8" is a good value; the default is "-1.0" */ 
+user_pref("layout.css.devPixelsPerPx", "1.8");
