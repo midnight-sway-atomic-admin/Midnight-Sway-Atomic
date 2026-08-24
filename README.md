@@ -51,12 +51,10 @@ For the rice to look correct and be functional, you should:
 
 (k) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(l) ideally use Firefox's zoom feature to set YouTube to 90% zoom (text looks much better this way);
-
-(m) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
+(l) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
 
 Thanks go to Visax (https://unsplash.com/@visaxslr) for his elegant designs which I have repurposed as wallpapers.
 
-Note: AI -- mainly ChatGPT 5.5 plus -- has been and will continue to be indespensible in creating and maintaining the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile CSS for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
+Note: AI -- mainly ChatGPT 5.6 plus -- has been and will continue to be indespensible in creating and maintaining the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile CSS for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
