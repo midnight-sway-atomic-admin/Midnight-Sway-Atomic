@@ -30,26 +30,24 @@
 
 16. Fix all hover colors for text on channel-profile YouTube pages;
 
-17. Fix the color of the subscribe-button bell on channel-profile Youtube pages;
+17. After the rice is completely finished, create a new set of high-res showcase images;
 
-18. After the rice is completely finished, create a new set of high-res showcase images;
+18. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
-19. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
+19. Provide ClamAV, TeX Live scripts;
 
-20. Provide ClamAV, TeX Live, and External Drives scripts;
+20: Fix GIMP's theme;
 
-21: Fix GIMP's theme;
+21. Fix any missed problems with blueman-manager's theme;
 
-22. Fix any missed problems with blueman-manager's theme;
+22. Fix any missed problems with Thunar's theme;
 
-23. Fix any missed problems with Thunar's theme;
+23. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-24. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
+24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
 
-25. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
+25. Rice the SDDM.
 
-26. Rice the SDDM.
+26. Turn the Firefox Temporary Extensions into genuine extensions.
 
-27. Turn the Firefox Temporary Extensions into genuine extensions.
-
-28. After the userChrome.css file is completed and in a state of pure maintainability, re-add in the option for custom back-forward arrows.
+27. After the userChrome.css file is completed and in a state of pure maintainability, re-add in the option for custom back-forward arrows.
