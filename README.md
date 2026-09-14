@@ -40,4 +40,4 @@ Gradually, improvements will be made to the files until all the problems identif
 
 Thanks go to Visax (https://unsplash.com/@visaxslr) for his elegant designs which I have repurposed as wallpapers.
 
-Note: AI -- mainly ChatGPT 5.6 plus -- has been and will continue to be indespensible in creating and maintaining the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile CSS for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
+Note: AI has been and will continue to be indespensible in creating and maintaining the userChrome.css and userContent.css files (I'm not going to spend a year or more of my life painstakingly manually writing fragile CSS for Firefox); if, for whatever reason, you have a principle against using AI, this is your warning.
