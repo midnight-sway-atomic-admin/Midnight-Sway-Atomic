@@ -27,3 +27,7 @@ user_pref("browser.chrome.site_icons", false);
 
 /* Changes the size of Firefox's UI; for a 2560x1600 display with scaling set to 2, "1.8" is a good value; the default is "-1.0" */ 
 user_pref("layout.css.devPixelsPerPx", "1.8");
+
+/* Controls the URL-bar selected text background highlight and text color */
+user_pref("ui.highlight", "#8a97bf");
+user_pref("ui.highlighttext", "#000000");
