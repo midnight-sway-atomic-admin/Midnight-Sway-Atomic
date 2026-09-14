@@ -1,0 +1,443 @@
+/* Blueman dark minimal GTK 3 theme */
+
+@define-color bg          #0b0c0f;
+@define-color bg_alt      #111318;
+@define-color surface     #171a20;
+@define-color surface_alt #1d2129;
+
+@define-color fg          #e5e7ed;
+@define-color fg_dim      #9499a6;
+@define-color accent      #8a97bf;
+@define-color accent_fg   #0b0c0f;
+
+@define-color border      #292d36;
+@define-color hover       #222630;
+@define-color disabled    #555a66;
+
+* {
+    -GtkWidget-focus-padding: 0;
+    -GtkWidget-focus-line-width: 0;
+    outline-width: 0;
+}
+
+window,
+.background {
+    background-color: @bg;
+    color: @fg;
+}
+
+/* Header bars / toolbars */
+
+headerbar,
+.titlebar,
+toolbar {
+    background-color: @bg_alt;
+    color: @fg;
+    border: 0;
+    border-bottom: 1px solid @border;
+    box-shadow: none;
+}
+
+headerbar {
+    min-height: 38px;
+    padding: 3px 6px;
+}
+
+headerbar .title {
+    font-weight: 600;
+}
+
+/* Buttons */
+
+button {
+    min-height: 26px;
+    min-width: 26px;
+    padding: 4px 9px;
+
+    color: @fg;
+    background-color: @surface;
+
+    border: 1px solid @border;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+button:hover {
+    background-color: @hover;
+    border-color: @accent;
+}
+
+button:active,
+button:checked {
+    color: @accent_fg;
+    background-color: @accent;
+    border-color: @accent;
+}
+
+button:disabled {
+    color: @disabled;
+    background-color: @bg_alt;
+    border-color: @border;
+}
+
+/* Flat toolbar buttons */
+
+toolbar button,
+headerbar button {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+toolbar button:hover,
+headerbar button:hover {
+    background-color: @hover;
+    border-color: transparent;
+}
+
+toolbar button:active,
+toolbar button:checked,
+headerbar button:active,
+headerbar button:checked {
+    color: @accent;
+    background-color: @surface_alt;
+}
+
+/* Lists and device views */
+
+treeview,
+treeview.view,
+.view,
+list {
+    color: @fg;
+    background-color: @bg;
+}
+
+treeview.view {
+    border: 0;
+}
+
+treeview.view:selected,
+.view:selected,
+row:selected {
+    color: @fg;
+    background-color: @surface_alt;
+}
+
+treeview.view:hover,
+row:hover {
+    background-color: @bg_alt;
+}
+
+row {
+    padding: 4px;
+}
+
+/* Tree/list headers */
+
+treeview header button {
+    color: @fg_dim;
+    background-color: @bg_alt;
+
+    border: 0;
+    border-bottom: 1px solid @border;
+    border-radius: 0;
+
+    font-weight: 600;
+}
+
+treeview header button:hover {
+    color: @fg;
+    background-color: @surface;
+}
+
+/* Text fields */
+
+entry {
+    min-height: 28px;
+    padding: 3px 7px;
+
+    color: @fg;
+    caret-color: @accent;
+    background-color: @surface;
+
+    border: 1px solid @border;
+    border-radius: 5px;
+    box-shadow: none;
+}
+
+entry:focus {
+    border-color: @accent;
+}
+
+entry selection {
+    color: @accent_fg;
+    background-color: @accent;
+}
+
+/* Menus */
+
+menu,
+.menu,
+popover {
+    color: @fg;
+    background-color: @surface;
+
+    border: 1px solid @border;
+    border-radius: 5px;
+}
+
+menuitem {
+    padding: 5px 9px;
+}
+
+menuitem:hover {
+    color: @fg;
+    background-color: @hover;
+}
+
+menuitem:disabled {
+    color: @disabled;
+}
+
+/* Context/popover content */
+
+popover .background {
+    background-color: @surface;
+}
+
+popover separator {
+    background-color: @border;
+}
+
+/* Scrollbars */
+
+scrollbar {
+    background-color: transparent;
+}
+
+scrollbar slider {
+    min-width: 6px;
+    min-height: 6px;
+
+    background-color: #3a3f4a;
+    border: 0;
+    border-radius: 6px;
+}
+
+scrollbar slider:hover {
+    background-color: @accent;
+}
+
+scrollbar trough {
+    background-color: transparent;
+}
+
+/* Selection */
+
+selection {
+    color: @accent_fg;
+    background-color: @accent;
+}
+
+/* Checkboxes / radio buttons */
+
+check,
+radio {
+    color: @fg;
+    background-color: @surface;
+
+    border: 1px solid @border;
+    box-shadow: none;
+}
+
+check {
+    border-radius: 3px;
+}
+
+radio {
+    border-radius: 50%;
+}
+
+check:hover,
+radio:hover {
+    border-color: @accent;
+}
+
+check:checked,
+radio:checked {
+    color: @accent_fg;
+    background-color: @accent;
+    border-color: @accent;
+}
+
+/* Switches */
+
+switch {
+    min-width: 36px;
+    min-height: 18px;
+
+    color: @fg;
+    background-color: @surface;
+
+    border: 1px solid @border;
+    border-radius: 12px;
+}
+
+switch:checked {
+    background-color: @accent;
+    border-color: @accent;
+}
+
+switch slider {
+    min-width: 16px;
+    min-height: 16px;
+
+    background-color: @fg;
+    border: 0;
+    border-radius: 50%;
+}
+
+/* Progress */
+
+progressbar trough {
+    min-height: 4px;
+
+    background-color: @surface;
+    border: 0;
+    border-radius: 4px;
+}
+
+progressbar progress {
+    min-height: 4px;
+
+    background-color: @accent;
+    border: 0;
+    border-radius: 4px;
+}
+
+/* Sliders */
+
+scale trough {
+    min-height: 4px;
+    min-width: 4px;
+
+    background-color: @surface;
+    border-radius: 4px;
+}
+
+scale highlight {
+    background-color: @accent;
+    border-radius: 4px;
+}
+
+scale slider {
+    min-width: 14px;
+    min-height: 14px;
+
+    background-color: @fg;
+    border: 1px solid @border;
+    border-radius: 50%;
+}
+
+/* Tabs */
+
+notebook {
+    background-color: @bg;
+    border: 0;
+}
+
+notebook header {
+    background-color: @bg_alt;
+    border-color: @border;
+}
+
+notebook tab {
+    padding: 5px 10px;
+    color: @fg_dim;
+    background-color: transparent;
+    border: 0;
+}
+
+notebook tab:hover {
+    color: @fg;
+}
+
+notebook tab:checked {
+    color: @accent;
+    box-shadow: inset 0 -2px @accent;
+}
+
+/* Frames / separators */
+
+frame {
+    border-color: @border;
+}
+
+separator {
+    min-width: 1px;
+    min-height: 1px;
+    background-color: @border;
+}
+
+/* Links */
+
+link,
+label link {
+    color: @accent;
+}
+
+link:hover,
+label link:hover {
+    color: #a7b2d2;
+}
+
+/* Tooltips */
+
+tooltip {
+    color: @fg;
+    background-color: @surface_alt;
+
+    border: 1px solid @border;
+    border-radius: 4px;
+}
+
+tooltip label {
+    color: @fg;
+}
+
+/* Status bars and miscellaneous low-priority text */
+
+statusbar,
+.dim-label {
+    color: @fg_dim;
+}
+
+/* Destructive actions remain visually distinct */
+
+.destructive-action,
+button.destructive-action {
+    color: #f1d7d7;
+    background-color: #3a2024;
+    border-color: #694047;
+}
+
+.destructive-action:hover,
+button.destructive-action:hover {
+    background-color: #4a292f;
+    border-color: #98616b;
+}
+
+/* Suggested/default actions */
+
+.suggested-action,
+button.suggested-action {
+    color: @accent_fg;
+    background-color: @accent;
+    border-color: @accent;
+}
+
+.suggested-action:hover,
+button.suggested-action:hover {
+    background-color: #9da8ca;
+    border-color: #9da8ca;
+}
