@@ -121,12 +121,6 @@ toolbarspring {
   outline: none !important;
 }
 
-/* XX Sets the colors for selected text and its background */
-#urlbar-input::selection {
-  background-color: var(--uc-color-fg) !important;
-  color: var(--uc-color-bg) !important;
-}
-
 /* XX Sets color and dimensions for the shortcut pill inside the URL bar */
 #urlbar-search-mode-indicator {
   background-color: var(--uc-color-border-muted) !important;
@@ -142,9 +136,6 @@ toolbarspring {
 #urlbar[breakout][breakout-extend] {
   top: 0 !important;
   max-width: calc(100vw - 10px) !important;
-
-/* XX Uncomment this block and comment out the prior "max-width" line if you want the URL bar, when clicked, to sweep across the whole top of the page 
-  width: calc(100vw - 16px) !important; */
 }
 
 /* XX Hides URL-bar right-click/edit context menu */
@@ -208,26 +199,6 @@ toolbarspring {
 .urlbar-go-button {
   display: none !important;
 }
-
-/* XX Hides per-site permissions box in the URL bar 
-#identity-permission-box {
-  display: none !important;
-}*/ /* Reintroduce if the icon reappears */
-
-/* XX Hides Temporary Extension icon and label 
-#identity-box.extensionPage #identity-icon-box {
-  display: none !important;
-}*/ /* Reintroduce if the icon reappears */
-
-/* X Hides the DRM-content-disabled icon 
-notification[value="drmContentDisabled"] {
-  display: none !important;
-}*/ /* Reintroduce if the icon reappears */
-
-/* XX Hides the EME icon 
-#eme-notification-icon {
-  display: none !important;
-}*/ /* Reintroduce if the icon reappears */
 
 /* XX URL-bar suggestion popup: hide result icons, type badges, and row buttons */
 .urlbarView-row :is(img, .urlbarView-type-icon, .urlbarView-button) {
