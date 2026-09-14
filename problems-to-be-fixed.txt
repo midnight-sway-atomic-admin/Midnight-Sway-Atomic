@@ -44,10 +44,4 @@
 
 23. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-24. Completely contain the aesthetic blast radius of Firefox's upcoming Project Nova redesign.
-
-25. Rice the SDDM.
-
-26. Turn the Firefox Temporary Extensions into genuine extensions.
-
-27. After the userChrome.css file is completed and in a state of pure maintainability, re-add in the option for custom back-forward arrows.
+24. Turn the Firefox Temporary Extensions into genuine extensions.
