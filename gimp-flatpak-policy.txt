@@ -1,22 +1,8 @@
 flatpak override --user --reset org.gimp.GIMP
 
 flatpak override --user \
-  --nofilesystem=home \
-  --nofilesystem=host \
-  --nofilesystem=xdg-desktop \
-  --nofilesystem=xdg-documents \
-  --nofilesystem=xdg-pictures \
-  --nofilesystem=xdg-music \
-  --nofilesystem=xdg-templates \
-  --nofilesystem=xdg-public-share \
-  --nofilesystem=xdg-videos \
-  --nofilesystem=xdg-download \
-  --nofilesystem=/tmp \
-  --nofilesystem=/media \
-  --nofilesystem=/run/media \
-  --nofilesystem=xdg-config \
-  --nofilesystem=xdg-cache \
-  --nofilesystem=xdg-data \
+  --nofilesystem=host:reset \
+  --filesystem=xdg-config/GIMP \
   --filesystem="$HOME/gimp:create" \
   --socket=wayland \
   --nosocket=x11 \
@@ -28,7 +14,11 @@ flatpak override --user \
   --nosocket=gpg-agent \
   --nosocket=pcsc \
   --nosocket=ssh-auth \
-  --no-talk-name=org.freedesktop.Notifications \
+  --no-talk-name=org.gtk.vfs.* \
+  --no-talk-name=org.freedesktop.FileManager1 \
+  --no-talk-name=org.gnome.Shell.Screenshot \
+  --no-talk-name=org.kde.kwin.Screenshot \
+  --no-talk-name=com.canonical.AppMenu.Registrar \
   --unshare=network \
   --unshare=ipc \
   --nodevice=all \
