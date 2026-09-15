@@ -12,34 +12,32 @@
 
 7. Make sure the Thunar address bar is dead center;
 
-8. Hide the channel-name verified-circle under the YouTube videoplayer;
+8. Provide more elegant symlink icon;
 
-9. Provide more elegant symlink icon;
+9. Expand and audit commands.txt;
 
-10. Expand and audit commands.txt;
+10. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
 
-11. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+11. Harmoniously theme all remaining Firefox UI popups;
 
-12. Harmoniously theme all remaining Firefox UI popups;
+12. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-13. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+13. Make all comments identical in tense and more exact and concise;
 
-14. Make all comments identical in tense and more exact and concise;
+14. Fix all hover colors for text on channel-profile YouTube pages;
 
-15. Fix all hover colors for text on channel-profile YouTube pages;
+15. After the rice is completely finished, create a new set of high-res showcase images;
 
-16. After the rice is completely finished, create a new set of high-res showcase images;
+16. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
-17. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
+17. Provide ClamAV, TeX Live scripts;
 
-18. Provide ClamAV, TeX Live scripts;
+18: Fix GIMP's theme;
 
-19: Fix GIMP's theme;
+19. Fix any missed problems with blueman-manager's theme;
 
-20. Fix any missed problems with blueman-manager's theme;
+20. Fix any missed problems with Thunar's theme;
 
-21. Fix any missed problems with Thunar's theme;
+21. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-22. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-23. Turn the Firefox Temporary Extensions into genuine extensions.
+22. Turn the Firefox Temporary Extensions into genuine extensions.
