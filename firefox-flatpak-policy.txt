@@ -15,8 +15,11 @@ flatpak override --user \
   --nofilesystem=/media \
   --nofilesystem=/run/media \
   --nofilesystem=xdg-config \
+  --nofilesystem=xdg-config/gtk-3.0 \
   --nofilesystem=xdg-cache \
   --nofilesystem=xdg-data \
+  --nofilesystem=/run/.heim_org.h5l.kcm-socket \
+  --nofilesystem=xdg-run/speech-dispatcher \
   --socket=wayland \
   --nosocket=x11 \
   --nosocket=fallback-x11 \
@@ -28,6 +31,10 @@ flatpak override --user \
   --nosocket=pcsc \
   --nosocket=ssh-auth \
   --no-talk-name=org.freedesktop.Notifications \
+  --no-talk-name=org.freedesktop.FileManager1 \
+  --no-talk-name=org.a11y.Bus \
+  --no-talk-name=org.gtk.vfs.* \
+  --system-no-talk-name=org.freedesktop.NetworkManager \
   --share=network \
   --unshare=ipc \
   --nodevice=all \
