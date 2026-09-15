@@ -1,0 +1,8 @@
+cd downloads
+
+unzip -o midnight-gimp-theme.zip
+
+mkdir -p ~/.config/GIMP/3.2/themes
+
+cp -a midnight-gimp-theme \
+  ~/.config/GIMP/3.2/themes/
