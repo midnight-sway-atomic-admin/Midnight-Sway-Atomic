@@ -1,0 +1,28 @@
+flatpak override --user --reset org.gimp.GIMP
+
+flatpak override --user \
+  --nofilesystem=host:reset \
+  --filesystem=xdg-config/GIMP \
+  --filesystem="$HOME/gimp:create" \
+  --socket=wayland \
+  --nosocket=x11 \
+  --nosocket=fallback-x11 \
+  --nosocket=session-bus \
+  --nosocket=system-bus \
+  --nosocket=pulseaudio \
+  --nosocket=cups \
+  --nosocket=gpg-agent \
+  --nosocket=pcsc \
+  --nosocket=ssh-auth \
+  --no-talk-name=org.gtk.vfs.* \
+  --no-talk-name=org.freedesktop.FileManager1 \
+  --no-talk-name=org.gnome.Shell.Screenshot \
+  --no-talk-name=org.kde.kwin.Screenshot \
+  --no-talk-name=com.canonical.AppMenu.Registrar \
+  --unshare=network \
+  --unshare=ipc \
+  --nodevice=all \
+  --device=dri \
+  --disallow=bluetooth \
+  --disallow=devel \
+  org.gimp.GIMP
