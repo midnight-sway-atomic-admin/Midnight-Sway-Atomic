@@ -32,12 +32,10 @@
 
 17. Provide ClamAV, TeX Live scripts;
 
-18: Fix GIMP's theme;
+18. Fix any missed problems with blueman-manager's theme;
 
-19. Fix any missed problems with blueman-manager's theme;
+19. Fix any missed problems with Thunar's theme;
 
-20. Fix any missed problems with Thunar's theme;
+20. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-21. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-22. Turn the Firefox Temporary Extensions into genuine extensions.
+21. Turn the Firefox Temporary Extensions into genuine extensions.
