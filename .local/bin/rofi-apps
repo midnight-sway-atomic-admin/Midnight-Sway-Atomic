@@ -1,30 +1,48 @@
 #!/usr/bin/env bash
 
+logfile="${XDG_RUNTIME_DIR:-/tmp}/rofi-apps.log"
+: > "$logfile"
+
 choice="$(printf '%s\n' \
   "Thunar" \
   "Firefox" \
+  "Nano" \
   "GIMP" \
   "Wlsunset" \
   "Bluetooth" | rofi -dmenu -i -p "Apps")"
 
+printf 'choice=%q\n' "$choice" >> "$logfile"
+
 case "$choice" in
   "Thunar")
-    thunar
+    thunar >> "$logfile" 2>&1 &
     ;;
 
   "Firefox")
-    gtk-launch org.mozilla.firefox.desktop
+    gtk-launch org.mozilla.firefox.desktop >> "$logfile" 2>&1 &
+    ;;
+
+  "Nano")
+    foot nano >> "$logfile" 2>&1 &
     ;;
 
   "GIMP")
-    gtk-launch org.gimp.GIMP.desktop
+    flatpak run org.gimp.GIMP --no-splash >> "$logfile" 2>&1 &
     ;;
 
   "Wlsunset")
-    $HOME/.config/rofi/scripts/toggle-sunset.sh
+    bash "$HOME/.config/rofi/scripts/toggle-sunset.sh" >> "$logfile" 2>&1 &
     ;;
 
   "Bluetooth")
-    GTK_THEME=blueman-skin blueman-manager
+    GTK_THEME=blueman blueman-manager >> "$logfile" 2>&1 &
+    ;;
+
+  "")
+    printf 'no choice selected\n' >> "$logfile"
+    ;;
+
+  *)
+    printf 'unmatched choice=%q\n' "$choice" >> "$logfile"
     ;;
 esac
