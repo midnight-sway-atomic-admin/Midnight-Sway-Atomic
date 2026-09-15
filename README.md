@@ -24,19 +24,19 @@ For the rice to look correct and be functional, you should:
 
 (k) have at least a 400 (ideally 500) nit display; otherwise the theme will likely be too dark to use comfortably;
 
-(l) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting.
+(l) don't use the new-tab feature (Ctrl+T) in Thunar; use a new Thunar window (Ctrl+N) if you need two separate Thunar file areas; and clear the new-tab Ctrl+T and Split View shortcuts to prevent accidental splitting;
 
-(m) Density=Compact is now no longer recommended; it now distorts the appearance of the URL bar and tabs, and so Density=Normal should be set if you are currently using Compact mode. This is a win as it minimizes setup hassle and fragility. Make sure to update your user.js file with the new one.
+(m) "Density=Compact" is now no longer recommended; it now distorts the appearance of the URL bar and tabs, and so Density=Normal should be set if you are currently using Compact mode. This is a win as it minimizes setup hassle and fragility. Make sure to update your user.js file with the new one;
 
-(n) The "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their top-left corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly.
+(n) the "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their top-left corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly;
 
-(o) The updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notiifcation, you type:
+(o) the updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notiifcation, you type:
 
 1d23h59m "This is my note!"
 
 The quotation marks are only necessary when your note contains spaces. You now cannot set the timer for more than 59 minutes by minutes alone; nor can you set the timer for more than 23 hours by hours alone; nor can you set the timer for more than 9 days 23 hours and 59 minutes. The shortest possible timer is "1m" for 1 minute.
 
-Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed (or marked as unfixable).
+Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed or given up on.
 
 Thanks go to Visax (https://unsplash.com/@visaxslr) for his elegant designs which I have repurposed as wallpapers.
 
