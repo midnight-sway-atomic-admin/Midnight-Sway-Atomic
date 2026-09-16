@@ -10,7 +10,7 @@
 
 /* XX Sets the global font size of the Firefox UI; useful if are unhappy with the global font-size set in gtk.css and want to overrride it for Firefox alone
 
-* { font-size: 10px !important; } */
+* { font-size: 12px !important; } */
 
 :root {
 
