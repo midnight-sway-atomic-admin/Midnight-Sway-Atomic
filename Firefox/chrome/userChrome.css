@@ -712,10 +712,9 @@ panelview {
 /* xx Obvious */
 #trust-icon {
   transform: scale(0.70) !important;
-  margin-inline: -4px !important;
-  margin-inline-end: 0px !important;
   color: var(--uc-color-faded) !important;
 }
+
 /* XX Obvious */
 #trust-icon:hover {
 color: var(--uc-color-fg-hover) !important;
@@ -753,9 +752,9 @@ color: var(--uc-color-fg-hover) !important;
   color: var(--uc-color-surface) !important;
 }
 
-/*......................*/
-/* TRUST-ICON/PANEL END */
-/*......................*/
+/*................*/
+/* TRUST-ICON END */
+/*................*/
 
 /*.................*/
 /* DOWNLOADS START */
