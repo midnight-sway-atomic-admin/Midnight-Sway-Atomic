@@ -1,41 +1,37 @@
-1. Create shims of all the relevant config files to make changing the main rice colors simple;
+1. Create shims for all the relevant config files to make changing the main rice colors simple;
 
 2. Refactor userContent.css and userChrome.css and system files so that every bit of code is (a) known and commented (such code is tagged with "X") and (b) as efficient, non-redundant, well-formed, and precise as possible (such code is tagged with "XX");
 
 3. Standardize the four default wallpapers to various display sizes;
 
-4. Get a superior, more harmonious, custom set of icons;
+4. Get a superior, more harmonious, full custom set of .svg icons;
 
-5. Create .svg versions of all icons;
+5. Make the Thunar address bar dead center;
 
-6. Expand icon coverage in /.local/share/icons/Adwaita/symbolic/status/;
+6. Expand and audit commands.txt;
 
-7. Make sure the Thunar address bar is dead center;
+7. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); and create a CLI script that makes switching between them very easy;
 
-8. Provide more elegant symlink icon;
+8. Harmoniously theme all remaining Firefox UI popups;
 
-9. Expand and audit commands.txt;
+9. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-10. Create a light-colored pale matte version of the rice ("Midday Sway Atomic"); create a CLI script that makes switching between them very easy;
+10. Make all comments identical in tense and more exact and concise;
 
-11. Harmoniously theme all remaining Firefox UI popups;
+11. Fix all hover colors for text on channel-profile YouTube pages;
 
-12. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+12. After the rice is completely finished, create a new set of high-res showcase images;
 
-13. Make all comments identical in tense and more exact and concise;
+13. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
-14. Fix all hover colors for text on channel-profile YouTube pages;
+14. Provide ClamAV, TeX Live scripts;
 
-15. After the rice is completely finished, create a new set of high-res showcase images;
+15. Fix any missed problems with blueman-manager's theme;
 
-16. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
+16. Fix any missed problems with Thunar's theme;
 
-17. Provide ClamAV, TeX Live scripts;
+17. Fix any missed problems with GIMP's theme;
 
-18. Fix any missed problems with blueman-manager's theme;
+18. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-19. Fix any missed problems with Thunar's theme;
-
-20. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-21. Turn the Firefox Temporary Extensions into genuine extensions.
+19. Turn the Firefox Temporary Extensions into genuine extensions.
