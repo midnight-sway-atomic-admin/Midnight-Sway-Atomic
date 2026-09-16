@@ -30,7 +30,7 @@ For the rice to look correct and be functional, you should:
 
 (n) the "Add Bookmark" and Trust-icon popups now have manual positioning controls in userChrome.css; for my display I want their top-left corners to overlap perfectly, so that the popups always display in the same top-left area. For your display, you will probably have to adjust the values to have the popups display neatly;
 
-(o) the updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notiifcation, you type:
+(o) the updated .bashrc script modifies the dunst timer-notificatons code, which now includes the ability to set exact times and notes for timers: for instance, if you need a timer to go off in 1 day, 23 hours and 59 minutes, you type "1d23h59m"; if you want to attach a note to that notification, you type:
 
 1d23h59m "This is my note!"
 
