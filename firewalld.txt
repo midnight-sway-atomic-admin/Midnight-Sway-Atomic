@@ -1,0 +1,10 @@
+sudo systemctl enable --now firewalld
+sudo firewall-cmd --set-default-zone=drop
+sudo firewall-cmd --permanent --zone=drop --remove-forward
+sudo firewall-cmd --reload
+
+# Verify
+systemctl is-enabled firewalld
+systemctl is-active firewalld
+sudo firewall-cmd --get-default-zone
+sudo firewall-cmd --zone=drop --list-all
