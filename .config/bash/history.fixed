@@ -1,11 +1,16 @@
 rpm-ostree status -v
 podman images
+podman kill -a
 flatpak list
 top
+sudo dd if=/path/to/image.iso of=/dev/sdX bs=4M status=progress conv=fsync
+shutdown now
 thunar -q
 pkill waybar
 swaymsg reload
 source ~/.bashrc
+gpg --pinentry-mode loopback --output [filename] --decrypt [.gpg file absolute path]
+gpg --pinentry-mode loopback --cipher-algo AES256 -z0 --symmetric [file absolute path]
 upgrade
 commands
 search
