@@ -124,9 +124,8 @@
   align-self: center !important;
 }
 
-/* XX Prevents the URL "breakout" mode on focus from pushing the URL border below the webpage line */
+/* XX Prevents the URL-bar breakout from exceeding the available browser width */
 #urlbar[breakout][breakout-extend] {
-  top: 0 !important;
   max-width: calc(100vw - 10px) !important;
 }
 
@@ -223,6 +222,12 @@
   --tab-min-height: var(--uc-tab-height) !important;
   --tab-background-color-hover: transparent !important;
   --tab-background-color-selected: transparent !important;
+}
+
+/* XX Prevents the tab strip from shifting vertically when dragging tabs */
+#tabbrowser-tabs[orient="horizontal"][movingtab] {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* XX Sets tab hover-preview tooltip background and border color and radius */
