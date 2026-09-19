@@ -1,4 +1,5 @@
 rpm-ostree status -v
+sudo ostree admin pin booted
 podman images
 podman kill -a
 flatpak list
@@ -12,7 +13,6 @@ swaymsg reload
 source ~/.bashrc
 gpg --pinentry-mode loopback --output [filename] --decrypt [.gpg file absolute path]
 gpg --pinentry-mode loopback --cipher-algo AES256 -z0 --symmetric [file absolute path]
-sudo ostree admin pin booted
 lsblk
 upgrade
 commands
