@@ -1,5 +1,6 @@
 rpm-ostree status -v
 sudo ostree admin pin booted
+sudo ostree admin pin --unpin booted
 podman images
 podman kill -a
 flatpak list
