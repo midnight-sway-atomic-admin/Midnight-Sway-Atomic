@@ -7,6 +7,7 @@ sudo dd if=/path/to/image.iso of=/dev/sdX bs=4M status=progress conv=fsync
 shutdown now
 thunar -q
 pkill waybar
+pkill sway
 swaymsg reload
 source ~/.bashrc
 gpg --pinentry-mode loopback --output [filename] --decrypt [.gpg file absolute path]
