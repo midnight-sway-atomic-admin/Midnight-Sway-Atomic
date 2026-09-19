@@ -38,6 +38,6 @@ The quotation marks are only necessary when your note contains spaces. You now c
 
 Gradually, improvements will be made to the files until all the problems identified in problems-to-be-fixed.txt are fixed or given up on.
 
-Thanks go to Visax (https://unsplash.com/@visaxslr) for his elegant abstract designs which I have repurposed as wallpapers, and to Andrew Hughes (https://unsplash.com/@hughesy) for his beautiful photograph of the moon which I have repurposed for a wallpaper.
+Thanks go to [Visax](https://unsplash.com/@visaxslr) for his elegant abstract designs which I have repurposed as wallpapers, and to [Andrew Hughes](https://unsplash.com/@hughesy) for his beautiful photograph of the moon which I have repurposed for a wallpaper.
 
 Note: AI has been and will continue to be indespensible in creating and maintaining the rice; if, for whatever reason, you have a principle against using AI, this is your warning.
