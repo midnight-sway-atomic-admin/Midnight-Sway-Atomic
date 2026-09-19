@@ -12,13 +12,12 @@
      Variables
      -------------------------------------------------------------------------- */
 
-  /* Color shim. Change these to change the theme */
+  /* Color shim. Change these to change the main theme; custom thumb SVG colors are defined in the like/dislike section */
   :root {
     --ytc-page-bg: #010305;        /* silky blue-black */
     --ytc-accent: #8a97bfe6;       /* slate blue; "e6" modifies the opacity of #8a97bf */
     --ytc-player-text: #c7d0ea;    /* faint-blue white */
     --ytc-player-white: #ffffff;   /* white */
-    --ytc-surface-bg: #060606;     /* black, but not pitch black */
     --ytc-accent-solid: #8a97bf;   /* solid version of --ytc-accent */
     --ytc-hover-bg: #080a10;       /* faint hover surface */
     --ytc-post-bg: #0f0f0f;        /* channel post and button surfaces */
@@ -28,13 +27,26 @@
   }
 
   /* --------------------------------------------------------------------------
+     Global
+     -------------------------------------------------------------------------- */
+
+  /* --------------------------------------------------------------------------
      Base page background
      -------------------------------------------------------------------------- */
 
-  /* X Base page background */
+  /* XX Base page background */
   html,
   ytd-app {
     background-color: var(--ytc-page-bg) !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     Global layout
+     -------------------------------------------------------------------------- */
+
+  /* XX Resets the site-wide page-manager left margin reserved for the hidden guide sidebar */
+  ytd-page-manager {
+    margin-left: 0 !important;
   }
 
   /* --------------------------------------------------------------------------
@@ -42,13 +54,38 @@
      -------------------------------------------------------------------------- */
 
   /* X Global text color */
-  :is(yt-formatted-string, .yt-simple-endpoint, .title, .ytd-video-primary-info-renderer, h1, h2, span) {
+  :where(yt-formatted-string, .yt-simple-endpoint, .title, .ytd-video-primary-info-renderer, h1, h2, span) {
     color: var(--ytc-accent) !important;
   }
 
-  /* X Global icon color */
+  /* XX Global icon color; legacy yt-icon paths follow the same state colors through currentColor */
+  :where(yt-icon, .yt-icon-shape, .ytSpecIconShapeHost) {
+    color: var(--ytc-accent) !important;
+  }
+
   yt-icon path {
-    fill: var(--ytc-accent) !important;
+    fill: currentColor !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     Global button styling
+     -------------------------------------------------------------------------- */
+
+  /* XX Sets filled-mono button colors; nesting preserves the exact base and hover selector specificity without repeating the generation fallbacks */
+  :is(
+    .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled,
+    .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled
+  ) {
+    background-color: var(--ytc-post-bg) !important;
+    color: var(--ytc-accent) !important;
+
+    & * {
+      color: inherit !important;
+    }
+
+    &:hover {
+      color: var(--ytc-player-text) !important;
+    }
   }
 
   /* --------------------------------------------------------------------------
@@ -61,7 +98,7 @@
 
   .yt-spec-touch-feedback-shape__hover-effect, .ytSpecTouchFeedbackShapeHoverEffect, /* X The first hides the frontpage thumbnail background color on hover; the second is likely a guard for this effect elsewhere */
 
-  [id^="chat"], /* X Hides every element whose id starts with "chat"; this broad selector removes live/upcoming chat surfaces and fixes related sizing */
+  ytd-watch-flexy #chat-container, ytd-watch-flexy ytd-live-chat-frame, /* XX Hides the watch-page live/upcoming chat container and frame without matching unrelated chat-prefixed IDs */
 
   ytd-watch-flexy ytd-comments, /* X Hides comments below the videoplayer */
 
@@ -73,7 +110,7 @@
     display: none !important;
   }
 
-  /* X Hides various tooltips. The extra, seemingly redundant controls below "display:none" are useful guard code here */
+  /* X Hides various tooltips */
   :where(
     [id*="tooltip" i],
     [class*="tooltip" i],
@@ -89,25 +126,57 @@
     ytcp-tooltip
   ) {
     display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
   }
 
-  /* X Hides the left-side mini-guide/sidebar */
+  /* XX Hides the left-side mini-guide/sidebar */
   ytd-mini-guide-renderer {
     display: none !important;
   }
 
-  /* X Hides the left-side guide/sidebar */
+  /* XX Hides the left-side guide/sidebar */
   #guide {
     display: none !important;
   }
 
-  /* X Hides YouTube's page-top ad banner */
+  /* XX Hides YouTube's page-top ad banner and collapses either rich-container generation around it */
   ytd-page-top-ad-layout-renderer,
-  ytd-rich-section-renderer:has(ytd-page-top-ad-layout-renderer),
-  ytd-rich-item-renderer:has(ytd-page-top-ad-layout-renderer) {
+  :is(ytd-rich-section-renderer, ytd-rich-item-renderer):has(ytd-page-top-ad-layout-renderer) {
+    display: none !important;
+  }
+
+  /* X Hides verified/artist badges beside linked channel names across current lockup and watch-owner attributed-string generations */
+  :is(.yt-content-metadata-view-model__metadata-row, .ytContentMetadataViewModelMetadataRow)
+  > :is(.yt-content-metadata-view-model__metadata-text, .ytContentMetadataViewModelMetadataText):has(a)
+  + :is(.yt-content-metadata-view-model__icon, .ytContentMetadataViewModelIcon),
+  :is(.yt-content-metadata-view-model__metadata-text, .ytContentMetadataViewModelMetadataText)
+  a :is(.yt-core-attributed-string--inline-block-mod, .ytAttributedStringInlineBlockMod):has([role="img"]),
+  ytd-watch-metadata ytd-video-owner-renderer
+  :is(
+    .yt-core-attributed-string__link--call-to-action-color,
+    .ytAttributedStringLink.ytAttributedStringLinkCallToActionColor
+  )
+  > :is(
+    .yt-core-attributed-string--link-inherit-color,
+    .ytAttributedStringLinkInheritColor
+  )
+  > :is(
+    .yt-core-attributed-string--inline-block-mod,
+    .ytAttributedStringInlineBlockMod
+  ) {
+    display: none !important;
+  }
+
+  /* X Hides buttons embedded within contextual information panels via their dedicated host-button class */
+  .ytInfoPanelOverviewViewModelHostButton {
+    display: none !important;
+  }
+
+  /* --------------------------------------------------------------------------
+     Global media and previews
+     -------------------------------------------------------------------------- */
+
+  /* XX Prevents 3-second animated-thumbnail (animated-WebP) hover previews wherever YouTube swaps them in */
+  img[src*="/an_webp/"] {
     display: none !important;
   }
 
@@ -115,29 +184,32 @@
      Loading/skeleton hides
      -------------------------------------------------------------------------- */
 
-  /* X Hides ghostly pre-load elements below the videoplayer */
-  #primary-info,
-  #top-row > :is(.flex-1, .skeleton-bg-color) {
+  /* XX Hides ghostly watch-page pre-load elements below the videoplayer */
+  ytd-watch-flexy #primary-info,
+  ytd-watch-flexy #top-row > :is(.flex-1, .skeleton-bg-color) {
     display: none !important;
   }
 
-  /* X Hides the frontpage circular loading spinner when you scroll down and new videos load */
+  /* XX Hides the frontpage continuation spinner */
   ytd-browse[page-subtype="home"]
   ytd-continuation-item-renderer #spinner {
     display: none !important;
   }
 
-  /* X Removes the watch-page videoplayer loading spinner that's behind the central play button */
-  ytd-watch-flexy #movie_player .ytp-spinner {
+  /* XX Removes YouTube player loading/buffering spinners, including the watch-page player */
+  .ytp-spinner {
     display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    animation: none !important;
   }
 
-  /* X Hides the thin top-of-page red progress bar */
+  /* XX Hides the thin top-of-page red progress bar */
   yt-page-navigation-progress {
     display: none !important;
   }
 
-  /* X Hides page-loading skeletons */
+  /* XX Hides page-loading skeletons */
   #home-page-skeleton,
   #watch-page-skeleton,
   #channel-page-skeleton {
@@ -178,14 +250,12 @@
     content: "" !important;
     position: absolute !important;
     inset: 0 !important;
-    box-sizing: border-box !important;
     border: 0.5px solid var(--ytc-accent) !important;
-    border-radius: 0 !important;
     pointer-events: none !important;
     z-index: 10 !important;
   }
 
-  /* X Set strict channel-name-to-thumbs spacing. Without this, YouTube will sometimes wildly distort the spacing */
+  /* X Sets and locks the watch-page owner/action row; shared child constraints are factored without changing selector specificity */
   ytd-watch-metadata #top-row {
     display: grid !important;
     grid-template-columns: max-content max-content !important;
@@ -194,40 +264,46 @@
     justify-content: center !important;
     margin-top: 0 !important;
     padding-top: 0 !important;
+
+    & > :is(#owner, #actions) {
+      margin: 0 !important;
+      width: max-content !important;
+      max-width: none !important;
+    }
+
+    & > #owner {
+      grid-column: 1 !important;
+    }
+
+    & > #actions {
+      grid-column: 2 !important;
+    }
   }
 
-  /* X Lock owner block. Linked to prior codeblock */
-  ytd-watch-metadata #top-row > #owner {
-    grid-column: 1 !important;
-    margin: 0 !important;
-    width: max-content !important;
-    max-width: none !important;
-  }
-
-  /* X Lock action buttons. Linked to prior two codeblocks */
-  ytd-watch-metadata #top-row > #actions {
-    grid-column: 2 !important;
-    margin: 0 !important;
-    width: max-content !important;
-    max-width: none !important;
-  }
-
-  /* X Live-chat padding reset */
+  /* XX Resets the watch-page column padding when live chat is expanded */
   ytd-watch-flexy[live-chat-present-and-expanded] #columns {
     padding-right: 0 !important;
+  }
+
+  /* X Sets the watch-page space reserved below the videoplayer */
+  ytd-watch-flexy[video-id] {
+    --ytd-watch-flexy-space-below-player: 136px !important;
   }
 
   /* --------------------------------------------------------------------------
      Watch page metadata/buttons
      -------------------------------------------------------------------------- */
 
-  /* X Removes videoplayer channel avatar */
+  /* XX Removes the watch-page owner avatar */
   ytd-watch-metadata ytd-video-owner-renderer #avatar {
     display: none !important;
   }
 
-  /* X Removes videoplayer combined channel avatar shown when a video is multi-authored. Needs to be tested */
-  ytd-watch-metadata ytd-video-owner-renderer .yt-simple-endpoint.ytd-video-owner-renderer {
+  /* X Removes the stacked channel avatars shown when a watch-page video is multi-authored */
+  ytd-watch-metadata ytd-video-owner-renderer :is(
+    yt-avatar-stack-view-model,
+    .ytAvatarStackViewModelHost
+  ) {
     display: none !important;
   }
 
@@ -240,12 +316,11 @@
     display: none !important;
   }
 
-  /* X Hides the watch-page three-dot report menu button */
-  ytd-watch-flexy[video-id]
-  ytd-watch-metadata
-  #menu
-  #button-shape
-  > .ytSpecButtonShapeNextEnableBackdropFilterExperiment.ytSpecButtonShapeNextIconButton.ytSpecButtonShapeNextSizeM.ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal.ytSpecButtonShapeNextHost {
+  /* XX Hides the watch-page three-dot More-actions control completely */
+  ytd-watch-metadata #top-row :is(yt-button-shape, button-view-model, #button-shape):has(
+    button[aria-label="More actions"]
+  ),
+  ytd-watch-metadata #top-row button[aria-label="More actions"] {
     display: none !important;
   }
 
@@ -258,42 +333,42 @@
     display: none !important;
   }
 
-  /* X Hides the videoplayer save-for-later button */
+  /* XX Hides all watch-page flexible action controls to the right of the like/dislike buttons */
   ytd-watch-metadata #flexible-item-buttons {
     display: none !important;
   }
 
-  /* X Hides the notification bell/dropdown next to the subscribed button under videos */
-  ytd-watch-metadata #owner
-  :is(yt-button-view-model, yt-button-shape):has(
-    button[aria-label*="notification" i],
-    button[title*="notification" i]
-  ) {
+  /* XX Hides the notification bell/dropdown next to the subscribed button under videos */
+  ytd-watch-metadata #notification-preference-button {
     display: none !important;
   }
 
-  /* X Hides the pill-shaped videoplayer subscribe button. Linked to prior codeblock */
+  /* XX Hides the pill-shaped watch-page subscribe button */
   ytd-watch-metadata #subscribe-button-shape {
     display: none !important;
   }
 
-  /* X Hides the videoplayer subscriber count */
+  /* XX Hides the watch-page subscriber count */
   ytd-watch-metadata #owner-sub-count {
     display: none !important;
   }
 
-  /* X Hides the videoplayer video title */
+  /* XX Hides the videoplayer video title */
   ytd-watch-metadata h1 {
     display: none !important;
   }
 
-  /* X Hides the buttons shown over scheduled/upcoming videos (the "Notify me" button and any others in the offline slate) */
-  ytd-watch-flexy .ytp-offline-slate button,
-  ytd-watch-flexy .ytp-offline-slate .ytp-button {
+  /* X Hides the watch-page title-row container when YouTube emits that layout generation */
+  ytd-watch-flexy #title-row {
     display: none !important;
   }
 
-  /* X Hides all watch-page badge renderers, including AI-content-warning badges */
+  /* XX Hides buttons shown over scheduled/upcoming videos in the offline slate */
+  ytd-watch-flexy .ytp-offline-slate :is(button, .ytp-button) {
+    display: none !important;
+  }
+
+  /* XX Hides all watch-page badge renderers, including AI-content-warning badges */
   ytd-watch-metadata ytd-badge-supported-renderer {
     display: none !important;
   }
@@ -305,8 +380,8 @@
     display: none !important;
   }
 
-  /* X Hides watch-page purchase button */
-  ytd-watch-flexy #purchase-button {
+  /* XX Hides the watch-page purchase button at its current owner-renderer location */
+  ytd-watch-metadata ytd-video-owner-renderer > #purchase-button {
     display: none !important;
   }
 
@@ -314,23 +389,28 @@
      Watch page hides
      -------------------------------------------------------------------------- */
 
-  /* X Hides related videos from appearing below the videoplayer when Sway creates a second window in the same workspace  */
-  #related {
+  /* XX Hides watch-page related videos */
+  ytd-watch-flexy #related {
     display: none !important;
   }
 
-  /* X Hides the list of other videos to the right of the videoplayer */
-  #secondary {
+  /* XX Hides the watch-page secondary column */
+  ytd-watch-flexy #secondary {
     display: none !important;
   }
 
-  /* X Hides the large description bubble below the videoplayer */
-  #bottom-row {
+  /* XX Hides the watch-page description row */
+  ytd-watch-metadata #bottom-row {
     display: none !important;
   }
 
-  /* X Hides the big bubble, below the videoplayer, that describes the channel's origins/funding */
+  /* XX Hides the watch-page channel-information row */
   ytd-watch-metadata #middle-row {
+    display: none !important;
+  }
+
+  /* XX Hides the watch-page playlist panel */
+  ytd-watch-flexy ytd-playlist-panel-renderer#playlist {
     display: none !important;
   }
 
@@ -338,53 +418,52 @@
      Player
      -------------------------------------------------------------------------- */
 
-  /* X Hides various videoplayer buttons */
-  .ytp-button.ytp-play-button,
-  .ytp-next-button.ytp-playlist-ui,
-  .ytp-button.ytp-prev-button,
-  .ytp-button.ytp-replay-button,
-  .ytp-button.ytp-fullscreen-button,
-  .ytp-button.ytp-subtitles-button,
-  .ytp-button.ytp-size-button {
+  /* XX Hides the specified videoplayer buttons without repeating the common .ytp-button qualifier */
+  .ytp-button:is(
+    .ytp-play-button,
+    .ytp-prev-button,
+    .ytp-replay-button,
+    .ytp-fullscreen-button,
+    .ytp-subtitles-button,
+    .ytp-size-button
+  ),
+  .ytp-next-button.ytp-playlist-ui {
     display: none !important;
   }
 
-  /* X Hides end-of-video gray "Hide"-button popup */
+  /* XX Hides the end-of-video gray "Hide"-button popup */
   .html5-video-player .ytp-ce-hide-button-container {
     display: none !important;
   }
 
-  /* X Time and chapter text. A separate :hover variant is unnecessary: these declarations already apply whether or not the controls are hovered */
-  #movie_player .ytp-left-controls :is(
-    .ytp-time-display,
-    .ytp-time-current,
-    .ytp-time-separator,
-    .ytp-time-duration,
-    .ytp-chapter-title,
-    .ytp-chapter-title-prefix,
-    .ytp-chapter-title-content,
-    span,
-    yt-formatted-string,
-    a
-  ) {
-    color: var(--ytc-player-white) !important;
-    -webkit-text-fill-color: var(--ytc-player-white) !important;
-    opacity: 1 !important;
+  /* XX Hides the transient central play/pause bezel */
+  .ytp-bezel {
+    display: none !important;
+  }
+
+  /* XX Colors the central play button's background plate */
+  .ytp-large-play-button-bg {
+    fill: var(--ytc-accent-solid) !important; /* #8a97bf */
+  }
+
+  /* X Time and chapter text; the two semantic containers and their descendants avoid the old element-by-element selector list */
+  #movie_player .ytp-left-controls :is(.ytp-time-display, .ytp-chapter-title) {
+    &, & * {
+      color: var(--ytc-player-white) !important;
+      -webkit-text-fill-color: var(--ytc-player-white) !important;
+      opacity: 1 !important;
+    }
   }
 
   /* X Videoplayer bottom-control button/icon colors */
-  #movie_player .ytp-chrome-controls :is(
-    .ytp-button,
-    .ytp-button *,
-    .ytp-button svg,
-    .ytp-button path,
-    .ytp-button use
-  ) {
-    color: var(--ytc-player-white) !important;
-    -webkit-text-fill-color: var(--ytc-player-white) !important;
-    fill: var(--ytc-player-white) !important;
-    opacity: 1 !important;
-    filter: none !important;
+  #movie_player .ytp-chrome-controls .ytp-button {
+    &, & * {
+      color: var(--ytc-player-white) !important;
+      -webkit-text-fill-color: var(--ytc-player-white) !important;
+      fill: var(--ytc-player-white) !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
   }
 
   /* X Grayscales watch-page videoplayer progress bar and buttons */
@@ -394,12 +473,12 @@
     filter: grayscale(100%) !important;
   }
 
-  /* X Removes progress-bar dot */
+  /* XX Removes the progress-bar scrubber dot */
   .ytp-scrubber-button {
     display: none !important;
   }
 
-  /* X Removes the progress-bar gradient by flattening it to one color (rendered gray by the grayscale rule above). In a user sheet, !important outranks all page rules regardless of specificity, so no higher-specificity variant of this selector is needed */
+  /* XX Flattens the progress bar to one color; the parent grayscale filter determines its rendered gray luminance */
   .ytp-play-progress {
     background: var(--ytc-progress-bar) !important;
   }
@@ -408,7 +487,7 @@
      Player menus
      -------------------------------------------------------------------------- */
 
-  /* X Forces watch-page settings-menu text and icons to --ytc-player-white. The [role] selectors and the "*" group cover every menu element, its descendants, and its hover states, so no separate base/hover/svg rules are needed */
+  /* X Forces watch-page settings-menu text and icons to --ytc-player-white; nesting covers each matched menu node and all descendants without duplicating the selector list */
   .html5-video-player :is(
     .ytp-settings-menu,
     .ytp-panel,
@@ -423,43 +502,31 @@
     [role="menuitem"],
     [role="menuitemcheckbox"],
     [role="menuitemradio"]
-  ),
-  .html5-video-player :is(
-    .ytp-settings-menu,
-    .ytp-panel,
-    .ytp-panel-menu,
-    .ytp-menuitem,
-    .ytp-menuitem-label,
-    .ytp-menuitem-content,
-    .ytp-menuitem-icon,
-    .ytp-menuitem-arrow,
-    .ytp-menuitem-toggle-checkbox,
-    [role="menu"],
-    [role="menuitem"],
-    [role="menuitemcheckbox"],
-    [role="menuitemradio"]
-  ) * {
-    color: var(--ytc-player-white) !important;
-    -webkit-text-fill-color: var(--ytc-player-white) !important;
-    fill: var(--ytc-player-white) !important;
-    opacity: 1 !important;
-    filter: none !important;
+  ) {
+    &, & * {
+      color: var(--ytc-player-white) !important;
+      -webkit-text-fill-color: var(--ytc-player-white) !important;
+      fill: var(--ytc-player-white) !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
   }
 
-  /* X Settings menu label/content/title text: catches menu-like containers that carry no [role] attribute */
-  .html5-video-player [class*="menu"] [class*="label"],
-  .html5-video-player [class*="menu"] [class*="label"] *,
-  .html5-video-player [class*="menu"] [class*="content"],
-  .html5-video-player [class*="menu"] [class*="content"] *,
-  .html5-video-player [class*="menu"] [class*="title"],
-  .html5-video-player [class*="menu"] [class*="title"] * {
-    color: var(--ytc-player-white) !important;
-    -webkit-text-fill-color: var(--ytc-player-white) !important;
-    opacity: 1 !important;
-    filter: none !important;
+  /* X Settings-menu text fallback for menu-like containers that carry no [role] attribute */
+  .html5-video-player [class*="menu"] :is(
+    [class*="label"],
+    [class*="content"],
+    [class*="title"]
+  ) {
+    &, & * {
+      color: var(--ytc-player-white) !important;
+      -webkit-text-fill-color: var(--ytc-player-white) !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
   }
 
-  /* X Hides right-click videoplayer context menu */
+  /* XX Hides the right-click videoplayer context menu */
   .ytp-contextmenu {
     display: none !important;
   }
@@ -468,210 +535,131 @@
      Like/dislike icons
      -------------------------------------------------------------------------- */
 
-  /* XX Keeps only the two native click targets; every YouTube-supplied surface is transparent */
-  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model,
-  ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model * {
-    background: transparent !important;
-    background-color: transparent !important;
-    background-image: none !important;
-    border-color: transparent !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    outline: 0 !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
-
-  /* XX Removes every decorative pseudo-element, including the capsule and its divider */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model *::before,
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model *::after {
-    content: none !important;
-    display: none !important;
-    background: none !important;
-    border: 0 !important;
-    box-shadow: none !important;
-  }
-
-  /* XX Removes YouTube's own glyphs, animations, labels, lighting, and feedback layers */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    yt-icon,
-    yt-animated-icon,
-    ytd-lottie-player,
-    lottie-player,
-    lottie-component,
-    svg,
-    canvas,
-    .yt-spec-icon-shape,
-    .ytIconShapeHost,
-    .yt-icon-shape,
-    [class*="lottie" i],
-    [class*="animated" i],
-    .yt-spec-button-shape-next__button-text-content,
-    .ytSpecButtonShapeNextButtonTextContent,
-    yt-light-shape,
-    [class*="lightShape" i],
-    yt-touch-feedback-shape,
-    .yt-spec-touch-feedback-shape,
-    [class*="touchFeedback" i]
-  ) {
-    display: none !important;
-  }
-
-  /* XX Keeps the two transparent native buttons clickable */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model,
-    yt-button-shape,
-    #button-shape,
-    button
-  ) {
-    display: inline-flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ) button {
-    position: relative !important;
-  }
-
-  /* XX Static custom thumbs. SVG backgrounds replace masks, so no solid square can appear */
+  /* X Like/dislike replacement: one scoped parent preserves the native click targets while removing YouTube's surfaces/glyphs and supplying the four custom thumb states */
   ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model {
     --ytc-thumb-outline-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
     --ytc-thumb-filled-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
     --ytc-thumb-outline-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
     --ytc-thumb-filled-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
-  }
 
-  /* XX Stable 24 px icon slots */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ) :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  ) {
-    position: relative !important;
-    display: inline-block !important;
-    width: 24px !important;
-    min-width: 24px !important;
-    height: 24px !important;
-    flex: 0 0 24px !important;
-  }
+    /* X Keeps only the two native click targets; every YouTube-supplied surface is transparent */
+    &, & * {
+      background: transparent !important;
+      border-color: transparent !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      outline: 0 !important;
+      backdrop-filter: none !important;
+    }
 
-  /* XX Outline thumb by default */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ) :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  )::before {
-    content: "" !important;
-    display: block !important;
-    position: absolute !important;
-    inset: 1.5px !important;
-    background: transparent var(--ytc-thumb-outline-accent) center / 21px 21px no-repeat !important;
-    border: 0 !important;
-    box-shadow: none !important;
-    pointer-events: none !important;
-  }
+    /* X Removes every decorative pseudo-element, including the capsule and its divider */
+    & * {
+      &::before, &::after {
+        content: none !important;
+      }
+    }
 
-  /* XX Filled thumb when selected */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ) button[aria-pressed="true"] :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  )::before {
-    background-image: var(--ytc-thumb-filled-accent) !important;
-  }
+    /* X Removes YouTube's own glyphs, animations, labels, lighting, and feedback layers */
+    & :is(
+      yt-icon,
+      yt-animated-icon,
+      ytd-lottie-player,
+      lottie-player,
+      lottie-component,
+      svg,
+      canvas,
+      .yt-spec-icon-shape,
+      .ytIconShapeHost,
+      .yt-icon-shape,
+      [class*="lottie" i],
+      [class*="animated" i],
+      .yt-spec-button-shape-next__button-text-content,
+      .ytSpecButtonShapeNextButtonTextContent,
+      yt-light-shape,
+      [class*="lightShape" i],
+      yt-touch-feedback-shape,
+      .yt-spec-touch-feedback-shape,
+      [class*="touchFeedback" i]
+    ) {
+      display: none !important;
+    }
 
-  /* XX Pale-blue outline on hover */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ):hover :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  )::before {
-    background-image: var(--ytc-thumb-outline-hover) !important;
-  }
+    /* X Stable 24 px icon slots */
+    & :is(like-button-view-model, dislike-button-view-model)
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon) {
+      position: relative !important;
+      display: inline-block !important;
+      width: 24px !important;
+      min-width: 24px !important;
+      height: 24px !important;
+      flex: 0 0 24px !important;
+    }
 
-  /* XX Pale-blue filled thumb when selected and hovered */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model :is(
-    like-button-view-model,
-    dislike-button-view-model
-  ):hover button[aria-pressed="true"] :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  )::before {
-    background-image: var(--ytc-thumb-filled-hover) !important;
-  }
+    /* X Outline thumb by default */
+    & :is(like-button-view-model, dislike-button-view-model)
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+      content: "" !important;
+      position: absolute !important;
+      inset: 1.5px !important;
+      background: var(--ytc-thumb-outline-accent) center / 21px 21px no-repeat !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      pointer-events: none !important;
+    }
 
-  /* XX Flips the custom thumb for dislike */
-  ytd-watch-metadata #top-level-buttons-computed
-  segmented-like-dislike-button-view-model
-  dislike-button-view-model :is(
-    .yt-spec-button-shape-next__icon,
-    .ytSpecButtonShapeNextIcon
-  )::before {
-    transform: scaleY(-1) !important;
+    /* X Filled thumb when selected */
+    & :is(like-button-view-model, dislike-button-view-model)
+    button[aria-pressed="true"]
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+      background-image: var(--ytc-thumb-filled-accent) !important;
+    }
+
+    /* X Pale-blue outline on hover */
+    & :is(like-button-view-model, dislike-button-view-model):hover
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+      background-image: var(--ytc-thumb-outline-hover) !important;
+    }
+
+    /* X Pale-blue filled thumb when selected and hovered */
+    & :is(like-button-view-model, dislike-button-view-model):hover
+    button[aria-pressed="true"]
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+      background-image: var(--ytc-thumb-filled-hover) !important;
+    }
+
+    /* X Flips the custom thumb for dislike */
+    & dislike-button-view-model
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+      transform: scaleY(-1) !important;
+    }
   }
 
   /* --------------------------------------------------------------------------
      Home/front page
      -------------------------------------------------------------------------- */
 
-  /* X Tries to hide frontpage music mixes */
-  ytd-rich-item-renderer:has(a#video-title-link[aria-label^="Mix"], a[href*="list=RD"]) {
-    display: none !important;
-  }
-
-  /* X Resets the page-manager left margin (applies site-wide) that YouTube reserves for the hidden guide sidebar */
-  ytd-page-manager {
-    margin-left: 0 !important;
-  }
-
-  /* X Centers frontpage content and shrinks it to 90% */
+  /* XX Centers frontpage content and caps it at 90% width */
   ytd-browse[page-subtype="home"] ytd-rich-grid-renderer {
-    margin-left: auto !important;
-    margin-right: auto !important;
+    margin-inline: auto !important;
     max-width: 90% !important;
   }
 
-  /* X Hide frontpage "explore" section */
-  ytd-browse[page-subtype="home"]
-  ytd-rich-section-renderer:has([title="Explore"]) {
+  /* X Hides the frontpage frosted header panel and topic chip bar */
+  ytd-app:has(ytd-browse[page-subtype="home"]:not([hidden])) #frosted-glass,
+  ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer {
     display: none !important;
   }
 
-  /* X Hides frontpage frosted header panel and topic chip bar */
-  #frosted-glass,
-  ytd-feed-filter-chip-bar-renderer {
-    display: none !important;
-  }
-
-  /* X Hides the frontpage rich sections (shorts) */
-  ytd-browse[page-subtype="home"] ytd-rich-grid-renderer ytd-rich-section-renderer {
+  /* XX Hides all frontpage rich sections, including Shorts and topic/featured shelves */
+  ytd-browse[page-subtype="home"] ytd-rich-section-renderer {
     display: none !important;
   }
 
   /* X Hides the frontpage "Notify me" text and bar below upcoming videos */
-  .ytLockupViewModelHost > .ytLockupViewModelMetadata > .ytLockupAttachmentsViewModelHost {
+  ytd-browse[page-subtype="home"]
+  :is(.yt-lockup-view-model__host, .ytLockupViewModelHost)
+  > :is(.yt-lockup-view-model__metadata, .ytLockupViewModelMetadata)
+  > :is(.yt-lockup-attachments-view-model__host, .ytLockupAttachmentsViewModelHost) {
     display: none !important;
   }
 
@@ -699,11 +687,13 @@
     outline-offset: 0 !important;
   }
 
-  /* X Hide frontpage channel names and view counts while preserving dates. The yt-lockup-view-model selectors rely on YouTube's current metadata order: first metadata span is the non-date field to hide */
-  ytd-browse[page-subtype="home"] yt-lockup-view-model :is(
-    .yt-lockup-metadata-view-model__metadata,
-    .ytLockupMetadataViewModelMetadata
-  ) span:first-of-type,
+  /* XX Hides current frontpage channel names and view counts while preserving dates; legacy byline selectors remain as renderer fallbacks */
+  ytd-browse[page-subtype="home"] yt-lockup-view-model
+  :is(.yt-content-metadata-view-model__metadata-text, .ytContentMetadataViewModelMetadataText):has(a),
+  ytd-browse[page-subtype="home"] yt-lockup-view-model
+  :is(.yt-content-metadata-view-model__metadata-text, .ytContentMetadataViewModelMetadataText):has(
+    + :is(.yt-content-metadata-view-model__delimiter, .ytContentMetadataViewModelDelimiter)
+  ),
   ytd-browse[page-subtype="home"] ytd-rich-item-renderer :is(
     #byline-container,
     #channel-name,
@@ -713,24 +703,44 @@
     display: none !important;
   }
 
-  /* X Resizes and dims frontpage dates and dots under videos */
-   ytd-browse[page-subtype="home"]
-   .ytLockupMetadataViewModelMetadata span {
+  /* XX Hides the author row on multi-channel frontpage cards, whose collaboration byline is plain text rather than a link */
+  ytd-browse[page-subtype="home"]
+  :is(ytd-rich-item-renderer, yt-lockup-view-model):has(
+    :is(yt-avatar-stack-view-model, .ytAvatarStackViewModelHost)
+  )
+  yt-content-metadata-view-model
+  > :is(.yt-content-metadata-view-model__metadata-row, .ytContentMetadataViewModelMetadataRow):first-child {
+    display: none !important;
+  }
+
+  /* XX Resizes and dims current frontpage metadata text and delimiters; hidden channel/view fields above remain non-rendered */
+  ytd-browse[page-subtype="home"] yt-lockup-view-model :is(
+    .yt-content-metadata-view-model__metadata-text,
+    .ytContentMetadataViewModelMetadataText,
+    .yt-content-metadata-view-model__delimiter,
+    .ytContentMetadataViewModelDelimiter
+  ) {
     font-size: 11px !important;
     opacity: 0.65 !important;
   }
 
-  /* X Hides fundraiser badge */
-  .ytBadgeShapeTypography.ytBadgeShapeCommerce.ytBadgeShapeHost {
+  /* XX Hides frontpage commerce badges across current class generations */
+  ytd-browse[page-subtype="home"] :is(
+    .yt-badge-shape--commerce,
+    .ytBadgeShapeCommerce
+  ) {
     display: none !important;
   }
 
-  /* X Hides channel avatars */
-  .ytLockupMetadataViewModelAvatar {
+  /* XX Hides frontpage channel avatars across current class generations */
+  ytd-browse[page-subtype="home"] :is(
+    .yt-lockup-metadata-view-model__avatar,
+    .ytLockupMetadataViewModelAvatar
+  ) {
     display: none !important;
   }
 
-  /* X Suppress frontpage hover preview, bottom-right-corner timestamp fade, and other animations */
+  /* X Suppresses hover playback/preview surfaces globally because YouTube can mount the preview player outside the active browse subtree */
   ytd-video-preview,
   ytd-moving-thumbnail-renderer,
   #preview,
@@ -750,16 +760,11 @@
     display: block !important;
     overflow: hidden !important;
     text-overflow: clip !important;
-    -webkit-line-clamp: unset !important;
-    line-clamp: unset !important;
     max-height: 2.6em !important;
   }
 
-  /* X Hides frontpage playlists */
-  ytd-browse[page-subtype="home"] :is(
-    ytd-rich-item-renderer,
-    ytd-rich-section-renderer
-  ):has(a[href*="list="]) {
+  /* XX Hides frontpage playlist cards; rich sections are already suppressed by the earlier rich-section rule */
+  ytd-browse[page-subtype="home"] ytd-rich-item-renderer:has(a[href*="list="]) {
     display: none !important;
   }
 
@@ -767,79 +772,163 @@
      Search page
      -------------------------------------------------------------------------- */
 
-  /* X YouTube search-page chipbar */
-
-  ytd-search {
-    --yt-search-chipbar-bg: var(--ytc-page-bg);
-
-    --yt-search-chip-bg: var(--ytc-page-bg);
-    --yt-search-chip-bg-hover: var(--ytc-hover-bg);
-
-    --yt-search-chip-text: var(--ytc-accent-solid);
-    --yt-search-chip-text-hover: var(--ytc-player-text);
-
-    --yt-search-chip-border: var(--ytc-chip-border);
-    --yt-search-chip-border-hover: var(--ytc-accent-solid);
-
-    --yt-search-chipbar-arrow-bg: var(--ytc-page-bg);
-    --yt-search-chipbar-arrow-text: var(--ytc-accent-solid);
-    --yt-search-chipbar-shadow: transparent;
+  /* XX Hides the Ask YouTube chip on the search-results filter bar */
+  ytd-search :is(
+    button[aria-label*="Ask YouTube" i],
+    #chip-shape-container:has(yt-animated-asset-view-model.ytAnimatedAssetViewModelHost)
+  ) {
+    display: none !important;
   }
 
-  /* X Sets color for main chipbar background/scroll area. Linked to prior codeblock */
+  /* XX Hides verified/artist badges from search-page author metadata, including collaboration bylines */
+  ytd-search :is(
+    .yt-content-metadata-view-model__metadata-row,
+    .ytContentMetadataViewModelMetadataRow
+  ):first-child :is(
+    .yt-content-metadata-view-model__icon,
+    .ytContentMetadataViewModelIcon,
+    .yt-core-attributed-string__image-element:not(img),
+    .ytAttributedStringImageElement,
+    .yt-core-attributed-string--inline-block-mod:has([role="img"]),
+    .ytAttributedStringInlineBlockMod:has([role="img"])
+  ),
+  ytd-search ytd-channel-name ytd-badge-supported-renderer {
+    display: none !important;
+  }
+
+  /* XX Removes focus outlines from search-filter chip controls */
+  ytd-search :is(
+    yt-chip-cloud-chip-renderer,
+    #chip-shape-container
+  ):is(:focus, :focus-visible),
+  ytd-search :is(
+    yt-chip-cloud-chip-renderer,
+    #chip-shape-container
+  ) :is(:focus, :focus-visible) {
+    outline: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* X Sets color for main chipbar background/scroll area */
   ytd-search yt-chip-cloud-renderer,
   ytd-search yt-chip-cloud-renderer #scroll-container,
   ytd-search yt-chip-cloud-renderer #chips {
-    background: var(--yt-search-chipbar-bg) !important;
+    background: var(--ytc-page-bg) !important;
     box-shadow: none !important;
   }
 
-  /* X Sets colors/border for individual chips. Linked to prior two codeblocks */
+  /* X Sets colors/border for individual chips */
   ytd-search yt-chip-cloud-chip-renderer {
-    background: var(--yt-search-chip-bg) !important;
-    color: var(--yt-search-chip-text) !important;
-    border: 1px solid var(--yt-search-chip-border) !important;
+    background: var(--ytc-page-bg) !important;
+    color: var(--ytc-accent-solid) !important;
+    border: 1px solid var(--ytc-chip-border) !important;
     box-shadow: none !important;
   }
 
-  /* X Sets color of chip text. Linked to prior three codeblocks. The #text selector is load-bearing: its id-level specificity is what beats the global accent rule so the chip text actually inherits the chip color */
-  ytd-search yt-chip-cloud-chip-renderer *,
-  ytd-search yt-chip-cloud-chip-renderer #text {
+  /* XX Makes chip descendants inherit the chip state color; the global :where() text baseline requires no specificity workaround */
+  ytd-search yt-chip-cloud-chip-renderer * {
     color: inherit !important;
   }
 
-  /* X Sets color of hovered chips. Linked to prior four codeblocks */
-  ytd-search yt-chip-cloud-chip-renderer:hover {
-    background: var(--yt-search-chip-bg-hover) !important;
-    color: var(--yt-search-chip-text-hover) !important;
-    border-color: var(--yt-search-chip-border-hover) !important;
+  /* XX Uses the same state styling for hovered and selected search chips */
+  ytd-search yt-chip-cloud-chip-renderer:is(:hover, [selected], [aria-selected="true"]) {
+    background: var(--ytc-hover-bg) !important;
+    color: var(--ytc-player-text) !important;
+    border-color: var(--ytc-accent-solid) !important;
   }
 
-  /* X Sets color of selected chip: identical to hover styling. Linked to prior five codeblocks */
-  ytd-search yt-chip-cloud-chip-renderer[chip-style="STYLE_DEFAULT"],
-  ytd-search yt-chip-cloud-chip-renderer[aria-selected="true"],
-  ytd-search yt-chip-cloud-chip-renderer[selected] {
-    background: var(--yt-search-chip-bg-hover) !important;
-    color: var(--yt-search-chip-text-hover) !important;
-    border-color: var(--yt-search-chip-border-hover) !important;
-  }
-
-  /* X Sets colors for left/right scroll arrow areas. Linked to prior six codeblocks */
+  /* X Sets colors for left/right scroll arrow areas */
   ytd-search yt-chip-cloud-renderer #left-arrow,
   ytd-search yt-chip-cloud-renderer #right-arrow,
   ytd-search yt-chip-cloud-renderer .arrow,
   ytd-search yt-chip-cloud-renderer tp-yt-paper-icon-button {
-    background: var(--yt-search-chipbar-arrow-bg) !important;
-    color: var(--yt-search-chipbar-arrow-text) !important;
+    background: var(--ytc-page-bg) !important;
+    color: var(--ytc-accent-solid) !important;
     box-shadow: none !important;
   }
 
-  /* X Removes edge fade/gradient shadows. Linked to prior seven codeblocks */
+  /* X Removes edge fade/gradient shadows */
   ytd-search yt-chip-cloud-renderer #left-arrow::after,
   ytd-search yt-chip-cloud-renderer #right-arrow::before,
   ytd-search yt-chip-cloud-renderer::before,
   ytd-search yt-chip-cloud-renderer::after {
-    background: var(--yt-search-chipbar-shadow) !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* X Gives search-result expandable metadata and chapter previews the channel-post surface */
+  ytd-search ytd-video-renderer :is(
+    #expandable-metadata,
+    ytd-expandable-metadata-renderer,
+    ytd-expandable-metadata-renderer > .ytd-expandable-metadata-renderer
+  ),
+  ytd-search ytd-video-renderer #expandable-metadata
+  ytd-horizontal-card-list-renderer {
+    background: var(--ytc-post-bg) !important;
+  }
+
+  /* XX Gives the current search-page grid-shelf Show-more/Show-less pill the channel-post surface and accent foreground */
+  ytd-search grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
+  .ytGridShelfViewModelGridShelfBottomButtonContainer {
+    background: transparent !important;
+  }
+
+  ytd-search grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
+  .ytGridShelfViewModelGridShelfBottomButtonContainer
+  :is(.ytSpecButtonViewModelHost, .yt-spec-button-view-model) {
+    background: var(--ytc-post-bg) !important;
+    border: 0 !important;
+    border-radius: 9999px !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    color: var(--ytc-accent) !important;
+    -webkit-text-fill-color: var(--ytc-accent) !important;
+  }
+
+  ytd-search grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
+  .ytGridShelfViewModelGridShelfBottomButtonContainer
+  :is(.ytSpecButtonViewModelHost, .yt-spec-button-view-model)
+  :is(button-view-model, yt-button-view-model, button, .yt-spec-button-shape-next, .ytSpecButtonShapeNextHost) {
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+
+  ytd-search grid-shelf-view-model.ytGridShelfViewModelHostHasBottomButton
+  .ytGridShelfViewModelGridShelfBottomButtonContainer
+  :is(.ytSpecButtonViewModelHost, .yt-spec-button-view-model) * {
+    color: inherit !important;
+    -webkit-text-fill-color: inherit !important;
+  }
+
+  /* XX Styles search-result chapter-carousel arrows like channel-profile carousel buttons without a physical border */
+  ytd-search ytd-video-renderer #expandable-metadata
+  ytd-horizontal-card-list-renderer :is(
+    .arrow.ytd-horizontal-card-list-renderer,
+    .ytd-horizontal-card-list-renderer[arrow]
+  ) {
+    background: var(--ytc-post-bg) !important;
+    border: 0 !important;
+    border-radius: 50% !important;
+    box-shadow: inset 0 0 0 1px var(--ytc-accent) !important;
+  }
+
+  ytd-search ytd-video-renderer #expandable-metadata
+  ytd-horizontal-card-list-renderer :is(
+    .arrow.ytd-horizontal-card-list-renderer,
+    .ytd-horizontal-card-list-renderer[arrow]
+  ) :is(
+    button,
+    yt-icon-button,
+    .yt-spec-button-shape-next,
+    .ytSpecButtonShapeNext
+  ) {
+    background: transparent !important;
+    border: 0 !important;
     box-shadow: none !important;
   }
 
@@ -867,83 +956,126 @@
     color: var(--ytc-page-bg) !important;
   }
 
-  /* X Removes the channel-profile self-description text */
-  .ytPageHeaderViewModelDescription {
+  /* X Removes the channel-profile self-description text across current page-header generations */
+  ytd-browse[page-subtype="channels"] :is(
+    .page-header-view-model-wiz__page-header-description,
+    .yt-page-header-view-model__page-header-description,
+    .ytPageHeaderViewModelDescription,
+    yt-description-preview-view-model
+  ) {
     display: none !important;
   }
 
-  /* X Sets background color for channel-profile posts */
-  ytd-post-renderer[uses-compact-lockup] {
+  /* XX Sets the channel-profile post background */
+  ytd-browse[page-subtype="channels"] ytd-post-renderer[uses-compact-lockup] {
     background-color: var(--ytc-post-bg) !important;
   }
 
-  /* X Sets colors for the channel-profile "Latest", "Popular", "Oldest", ect., buttons  */
+  /* XX Sets colors for inactive channel-profile sort chips */
   ytd-browse[page-subtype="channels"] .ytChipShapeInactive {
     background-color: transparent !important;
     color: var(--ytc-accent) !important;
+
+    & * {
+      color: inherit !important;
+    }
   }
 
-  /* X Sets subscribe-button background and font color when not yet subscribed. Deliberately unscoped: it restyles this filled-mono button style wherever it appears, chiefly the channel-profile subscribe button */
-  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled {
+  /* XX Sets subscribed-button colors across current and legacy channel-header generations; descendants inherit the state color despite the global text override */
+  ytd-browse[page-subtype="channels"]
+  :is(yt-subscribe-button-view-model, ytd-tabbed-page-header)
+  :is(
+    .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--tonal,
+    .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal
+  ) {
     background-color: var(--ytc-post-bg) !important;
     color: var(--ytc-accent) !important;
+
+    & * {
+      color: inherit !important;
+    }
+
+    &:hover {
+      color: var(--ytc-player-text) !important;
+    }
   }
 
-  /* X Sets hover colors. Linked to prior codeblock */
-  .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled:hover {
-    background-color: var(--ytc-post-bg) !important;
-    color: var(--ytc-player-text) !important;
+  /* X Colors only the icon subtree of the channel-page "Personalized" subscription state */
+  ytd-browse[page-subtype="channels"] [aria-label*="personalized" i] :is(
+    .yt-spec-button-shape-next__icon,
+    .yt-spec-button-shape-next__secondary-icon,
+    .ytSpecButtonShapeNextIcon,
+    .ytSpecButtonShapeNextSecondaryIcon
+  ) {
+    &, & * { fill: var(--ytc-accent-solid) !important; }
   }
 
-  /* X Sets channel-profile subscribe button background and font color when subscribed */
-  ytd-tabbed-page-header .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal {
-    background-color: var(--ytc-post-bg) !important;
-    color: var(--ytc-accent) !important;
+  /* XX Sets channel-page tab text color across current tab generations */
+  ytd-browse[page-subtype="channels"] :is(
+    .yt-tab-shape-wiz__tab,
+    .yt-tab-shape__tab,
+    .ytTabShapeTab
+  ) {
+    &, & * {
+      color: var(--ytc-accent) !important;
+    }
   }
 
-  /* X Sets hover colors. Linked to prior codeblock */
-  ytd-tabbed-page-header .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextTonal:hover {
-    background-color: var(--ytc-post-bg) !important;
-    color: var(--ytc-player-text) !important;
+  /* XX Sets selected channel-page tab text color */
+  ytd-browse[page-subtype="channels"] :is(
+    .yt-tab-shape-wiz__tab--tab-selected,
+    .yt-tab-shape__tab--tab-selected,
+    .ytTabShapeTabSelected
+  ) {
+    &, & * {
+      color: var(--ytc-player-text) !important;
+    }
   }
 
-  /* X Sets the color for the button-bar tab text  */
-  ytd-tabbed-page-header .ytTabShapeTab {
-    color: var(--ytc-accent) !important;
-  }
-
-  /* X Sets the color for the button-bar tab text when the tab is selected  */
-  ytd-tabbed-page-header .ytTabShapeTabSelected {
-    color: var(--ytc-player-text) !important;
-  }
-
-  /* X Sets color of the panel behind the channel-profile name and subscribe button */
-  #page-header.ytd-tabbed-page-header {
+  /* XX Sets the channel-profile header-panel background */
+  ytd-browse[page-subtype="channels"] #page-header {
     background-color: var(--ytc-page-bg) !important;
   }
 
-  /* X Sets the background color for the button bar at the top of the channel-profile */
-  #tabs-inner-container.ytd-tabbed-page-header {
+  /* XX Sets the channel-profile tab-bar background across current tab generations */
+  ytd-browse[page-subtype="channels"] :is(
+    #tabs-inner-container,
+    yt-tab-group-shape
+  ) {
     background-color: var(--ytc-page-bg) !important;
   }
 
-  /* X Hides channel-profile giant avatar */
-  .ytDecoratedAvatarViewModelHost {
+  /* X Hides only the giant channel-profile avatar; card/video avatars elsewhere on the channel page remain untouched */
+  ytd-browse[page-subtype="channels"] :is(
+    #page-header,
+    yt-page-header-renderer
+  ) yt-avatar-shape:has(:is(
+    .yt-spec-avatar-shape__button--button-giant,
+    .yt-spec-avatar-shape--avatar-size-giant,
+    .ytSpecAvatarShapeButtonGiant,
+    .ytSpecAvatarShapeAvatarSizeGiant
+  )) {
     display: none !important;
   }
 
-  /* X Hides a bit of text in the channel-profile header */
-  .ytPageHeaderViewModelAttribution {
+  /* XX Hides channel-profile attribution/links via the current semantic view-model element, with the legacy attribution class retained as fallback */
+  ytd-browse[page-subtype="channels"] yt-attribution-view-model,
+  ytd-browse[page-subtype="channels"] .ytPageHeaderViewModelAttribution {
     display: none !important;
   }
 
-  /* X Hides channel-profile banner */
-  #page-header-banner {
+  /* X Hides channel-profile banners across current page-header generations */
+  ytd-browse[page-subtype="channels"] :is(
+    #page-header-banner,
+    .page-header-banner,
+    .yt-image-banner-view-model-wiz--inset,
+    .ytImageBannerViewModelInset
+  ) {
     display: none !important;
   }
 
-  /* X Hides channel-profile shoutout to paying subscribers */
-  ytd-recognition-shelf-renderer {
+  /* XX Hides the channel-profile recognition shelf */
+  ytd-browse[page-subtype="channels"] ytd-recognition-shelf-renderer {
     display: none !important;
   }
 
@@ -961,20 +1093,15 @@
     border: 1px solid var(--ytc-accent) !important;
   }
 
-  /* X Prevents 3-second animated-thumbnail (animated-WebP) hover previews wherever YouTube swaps them in, including channel profiles */
-  img[src*="/an_webp/"] {
-    display: none !important;
-  }
-
   /* --------------------------------------------------------------------------
      Shorts
      -------------------------------------------------------------------------- */
 
-  /* X Hides the Shorts metadata panel */
-  .ytReelPlayerOverlayViewModelMetadataContainerMetapanel,
-
-  /* X Hides the Shorts right-side up-down navigation container */
-  .ytd-shorts.navigation-container {
+  /* XX Hides the Shorts metadata panel and right-side navigation only within the Shorts page */
+  ytd-shorts :is(
+    .ytReelPlayerOverlayViewModelMetadataContainerMetapanel,
+    .ytd-shorts.navigation-container
+  ) {
     display: none !important;
   }
 
@@ -988,117 +1115,83 @@
     background: var(--ytc-popup-bg) !important;
   }
 
+  /* XX Makes the dismissal-reason dialog's selected checkbox black, including its ripple */
+  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer tp-yt-paper-checkbox {
+    --paper-checkbox-checked-color: #000000 !important;
+    --paper-checkbox-checked-ink-color: #000000 !important;
+  }
+
+  /* XX Makes the dismissal-reason dialog's Submit button black */
+  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer #submit button {
+    background: #000000 !important;
+  }
+
   /* --------------------------------------------------------------------------
-     Final hover overrides
+     Cross-page cards and interaction states
      -------------------------------------------------------------------------- */
 
-/* X Card-title hover color on home, channel, search, and Shorts pages */
-:is(ytd-browse[page-subtype="home"], ytd-browse[page-subtype="channels"], ytd-search, ytd-shorts)
-:is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer,
-    ytd-playlist-renderer, ytd-channel-renderer, ytd-reel-item-renderer, ytd-reel-video-renderer,
-    yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model, .ytShortsLockupViewModelHost
-):hover:not(:has(:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
-    .ytLockupMenuButtonViewModelHost, button-view-model, button, tp-yt-paper-icon-button):hover))
-:is(.yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle,
-    .yt-shorts-lockup-view-model__title, .ytShortsLockupViewModelTitle,
-    .ytShortsLockupViewModelEntityTitle, #video-title, #video-title-link) {
-  color: var(--ytc-player-text) !important;
-  -webkit-text-fill-color: var(--ytc-player-text) !important;
-}
-
-/* X Watch-page channel-name hover color */
-ytd-watch-flexy[video-id] ytd-watch-metadata #owner
-:is(ytd-channel-name, #channel-name, #text, a, yt-formatted-string,
-    yt-attributed-string, .yt-core-attributed-string):hover {
-  &, & * {
+  /* X Card-title hover color on home, channel, search, and Shorts pages */
+  :is(ytd-browse[page-subtype="home"], ytd-browse[page-subtype="channels"], ytd-search, ytd-shorts)
+  :is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer,
+      ytd-playlist-renderer, ytd-channel-renderer, ytd-reel-item-renderer, ytd-reel-video-renderer,
+      yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model, .ytShortsLockupViewModelHost
+  ):hover:not(:has(:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
+      .ytLockupMenuButtonViewModelHost, button-view-model, button, tp-yt-paper-icon-button):hover))
+  :is(.yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle,
+      .yt-shorts-lockup-view-model__title, .ytShortsLockupViewModelTitle,
+      .ytShortsLockupViewModelEntityTitle, #video-title, #video-title-link) {
     color: var(--ytc-player-text) !important;
     -webkit-text-fill-color: var(--ytc-player-text) !important;
   }
-}
 
-/* X Channel/search bylines: accent by default, player-text on hover. Unset --_byline
-   falls back to accent; :hover flips it, replacing the old full-scaffold hover rule */
-:is(ytd-browse[page-subtype="channels"], ytd-search)
-:is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer,
-    ytd-reel-item-renderer, ytd-reel-video-renderer, yt-shorts-lockup-view-model,
-    ytm-shorts-lockup-view-model, .ytShortsLockupViewModelHost)
-:is(ytd-channel-name, #channel-name, #text.ytd-channel-name, a.yt-simple-endpoint.ytd-channel-name,
-    :is(.yt-lockup-metadata-view-model__metadata, .ytLockupMetadataViewModelMetadata) a) {
-  &, & * {
-    color: var(--_byline, var(--ytc-accent)) !important;
-    -webkit-text-fill-color: var(--_byline, var(--ytc-accent)) !important;
-  }
-  &:hover { --_byline: var(--ytc-player-text); }
-}
-
-/* X Frontpage three-dot menu-button hover; complements the :not(:has(...)) exclusion above */
-ytd-browse[page-subtype="home"]
-:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
-    .ytLockupMenuButtonViewModelHost, button-view-model):hover {
-  &, & * { color: var(--ytc-player-text) !important; }
-}
-
-/* X Shorts cards: accent by default, player-text on card hover unless a menu/button is hovered */
-:is(ytd-browse[page-subtype="home"], ytd-browse[page-subtype="channels"], ytd-search, ytd-shorts)
-:is(ytd-rich-item-renderer, ytd-reel-item-renderer, ytd-reel-video-renderer, ytd-grid-video-renderer,
-    yt-lockup-view-model, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model,
-    shorts-lockup-view-model, [class*="shortsLockup" i]):has(a[href*="/shorts/"]) {
-  :is(a[href*="/shorts/"], yt-formatted-string, yt-attributed-string, .yt-core-attributed-string,
-      [class*="title" i], [class*="metadata" i], [class*="subhead" i]) {
+  /* X Watch-page channel-name hover color */
+  ytd-watch-flexy[video-id] ytd-watch-metadata #owner
+  :is(ytd-channel-name, #channel-name, #text, a, yt-formatted-string,
+      yt-attributed-string, .yt-core-attributed-string):hover {
     &, & * {
-      color: var(--_shorts, var(--ytc-accent)) !important;
-      -webkit-text-fill-color: var(--_shorts, var(--ytc-accent)) !important;
+      color: var(--ytc-player-text) !important;
+      -webkit-text-fill-color: var(--ytc-player-text) !important;
     }
   }
-  &:hover:not(:has(:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
-      .ytLockupMenuButtonViewModelHost, button-view-model, button, tp-yt-paper-icon-button):hover)) {
-    --_shorts: var(--ytc-player-text);
-  }
-}
 
-  /* --------------------------------------------------------------------------
-     Miscellaneous late additions
-     -------------------------------------------------------------------------- */
-
-/* X Colors the central play button's background plate */
-.ytp-large-play-button-bg {
-  fill: var(--ytc-accent-solid) !important; /* #8a97bf */
-}
-
-  /* X Hides the transient big circular black-and-white play/pause buttons that appear on a video when it's clicked */
-  .ytp-bezel {
-    display: none !important;
+  /* X Channel/search bylines: accent by default, player-text on hover. Unset --_byline
+     falls back to accent; :hover flips it, replacing the old full-scaffold hover rule */
+  :is(ytd-browse[page-subtype="channels"], ytd-search)
+  :is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-video-renderer, ytd-grid-video-renderer,
+      ytd-reel-item-renderer, ytd-reel-video-renderer, yt-shorts-lockup-view-model,
+      ytm-shorts-lockup-view-model, .ytShortsLockupViewModelHost)
+  :is(ytd-channel-name, #channel-name, #text.ytd-channel-name, a.yt-simple-endpoint.ytd-channel-name,
+      :is(.yt-lockup-metadata-view-model__metadata, .ytLockupMetadataViewModelMetadata) a) {
+    &, & * {
+      color: var(--_byline, var(--ytc-accent)) !important;
+      -webkit-text-fill-color: var(--_byline, var(--ytc-accent)) !important;
+    }
+    &:hover { --_byline: var(--ytc-player-text); }
   }
 
-  /* X Hides the verified badge beside channel names and removes the extra space created by the badge */
-  .ytAttributedStringLinkCallToActionColor.ytAttributedStringLink > span.ytAttributedStringLinkInheritColor > .ytAttributedStringInlineBlockMod {
-    display: none !important;
+  /* X Frontpage three-dot menu-button hover; complements the :not(:has(...)) exclusion above */
+  ytd-browse[page-subtype="home"]
+  :is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
+      .ytLockupMenuButtonViewModelHost, button-view-model):hover {
+    &, & * { color: var(--ytc-player-text) !important; }
   }
 
-  /* X Hides the playlist queue panel on the video playback page. */
-  #playlist > .ytd-playlist-panel-renderer.style-scope {
-    display: none !important;
+  /* X Shorts cards: accent by default, player-text on card hover unless a menu/button is hovered */
+  :is(ytd-browse[page-subtype="home"], ytd-browse[page-subtype="channels"], ytd-search, ytd-shorts)
+  :is(ytd-rich-item-renderer, ytd-reel-item-renderer, ytd-reel-video-renderer, ytd-grid-video-renderer,
+      yt-lockup-view-model, yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model,
+      shorts-lockup-view-model, [class*="shortsLockup" i]):has(a[href*="/shorts/"]) {
+    :is(a[href*="/shorts/"], yt-formatted-string, yt-attributed-string, .yt-core-attributed-string,
+        [class*="title" i], [class*="metadata" i], [class*="subhead" i]) {
+      &, & * {
+        color: var(--_shorts, var(--ytc-accent)) !important;
+        -webkit-text-fill-color: var(--_shorts, var(--ytc-accent)) !important;
+      }
+    }
+    &:hover:not(:has(:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
+        .ytLockupMenuButtonViewModelHost, button-view-model, button, tp-yt-paper-icon-button):hover)) {
+      --_shorts: var(--ytc-player-text);
+    }
   }
-
-  /* X Hides buttons embedded within contextual information panels */
-  .ytInfoPanelOverviewViewModelHostButton.ytButtonOrAnchorButton.ytButtonOrAnchorHost {
-    display: none !important;
-  }
-
-/* X Catches and colors the "Personalized" state of the channel-page subscribe button */
-ytd-browse[page-subtype="channels"] :is(
-  [aria-label*="personalized" i]
-) * {
-  fill: var(--ytc-accent-solid) !important;
-}
-
-/* Reverts watch-page videoplayer to prior setting for space below the videoplayer */
-ytd-watch-flexy[video-id] {
-  --ytd-watch-flexy-space-below-player: 136px !important;
-}
-
-#title-row {
-    display: none !important;
-}
 
 }
