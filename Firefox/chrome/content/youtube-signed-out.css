@@ -1,0 +1,98 @@
+/* YouTube signed-out home */
+
+@-moz-document url("https://www.youtube.com/") {
+
+  #masthead:has(a[aria-label="Sign in"]) {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: var(--ytc-page-bg, #010305) !important;
+    z-index: 2147483647 !important;
+    pointer-events: none !important;
+  }
+
+  #masthead:has(a[aria-label="Sign in"]) * {
+    visibility: hidden !important;
+  }
+
+  /* Keeps the fixed sign-in control relative to the viewport rather than masthead wrappers. */
+  :is(
+    ytd-masthead:has(#masthead a[aria-label="Sign in"]),
+    #masthead:has(a[aria-label="Sign in"]),
+    #masthead:has(a[aria-label="Sign in"]) *:has(a[aria-label="Sign in"])
+  ) {
+    transform: none !important;
+    filter: none !important;
+    perspective: none !important;
+    contain: none !important;
+    overflow: visible !important;
+    clip-path: none !important;
+  }
+
+  #masthead a[aria-label="Sign in"] {
+    visibility: visible !important;
+    position: fixed !important;
+    top: 50vh !important;
+    left: 50vw !important;
+    transform: translate(-50%, -50%) !important;
+
+    display: grid !important;
+    place-items: center !important;
+
+    width: 112px !important;
+    min-width: 112px !important;
+    max-width: 112px !important;
+    height: 42px !important;
+    min-height: 42px !important;
+    max-height: 42px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: var(--ytc-post-bg, #0f0f0f) !important;
+    border: 0 !important;
+    border-radius: 10px !important;
+    box-shadow:
+      inset 0 0 0 1px var(--ytc-chip-border, #1a1d28),
+      0 8px 28px rgb(0 0 0 / 28%) !important;
+
+    color: var(--ytc-accent, #8a97bfe6) !important;
+    text-decoration: none !important;
+    font: 500 14px/1 system-ui, sans-serif !important;
+    letter-spacing: 0.015em !important;
+
+    pointer-events: auto !important;
+    cursor: pointer !important;
+
+    transition:
+      background-color 120ms ease,
+      color 120ms ease,
+      box-shadow 120ms ease !important;
+  }
+
+  #masthead a[aria-label="Sign in"] * {
+    display: none !important;
+  }
+
+  #masthead a[aria-label="Sign in"]::before {
+    content: "Sign in" !important;
+  }
+
+  #masthead a[aria-label="Sign in"]:hover {
+    background: var(--ytc-hover-bg, #080a10) !important;
+    color: var(--ytc-player-text, #c7d0ea) !important;
+    box-shadow:
+      inset 0 0 0 1px var(--ytc-accent-solid, #8a97bf),
+      0 10px 34px rgb(0 0 0 / 36%) !important;
+  }
+
+  #masthead a[aria-label="Sign in"]:focus-visible {
+    outline: 0 !important;
+    color: var(--ytc-player-text, #c7d0ea) !important;
+    box-shadow:
+      inset 0 0 0 1px var(--ytc-accent-solid, #8a97bf),
+      0 0 0 3px rgb(138 151 191 / 14%),
+      0 10px 34px rgb(0 0 0 / 36%) !important;
+  }
+}
