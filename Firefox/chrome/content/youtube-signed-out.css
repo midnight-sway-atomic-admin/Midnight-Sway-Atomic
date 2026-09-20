@@ -1,4 +1,4 @@
-/* YouTube signed-out home */
+/* Provides a simple sign-in button on YouTube's home page when you are signed out */
 
 @-moz-document url("https://www.youtube.com/") {
 
