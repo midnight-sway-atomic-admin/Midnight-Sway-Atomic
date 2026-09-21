@@ -4,7 +4,7 @@ A simple screen and audio, or screen, or audio recorder for Fedora Sway Atomic.
 
 To use it:
 
-1. Remove the locked off-switch for the microphone in the Firefox "policy.json" file (the "policy.json" file has been updated).
+1. Remove the locked off-switch for the microphone in the Firefox "policies.json" file (the "policies.json" file has been updated).
 2. Open the app either by typing "python3 [absolute path to the recorder.py file]" in your terminal; or place recorder.py in .config/recorder and launch it via rofi (see the updated "rofi-apps" bin file).
 3. For screen recording, select your display when Firefox asks.
 4. For system audio, choose the “Monitor of …” audio source.
