@@ -22,4 +22,4 @@ Firefox policy permits microphone and screen-sharing access only for this local 
 
 Temporary recording data is stored privately and removed after use or when the app closes. The local Recorder interface is protected by a random access token and restrictive browser security settings.
 
-Closing the Recorder tab normally shuts down its local background helper immediately. If Firefox does not deliver the close notification, the helper detects that the page is gone and shuts itself down automatically within about three seconds. Reopening the Recorder during that brief interval will wait for the previous helper to release its local port rather than failing immediately.
+Closing the Recorder tab shuts down its local background helper immediately. If Firefox does not deliver the close notification, the helper detects that the page is gone and shuts itself down automatically within about three seconds. Reopening the Recorder during that brief interval will wait for the previous helper to release its local port rather than failing immediately.
