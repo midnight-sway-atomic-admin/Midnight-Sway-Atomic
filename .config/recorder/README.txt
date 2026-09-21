@@ -2,7 +2,9 @@ Recorder
 
 A simple screen-and-audio, or screen-only, or audio-only recorder for Fedora Sway Atomic.
 
-To use it:
+N.B.: there is currently a Firefox bug -- not a bug in the app -- that occurs when privacy.resistFingerprinting in about:config is set to true: pure audio recorded by the app will be heavily distorted if it is music; speech audio is not affected. So when you need to record a song with the audio only mode, you must temporarily set privacy.resistFingerprinting to false.  
+
+To use the app:
 
 1. Use the updated Firefox "policies.json" file. It keeps camera and screen-sharing requests blocked and locked for ordinary websites, while allowing screen sharing only for the Recorder at http://127.0.0.1:27391. Microphone requests remain enabled so Firefox can show its normal audio-device chooser.
 
