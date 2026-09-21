@@ -28,4 +28,4 @@ Firefox policy permits screen sharing only for the local Recorder address; new s
 
 Temporary recording data is stored privately and removed after use or when the app closes. The local Recorder interface is protected by a random access token and restrictive browser security settings.
 
-Closing the Recorder tab normally notifies the local background helper to shut down. If Firefox does not deliver that close notification, the helper detects the missing one-second heartbeats and shuts itself down automatically within about ten seconds.
+Closing the Recorder tab notifies the local background helper to shut down. If Firefox does not deliver that close notification, the helper detects the missing one-second heartbeats and shuts itself down automatically within about ten seconds.
