@@ -9,7 +9,7 @@ choice="$(printf '%s\n' \
   "Nano" \
   "GIMP" \
   "Wlsunset" \
-  "Bluetooth"
+  "Bluetooth" \
   "Recorder" | rofi -dmenu -i -p "Apps")"
 
 printf 'choice=%q\n' "$choice" >> "$logfile"
