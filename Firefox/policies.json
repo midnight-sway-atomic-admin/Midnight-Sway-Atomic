@@ -7,27 +7,26 @@
     "DisablePrivateBrowsing": true,
     "DisableProfileImport": true,
     "DisableProfileRefresh": true,
-
     "DisableSecurityBypass": {
       "InvalidCertificate": true,
       "SafeBrowsing": true
     },
-
     "HttpsOnlyMode": "force_enabled",
-
     "BrowserDataBackup": {
       "AllowBackup": false,
       "AllowRestore": false
     },
-
     "Permissions": {
       "Camera": {
         "BlockNewRequests": true,
         "Locked": true
       },
       "Microphone": {
-        "BlockNewRequests": false,
-        "Locked": false
+        "Allow": [
+          "http://127.0.0.1:27391"
+        ],
+        "BlockNewRequests": true,
+        "Locked": true
       },
       "Location": {
         "BlockNewRequests": true,
@@ -46,6 +45,9 @@
         "Locked": true
       },
       "ScreenShare": {
+        "Allow": [
+          "http://127.0.0.1:27391"
+        ],
         "BlockNewRequests": true,
         "Locked": true
       }
