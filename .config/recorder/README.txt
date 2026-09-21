@@ -4,10 +4,10 @@ A simple screen and audio, screen-only, or audio-only recorder for Fedora Sway A
 
 To use it:
 
-1. Use the updated Firefox "policies.json" file. It keeps microphone and screen-sharing requests blocked and locked for ordinary websites while allowing them only for the Recorder at http://127.0.0.1:27391.
+1. Use the updated Firefox "policies.json" file. It keeps camera and screen-sharing requests blocked and locked for ordinary websites, while allowing screen sharing only for the Recorder at http://127.0.0.1:27391. Microphone requests remain enabled so Firefox can show its normal audio-device chooser.
 2. Open the app either by typing "python3 [absolute path to the recorder.py file]" in your terminal, or place recorder.py in .config/recorder and launch it via rofi (see the updated "rofi-apps" bin file).
 3. For screen recording, select your display when Firefox asks.
-4. For system audio, choose the “Monitor of …” audio source.
+4. For system audio, choose the “Monitor of …” audio source in Firefox's audio-device popup.
 5. Click Stop when finished. The recording downloads automatically.
 
 Recordings are saved as WebM files.
@@ -18,8 +18,8 @@ Recorder works entirely on your computer. It does not require an Internet connec
 
 The app communicates only through the fixed local address http://127.0.0.1:27391 on your own machine. Recordings are captured by Firefox, processed locally, and saved directly to your computer.
 
-Firefox policy permits microphone and screen-sharing access only for this local Recorder address; new requests from ordinary websites remain blocked and locked. Camera access is disabled.
+Firefox policy permits screen sharing only for the local Recorder address; new screen-sharing requests from ordinary websites remain blocked and locked. Camera access is disabled. Microphone requests are not globally blocked or locked because Firefox must be allowed to show its normal audio-device chooser so you can select the “Monitor of …” system-audio source.
 
 Temporary recording data is stored privately and removed after use or when the app closes. The local Recorder interface is protected by a random access token and restrictive browser security settings.
 
-Closing the Recorder tab shuts down its local background helper immediately. If Firefox does not deliver the close notification, the helper detects that the page is gone and shuts itself down automatically within about three seconds. Reopening the Recorder during that brief interval will wait for the previous helper to release its local port rather than failing immediately.
+Closing the Recorder tab normally notifies the local background helper to shut down. If Firefox does not deliver that close notification, the helper detects the missing one-second heartbeats and shuts itself down automatically within about ten seconds.
