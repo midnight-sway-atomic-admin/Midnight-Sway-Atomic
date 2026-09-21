@@ -1,6 +1,6 @@
 Recorder
 
-A simple screen and audio, screen-only, or audio-only recorder for Fedora Sway Atomic.
+A simple screen-and-audio, or screen-only, or audio-only recorder for Fedora Sway Atomic.
 
 To use it:
 
