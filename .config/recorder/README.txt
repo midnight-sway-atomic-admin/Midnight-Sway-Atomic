@@ -5,9 +5,13 @@ A simple screen and audio, screen-only, or audio-only recorder for Fedora Sway A
 To use it:
 
 1. Use the updated Firefox "policies.json" file. It keeps camera and screen-sharing requests blocked and locked for ordinary websites, while allowing screen sharing only for the Recorder at http://127.0.0.1:27391. Microphone requests remain enabled so Firefox can show its normal audio-device chooser.
+
 2. Open the app either by typing "python3 [absolute path to the recorder.py file]" in your terminal, or place recorder.py in .config/recorder and launch it via rofi (see the updated "rofi-apps" bin file).
+
 3. For screen recording, select your display when Firefox asks.
+
 4. For system audio, choose the “Monitor of …” audio source in Firefox's audio-device popup.
+
 5. Click Stop when finished. The recording downloads automatically.
 
 Recordings are saved as WebM files.
