@@ -9,7 +9,8 @@ choice="$(printf '%s\n' \
   "Nano" \
   "GIMP" \
   "Wlsunset" \
-  "Bluetooth" | rofi -dmenu -i -p "Apps")"
+  "Bluetooth"
+  "Recorder" | rofi -dmenu -i -p "Apps")"
 
 printf 'choice=%q\n' "$choice" >> "$logfile"
 
@@ -36,6 +37,10 @@ case "$choice" in
 
   "Bluetooth")
     GTK_THEME=blueman blueman-manager >> "$logfile" 2>&1 &
+    ;;
+
+  "Recorder")
+    sh -c 'exec python3 "$HOME/.config/recorder/recorder.py"' >> "$logfile" 2>&1 &
     ;;
 
   "")
