@@ -22,11 +22,8 @@
         "Locked": true
       },
       "Microphone": {
-        "Allow": [
-          "http://127.0.0.1:27391"
-        ],
-        "BlockNewRequests": true,
-        "Locked": true
+        "BlockNewRequests": false,
+        "Locked": false
       },
       "Location": {
         "BlockNewRequests": true,
