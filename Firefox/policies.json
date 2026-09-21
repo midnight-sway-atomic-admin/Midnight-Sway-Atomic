@@ -25,10 +25,6 @@
         "BlockNewRequests": true,
         "Locked": true
       },
-      "Microphone": {
-        "BlockNewRequests": true,
-        "Locked": true
-      },
       "Location": {
         "BlockNewRequests": true,
         "Locked": true
