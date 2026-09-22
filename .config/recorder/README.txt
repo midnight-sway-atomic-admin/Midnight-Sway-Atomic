@@ -1,31 +1,117 @@
 Recorder
 
-A simple screen-and-audio, or screen-only, or audio-only recorder for Fedora Sway Atomic.
+A simple screen-and-system-audio, screen-only, or audio-only recorder for
+Fedora Sway Atomic. Firefox captures the media; a local Python helper handles
+temporary files and prepares the download.
 
-Note: there is currently a Firefox bug -- not a bug in the app -- that occurs when privacy.resistFingerprinting in about:config is set to true: pure audio recorded by the app will be heavily distorted if it is music; speech audio is not affected. So when you need to record a song with either the screen-and-audio mode or the audio-only mode, you must temporarily set privacy.resistFingerprinting to false.  
+Requirements
 
-To use the app:
+The Python helper uses only the standard library. The app also requires:
 
-1. Use the updated Firefox "policies.json" file. It keeps camera and screen-sharing requests blocked and locked for ordinary websites, while allowing screen sharing only for the Recorder at http://127.0.0.1:27391. Microphone requests remain enabled so Firefox can show its normal audio-device chooser.
+- Python 3.
+- Flatpak at /usr/bin/flatpak and Firefox installed as org.mozilla.firefox.
+- FFmpeg at /usr/bin/ffmpeg.
+- Working PipeWire audio and Wayland screen sharing through the desktop
+  portals.
 
-2. Open the app either by typing "python3 [absolute path to the recorder.py file]" in your terminal, or place recorder.py in .config/recorder and launch it via rofi (see the updated "rofi-apps" bin file).
+These dependencies must be available; Recorder does not install them.
 
-3. For screen recording, select your display when Firefox asks.
+Firefox audio note
 
-4. For system audio, choose the “Monitor of …” audio source in Firefox's audio-device popup.
+With privacy.resistFingerprinting set to true in about:config, Firefox can
+ignore Recorder's requests to disable echo cancellation, noise suppression,
+and automatic gain control. This can especially distort recorded music. Speech can also
+be affected, but it has not been in my tests. Mozilla tracks related behavior in bug 2036218 [1]; its effects
+can depend on the Firefox version and audio setup.
 
-5. Click Stop when finished. The recording downloads automatically.
+If you encounter musical distortion for screen-only or audio-only recording, stop recording, temporarily set
+privacy.resistFingerprinting to false, and relaunch Recorder before recording
+again. Restore the setting afterwards. Disabling it reduces fingerprinting
+protection across that Firefox profile, including other websites open in it.
 
-Recordings are saved as WebM files.
+Development
 
-Security and privacy:
+The intended feature set is complete. Future maintenance is expected to focus
+on bug fixes and compatibility.
 
-Recorder works entirely on your computer. It does not require an Internet connection, upload recordings, or send audio or video to any remote service.
+To use the app
 
-The app communicates only through the fixed local address http://127.0.0.1:27391 on your own machine. Recordings are captured by Firefox, processed locally, and saved directly to your computer.
+1. If you use a restrictive Firefox policies.json, ensure that it permits
+   screen-sharing requests from http://127.0.0.1:27391 and lets Firefox show
+   its normal audio-input chooser. The intended policy setup blocks and
+   locks new camera and screen-sharing requests, adds this local origin as
+   the screen-sharing exception, and leaves microphone requests available.
+   Check the active configuration in about:policies in the Flatpak Firefox
+   used by Recorder [2]. Recorder does not install or change these policies.
 
-Firefox policy permits screen sharing only for the local Recorder address; new screen-sharing requests from ordinary websites remain blocked and locked. Camera access is disabled. Microphone requests are not globally blocked or locked because Firefox must be allowed to show its normal audio-device chooser so you can select the “Monitor of …” system-audio source.
+2. Save the script as recorder.py and run:
 
-Temporary recording data is stored privately and removed after use or when the app closes. The local Recorder interface is protected by a random access token and restrictive browser security settings.
+       python3 "/absolute/path/to/recorder.py"
 
-Closing the Recorder tab notifies the local background helper to shut down. If Firefox does not deliver that close notification, the helper detects the missing one-second heartbeats and shuts itself down automatically within about ten seconds.
+   For your rofi setup, place it at ~/.config/recorder/recorder.py and make
+   the Recorder entry in rofi-apps run:
+
+       python3 "$HOME/.config/recorder/recorder.py"
+
+   Recorder opens its Firefox tab automatically. Use the page it opens: the
+   full address includes a random token that changes on each launch. Opening
+   http://127.0.0.1:27391 alone does not open the interface.
+
+3. Select "Video and system audio", "Video only", or "Audio only", then click
+   "Start recording".
+
+4. For a mode with video, select the display when prompted.
+
+5. For a mode with audio, choose the "Monitor of ..." source corresponding
+   to the output device you are using. Selecting a microphone records that
+   microphone instead. The monitor source captures sound routed to that
+   output, including other applications and notifications.
+
+6. Click "Stop" when finished. Recorder prepares the file and starts a
+   Firefox download. Firefox's settings determine whether it saves directly
+   or asks for a destination. A download link also remains on the page while
+   the helper retains the file. Wait for the download to finish and confirm
+   the file is saved before closing the tab or starting another recording.
+
+All modes save WebM files, including audio-only mode. FFmpeg finalizes the
+container without re-encoding the recorded audio or video. Only one Recorder
+helper can run at a time, and local port 27391 must be available.
+
+Security and privacy
+
+Recorder works locally and needs no Internet connection. It does not send
+recordings to a remote service or load remote resources. The Firefox page
+sends captured data to the Python helper over http://127.0.0.1:27391, and
+Firefox downloads the finished file from that same local helper. Firefox's
+other network activity is controlled separately by its browser settings.
+
+The helper listens only on 127.0.0.1. Access uses a random token, request
+checks, and restrictive page security headers. Recorder never requests a
+camera. Restrictions on what other websites may request depend on your
+Firefox policies and existing permissions. Leaving microphone requests
+enabled lets other websites ask for access; it does not automatically grant
+them access.
+
+Temporary recordings are kept in a private directory under
+$XDG_CACHE_HOME/firefox-pipewire-recorder, or under
+~/.cache/firefox-pipewire-recorder when XDG_CACHE_HOME is unset or unsuitable.
+Cancelled or failed captures are discarded. Finished files remain available
+until helper shutdown or, after download, the start of the next recording.
+Normal shutdown removes the helper's temporary recording files. If a crash
+leaves files behind, the next successful launch cleans up this version's
+leftover captures. Downloaded files saved by Firefox are retained.
+
+Closing the tab sends a shutdown request with a roughly two-second grace
+period. If that notification is lost, the helper normally initiates shutdown
+after about ten seconds without a heartbeat from the page. Heartbeats are
+scheduled once per second. Active downloads and cleanup can delay the final
+exit. Closing the tab during recording or finalization can discard the
+unfinished recording.
+
+References
+
+[1] Mozilla bug 2036218, especially comment 8:
+    https://bugzilla.mozilla.org/show_bug.cgi?id=2036218
+
+[2] Firefox permission policies:
+    https://firefox-admin-docs.mozilla.org/reference/policies/permissions/
