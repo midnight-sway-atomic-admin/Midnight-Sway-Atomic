@@ -8,7 +8,7 @@
   GLOBAL SETTINGS AND VARIABLES
 ==============================================================================*/
 
-/* XX Sets the global font size of the Firefox UI; useful if you are unhappy with the global font-size set in gtk.css and want to override it for Firefox alone */
+/* XX Sets chrome-element font size to 12px, subject to more specific overrides below, including the 9px tab-preview title */
 
 * { font-size: 12px !important; }
 
@@ -80,7 +80,7 @@
   border-color: transparent !important;
 }
 
-/* XX Adds space between the bottom of the URL-bar and the website page and sets whole-browser background color to color the space */
+/* XX Adds 3px of top padding to #browser and colours that content/sidebar container */
 #browser {
   padding-top: 3px !important;
   background-color: var(--uc-color-bg) !important;
@@ -98,6 +98,10 @@
   --link-color: var(--uc-color-fg-hover) !important;
 }
 
+#urlbar:not(:focus-within) #urlbar-input {
+  color: var(--uc-color-faded) !important;
+}
+
 /* XX Sets the URL-bar background-layer appearance and vertical inset */
 .urlbar-background {
   background-color: transparent !important;
@@ -109,7 +113,6 @@
 /* XX Modifies the focus state of the URL-bar background layer */
 #urlbar:focus-within > .urlbar-background {
   background-color: var(--uc-color-surface) !important;
-  border-color: var(--uc-color-border-muted) !important;
   outline: none !important;
 }
 
@@ -124,7 +127,7 @@
   align-self: center !important;
 }
 
-/* XX Prevents the URL-bar breakout from exceeding the available browser width */
+/* XX Caps breakout URL-bar max-width at viewport width minus 10px; does not constrain its position */
 #urlbar[breakout][breakout-extend] {
   max-width: calc(100vw - 10px) !important;
 }
@@ -171,7 +174,7 @@
   display: none !important;
 }
 
-/* XX Keeps the bookmark page-action anchor alive for Ctrl+D, but shrinks and hides the visible star as much as possible. Do not use "display:none" or "visibility:collapse" on #star-button-box */
+/* XX Makes the bookmark star transparent and pointer-inert and requests a 1px-wide box while retaining its layout anchor for Ctrl+D. Do not replace this with display:none or visibility:collapse */
 #urlbar #star-button-box {
   opacity: 0 !important;
   pointer-events: none !important;
@@ -217,14 +220,14 @@
 
 /* Layout and appearance */
 
-/* XX Sets tab height and suppresses native hover/selected tab background fills via Firefox's tab variables */
+/* XX Sets the tab minimum-height token and makes native hover/selected tab background-colour tokens transparent */
 #tabbrowser-tabs {
   --tab-min-height: var(--uc-tab-height) !important;
   --tab-background-color-hover: transparent !important;
   --tab-background-color-selected: transparent !important;
 }
 
-/* XX Prevents the tab strip from shifting vertically when dragging tabs */
+/* XX Removes Firefox's extra lower drag area from the horizontal tab strip */
 #tabbrowser-tabs[orient="horizontal"][movingtab] {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
@@ -247,7 +250,7 @@
   color: var(--uc-color-fg-hover) !important;
 }
 
-/* XX Sets inactive-tab text color and declares an opacity transition */
+/* XX Sets inactive-tab colour and restricts transitions to opacity while this selector matches */
 .tabbrowser-tab:not([visuallyselected]):not([multiselected]):not(:hover) {
   color: var(--uc-color-faded) !important;
   transition: opacity .5s !important;
@@ -289,7 +292,7 @@ scrollbox[orient="horizontal"] + spacer[part="overflow-end-indicator"] {
   display: none !important;
 }
 
-/* XX Fade tabstrip overflow cutoffs */
+/* XX Applies 20px fades to both ends of the horizontal tab strip, whether or not it overflows */
 #tabbrowser-arrowscrollbox[orient="horizontal"] {
   --uc-tabstrip-fade-width: 20px; /* Controls both the left and right tab-bar fade width */
   mask-image: linear-gradient(
@@ -316,7 +319,7 @@ scrollbox[orient="horizontal"] ~ #scrollbutton-down {
 
 /* Audio indicators */
 
-/* XX Sets tab audio-icon default color */
+/* XX Sets tab audio-icon default fill and removes the active ghost-button background */
 .tab-audio-button {
   --button-icon-fill: var(--uc-color-fg) !important;
   --button-background-color-ghost-active: transparent !important;
@@ -328,7 +331,7 @@ scrollbox[orient="horizontal"] ~ #scrollbutton-down {
   --button-background-color-ghost-hover: transparent !important;
 }
 
-/* XX Hides non-audio tab icons, incl. the autoplay-blocked play button */
+/* XX Hides pending-tab icons, sharing overlays and the autoplay-blocked audio button */
 .tab-icon-pending,
 .tab-sharing-icon-overlay,
 .tab-audio-button[activemedia-blocked] {
@@ -370,12 +373,12 @@ menubar > menu {
   border-bottom-color: transparent !important;
 }
 
-/* XX Hides icons in all popups, like the popups of the Alt-menubar */
+/* XX Hides .menu-icon elements inside XUL menupopups, including their checkbox/radio marks on Linux */
 menupopup .menu-icon {
   display: none !important;
 }
 
-/* XX Remove horizontal separators from all popups */
+/* XX Hides menuseparator elements inside XUL menupopups */
 menupopup menuseparator {
   display: none !important;
 }
@@ -419,7 +422,7 @@ panelview {
   padding-top: 85px !important; /* Adjust to vertically position bookmarks content within the sidebar */
 }
 
-/* XX Hides the entire bookmarks sidebar header */
+/* XX Hides the shared #sidebar-header in browser chrome */
 #sidebar-header {
   display: none !important;
 } 
@@ -450,12 +453,12 @@ panelview {
     opacity: 0 !important;
   }
   
-  /* XX Remove dotted focus ring from tree rows, cells, and text */
+  /* XX Removes row outlines in the focused bookmarks tree */
   #bookmarks-view treechildren::-moz-tree-row(focus) {
       outline: none !important;
   }
 
-  /* XX Removes a white background highlight and border from the parent when the child is hovered */
+  /* XX Sets the selected bookmark-row background; the later hover rule overrides it on hovered rows */
   #bookmarks-view treechildren::-moz-tree-row(selected) {
     background-color: var(--uc-color-bg) !important;
   }
@@ -470,12 +473,12 @@ panelview {
     color: var(--uc-color-fg) !important;
   }
 
-  /* XX Hides child twisties */
+  /* XX Makes selected-row twisties transparent while retaining their geometry */
   #bookmarks-view treechildren::-moz-tree-twisty(selected) {
     color: transparent !important;
   }
 
-  /* XX Hides the top-level twisties */
+  /* XX Sets inherited colour on the bookmarks tree to transparent; explicit text and selected-twisty rules override it */
   #bookmarks-view { 
     color: transparent !important;
   }
@@ -503,7 +506,7 @@ panelview {
     outline: none !important;
   }
 
-  /* XX Hides built-in root-row contents: toolbar, menu, and unfiled bookmarks */
+  /* XX Hides the text of the three built-in bookmark-root rows while preserving the rows and their click targets */
   .sidebar-placesTreechildren::-moz-tree-cell-text(container, queryFolder_toolbar_____),
   .sidebar-placesTreechildren::-moz-tree-cell-text(container, queryFolder_menu________),
   .sidebar-placesTreechildren::-moz-tree-cell-text(container, queryFolder_unfiled_____) {
@@ -557,7 +560,7 @@ panelview {
   margin-bottom: 20px !important;
 }
 
-/* XX Sets "Add Bookmark" name-field border color */
+/* XX Sets Add Bookmark name-field background, border and text colours */
 #editBMPanel_namePicker {
   background-color: #f2f6ff !important;
   border: 1px solid var(--uc-color-light-control) !important;
@@ -639,7 +642,6 @@ panelview {
 
 /* XX Hides "Add Bookmark" dropdown inner icons */
 #editBMPanel_folderTree > treechildren::-moz-tree-image {
-  visibility: hidden !important;
   width: 0 !important;
   height: 0 !important;
   padding: 0 !important;
@@ -665,7 +667,7 @@ panelview {
 
 /* Trust icon */
 
-/* XX Sets trust-icon size and default color */
+/* XX Scales the painted trust icon to 70% without resizing its layout box, and sets its default colour */
 #trust-icon {
   transform: scale(0.70) !important;
   color: var(--uc-color-faded) !important;
@@ -681,7 +683,7 @@ color: var(--uc-color-fg-hover) !important;
   background-color: transparent !important;
 }
 
-/* XX Removes trust-icon warning-state background */
+/* XX Removes trust-icon container backgrounds in insecure, warning and file states */
 #trust-icon-container:is(.insecure, .warning, .file) {
   background-color: transparent !important;
 }
@@ -715,12 +717,12 @@ color: var(--uc-color-fg-hover) !important;
 
 /* Toolbar button and progress */
 
-/* XX Sets color of the download-button inner-fill progress circle */
+/* XX Sets the Downloads button attention colour, used by its inner progress fill and success state */
 #downloads-button {
   --toolbarbutton-icon-fill-attention: var(--uc-color-fg) !important;
 }
 
-/* XX Download-panel progress-bar fill */
+/* XX Sets the fill colour of matching download progress bars, including paused bars, in chrome download views */
 .downloadProgress::-moz-progress-bar {
     background-color: var(--uc-color-fg) !important;
 }
@@ -733,7 +735,7 @@ color: var(--uc-color-fg-hover) !important;
   display: none !important;
 }
 
-/* XX Restores left spacing for Library download rows after their icons are hidden */
+/* XX Sets left spacing for download-row contents in both the popup and Library download lists */
 #downloadsListBox .downloadContainer {
     margin-inline-start: 16px !important;
 }
@@ -764,7 +766,7 @@ color: var(--uc-color-fg-hover) !important;
 /* Global XUL radio and checkbox styling */
 
 /* XX Removes the outer focus outline from every focused XUL radio selection dot */
-radio[focused="true"] > .radio-check {
+radio[focused] > .radio-check {
   outline: none !important;
 }
 
