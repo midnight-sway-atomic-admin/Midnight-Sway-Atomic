@@ -1,147 +1,616 @@
-╭──────────────────────────────────────────────────────────────────────────────╮
-│                 FEDORA SWAY ATOMIC — TERMINAL COMMANDS                       │
-╰──────────────────────────────────────────────────────────────────────────────╯
+╭──────────────────────────────────────────────────────╮
+│              TERMINAL COMMAND REFERENCE              │
+╰──────────────────────────────────────────────────────╯
 
+This is a reference, not a script. Replace uppercase placeholders with your values; copy only the command, not its category or description. Quote paths containing spaces or shell metacharacters. For a filename beginning with '-', use a path such as ./-name, or '--' where the command supports it. A trailing backslash joins the next line into the same command.
 
 Legend:
 
-  core    usually present on a Fedora host
-  shell   handled by the interactive shell, not a standalone program
-  opt     valid, but may need a package installed or a toolbox container
-  atomic  correct host-level workflow on Fedora Atomic Desktops
+core   expected in the standard Fedora Sway Atomic image
+shell   Bash builtin, shell syntax, or terminal key binding
+atomic   correct image-based/Atomic workflow
+opt   additional tool; check whether its package is installed
+
+Custom images and package removals change availability. Use "command -v NAME" to check your installation; "man NAME" documents its installed version.
+
+Privilege:
+
+Commands beginning with sudo require an account authorized to use sudo. Some read-only commands also need privileges, especially device probes, SELinux policy-store queries, and system/audit logs. Process inspection may omit other users' details without sudo. SELinux policy can restrict root too. rpm-ostree uses polkit, so an authorized administrator may sometimes be prompted without sudo; sudo is shown for host changes for clarity. NetworkManager, firewalld, and power controls may also use polkit. If your daily account cannot use sudo, run privileged host commands from your admin account. Run --user, Flatpak, Podman, and Sway commands as the intended user.
+
+Atomic rule:
+
+Do NOT use "dnf install" to modify the host OS. Use Flatpak for desktop applications, Toolbx for mutable CLI/development environments, and rpm-ostree package layering only when host integration is actually required. /usr is read-only in the normal rpm-ostree deployment.
 
 
 FILE NAVIGATION AND FILE WORK
 ─────────────────────────────
-  ls                         core   list files and directories
-  ls -la                     core   long listing, including dotfiles
-  cd DIR                     shell  change into DIR
-  cd                         shell  return to your home directory
-  pwd                        core   print the current directory
-  mkdir DIR                  core   create a directory
-  rm FILE                    core   remove a file
-  rm -r DIR                  core   remove a directory tree
-  rm -i FILE                 core   ask before removing a file
-  rm -rf DIR                 core   force-remove a directory tree; dangerous
-  cp SRC DEST                core   copy a file
-  cp -r SRC DEST             core   copy a directory tree
-  mv SRC DEST                core   move or rename a file or directory
-  ln -s TARGET LINK          core   create a symbolic link
-  touch FILE                 core   create FILE or update its modified time
-  cat FILE                   core   print a file to the terminal
-  cat > FILE                 shell  create/overwrite FILE from typed input; Ctrl-D ends input
-  more FILE                  core   page through a file
-  head FILE                  core   print the first 10 lines of a file
-  tail FILE                  core   print the last 10 lines of a file
-  tail -f FILE               core   follow new lines appended to a file
+ls                                    core   list files and directories
+ls -l                                 core   long listing
+ls -la                                core   long listing, including dotfiles
+ls -lh                                core   long listing with human-readable sizes
+cd DIR                                shell   change into DIR
+cd                                    shell   return to home directory
+cd ..                                 shell   move to parent directory
+cd -                                  shell   return to previous directory
+pwd                                   shell   print current directory
+mkdir DIR                             core   create a directory
+mkdir -p PATH                         core   create parent directories as needed
+touch FILE                            core   create FILE or update its access/modification times
+cp SRC DEST                           core   copy a file
+cp -a SRC DEST                        core   copy recursively; preserve metadata where supported
+cp -i SRC DEST                        core   ask before overwriting
+mv SRC DEST                           core   move or rename
+mv -i SRC DEST                        core   ask before overwriting
+rm FILE                               core   remove a file
+rm -i FILE                            core   ask before removing a file
+rm -r DIR                             core   remove a directory tree
+rm -rI DIR                            core   one safety prompt before recursive removal
+rm -rf DIR                            core   force recursive removal; dangerous
+ln -s TARGET LINK                     core   create a symbolic link
+readlink LINK                         core   print a symlink's target
+readlink -f PATH                      core   resolve a path to an absolute canonical path
+realpath PATH                         core   print canonical absolute path
+basename PATH                         core   strip directory portion from PATH
+dirname PATH                          core   strip final component from PATH
+stat FILE                             core   show timestamps, size, inode, permissions, etc.
+file FILE                             core   identify file type from contents/metadata
+sha256sum FILE                        core   compute SHA-256 digest
+sha256sum -c CHECKSUMFILE             core   verify checksums listed in a file
+sync                                  core   flush pending filesystem writes
+tree DIR                              core   display a directory tree
+rsync -a SRC DEST                     core   recursive archive copy; preserves common metadata
+rsync -avh SRC DEST                   core   verbose archive copy with human-readable sizes
+
+rsync: SRC/ copies a directory's contents; SRC copies the directory itself. -a does not include ACLs (-A), extended attributes (-X), or hard links (-H). Ownership preservation requires suitable privileges; neither example deletes destination-only files.
+
+
+VIEWING AND TEXT PROCESSING
+───────────────────────────
+cat FILE                              core   print a file
+cat > FILE                            shell   overwrite FILE from typed input; Ctrl-D on an empty input line ends input
+cat >> FILE                           shell   append typed input to FILE; Ctrl-D on an empty input line ends input
+less FILE                             core   page through a file interactively
+more FILE                             core   simple pager
+head FILE                             core   print first 10 lines
+head -n N FILE                        core   print first N lines
+tail FILE                             core   print last 10 lines
+tail -n N FILE                        core   print last N lines
+tail -f FILE                          core   follow lines appended to FILE
+wc -l FILE                            core   count newline characters
+sort FILE                             core   sort lines
+sort -u FILE                          core   sort and remove duplicate lines
+uniq FILE                             core   collapse adjacent duplicate lines
+cut -d 'DELIM' -f N FILE              core   select field N using a single-character delimiter
+tr 'SET1' 'SET2'                      core   translate character sets from stdin
+sed 's/OLD/NEW/g' FILE                core   substitute a regex in output; leaves FILE unchanged
+awk '{print $1}' FILE                 core   print first whitespace-separated field
+tee FILE                              core   copy stdin to stdout and FILE; overwrite FILE
+tee -a FILE                           core   append stdin to FILE while copying it to stdout
+xargs COMMAND                         core   build arguments from whitespace/quote-parsed input
+find DIR -type f -print0 | xargs -0 -r COMMAND   core   pass filenames intact; run only if input is nonempty
 
 
 SEARCHING
 ─────────
-  grep PATTERN FILE          core   search FILE for PATTERN
-  grep -r PATTERN DIR        core   search recursively inside DIR
-  COMMAND | grep PATTERN     shell  filter COMMAND output for matching lines
-  locate NAME                opt    find paths from a prebuilt file index; package/database may be needed
+grep 'PATTERN' FILE                   core   search FILE using a regular expression
+grep -n 'PATTERN' FILE                core   include matching line numbers
+grep -i 'PATTERN' FILE                core   case-insensitive search
+grep -R 'PATTERN' DIR                 core   recursive regex search; follows symbolic links
+COMMAND | grep 'PATTERN'              shell   filter command output
+find DIR -name 'PATTERN'              core   find names matching a shell glob, not a regex
+find DIR -type f -name '*.txt'        core   find regular .txt files
+find DIR -type d -name 'PATTERN'      core   find directories whose names match a shell glob
+locate NAME                           opt   search a prebuilt filename database
+rg 'PATTERN' DIR                      opt   fast recursive text search with ripgrep
+lsfd                                  core   list open file descriptors
+lsof PATH                             core   show processes holding PATH open; not recursive
+fuser PATH                            core   show process IDs using PATH
+
+
+BASH / SHELL SYNTAX
+───────────────────
+command -v COMMAND                    shell   show what Bash would execute for COMMAND
+type COMMAND                          shell   classify COMMAND as alias/builtin/file/etc.
+help BUILTIN                          shell   show Bash help for a builtin
+history                               shell   show shell command history
+alias                                 shell   list aliases
+alias NAME='COMMAND'                  shell   define an alias for this shell
+unalias NAME                          shell   remove an alias
+source FILE                           shell   execute FILE in the current shell
+. FILE                                shell   same as "source FILE"
+export NAME="VALUE"                   shell   set and export an environment variable
+printf '%s\n' "$VARIABLE"             shell   print a variable literally, followed by a newline
+echo "$?"                             shell   print previous command's exit status
+COMMAND1 ; COMMAND2                   shell   run COMMAND2 after COMMAND1 regardless of result
+COMMAND1 && COMMAND2                  shell   run COMMAND2 only if COMMAND1 succeeds
+COMMAND1 || COMMAND2                  shell   run COMMAND2 only if COMMAND1 fails
+COMMAND1 | COMMAND2                   shell   pipe stdout of COMMAND1 to COMMAND2
+COMMAND > FILE                        shell   overwrite FILE with stdout
+COMMAND >> FILE                       shell   append stdout to FILE
+COMMAND 2> FILE                       shell   send stderr to FILE
+COMMAND > FILE 2>&1                   shell   send stdout and stderr to FILE
+COMMAND &                             shell   start COMMAND as a background shell job
 
 
 PROCESS AND JOB CONTROL
 ───────────────────────
-  ps                         core   show processes in the current session
-  top                        core   show a live process monitor
-  kill PID                   shell  send a signal to PID; default asks the process to stop
-  kill -9 PID                shell  force-kill PID; use only when normal kill fails
-  killall NAME               opt    kill processes by executable name
-  bg                         shell  resume the current suspended job in the background
-  fg                         shell  bring the current background job to the foreground
-  fg %N                      shell  bring job number N to the foreground; see jobs
-  jobs                       shell  list jobs started by the current shell
+ps                                    core   show your processes on this terminal (same EUID)
+ps -ef                                core   show all processes in full format
+ps aux                                core   show all processes in BSD-style format
+top                                   core   live process monitor
+pgrep 'PATTERN'                       core   print PIDs whose process names match a regex
+pgrep -a 'PATTERN'                    core   show matching PIDs and command lines
+pkill 'PATTERN'                       core   send SIGTERM to processes matching a name regex
+kill PID                              shell   send SIGTERM to PID; request a normal shutdown
+kill -TERM PID                        shell   explicitly send SIGTERM
+kill -KILL PID                        shell   send SIGKILL; prevents the program from cleaning up
+killall NAME                          core   send SIGTERM to processes with this command name
+nice -n N COMMAND                     core   start COMMAND with niceness adjusted by N
+renice N -p PID                       core   set an existing process's nice value to N
+timeout 30s COMMAND                   core   send SIGTERM after 30 seconds; it may be ignored
+timeout -k 5s 30s COMMAND             core   SIGTERM at 30s; SIGKILL after 5s more if needed
+watch COMMAND                         core   rerun COMMAND periodically
+jobs                                  shell   list jobs started by this shell
+bg                                    shell   resume current suspended job in background
+fg                                    shell   bring current background job to foreground
+fg %N                                 shell   bring shell job N to foreground
+
+pgrep/pkill use extended regexes, not literal names; -x requires a full-name match. Default name matching is limited to 15 characters; -f matches the full command line. Inspect matches with pgrep before using pkill. Lower nice values mean higher CPU priority; raising priority may need sudo.
 
 
 TERMINAL SHORTCUTS
 ──────────────────
-  Ctrl-C                     shell  interrupt the foreground command
-  Ctrl-Z                     shell  suspend the foreground command; resume with fg or bg
-  Ctrl-D                     shell  send end-of-file; often exits an empty shell
-  Ctrl-L                     shell  clear the terminal screen
-  Ctrl-W                     shell  delete the word before the cursor
-  Ctrl-U                     shell  delete from cursor to start of line
-  Ctrl-R                     shell  reverse-search command history
-  !!                         shell  repeat the previous command
-  exit                       shell  close the current shell session
+Editing keys below assume Bash's default Emacs mode. Applications can assign different bindings; Ctrl-C/Ctrl-Z refer to normal terminal signal handling.
+
+Ctrl-C                                shell   interrupt foreground command
+Ctrl-Z                                shell   suspend foreground command
+Ctrl-D                                shell   delete at cursor; empty prompt exits unless ignored
+Ctrl-L                                shell   clear terminal display
+Ctrl-A                                shell   move cursor to start of line
+Ctrl-E                                shell   move cursor to end of line
+Ctrl-W                                shell   delete word before cursor
+Ctrl-U                                shell   delete from cursor to start of line
+Ctrl-K                                shell   delete from cursor to end of line
+Ctrl-R                                shell   reverse-search command history
+!!                                    shell   expand previous history command; Enter executes it
+exit                                  shell   exit current shell
 
 
 SYSTEM INFORMATION
 ──────────────────
-  date                       core   show the current date and time
-  cal                        opt    show this month's calendar
-  uptime                     core   show how long the system has been running
-  w                          core   show logged-in users and their activity
-  whoami                     core   print the current username
-  uname -a                   core   show kernel and machine information
-  cat /proc/cpuinfo          core   show CPU information
-  cat /proc/meminfo          core   show memory information
-  man COMMAND                core   open the manual page for COMMAND
-  df -h                      core   show filesystem space usage
-  du -sh PATH                core   show total disk usage for PATH
-  free -h                    core   show memory and swap usage
-  whereis COMMAND            core   find likely binary, source, and manual paths
-  which COMMAND              core   show the command that will run from PATH
+date                                  core   show current date and time
+uptime                                core   show uptime and load averages
+whoami                                core   print current username
+id                                    core   show UID, GIDs, and groups
+groups                                core   show group memberships
+w                                     core   show logged-in users and activity
+uname -a                              core   show kernel and machine information
+uname -r                              core   show kernel release
+cat /proc/cmdline                     core   show kernel arguments actually used this boot
+cat /etc/os-release                   core   show Fedora release information
+hostnamectl                           core   show host, OS, kernel, and architecture information
+timedatectl                           core   show clock, timezone, and synchronization status
+localectl                             core   show locale and keyboard configuration
+loginctl                              core   list login sessions
+lscpu                                 core   show CPU architecture/details
+cat /proc/cpuinfo                     core   raw CPU information
+cat /proc/meminfo                     core   raw memory information
+free -h                               core   show RAM and swap usage
+df -h                                 core   show filesystem free/used space
+df -hT                                core   show filesystem usage and types
+du -sh PATH                           core   total space used by PATH
+du -h --max-depth=1 PATH              core   show directory totals through one level below PATH
+man COMMAND                           core   open manual page
+COMMAND --help                        n/a   show command help when supported
+cal                                   core   show current month's calendar
+whereis COMMAND                       core   locate likely binary/source/man paths
+which COMMAND                         core   PATH lookup from the installed "which" package; prefer "command -v" in Bash
+
+
+SYSTEMD SERVICES AND LOGS
+─────────────────────────
+systemctl status UNIT                 core   show system unit status
+systemctl is-active UNIT              core   test whether a system unit is active
+systemctl is-enabled UNIT             core   report enablement state; static units also return 0
+systemctl cat UNIT                    core   show unit file and drop-ins
+systemctl list-units --failed         core   show failed loaded units
+systemctl list-unit-files             core   list installed unit files and enablement states
+systemctl list-unit-files --state=enabled   core   list enabled unit files
+systemctl list-timers --all           core   list systemd timers, including inactive ones
+systemctl show UNIT                   core   show unit properties; add --all for empty ones too
+sudo systemctl start UNIT             core   start a system unit
+sudo systemctl stop UNIT              core   stop a system unit
+sudo systemctl restart UNIT           core   restart a system unit
+sudo systemctl enable UNIT            core   enable via its [Install] rules; does not start it
+sudo systemctl disable UNIT           core   remove enablement links; does not stop/block starts
+sudo systemctl enable --now UNIT      core   enable and start immediately
+sudo systemctl mask UNIT              core   block future starts; does not stop a running unit
+sudo systemctl unmask UNIT            core   undo masking
+sudo systemctl daemon-reload          core   reload unit-file definitions after editing them
+systemctl --user status UNIT          core   show current user's systemd unit
+systemctl --user list-units           core   list current user's loaded units
+
+System journal access depends on your groups/ACLs. Use sudo for full system logs if access is restricted; don't add sudo to "journalctl --user". Previous-boot logs must still be retained to use -b -1.
+
+journalctl -b                         core   logs from current boot
+journalctl -b -1                      core   logs from previous boot
+journalctl -k -b                      core   kernel messages from current boot
+journalctl -u UNIT                    core   logs for a systemd unit
+journalctl --user -u UNIT             core   logs for a user unit
+journalctl -f                         core   follow new journal entries
+journalctl -p warning -b              core   current-boot warning-or-higher messages
+journalctl --since today              core   entries since start of today
+journalctl --disk-usage               core   show journal disk usage
+systemd-analyze                       core   show measured boot/startup times
+systemd-analyze blame                 core   rank activation durations; not a list of boot delays
+systemd-analyze critical-chain        core   show time-critical boot dependency chain
+systemd-analyze security UNIT         core   assess unit sandbox settings; not a full security audit
+
+
+HARDWARE, BLOCK DEVICES, FILESYSTEMS
+────────────────────────────────────
+lsblk                                 core   list block devices and mount points
+lsblk -f                              core   include filesystems, labels, and UUIDs
+findmnt                               core   show mounted filesystems as a tree
+findmnt --target PATH                 core   show mount containing PATH
+sudo blkid                            core   probe block-device filesystem metadata
+mount                                 core   list mounts
+sudo mount DEVICE DIR                 core   mount DEVICE at DIR
+sudo umount DIR                       core   unmount filesystem mounted at DIR
+swapon --show                         core   show active swap devices/files
+zramctl                               core   show zram devices
+rfkill                                core   show radio-device block state
+lspci                                 core   list PCI devices
+lsusb                                 core   list USB devices
+udevadm info PATH                     core   show udev information for a device path
+lsmod                                 core   list loaded kernel modules
+modinfo MODULE                        core   show information about a kernel module
+sudo modprobe MODULE                  core   load a kernel module
+sudo modprobe -r MODULE               core   unload a kernel module; use carefully
+sudo btrfs filesystem usage PATH      core   show Btrfs allocation/usage
+sudo btrfs subvolume list PATH        core   list Btrfs subvolumes
+sudo smartctl -a DEVICE               opt   show SMART drive-health data
+sudo cryptsetup status NAME           core   show a mapped encrypted-device status
+sudo cryptsetup luksDump DEVICE       core   show LUKS header metadata; does not reveal passphrase
+mokutil --sb-state                    opt   show Secure Boot state when supported
+
+
+NETWORKING
+──────────
+ip address                            core   show network addresses
+ip -brief address                     core   compact interface/address summary
+ip link                               core   show network links
+ip route                              core   show the main IPv4 routing table
+ip neigh                              core   show neighbor/ARP/NDP table
+ss -tulpn                             core   show listening TCP/UDP sockets; process info where permitted
+ss -tunap                             core   show all TCP/UDP sockets and accessible process details
+ping HOST                             core   send ICMP echo requests until interrupted
+ping -c 4 HOST                        core   send four ICMP echo requests
+getent hosts HOST                     core   resolve HOST through NSS
+resolvectl status                     core   show DNS resolver state
+resolvectl query HOST                 core   resolve HOST through systemd-resolved
+nmcli general status                  core   show NetworkManager status
+nmcli device status                   core   show network devices
+nmcli device show                     core   show detailed NetworkManager device properties
+nmcli radio                           core   show NetworkManager radio states
+nmcli radio wifi off                  core   disable Wi-Fi radio through NetworkManager
+nmcli radio wifi on                   core   enable Wi-Fi radio through NetworkManager
+nmcli connection show                 core   list configured NetworkManager connections
+nmcli connection show --active        core   list active connections
+nmcli device wifi list                core   scan/list Wi-Fi networks
+dig DOMAIN                            core   query DNS records
+dig -x IP                             core   reverse DNS lookup
+whois DOMAIN                          core   query registration records
+wget URL                              core   download URL (Fedora 44 supplies wget via wget2-wget)
+wget -c URL                           core   resume a partial download if the server supports it
+curl -I URL                           core   make an HTTP HEAD request; print response headers
+curl -LO URL                          core   follow redirects; save using the URL filename
+mtr HOST                              core   interactive route/packet-loss diagnostic
+ethtool IFACE                         core   show Ethernet-interface/driver link information
+tracepath HOST                        core   trace network path without raw-socket privileges
+
+
+KERNEL PARAMETERS / SYSCTL
+──────────────────────────
+sysctl NAME                           core   show one runtime kernel parameter
+sysctl -a                             core   list runtime kernel parameters
+sudo sysctl -w NAME=VALUE             core   set a runtime value; does not save it to a file
+sudo sysctl --system                  core   apply configured system-wide sysctl files
+cat /sys/kernel/security/lockdown     core   show kernel lockdown mode when interface exists
+
+
+PERMISSIONS AND OWNERSHIP
+─────────────────────────
+ls -l FILE                            core   show Unix mode bits and ownership
+stat FILE                             core   detailed mode/owner/timestamp information
+chmod MODE FILE                       core   change file mode
+chmod 600 FILE                        core   owner read/write only
+chmod 644 FILE                        core   owner read/write; others read
+chmod 700 FILE                        core   owner read/write/execute only
+chmod 755 FILE                        core   owner rwx; others rx
+chmod 777 FILE                        core   everyone rwx; almost never appropriate
+chmod u+x FILE                        core   add execute bit for owner
+sudo chown USER:GROUP PATH            core   change owner and group
+sudo chgrp GROUP PATH                 core   change group
+umask                                 shell   display current file-creation mask
+umask 077                             shell   mask group/other creation permissions; see ACL note
+namei -l PATH                         core   show permissions on every component of PATH
+getfacl FILE                          core   show POSIX ACLs
+setfacl -m u:USER:rw FILE             core   grant USER read/write via an ACL; updates its mask
+
+umask doesn't change existing files. Inherited default ACLs can replace its effect. These are discretionary permissions; SELinux can further deny access.
+
+
+SELINUX
+───────
+getenforce                            core   print Enforcing, Permissive, or Disabled
+sestatus                              core   detailed SELinux status
+id -Z                                 core   show current process security context
+ls -Z PATH                            core   show file SELinux contexts
+ps -eZ                                core   show process SELinux contexts
+getsebool -a                          core   list SELinux booleans and current values
+getsebool BOOLEAN                     core   show one SELinux boolean
+sudo setsebool BOOLEAN on             core   change running boolean value; does not persist across reboot
+sudo setsebool -P BOOLEAN on          core   persistently enable boolean
+sudo setsebool -P BOOLEAN off         core   persistently disable boolean
+restorecon -v PATH                    core   restore default SELinux file type when permitted
+sudo restorecon -Rv PATH              core   recursively restore default SELinux file types
+sudo restorecon -RFv PATH             core   force full default contexts, including user/role/range
+matchpathcon PATH                     core   show policy's expected context for PATH
+sudo semanage login -l                core   list SELinux login-to-user mappings
+sudo semanage user -l                 core   list SELinux users and allowed roles/levels
+sudo semanage boolean -l              core   list SELinux booleans with descriptions
+sudo ausearch -m AVC,USER_AVC -ts recent   core   search audit AVC records from the last 10 minutes
+
+
+FIREWALL
+────────
+Queries below show runtime settings unless --permanent is supplied. A zone's listing isn't the whole ruleset: other zones and policies may also apply. firewalld queries can require polkit authorization on restricted accounts.
+
+firewall-cmd --state                  core   show whether firewalld is running
+firewall-cmd --get-default-zone       core   show default zone
+firewall-cmd --get-active-zones       core   show active zones and their interface/source bindings
+firewall-cmd --list-all               core   show runtime settings of the default zone
+firewall-cmd --list-services          core   list services explicitly enabled in the default zone
+firewall-cmd --list-ports             core   list explicit port entries in the default zone
+firewall-cmd --list-all-zones         core   show all runtime zone configurations
+firewall-cmd --zone=ZONE --list-all   core   inspect a specific zone, including an active one
+firewall-cmd --permanent --zone=ZONE --list-all   core   inspect the saved configuration for a zone
+
+
+SWAY AND WAYLAND
+────────────────
+swaymsg -t get_version                core   show Sway version
+swaymsg -t get_outputs                core   show outputs, including their active/enabled state
+swaymsg -t get_inputs                 core   show input devices
+swaymsg -t get_workspaces             core   show workspaces
+swaymsg -t get_seats                  core   show seats
+swaymsg -t get_tree                   core   dump Sway's container/window tree
+swaymsg reload                        core   reload Sway configuration
+swaymsg exit                          core   exit the running Sway session
+
+wl-copy < FILE                        core   copy FILE contents to Wayland clipboard
+wl-paste                              core   print clipboard contents
+grim FILE.png                         core   screenshot all outputs
+slurp                                 core   interactively select region and print geometry
+region=$(slurp) && grim -g "$region" FILE.png   shell   screenshot selected region only if selection succeeds
+wlr-randr                             core   inspect/configure wlroots outputs
+wlsunset -l LAT -L LON                core   adjust gamma by local sunrise/sunset; stays running
+
+Use signed decimal coordinates: north/east positive, south/west negative. Sway/Wayland commands must run inside your graphical session, without sudo.
+
+
+RPM DATABASE INSPECTION
+───────────────────────
+rpm -q PACKAGE                        core   show installed version of PACKAGE
+rpm -qa                               core   list installed RPM packages
+rpm -qi PACKAGE                       core   show package metadata
+rpm -ql PACKAGE                       core   list files owned by PACKAGE
+rpm -qf PATH                          core   show RPM package owning PATH
+rpm -V PACKAGE                        core   verify installed package files against RPM metadata
+
+
+FEDORA SWAY ATOMIC — HOST OS / RPM-OSTREE
+─────────────────────────────────────────
+Install/uninstall, upgrade/rebase/deploy, overrides, kargs, and initramfs changes normally take effect after reboot. Several changes can be staged together. Rollback selects an OS deployment; it doesn't restore /var or home data. Each deployment has its own /etc.
+
+rpm-ostree status                     atomic   show deployments and pending changes
+rpm-ostree status -v                  atomic   verbose status, including layered/inactive requests
+rpm-ostree status --json              atomic   machine-readable deployment/status data
+rpm-ostree search NAME                atomic   search enabled RPM repositories
+rpm-ostree upgrade --check            atomic   check whether a new deployment is available
+sudo rpm-ostree upgrade               atomic   stage latest update for next boot
+sudo rpm-ostree rollback              atomic   change the default deployment; see rollback note below
+sudo rpm-ostree install PKG           atomic   layer a Fedora RPM package onto the host
+sudo rpm-ostree install ./PKG.rpm     atomic   layer a local RPM package
+sudo rpm-ostree uninstall PKG         atomic   remove a layered-package request
+rpm-ostree db diff                    atomic   compare booted -> pending; else rollback -> booted
+rpm-ostree db diff --changelogs       atomic   include RPM changelogs in deployment diff
+rpm-ostree db diff COMMIT1 COMMIT2    atomic   compare packages in two commits
+rpm-ostree db list COMMIT             atomic   list RPM packages contained in a commit
+rpm-ostree db version COMMIT          atomic   show a package-set fingerprint, not an RPM release
+rpm-ostree kargs                      atomic   show default deployment's kernel arguments
+sudo rpm-ostree kargs --append-if-missing='ARG'   atomic   append kernel argument if absent; stages deployment
+sudo rpm-ostree kargs --delete-if-present='ARG'   atomic   remove kernel argument if present; stages deployment
+sudo rpm-ostree cleanup -m            atomic   remove cached RPM repodata/partial downloads
+sudo rpm-ostree cleanup -b            atomic   clean transient space from interrupted operations
+sudo rpm-ostree cleanup -p            atomic   remove unpinned pending deployment and staged changes
+sudo rpm-ostree cleanup --rollback    atomic   remove unpinned rollback deployment; loses fallback
+ostree admin config-diff              atomic   compare current /etc with vendor defaults in /usr/etc
+sudo ostree admin pin booted          atomic   retain the deployment currently running
+sudo ostree admin pin N               atomic   retain deployment at zero-based index N
+sudo ostree admin pin --unpin N       atomic   unpin deployment index N
+ostree remote list                    atomic   list configured OSTree remotes
+ostree remote refs fedora             atomic   list refs offered by Fedora OSTree remote
+ostree remote refs fedora | grep sericea   atomic   show Sway Atomic/Sericea refs
+sudo rpm-ostree rebase REF            atomic   stage a switch to another OSTree ref/release
+sudo rpm-ostree deploy TARGET         atomic   deploy a version, branch, or commit for next boot
+sudo rpm-ostree cancel                atomic   cancel a currently running rpm-ostree transaction
+sudo rpm-ostree refresh-md            atomic   refresh RPM repository metadata used for layering
+sudo rpm-ostree reload                atomic   reload rpm-ostree daemon configuration/state
+rpm-ostree initramfs                  atomic   show local initramfs-regeneration state
+
+Rollback: if the default deployment is running, select the previous one; otherwise select the currently running deployment as default. Reboot to use the selected deployment. Check "rpm-ostree status" before and after. Pin indices follow status order, starting at 0 (the next-boot default, which may be pending). The running deployment is marked with a filled circle. Kargs --append-if-missing doesn't replace an existing NAME=value setting. Use one argument per flag. /proc/cmdline shows what this boot actually used.
+
+Advanced host operations — use only deliberately:
+
+sudo rpm-ostree initramfs --enable    atomic   enable local initramfs regeneration; stages deployment
+sudo rpm-ostree initramfs --disable   atomic   disable local initramfs regeneration; stages deployment
+sudo rpm-ostree initramfs-etc --track=PATH   atomic   track an /etc file for inclusion in initramfs; stages deployment
+sudo rpm-ostree usroverlay            atomic   make /usr transiently writable until reboot; debugging only
+sudo rpm-ostree apply-live            atomic   apply pending package additions live; no service restart
+sudo rpm-ostree apply-live --reset    atomic   restore booted /usr; cannot reset a usroverlay session
+
+Advanced overrides — use only when you deliberately want to alter the base image:
+
+sudo rpm-ostree override remove PKG   atomic   remove a base package in derived deployment
+sudo rpm-ostree override reset PKG    atomic   undo override for PKG
+sudo rpm-ostree override reset --all  atomic   reset all package overrides
+
+
+FLATPAK — USER INSTALLATION
+───────────────────────────
+Run these as your daily user. --user installation commands don't manage system-installed apps/remotes; use --system for those. Per-user overrides can also affect system-installed apps when this user runs them. ps, kill, and portal permissions concern the current user's session/apps, regardless of installation location.
+
+flatpak remotes --user                atomic   list user-level remotes
+flatpak remotes --user --show-details atomic   list user remotes with details
+flatpak search --user NAME            atomic   search only user-level Flatpak remotes
+flatpak install --user REMOTE APP_ID  atomic   install app in current user's Flatpak installation
+flatpak list --user                   atomic   list current user's Flatpaks
+flatpak list --user --app             atomic   list current user's applications only
+flatpak info --user APP_ID            atomic   show information about user-installed ref
+flatpak info --user --show-permissions APP_ID   atomic   show static sandbox permissions, including overrides
+flatpak run --user APP_ID             atomic   run a user-installed app; a runtime opens a shell
+flatpak ps                            atomic   list running Flatpak instances
+flatpak kill APP_ID                   atomic   forcibly terminate app instances (SIGKILL)
+flatpak update --user                 atomic   update user-installed Flatpaks
+flatpak uninstall --user APP_ID       atomic   uninstall app; keeps its data unless --delete-data is used
+flatpak uninstall --user --unused     atomic   remove unused user runtimes/extensions
+flatpak remote-ls --user REMOTE       atomic   list refs available from a user remote
+flatpak remote-info --user REMOTE APP_ID   atomic   show a ref's information in a user remote
+flatpak remote-delete --user REMOTE   atomic   remove a user-level remote
+flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo   atomic   add Flathub only for current user
+flatpak override --user --show APP_ID atomic   show per-app user overrides
+flatpak override --user --reset APP_ID   atomic   remove per-app user overrides
+flatpak permissions                   atomic   list portal permission-store entries
+flatpak permission-show APP_ID        atomic   show dynamic portal permissions for an app
+flatpak permission-reset APP_ID       atomic   reset dynamic portal permissions for an app
+flatpak repair --user                 atomic   verify/repair the user's Flatpak installation
+flatpak history --user                atomic   show changes to the user's Flatpak installation
+
+
+TOOLBX
+──────
+Toolbx shares your home and integrates with the host; it isn't a security sandbox for untrusted software. Its sudo acts inside the container.
+
+toolbox create                        atomic   create default Fedora Toolbx container
+toolbox create NAME                   atomic   create named Toolbx container
+toolbox enter                         atomic   enter default Toolbx container
+toolbox enter NAME                    atomic   enter named Toolbx container
+toolbox run COMMAND                   atomic   run COMMAND in default Toolbx container
+toolbox run --container NAME COMMAND  atomic   run COMMAND in named Toolbx container
+toolbox list                          atomic   list Toolbx containers/images
+toolbox rm NAME                       atomic   remove Toolbx container
+
+Inside a Fedora Toolbx (DNF version follows the container image):
+
+sudo dnf install PKG                  atomic   install package inside Toolbx, not on host
+sudo dnf remove PKG                   atomic   remove package inside Toolbx
+sudo dnf upgrade                      atomic   update packages inside Toolbx
+dnf search NAME                       atomic   search Fedora RPM repositories inside Toolbx
+dnf info PKG                          atomic   show repository/package information
+dnf provides 'PATH_OR_GLOB'           atomic   find which RPM provides a file/path
+exit                                  shell   leave Toolbx
+
+
+PODMAN
+──────
+These examples use rootless Podman. Adding sudo selects root's separate container/image store. IMAGE may be a local image or a fully qualified registry reference, such as registry.example.org/team/image:tag.
+
+podman info                           atomic   show Podman runtime/storage configuration
+podman ps                             atomic   list running containers
+podman ps -a                          atomic   list all containers
+podman images                         atomic   list local container images
+podman pull IMAGE                     atomic   download/update a container image
+podman inspect NAME                   atomic   show detailed container/image configuration
+podman logs NAME                      atomic   show container logs
+podman logs -f NAME                   atomic   follow container logs
+podman start NAME                     atomic   start an existing container
+podman stop NAME                      atomic   stop a running container
+podman restart NAME                   atomic   restart a container
+podman exec -it NAME COMMAND          atomic   run interactive COMMAND in running container
+podman cp SRC NAME:DEST               atomic   copy host file into container
+podman cp NAME:SRC DEST               atomic   copy file out of container
+podman rm NAME                        atomic   remove stopped container
+podman rmi IMAGE                      atomic   remove local image
+podman volume ls                      atomic   list container volumes
+podman network ls                     atomic   list container networks
+podman system df                      atomic   show Podman disk usage
+podman stats                          atomic   show live resource use
 
 
 COMPRESSION AND ARCHIVES
 ────────────────────────
-  tar cf ARCHIVE.tar FILES          core  create a tar archive
-  tar xf ARCHIVE.tar                core  extract a tar archive
-  tar czf ARCHIVE.tar.gz FILES      core  create a gzip-compressed tar archive
-  tar xzf ARCHIVE.tar.gz            core  extract a gzip-compressed tar archive
-  tar cjf ARCHIVE.tar.bz2 FILES     core  create a bzip2-compressed tar archive
-  tar xjf ARCHIVE.tar.bz2           core  extract a bzip2-compressed tar archive
-  gzip FILE                         core  compress FILE to FILE.gz
-  gzip -d FILE.gz                   core  decompress FILE.gz
+gzip, bzip2, and xz replace their input on success; add -k to keep it. tar keeps its input files. Extract archives into a suitable directory: extraction can overwrite existing files.
 
-
-NETWORK
-───────
-  ping HOST                  core   test basic reachability to HOST
-  whois DOMAIN               opt    query domain registration records
-  dig DOMAIN                 opt    query DNS records
-  dig -x IP                  opt    reverse DNS lookup for IP
-  wget URL                   opt    download a file
-  wget -c URL                opt    continue a partial download
-
-
-PERMISSIONS
-───────────
-  chmod MODE FILE            core   change file permissions using octal mode
-  chmod 755 FILE             core   owner can read/write/execute; group/world can read/execute
-  chmod 644 FILE             core   owner can read/write; group/world can read
-  chmod 777 FILE             core   everyone can read/write/execute; almost never the right choice
-
-
-FEDORA SWAY ATOMIC: HOST PACKAGE AND APP WORKFLOW
-─────────────────────────────────────────────────
-  rpm-ostree status                 atomic  show deployments and pending host changes
-  sudo rpm-ostree upgrade           atomic  stage an OS update; reboot to boot into it
-  sudo rpm-ostree rollback          atomic  roll back to the previous deployment
-  sudo rpm-ostree install PKG       atomic  layer a Fedora RPM package onto the host
-  sudo rpm-ostree install ./PKG.rpm atomic  layer a local RPM onto the host
-  sudo rpm-ostree uninstall PKG     atomic  remove a layered host package
-
-  flatpak search NAME               atomic  search Flatpak apps
-  flatpak install REMOTE APP_ID     atomic  install a Flatpak app
-  flatpak list                      atomic  list installed Flatpaks
-  flatpak run APP_ID                atomic  run a Flatpak app
-  flatpak update                    atomic  update installed Flatpaks
-  flatpak uninstall APP_ID          atomic  remove a Flatpak app
-
-  toolbox create                    atomic  create a mutable Fedora development container
-  toolbox enter                     atomic  enter the default toolbox container
-  toolbox run COMMAND               atomic  run COMMAND inside a toolbox container
+tar cf ARCHIVE.tar FILES              core   create tar archive
+tar tf ARCHIVE.tar                    core   list tar archive contents
+tar xf ARCHIVE.tar                    core   extract tar archive
+tar czf ARCHIVE.tar.gz FILES          core   create gzip-compressed tar archive
+tar xzf ARCHIVE.tar.gz                core   extract gzip-compressed tar archive
+tar cjf ARCHIVE.tar.bz2 FILES         core   create bzip2-compressed tar archive
+tar xjf ARCHIVE.tar.bz2               core   extract bzip2-compressed tar archive
+bzip2 FILE                            core   compress FILE to FILE.bz2
+bzip2 -d FILE.bz2                     core   decompress FILE.bz2
+tar cJf ARCHIVE.tar.xz FILES          opt   create xz-compressed tar archive; requires xz
+tar xJf ARCHIVE.tar.xz                opt   extract xz-compressed tar archive; requires xz
+gzip FILE                             core   compress FILE to FILE.gz
+gzip -d FILE.gz                       core   decompress FILE.gz
+xz FILE                               opt   compress FILE to FILE.xz
+xz -d FILE.xz                         opt   decompress FILE.xz
+zip -r ARCHIVE.zip DIR                core   create ZIP archive
+unzip ARCHIVE.zip                     core   extract ZIP archive
 
 
 BUILDING FROM SOURCE
 ────────────────────
-  ./configure                opt    configure a source tree that uses autotools
-  make                       opt    build a project that has a Makefile
-  make install               opt    install built files; prefer doing this inside toolbox
+In the project directory, preferably inside Toolbx:
 
+./configure                           opt   configure an Autotools source tree
+make                                  opt   build a project with a Makefile
+make DESTDIR="$PWD/stage" install     opt   install beneath ./stage when the project supports DESTDIR
+cmake -S . -B build                   opt   configure a CMake project
+cmake --build build                   opt   build a CMake project
+meson setup build                     opt   configure a Meson project
+meson compile -C build                opt   build a Meson project
+
+Important:
+
+Do not use an ordinary "sudo make install" to write into /usr on the Atomic host. Build/install mutable development software inside Toolbx, or use a documented user-local prefix such as ~/.local when the project supports it.
+
+
+COMMON REBOOT / POWER COMMANDS
+──────────────────────────────
+systemctl reboot                      core   reboot; authorization may be requested
+systemctl poweroff                    core   power off; authorization may be requested
+systemctl suspend                     core   suspend; authorization may be requested
+
+
+QUICK DIAGNOSTIC CHECKS
+───────────────────────
+rpm-ostree status -v                  atomic   deployment, layers, removals, overrides
+cat /proc/cmdline                     core   kernel arguments actually used this boot
+systemctl list-units --failed         core   failed services/units
+journalctl -p warning -b              core   current-boot warnings/errors visible to this user
+getenforce                            core   SELinux enforcement state
+cat /sys/kernel/security/lockdown     core   kernel lockdown state, when available
+firewall-cmd --get-active-zones       core   active firewall zones
+firewall-cmd --list-all               core   runtime settings of the default zone only
+nmcli device status                   core   network device state
+ip -brief address                     core   interface addresses
+ss -tulpn                             core   listening TCP/UDP sockets
+lsblk -f                              core   storage/filesystem overview
+free -h                               core   memory/swap overview
+df -hT                                core   filesystem capacity
+swaymsg -t get_outputs                core   display configuration
+swaymsg -t get_inputs                 core   input devices
