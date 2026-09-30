@@ -110,6 +110,7 @@
   margin-block: var(--uc-urlbar-box-vertical-margin) !important;
 }
 
+/* XX Removes a gap between the URL bar and the URL dropdown */
 #urlbar[popover-open] > .urlbar-background {
   margin-block-end: 0 !important;
 }
@@ -120,6 +121,7 @@
   outline: none !important;
 }
 
+/* XX Controls the color of the background of the dropdown menu and its border */
 #urlbar > .urlbarView > .urlbarView-background {
   background-color: var(--uc-color-surface) !important;
   border-color: var(--uc-color-border-muted) !important;
