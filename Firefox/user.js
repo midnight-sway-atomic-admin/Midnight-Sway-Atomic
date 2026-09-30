@@ -34,3 +34,5 @@ user_pref("browser.chrome.site_icons", false);
 
 /* Disables the Web Fullscreen API for webpages, including video players; this does not control window-manager/compositor fullscreen */
 user_pref("full-screen-api.enabled", false);
+
+user_pref("browser.nova.enabled", false);
