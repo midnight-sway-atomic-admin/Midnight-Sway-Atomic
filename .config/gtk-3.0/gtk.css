@@ -239,14 +239,6 @@ window.thunar scrolledwindow.shortcuts-pane.frame:backdrop {
   font-size: 0;
 }
 
-/* X Sets Ctrl+M context-menu hover background color */
-menu menuitem:hover,
-menu menuitem:selected {
-  background-color: @thunar_accent;
-  background-image: none;
-  color: #c7d0ea;
-}
-
 /* X Sets Ctrl+M menubar item text color while clicked/open */
 .thunar menubar > menuitem:hover,
 .thunar menubar > menuitem:active,
@@ -317,26 +309,61 @@ window.background.tooltip label {
   font-size: 10px;
 }
 
-/* X Moves the Thunar trash-bar action buttons toward the center */
+/* X Moves the Thunar trash-bar action buttons toward the center and removes the action-area strip */
 window.thunar infobar.info > revealer > box > buttonbox {
   margin-right: 456px;
   margin-left: 0px;
+  background-color: @thunar_bg;
+  background-image: none;
+  border: none;
+  box-shadow: none;
 }
 
-/* X Sets trash commands' color */
+/* X Styles trash commands as text-only buttons; hover uses the top-level off-white */
 window.thunar infobar button,
-window.thunar infobar button label {
+window.thunar infobar button:hover,
+window.thunar infobar button:focus,
+window.thunar infobar button:active,
+window.thunar infobar button:checked {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+window.thunar infobar button,
+window.thunar infobar button label,
+window.thunar infobar button image {
   color: @thunar_accent;
+}
+
+window.thunar infobar button:hover,
+window.thunar infobar button:focus,
+window.thunar infobar button:active,
+window.thunar infobar button:checked,
+window.thunar infobar button:hover label,
+window.thunar infobar button:focus label,
+window.thunar infobar button:active label,
+window.thunar infobar button:checked label,
+window.thunar infobar button:hover image,
+window.thunar infobar button:focus image,
+window.thunar infobar button:active image,
+window.thunar infobar button:checked image {
+  color: #c7d0ea;
 }
 
 /* X Sets colors for the bar behind the trash commands */
 window.thunar infobar,
-window.thunar infobar revealer,
-window.thunar infobar revealer box {
+window.thunar infobar.info > revealer,
+window.thunar infobar.info > revealer > box,
+window.thunar infobar.info > revealer > box > buttonbox {
   background: @thunar_bg;
   background-color: @thunar_bg;
   background-image: none;
+  border: none;
   border-color: @thunar_bg;
+  box-shadow: none;
 }
 
 /* X Controls multi-tab appearance */
@@ -399,8 +426,7 @@ window.thunar spinner,
 /* Popup windows: neutral container only. The actual menu border is drawn on
    the menu node below, not on rows and not on a generic window fallback. */
 window.popup,
-window.background.popup,
-window.popup.background {
+window.background.popup {
   background-color: @gtk_popup_menu_bg;
   background-image: none;
   color: @gtk_popup_menu_text;
@@ -416,10 +442,8 @@ window.popup.background {
    its 1px padding exposes that color around the painted menuitem rows. */
 window.popup menu,
 window.background.popup menu,
-window.popup.background menu,
 window.popup > menu,
 window.background.popup > menu,
-window.popup.background > menu,
 menu,
 menu.background,
 menuitem > menu,
@@ -441,7 +465,6 @@ menuitem > menu.background,
 /* Menu rows: painted directly, with no row borders. */
 window.popup menuitem,
 window.background.popup menuitem,
-window.popup.background menuitem,
 menu menuitem,
 menu > menuitem,
 menuitem > menu menuitem,
@@ -506,8 +529,6 @@ window.popup menuitem:hover,
 window.popup menuitem:selected,
 window.background.popup menuitem:hover,
 window.background.popup menuitem:selected,
-window.popup.background menuitem:hover,
-window.popup.background menuitem:selected,
 menu menuitem:hover,
 menu menuitem:selected,
 menuitem > menu menuitem:hover,
@@ -573,7 +594,6 @@ menuitem > menu menuitem:selected arrow {
 /* Disabled menu rows. */
 window.popup menuitem:disabled,
 window.background.popup menuitem:disabled,
-window.popup.background menuitem:disabled,
 menu menuitem:disabled,
 menuitem > menu menuitem:disabled,
 .menu menuitem:disabled,
@@ -610,13 +630,10 @@ menuitem > menu menuitem:disabled arrow {
 /* Non-menu popup/dropdown content. */
 window.popup row,
 window.background.popup row,
-window.popup.background row,
 window.popup treeview.view,
 window.background.popup treeview.view,
-window.popup.background treeview.view,
 window.popup treeview.view cell,
 window.background.popup treeview.view cell,
-window.popup.background treeview.view cell,
 popover modelbutton,
 popover button,
 popover row {
@@ -636,20 +653,14 @@ window.popup row:hover,
 window.popup row:selected,
 window.background.popup row:hover,
 window.background.popup row:selected,
-window.popup.background row:hover,
-window.popup.background row:selected,
 window.popup treeview.view:hover,
 window.popup treeview.view:selected,
 window.background.popup treeview.view:hover,
 window.background.popup treeview.view:selected,
-window.popup.background treeview.view:hover,
-window.popup.background treeview.view:selected,
 window.popup treeview.view cell:hover,
 window.popup treeview.view cell:selected,
 window.background.popup treeview.view cell:hover,
 window.background.popup treeview.view cell:selected,
-window.popup.background treeview.view cell:hover,
-window.popup.background treeview.view cell:selected,
 popover modelbutton:hover,
 popover modelbutton:selected,
 popover button:hover,
@@ -667,10 +678,8 @@ popover row:selected {
 /* Separators: preserve GTK spacing, but hide visible divider lines. */
 window.popup separator,
 window.background.popup separator,
-window.popup.background separator,
 window.popup menu separator,
 window.background.popup menu separator,
-window.popup.background menu separator,
 menu separator,
 menu.background separator,
 .menu separator,
@@ -923,9 +932,7 @@ window#waybar.background > box > box {
 
 /* Base file chooser area */
 filechooser,
-filechooserwidget,
-filechooser *,
-filechooserwidget * {
+filechooser * {
   background-image: none;
   box-shadow: none;
   text-shadow: none;
@@ -936,25 +943,13 @@ filechooserwidget * {
 
 /* Main panes */
 filechooser,
-filechooserwidget,
 filechooser box,
-filechooserwidget box,
 filechooser paned,
-filechooserwidget paned,
 filechooser scrolledwindow,
-filechooserwidget scrolledwindow,
 filechooser viewport,
-filechooserwidget viewport,
 filechooser stack,
-filechooserwidget stack,
 filechooser treeview,
-filechooserwidget treeview,
-filechooser treeview.view,
-filechooserwidget treeview.view,
-filechooser listview,
-filechooserwidget listview,
-filechooser columnview,
-filechooserwidget columnview {
+filechooser treeview.view {
   background-color: @portal_bg;
   background-image: none;
   color: @portal_text;
@@ -963,8 +958,7 @@ filechooserwidget columnview {
 }
 
 /* Filename/search entry, but only inside file chooser */
-filechooser entry,
-filechooserwidget entry {
+filechooser entry {
   background-color: @portal_field;
   background-image: none;
   color: @portal_text;
@@ -973,27 +967,20 @@ filechooserwidget entry {
   box-shadow: none;
 }
 
-filechooser entry:focus,
-filechooserwidget entry:focus {
+filechooser entry:focus {
   background-color: @portal_field;
   color: @portal_text_selected;
   border-color: @portal_text;
   box-shadow: none;
 }
 
-filechooser entry selection,
-filechooserwidget entry selection {
+filechooser entry selection {
   background-color: @portal_text;
   color: @portal_text_selected;
 }
 
 /* File-list column header strip: Name / Modified */
-filechooser treeview.view header button,
-filechooserwidget treeview.view header button,
-filechooser columnview header button,
-filechooserwidget columnview header button,
-filechooser column-header button,
-filechooserwidget column-header button {
+filechooser treeview.view header button {
   background-color: @portal_field;
   background-image: none;
   color: @portal_text;
@@ -1004,12 +991,7 @@ filechooserwidget column-header button {
   box-shadow: none;
 }
 
-filechooser treeview.view header button:hover,
-filechooserwidget treeview.view header button:hover,
-filechooser columnview header button:hover,
-filechooserwidget columnview header button:hover,
-filechooser column-header button:hover,
-filechooserwidget column-header button:hover {
+filechooser treeview.view header button:hover {
   background-color: @portal_header;
   color: @portal_text_hover;
   border-color: @portal_border;
@@ -1017,28 +999,21 @@ filechooserwidget column-header button:hover {
 
 /* File-list rows */
 filechooser treeview.view:hover,
-filechooserwidget treeview.view:hover,
-filechooser row:hover,
-filechooserwidget row:hover {
+filechooser row:hover {
   background-color: alpha(@portal_text, 0.06);
   color: @portal_text_hover;
 }
 
 filechooser treeview.view:selected,
-filechooserwidget treeview.view:selected,
 filechooser treeview.view:selected:focus,
-filechooserwidget treeview.view:selected:focus,
-filechooser row:selected,
-filechooserwidget row:selected {
+filechooser row:selected {
   background-color: alpha(@portal_text, 0.14);
   color: @portal_text_selected;
 }
 
 /* Splitters/dividers */
 filechooser separator,
-filechooserwidget separator,
-filechooser paned > separator,
-filechooserwidget paned > separator {
+filechooser paned > separator {
   background-color: @portal_border;
   background-image: none;
   border-color: @portal_border;
@@ -1048,19 +1023,12 @@ filechooserwidget paned > separator {
 /* Buttons inside the file chooser body.
    Selected/current path buttons are text-only: no rectangle, no fill, no border. */
 filechooser button,
-filechooserwidget button,
 filechooser button:hover,
-filechooserwidget button:hover,
 filechooser button:focus,
-filechooserwidget button:focus,
 filechooser button:active,
-filechooserwidget button:active,
 filechooser button:checked,
-filechooserwidget button:checked,
 filechooser button:active:hover,
-filechooserwidget button:active:hover,
-filechooser button:checked:hover,
-filechooserwidget button:checked:hover {
+filechooser button:checked:hover {
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
@@ -1070,53 +1038,32 @@ filechooserwidget button:checked:hover {
 }
 
 filechooser button,
-filechooserwidget button,
 filechooser button label,
-filechooserwidget button label,
-filechooser button image,
-filechooserwidget button image {
+filechooser button image {
   color: @portal_text;
 }
 
 filechooser button:hover,
-filechooserwidget button:hover,
 filechooser button:focus,
-filechooserwidget button:focus,
 filechooser button:active,
-filechooserwidget button:active,
 filechooser button:checked,
-filechooserwidget button:checked,
 filechooser button:active:hover,
-filechooserwidget button:active:hover,
 filechooser button:checked:hover,
-filechooserwidget button:checked:hover,
 filechooser button:hover label,
-filechooserwidget button:hover label,
 filechooser button:focus label,
-filechooserwidget button:focus label,
 filechooser button:active label,
-filechooserwidget button:active label,
 filechooser button:checked label,
-filechooserwidget button:checked label,
 filechooser button:hover image,
-filechooserwidget button:hover image,
 filechooser button:focus image,
-filechooserwidget button:focus image,
 filechooser button:active image,
-filechooserwidget button:active image,
-filechooser button:checked image,
-filechooserwidget button:checked image {
+filechooser button:checked image {
   color: @portal_text_hover;
 }
 
 filechooser button box,
-filechooserwidget button box,
 filechooser button:hover box,
-filechooserwidget button:hover box,
 filechooser button:active box,
-filechooserwidget button:active box,
-filechooser button:checked box,
-filechooserwidget button:checked box {
+filechooser button:checked box {
   background-color: transparent;
   background-image: none;
   border-color: transparent;
@@ -1124,7 +1071,7 @@ filechooserwidget button:checked box {
 }
 
 /* Top GTK portal/file-chooser headerbar.
-   Bare headerbar is intentional: the portal header is not exposed under filechooser/filechooserwidget. */
+   Bare headerbar is intentional: the portal header is not exposed under filechooser. */
 headerbar,
 headerbar.titlebar {
   background-color: @portal_header;
@@ -1215,7 +1162,7 @@ headerbar entry selection {
 }
 
 /* Portal/file-chooser sidebar: Recents / Home / Desktop / Documents / etc.
-   Bare placessidebar is intentional: the portal sidebar is not reliably exposed under filechooser/filechooserwidget. */
+   Bare placessidebar is intentional: the portal sidebar is not reliably exposed under filechooser. */
 placessidebar,
 placessidebar.sidebar,
 placessidebar viewport,
@@ -1285,11 +1232,8 @@ placessidebar row:focus .sidebar-icon {
 
 /* Bottom bar */
 filechooser actionbar,
-filechooserwidget actionbar,
 filechooser actionbar *,
-filechooserwidget actionbar *,
-filechooser revealer,
-filechooserwidget revealer {
+filechooser revealer {
   background-color: @portal_bottom;
   background-image: none;
   color: @portal_text;
@@ -1299,13 +1243,9 @@ filechooserwidget revealer {
 
 /* Bottom file-type selector: PDF */
 filechooser combobox,
-filechooserwidget combobox,
 filechooser combobox box,
-filechooserwidget combobox box,
 filechooser combobox button,
-filechooserwidget combobox button,
-filechooser combobox cellview,
-filechooserwidget combobox cellview {
+filechooser combobox cellview {
   background-color: @portal_bottom;
   background-image: none;
   color: @portal_text;
@@ -1314,8 +1254,7 @@ filechooserwidget combobox cellview {
   box-shadow: none;
 }
 
-filechooser combobox button:hover,
-filechooserwidget combobox button:hover {
+filechooser combobox button:hover {
   background-color: @portal_bottom;
   color: @portal_text_hover;
   border-color: @portal_border;
@@ -1354,8 +1293,7 @@ entry:backdrop {
   background-clip: border-box;
 }
 
-entry:focus,
-entry:focus-within {
+entry:focus {
   background-color: #060606;
   background-image: none;
   color: #c7d0ea;
@@ -1372,13 +1310,10 @@ entry:focus-within {
 /* X Rename/input-field selected text color */
 entry selection,
 entry:focus selection,
-entry:focus-within selection,
 window.dialog entry selection,
 window.dialog entry:focus selection,
-window.dialog entry:focus-within selection,
 dialog entry selection,
-dialog entry:focus selection,
-dialog entry:focus-within selection {
+dialog entry:focus selection {
   background-color: #8a97bf;
   background-image: none;
   color: #060606;
