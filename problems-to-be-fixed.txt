@@ -6,26 +6,24 @@
 
 4. Get a superior, more harmonious, full custom set of .svg icons;
 
-5. Make the Thunar address bar dead center;
+5. Harmoniously theme all remaining Firefox UI popups;
 
-6. Harmoniously theme all remaining Firefox UI popups;
+6. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
 
-7. Make all codeblock formats -- especially of the final versions of userChrome.css and userContent.css -- identical;
+7. Make all comments identical in tense and more exact and concise;
 
-8. Make all comments identical in tense and more exact and concise;
+8. Fix the YouTube rice;
 
-9. Fix the YouTube rice;
+9. After the rice is completely finished, create a new set of high-res showcase images;
 
-10. After the rice is completely finished, create a new set of high-res showcase images;
+10. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
 
-11. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
+11. Fix any missed problems with blueman-manager's theme;
 
-12. Fix any missed problems with blueman-manager's theme;
+12. Fix any missed problems with Thunar's theme;
 
-13. Fix any missed problems with Thunar's theme;
+13. Fix any missed problems with GIMP's theme;
 
-14. Fix any missed problems with GIMP's theme;
+14. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-15. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-16. Turn the Firefox Temporary Extensions into genuine extensions.
+15. Turn the Firefox Temporary Extensions into genuine extensions.
