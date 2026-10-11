@@ -128,14 +128,14 @@ bindsym $mod+h nop
 # Override $mod+v with no operation
 bindsym $mod+v nop
 
+# Override $mod+Shift+e with no operation
+unbindsym $mod+Shift+e
+
 # Save a full-screen screenshot
 bindsym --no-warn $mod+t exec sh -c 'grim ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
 
 # Save a user-selected-region screenshot
 bindsym --no-warn $mod+r exec sh -c 'grim -g "$(slurp)" ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
-
-# Make GTK portal/file-chooser dialogs fill the workspace without full-screening
-for_window [app_id="xdg-desktop-portal-gtk"] floating enable, resize set width 100 ppt height 100 ppt, move position 0 0
 
 # Float and center recognized dialog-type windows
 for_window [window_type="dialog"] floating enable, move position center
