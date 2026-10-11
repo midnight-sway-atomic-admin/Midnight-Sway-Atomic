@@ -1,4 +1,4 @@
-# SDDM Rice 1.10 — Fedora Sway Atomic
+# SDDM Rice
 
 A custom SDDM theme and greeter setup for **Fedora Sway Atomic**, including a fix for the post-login mouse-pointer flash.
 
