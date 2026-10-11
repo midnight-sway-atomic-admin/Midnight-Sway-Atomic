@@ -1318,3 +1318,100 @@ dialog entry:focus selection {
   background-image: none;
   color: #060606;
 }
+
+/* XX Thunar path-entry completion: shift icon + filename right */
+.thunar entry window > frame > box {
+    padding-left: 12px;
+    background-color: @thunar_bg;
+    background-image: none;
+}
+
+/* Hides the hideous pixmaps "Add" button of Xarchiver, but the code is aggressive and also hides all button images */
+dialog button:not(.image-button) image {
+    opacity: 0;
+}
+
+/* Xarchiver Add-files Options page only.
+   Structural selector avoids relying on notebook page index because Xarchiver
+   hides the Selection page when files are already supplied. */
+
+/* Actions / Compression / Encryption frames */
+dialog notebook > stack > box > box frame > border {
+    border: 0.7px solid #222630;
+    border-radius: 3px;
+    background-color: transparent;
+    background-image: none;
+    box-shadow: none;
+}
+
+dialog notebook > stack > box > box frame > label {
+    background-color: #0b0b0b;
+    background-image: none;
+    color: #8a97bf;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/* Checkboxes on the Options page */
+dialog notebook > stack > box > box checkbutton check {
+    min-width: 11px;
+    min-height: 11px;
+    margin-right: 6px;
+    background-color: #060606;
+    background-image: none;
+    border: 0.7px solid #222630;
+    border-radius: 2px;
+    color: #8a97bf;
+    box-shadow: none;
+    -gtk-icon-shadow: none;
+}
+
+dialog notebook > stack > box > box checkbutton check:checked {
+    border-color: #8a97bf;
+    color: #8a97bf;
+}
+
+dialog notebook > stack > box > box checkbutton:disabled,
+dialog notebook > stack > box > box checkbutton:disabled label {
+    color: alpha(#8a97bf, 0.38);
+}
+
+dialog notebook > stack > box > box checkbutton check:disabled {
+    border-color: alpha(#222630, 0.65);
+    color: alpha(#8a97bf, 0.38);
+}
+
+/* Compression scale */
+dialog notebook > stack > box > box scale contents trough {
+    min-height: 2px;
+    background-color: #222630;
+    background-image: none;
+    border: none;
+    border-radius: 1px;
+    box-shadow: none;
+}
+
+dialog notebook > stack > box > box scale contents trough highlight {
+    min-height: 2px;
+    background-color: #8a97bf;
+    background-image: none;
+    border: none;
+    border-radius: 1px;
+    box-shadow: none;
+}
+
+dialog notebook > stack > box > box scale contents trough slider {
+    min-width: 9px;
+    min-height: 9px;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    background-color: #060606;
+    background-image: none;
+    border: 0.7px solid #8a97bf;
+    border-radius: 50%;
+    box-shadow: none;
+}
+
+dialog notebook > stack > box > box scale value {
+    color: #8a97bf;
+}
