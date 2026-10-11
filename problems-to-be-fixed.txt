@@ -14,14 +14,12 @@
 
 8. After the rice is completely finished, create a new set of high-res showcase images;
 
-9. Modify icon files so that there is only one of each icon and provide symlink instructions for other types to be covered by the same icon, and make that symlink coverage robust;
+9. Fix any missed problems with blueman-manager's theme;
 
-10. Fix any missed problems with blueman-manager's theme;
+10. Fix any missed problems with Thunar's theme;
 
-11. Fix any missed problems with Thunar's theme;
+11. Fix any missed problems with GIMP's theme;
 
-12. Fix any missed problems with GIMP's theme;
+12. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-13. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-14. Turn the Firefox Temporary Extensions into genuine extensions.
+13. Turn the Firefox Temporary Extensions into genuine extensions.
