@@ -1,5 +1,5 @@
 {
-    "height": 35,
+    "height": 30,
     "width": 250,
     "spacing": 50,
 
@@ -17,27 +17,6 @@
         "cursor": 60
     },
 
-    "tray": {
-        "tooltip": false,
-        "cursor": 60
-    },
-
-    "clock#date": {
-        "format": "{:%a %d}",
-        "tooltip": false
-    },
-
-    "clock#time": {
-        "format": "{:%H:%M}",
-        "tooltip": false
-    },
-
-    "temperature": {
-        "interval": 5,
-        "critical-threshold": 80,
-        "tooltip": false
-    },
-
     "battery": {
         "interval": 2,
         "states": {
@@ -50,6 +29,28 @@
         "format-full": " ",
         "format-charging": " ",
         "tooltip": false
+    },
+
+    "temperature": {
+        "interval": 5,
+        "critical-threshold": 80,
+        "tooltip": false
+    },
+
+    "clock#date": {
+        "format": "{:%a %d}",
+        "tooltip": false
+    },
+
+    "clock#time": {
+        "format": "{:%H:%M}",
+        "tooltip": false
+    },
+
+    "tray": {
+        "spacing": 50,
+        "tooltip": false,
+        "cursor": 60
     },
 
     "custom/power": {
