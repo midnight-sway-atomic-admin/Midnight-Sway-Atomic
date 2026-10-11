@@ -239,8 +239,6 @@ Installer and restore tests covered:
 - Repeated restores
 - Rollback behavior
 
-A real SDDM-to-desktop transition on your machine has **not** been tested here.
-
 ## References
 
 - [SDDM closes its greeter window on login success](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/GreeterApp.cpp)
