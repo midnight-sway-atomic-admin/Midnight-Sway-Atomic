@@ -17,6 +17,12 @@ set $menu ~/.local/bin/rofi-apps
 # Load Fedora system snippets; /etc overrides matching /usr/share snippets
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
 
+# Start the NetworkManager tray applet
+exec nm-applet --indicator
+
+# Start the Bluetooth tray applet
+exec blueman-applet
+
 # Set the wallpaper on every output, cropped to fill (or fit, stretch, center, tile)
 output * bg ~/.local/share/wallpapers/2560-1600/00-desktop-wallpaper-2560-1600.png fill
 
