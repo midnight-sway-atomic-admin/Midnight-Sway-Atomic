@@ -267,10 +267,9 @@ window.thunar combobox button image {
   -gtk-icon-shadow: none;
 }
 
-/* Hides icons in combo-box popups if the popup isn't scoped under ThunarChooserButton. Remove this block if it affects combo boxes in other GTK apps. Linked to prior code block */
+/* Hide combo-box icons without transforming popup arrows and containers. */
 combobox cellview,
-combobox window.popup,
-combobox window.popup * {
+combobox window.popup image {
   -gtk-icon-transform: scale(0);
   -gtk-icon-shadow: none;
 }
@@ -1414,4 +1413,146 @@ dialog notebook > stack > box > box scale contents trough slider {
 
 dialog notebook > stack > box > box scale value {
     color: #8a97bf;
+}
+
+/* --------------------------------------------------------------------------
+   GTK 3 dropdown controls and popup lists
+   -------------------------------------------------------------------------- */
+
+/* List popups avoid the menu's selected-item alignment behaviour near screen
+   edges. Apply to comboboxes directly: extra chooser widgets and their popup
+   windows are not always descendants of the filechooser CSS node. */
+combobox {
+  -GtkComboBox-appears-as-list: true;
+}
+
+/* Closed controls: cellview draws the selected text, not a label widget.
+   Keep the button surface quiet and provide a compact dropdown indicator. */
+combobox button.combo,
+combobox button.combo box,
+combobox button.combo cellview {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+combobox button.combo {
+  min-height: 22px;
+  padding: 3px 8px;
+  border: 1px solid @gtk_popup_menu_border_soft;
+  border-radius: 3px;
+  outline: none;
+}
+
+combobox button.combo:hover,
+combobox button.combo:checked,
+combobox button.combo:focus,
+combobox button.combo:hover cellview,
+combobox button.combo:checked cellview,
+combobox button.combo:focus cellview,
+combobox button.combo:hover label,
+combobox button.combo:checked label,
+combobox button.combo:focus label,
+combobox button.combo:hover arrow,
+combobox button.combo:checked arrow,
+combobox button.combo:focus arrow {
+  color: @gtk_popup_menu_text_hover;
+}
+
+combobox button.combo arrow {
+  min-width: 12px;
+  min-height: 12px;
+  margin-left: 6px;
+  color: @gtk_popup_menu_text;
+  -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+  -gtk-icon-transform: none;
+  -gtk-icon-shadow: none;
+}
+
+/* One outlined surface around each popup, with no nested frame or row borders.
+   The named-window selector also covers GTK's detached list popup. */
+combobox window.popup,
+window#gtk-combobox-popup-window {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  box-shadow: none;
+  outline: none;
+}
+
+combobox window.popup frame,
+combobox window.popup border,
+combobox window.popup viewport,
+window#gtk-combobox-popup-window frame,
+window#gtk-combobox-popup-window border,
+window#gtk-combobox-popup-window viewport {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* GTK list popups paint their frame on the scrolledwindow. GtkWindow's
+   own CSS border/padding is not allocated around this child. */
+combobox window.popup scrolledwindow,
+window#gtk-combobox-popup-window scrolledwindow {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  border: 1px solid @gtk_popup_menu_border_soft;
+  border-radius: 3px;
+  padding: 4px;
+  margin: 0;
+  box-shadow: none;
+}
+
+combobox window.popup treeview.view,
+window#gtk-combobox-popup-window treeview.view {
+  background-color: @gtk_popup_menu_bg;
+  background-image: none;
+  color: @gtk_popup_menu_text;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  -GtkTreeView-vertical-separator: 8;
+  -GtkTreeView-horizontal-separator: 12;
+}
+
+/* TreeView paints row states on its view node. Keep selected/prelight rows
+   restrained and use the theme's off-white for mouse and keyboard navigation. */
+combobox window.popup treeview.view:hover,
+combobox window.popup treeview.view:selected,
+combobox window.popup treeview.view:selected:focus,
+combobox window.popup treeview.view:selected:backdrop,
+window#gtk-combobox-popup-window treeview.view:hover,
+window#gtk-combobox-popup-window treeview.view:selected,
+window#gtk-combobox-popup-window treeview.view:selected:focus,
+window#gtk-combobox-popup-window treeview.view:selected:backdrop {
+  background-color: alpha(@gtk_popup_menu_text, 0.06);
+  background-image: none;
+  color: @gtk_popup_menu_text_hover;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Keep the dropdown arrow's surface transparent in every interaction state. */
+combobox button.combo arrow,
+combobox button.combo:hover arrow,
+combobox button.combo:active arrow,
+combobox button.combo:checked arrow,
+combobox button.combo:focus arrow,
+combobox button.combo:disabled arrow,
+combobox button.combo:backdrop arrow {
+  background-color: transparent;
+  background-image: none;
+  border: none;
+  box-shadow: none;
 }
