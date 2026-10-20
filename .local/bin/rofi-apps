@@ -6,7 +6,7 @@ logfile="${XDG_RUNTIME_DIR:-/tmp}/rofi-apps.log"
 choice="$(printf '%s\n' \
   "Thunar" \
   "Firefox" \
-  "Nano" \
+  "Nanowrite" \
   "GIMP" \
   "Wlsunset" \
   "Bluetooth" \
@@ -23,8 +23,8 @@ case "$choice" in
     gtk-launch org.mozilla.firefox.desktop >> "$logfile" 2>&1 &
     ;;
 
-  "Nano")
-    foot nano >> "$logfile" 2>&1 &
+  "Nanowrite")
+    bash "$HOME/.config/rofi/scripts/nanowrite.sh" >> "$logfile" 2>&1 &
     ;;
 
   "GIMP")
