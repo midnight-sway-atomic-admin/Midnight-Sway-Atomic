@@ -45,8 +45,6 @@ Use **Nanowrite** as the label in your rofi menu and configure that entry to run
 bash "$HOME/.config/rofi/scripts/nanowrite.sh"
 ```
 
-An example `rofi-apps` menu is included in the package.
-
 ## Usage
 
 - **Ctrl+O:** save.
