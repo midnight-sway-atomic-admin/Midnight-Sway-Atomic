@@ -44,7 +44,7 @@ window {
     background-color: var(background);
     border:           1px;
     border-radius:    0;
-    width:            11ch;
+    width:            12ch;
 }
 
 mainbox {
