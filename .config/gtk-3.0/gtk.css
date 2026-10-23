@@ -730,6 +730,17 @@ messagedialog {
   color: #8a97bf;
 }
 
+/* XX Draws a 1px border around the complete message dialog, including its titlebar. */
+messagedialog > decoration {
+  border: 1px solid #8a97bf;
+}
+
+/* XX Matches GTK message-dialog titlebars to their own dialog background.
+   GtkMessageDialog uses box.titlebar rather than a headerbar. */
+messagedialog > box.titlebar {
+  background-color: inherit;
+}
+
 /* Dialog internal boxes and bottom action strip */
 dialog box,
 window.dialog box,
@@ -742,6 +753,24 @@ window.dialog buttonbox {
   background-color: #0b0b0b;
   background-image: none;
   color: #8a97bf;
+}
+
+/* XX Lets the rounded message-dialog body show through the action strip,
+   instead of painting a square background over the lower corner borders. */
+messagedialog .dialog-action-area {
+  background-color: transparent;
+}
+
+/* XX Uses the accent color for message-dialog action-button text. */
+messagedialog .dialog-action-area button,
+messagedialog .dialog-action-area button label {
+  color: #8a97bf;
+}
+
+/* XX Uses the existing off-white for hovered action-button text. */
+messagedialog .dialog-action-area button:hover,
+messagedialog .dialog-action-area button:hover label {
+  color: #c7d0ea;
 }
 
 /* Thunar Properties dialog: notebook/page background */
