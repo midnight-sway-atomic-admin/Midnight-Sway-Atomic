@@ -10,16 +10,14 @@
 
 6. Make all comments identical in tense and more exact and concise;
 
-7. Fix the YouTube rice;
+7. After the rice is completely finished, create a new set of high-res showcase images;
 
-8. After the rice is completely finished, create a new set of high-res showcase images;
+8. Fix any missed problems with blueman-manager's theme;
 
-9. Fix any missed problems with blueman-manager's theme;
+9. Fix any missed problems with Thunar's theme;
 
-10. Fix any missed problems with Thunar's theme;
+10. Fix any missed problems with GIMP's theme;
 
-11. Fix any missed problems with GIMP's theme;
+11. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
 
-12. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-13. Turn the Firefox Temporary Extensions into genuine extensions.
+12. Turn the Firefox Temporary Extensions into genuine extensions.
