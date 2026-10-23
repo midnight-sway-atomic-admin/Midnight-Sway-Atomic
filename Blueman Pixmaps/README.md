@@ -11,6 +11,12 @@ The two options offer a choice between a battery-only appearance and additional 
 
 Both folders include `the-hideous-originals.png` for comparison.
 
+## Transparent option preview
+
+![Transparent option showing the battery meter with RSSI and TPL hidden](transparent-option-1-preview.png)
+
+The device name and Bluetooth address in this preview are dummy values.
+
 ## Install
 
 Requires the system Blueman package and its SVG loader. Extract the ZIP, open a terminal inside the chosen option's folder, and run as your normal user, without `sudo`:
