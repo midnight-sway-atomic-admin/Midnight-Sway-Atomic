@@ -1,6 +1,6 @@
 # Blueman replacement meters
 
-Thin SVG replacements for the battery, received signal strength (RSSI), and transmit power (TPL) meters in Blueman's Bluetooth Manager, made for my Fedora Sway Atomic rice. Both options use the same battery icons: `#8a97bf` outlines with `#c7d0ea` fill.
+Thin SVG replacements for the battery, received signal strength (RSSI), and transmit power (TPL) meters in Blueman's Bluetooth Manager. Both options use the same battery icons: `#8a97bf` outlines with `#c7d0ea` fill.
 
 | Folder | Appearance |
 | --- | --- |
