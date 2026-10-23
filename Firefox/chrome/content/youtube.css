@@ -23,7 +23,7 @@
     --ytc-post-bg: #0f0f0f;        /* channel post and button surfaces */
     --ytc-shorts-control-bg: #272727; /* opaque Shorts top-control surface */
     --ytc-chip-border: #1a1d28;    /* search-chip border */
-    --ytc-popup-bg: #f1f3fa;       /* popup-menu surface (light by design) */
+    --ytc-popup-bg: #f1f3fa;       /* popup surface (light by design) */
     --ytc-progress-bar: #8a97bf;   /* flat progress-bar color */
   }
 
@@ -527,6 +527,18 @@
   .ytp-chrome-top,
   .ytp-chrome-controls,
   .ytp-popup {
+    filter: grayscale(100%) !important;
+  }
+
+  /* X Preserves the native Live dot's red/grey status while keeping surrounding controls monochrome */
+  #movie_player .ytp-chrome-controls:has(.ytp-live-badge) {
+    filter: none !important;
+  }
+
+  #movie_player :is(
+    .ytp-chrome-controls:has(.ytp-live-badge),
+    .ytp-chrome-controls :has(.ytp-live-badge)
+  ) > :not(.ytp-live-badge):not(:has(.ytp-live-badge)) {
     filter: grayscale(100%) !important;
   }
 
@@ -1180,25 +1192,43 @@
      Popups
      -------------------------------------------------------------------------- */
 
-  /* X Colors legacy menu surfaces and the modern contextual sheet that supplies outer padding */
+  /* X Colors menu surfaces, contextual sheets, and the dismissal-reason dialog */
   ytd-popup-container
   :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]),
   .ytSheetViewModelContextual,
   .ytSheetViewModelContextual .ytContextualSheetLayoutHost,
-  tp-yt-paper-menu-button .dropdown-content {
+  tp-yt-paper-menu-button .dropdown-content,
+  tp-yt-paper-dialog:has(ytd-dismissal-follow-up-renderer),
+  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer {
     background: var(--ytc-popup-bg) !important;
     border-color: var(--ytc-popup-bg) !important;
   }
 
-  /* XX Makes the dismissal-reason dialog's selected checkbox black, including its ripple */
-  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer tp-yt-paper-checkbox {
-    --paper-checkbox-checked-color: #000000 !important;
-    --paper-checkbox-checked-ink-color: #000000 !important;
+  /* X Gives the light dismissal-reason dialog readable text and Cancel-button labels */
+  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer {
+    &, & * {
+      color: var(--ytc-page-bg) !important;
+      -webkit-text-fill-color: var(--ytc-page-bg) !important;
+    }
   }
 
-  /* XX Makes the dismissal-reason dialog's Submit button black */
+  /* X Keeps both checkbox states visible, with a white checkmark on the black fill */
+  tp-yt-paper-dialog ytd-dismissal-follow-up-renderer tp-yt-paper-checkbox {
+    --paper-checkbox-unchecked-color: #000000 !important;
+    --paper-checkbox-unchecked-ink-color: #000000 !important;
+    --paper-checkbox-checked-color: #000000 !important;
+    --paper-checkbox-checked-ink-color: #000000 !important;
+    --paper-checkbox-checkmark-color: #ffffff !important;
+  }
+
+  /* X Gives the black Submit button a light label */
   tp-yt-paper-dialog ytd-dismissal-follow-up-renderer #submit button {
     background: #000000 !important;
+
+    &, & * {
+      color: var(--ytc-popup-bg) !important;
+      -webkit-text-fill-color: var(--ytc-popup-bg) !important;
+    }
   }
 
   /* --------------------------------------------------------------------------
