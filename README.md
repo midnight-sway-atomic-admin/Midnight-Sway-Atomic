@@ -30,16 +30,16 @@ If you replace Firefox, you also won't be able to use the included Firefox chrom
 
 ## Firefox Setup
 
-### Temporary extensions
+### Firefox extensions
 
-Install the included Firefox temporary extensions:
+Install the included Firefox .xpi extensions:
 
 - **Speed Dial**
 - **YouTube Speed Controller**
 
 They are intended to be used with the rice. Without the Speed Dial extension, a new Firefox tab will fall back to Firefox's own new-tab content.
 
-The number of Speed Dial cells can be changed in the extension files:
+The number of Speed Dial cells can be changed in the archived extension files:
 
 In `newtab.js`, change:
 
