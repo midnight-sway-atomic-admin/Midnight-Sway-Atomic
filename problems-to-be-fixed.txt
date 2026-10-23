@@ -19,5 +19,3 @@
 10. Fix any missed problems with GIMP's theme;
 
 11. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI apps;
-
-12. Turn the Firefox Temporary Extensions into genuine extensions.
