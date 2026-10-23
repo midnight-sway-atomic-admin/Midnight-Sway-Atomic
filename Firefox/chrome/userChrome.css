@@ -757,16 +757,39 @@ color: var(--uc-color-fg-hover) !important;
 
 /* Common dialogs */
 
+/* XX Keeps the light common-dialog surface, native controls, and theme colors in the light color scheme */
+#commonDialogWindow,
+#commonDialog {
+  color-scheme: light !important;
+}
+
 /* XX Sets colors for all Firefox common dialogs */
 #commonDialog {
-    background-color: var(--uc-color-light-surface) !important;
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
   --button-background-color-primary: var(--uc-color-surface) !important;
   --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
-  --button-background-color-primary-active: var(--uc-color-button-active) !important;
 
   --button-text-color-primary: var(--uc-color-fg-hover) !important;
   --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
+
+  /* XX Pressing either dialog button keeps its hover background, text, and border colors. */
+  --button-background-color-active: var(--button-background-color-hover) !important;
+  --button-text-color-active: var(--button-text-color-hover) !important;
+  --button-border-color-active: var(--button-border-color-hover) !important;
+  --button-background-color-primary-active: var(--button-background-color-primary-hover) !important;
+  --button-text-color-primary-active: var(--button-text-color-primary-hover) !important;
+  --button-border-color-primary-active: var(--button-border-color-primary-hover) !important;
+}
+
+/* XX Removes the common-dialog header icon and its painted background. */
+#commonDialog #titleContainer > .titleIcon {
+  display: none !important;
+}
+
+/* XX Cancels the icon-specific title offset after removing the header icon. */
+#commonDialog #titleContainer > #titleCropper {
+  translate: none !important;
 }
 
 /* XX Hides the en-US "Ask before closing multiple tabs" checkbox row; label-dependent (pref fixed in user.js) */
