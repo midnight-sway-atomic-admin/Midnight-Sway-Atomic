@@ -21,9 +21,10 @@
     --ytc-accent-solid: #8a97bf;   /* solid version of --ytc-accent */
     --ytc-hover-bg: #080a10;       /* faint hover surface */
     --ytc-post-bg: #0f0f0f;        /* channel post and button surfaces */
+    --ytc-shorts-control-bg: #272727; /* opaque Shorts top-control surface */
     --ytc-chip-border: #1a1d28;    /* search-chip border */
     --ytc-popup-bg: #f1f3fa;       /* popup-menu surface (light by design) */
-    --ytc-progress-bar: #ff0000;   /* flat progress-bar color; the grayscale filter on the player chrome renders it gray, so this value only sets the resulting luminance */
+    --ytc-progress-bar: #8a97bf;   /* flat progress-bar color */
   }
 
   /* --------------------------------------------------------------------------
@@ -177,6 +178,16 @@
 
   /* XX Prevents 3-second animated-thumbnail (animated-WebP) hover previews wherever YouTube swaps them in */
   img[src*="/an_webp/"] {
+    display: none !important;
+  }
+
+  /* X Suppresses hover playback/preview surfaces globally because YouTube can mount the preview player outside the active browse subtree */
+  ytd-video-preview,
+  ytd-moving-thumbnail-renderer,
+  #preview,
+  #inline-preview-player,
+  .inline-preview-player,
+  yt-thumbnail-hover-overlay-toggle-actions-view-model {
     display: none !important;
   }
 
@@ -466,9 +477,9 @@
     }
   }
 
-  /* X Grayscales watch-page videoplayer progress bar and buttons */
+  /* X Grayscales videoplayer controls and menus without filtering the progress bar */
   .ytp-chrome-top,
-  .ytp-chrome-bottom,
+  .ytp-chrome-controls,
   .ytp-popup {
     filter: grayscale(100%) !important;
   }
@@ -478,7 +489,7 @@
     display: none !important;
   }
 
-  /* XX Flattens the progress bar to one color; the parent grayscale filter determines its rendered gray luminance */
+  /* XX Flattens the progress bar to its specified color */
   .ytp-play-progress {
     background: var(--ytc-progress-bar) !important;
   }
@@ -740,16 +751,6 @@
     display: none !important;
   }
 
-  /* X Suppresses hover playback/preview surfaces globally because YouTube can mount the preview player outside the active browse subtree */
-  ytd-video-preview,
-  ytd-moving-thumbnail-renderer,
-  #preview,
-  #inline-preview-player,
-  .inline-preview-player,
-  yt-thumbnail-hover-overlay-toggle-actions-view-model {
-    display: none !important;
-  }
-
   /* X Disables browser-rendered ellipsis dots on home-page video titles by clipping long titles instead */
   ytd-browse[page-subtype="home"] :is(
     .yt-lockup-metadata-view-model__title,
@@ -817,24 +818,46 @@
     box-shadow: none !important;
   }
 
-  /* X Sets colors/border for individual chips */
+  /* X Keeps the search-chip renderer as a transparent layout wrapper */
   ytd-search yt-chip-cloud-chip-renderer {
-    background: var(--ytc-page-bg) !important;
-    color: var(--ytc-accent-solid) !important;
-    border: 1px solid var(--ytc-chip-border) !important;
+    background: transparent !important;
+    border: 0 !important;
     box-shadow: none !important;
   }
 
-  /* XX Makes chip descendants inherit the chip state color; the global :where() text baseline requires no specificity workaround */
-  ytd-search yt-chip-cloud-chip-renderer * {
+  /* X Disables the native button frame; the visible chip shape below owns the surface */
+  ytd-search .ytChipShapeButtonReset {
+    appearance: none !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* X Styles the actual 32px chip shape, including its existing border-box sizing and rounded corners */
+  ytd-search .ytChipShapeChip {
+    background: var(--ytc-page-bg) !important;
+    color: var(--ytc-accent-solid) !important;
+    border: 1px solid var(--ytc-chip-border) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+  }
+
+  /* X Makes the chip label follow the shape's state color instead of the global text override */
+  ytd-search .ytChipShapeText {
     color: inherit !important;
   }
 
-  /* XX Uses the same state styling for hovered and selected search chips */
-  ytd-search yt-chip-cloud-chip-renderer:is(:hover, [selected], [aria-selected="true"]) {
+  /* X Applies selected and hover colors directly to the visible shape */
+  ytd-search .ytChipShapeChip:is(.ytChipShapeActive, .ytChipShapeActiveRedesign),
+  ytd-search .ytChipShapeButtonReset:is(:hover, [aria-selected="true"]) .ytChipShapeChip {
     background: var(--ytc-hover-bg) !important;
     color: var(--ytc-player-text) !important;
     border-color: var(--ytc-accent-solid) !important;
+  }
+
+  /* X Prevents the native chip feedback layer from adding a second surface */
+  ytd-search chip-shape yt-touch-feedback-shape {
+    display: none !important;
   }
 
   /* X Sets colors for left/right scroll arrow areas */
@@ -1097,6 +1120,31 @@
      Shorts
      -------------------------------------------------------------------------- */
 
+  /* X Removes the separate Shorts cinematic canvas backdrop and its top scrim */
+  ytd-shorts :is(#shorts-cinematic-container, #cinematic-shorts-scrim) {
+    display: none !important;
+  }
+
+  /* X Colors the Shorts progress fill and playhead, replacing YouTube's red gradient */
+  ytd-shorts :is(
+    .ytProgressBarLineProgressBarPlayed,
+    .ytProgressBarPlayheadProgressBarPlayheadDot
+  ) {
+    background: var(--ytc-progress-bar) !important;
+  }
+
+  /* X Gives the pause button, volume scrim, and right-hand control pill solid grey backgrounds */
+  ytd-shorts .ytdShortsPlayerControlsPlayPauseButtonShape button,
+  ytd-shorts .ytdShortsPlayerControlsHost .ytdVolumeControlsBackgroundScrim,
+  ytd-shorts .ytdShortsPlayerControlsRightControls {
+    background: var(--ytc-shorts-control-bg) !important;
+  }
+
+  /* X Prevents native button painting from shading the pause button's flat background */
+  ytd-shorts .ytdShortsPlayerControlsPlayPauseButtonShape button {
+    appearance: none !important;
+  }
+
   /* XX Hides the Shorts metadata panel and right-side navigation only within the Shorts page */
   ytd-shorts :is(
     .ytReelPlayerOverlayViewModelMetadataContainerMetapanel,
@@ -1109,10 +1157,14 @@
      Popups
      -------------------------------------------------------------------------- */
 
-  /* X YouTube popup menus like the one invoked by the frontpage dots */
+  /* X Colors legacy menu surfaces and the modern contextual sheet that supplies outer padding */
   ytd-popup-container
-  :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]) {
+  :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]),
+  .ytSheetViewModelContextual,
+  .ytSheetViewModelContextual .ytContextualSheetLayoutHost,
+  tp-yt-paper-menu-button .dropdown-content {
     background: var(--ytc-popup-bg) !important;
+    border-color: var(--ytc-popup-bg) !important;
   }
 
   /* XX Makes the dismissal-reason dialog's selected checkbox black, including its ripple */
@@ -1169,9 +1221,26 @@
     &:hover { --_byline: var(--ytc-player-text); }
   }
 
+  /* X Removes backgrounds from the actual modern and legacy three-dot menu triggers */
+  :is(
+    .ytLockupMetadataViewModelMenuButton,
+    ytd-menu-renderer > .dropdown-trigger,
+    ytd-menu-renderer > #button-shape
+  ) {
+    &, & :is(button, button-view-model, yt-icon-button, yt-button-shape) {
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    /* X These separate feedback layers can draw a circle even when the button is transparent */
+    & :is(yt-touch-feedback-shape, yt-interaction) {
+      display: none !important;
+    }
+  }
+
   /* X Frontpage three-dot menu-button hover; complements the :not(:has(...)) exclusion above */
   ytd-browse[page-subtype="home"]
-  :is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
+  :is(ytd-menu-renderer, .ytLockupMetadataViewModelMenuButton, yt-lockup-menu-button-view-model,
       .ytLockupMenuButtonViewModelHost, button-view-model):hover {
     &, & * { color: var(--ytc-player-text) !important; }
   }
