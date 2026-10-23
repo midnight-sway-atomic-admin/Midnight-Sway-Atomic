@@ -1,0 +1,1 @@
+Mozilla-signed versions of the extensions.
