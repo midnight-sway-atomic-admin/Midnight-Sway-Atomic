@@ -36,7 +36,7 @@ case "$choice" in
     ;;
 
   "Bluetooth")
-    GTK_THEME=blueman blueman-manager >> "$logfile" 2>&1 &
+    GTK_THEME=blueman /usr/bin/python3 "${XDG_DATA_HOME:-$HOME/.local/share}/themes/blueman/blueman-pixmaps-replacement-icons-transparent-option-1/launcher.py" >> "$logfile" 2>&1 &
     ;;
 
   "Recorder")
