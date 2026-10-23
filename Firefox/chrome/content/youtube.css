@@ -68,6 +68,29 @@
     fill: currentColor !important;
   }
 
+  /* X Colors subscription labels and static/animated bells on all pages and in dialogs */
+  :is(
+    yt-subscribe-button-view-model,
+    ytd-subscribe-button-renderer,
+    ytd-subscription-notification-toggle-button-renderer,
+    ytd-subscription-notification-toggle-button-renderer-next,
+    #notification-preference-button
+  ) {
+    &, & * {
+      color: var(--ytc-accent-solid) !important;
+      -webkit-text-fill-color: var(--ytc-accent-solid) !important;
+    }
+
+    /* X Overrides explicit SVG colors, including animated bell paths */
+    & svg path:not([fill="none"]) {
+      fill: var(--ytc-accent-solid) !important;
+    }
+
+    & svg [stroke]:not([stroke="none"]) {
+      stroke: var(--ytc-accent-solid) !important;
+    }
+  }
+
   /* --------------------------------------------------------------------------
      Global button styling
      -------------------------------------------------------------------------- */
@@ -192,6 +215,29 @@
   }
 
   /* --------------------------------------------------------------------------
+     Global progress bars
+     -------------------------------------------------------------------------- */
+
+  /* X Colors player, thumbnail, Shorts, and navigation progress fills/playheads site-wide */
+  .ytp-play-progress,
+  .html5-play-progress,
+  .ytp-scrubber-button,
+  ytd-thumbnail-overlay-resume-playback-renderer #progress,
+  .ytwThumbnailOverlayResumePlaybackRendererThumbnailOverlayResumePlaybackProgress,
+  ytm-thumbnail-overlay-resume-playback-renderer,
+  .ytThumbnailOverlayProgressBarHostWatchedProgressBarSegment,
+  .YtThumbnailOverlayProgressBarHostWatchedProgressBarSegmentModern,
+  ytd-progress-bar-line .progress-bar-played,
+  .ytProgressBarLineProgressBarPlayed,
+  .YtProgressBarLineProgressBarPlayed,
+  .YtProgressBarLineProgressBarPlayedRefresh,
+  .ytProgressBarPlayheadProgressBarPlayheadDot,
+  .YtProgressBarPlayheadProgressBarPlayheadDot,
+  yt-page-navigation-progress #progress {
+    background: var(--ytc-progress-bar) !important;
+  }
+
+  /* --------------------------------------------------------------------------
      Loading/skeleton hides
      -------------------------------------------------------------------------- */
 
@@ -215,7 +261,7 @@
     animation: none !important;
   }
 
-  /* XX Hides the thin top-of-page red progress bar */
+  /* XX Hides the thin top-of-page navigation progress bar */
   yt-page-navigation-progress {
     display: none !important;
   }
@@ -487,11 +533,6 @@
   /* XX Removes the progress-bar scrubber dot */
   .ytp-scrubber-button {
     display: none !important;
-  }
-
-  /* XX Flattens the progress bar to its specified color */
-  .ytp-play-progress {
-    background: var(--ytc-progress-bar) !important;
   }
 
   /* --------------------------------------------------------------------------
@@ -1023,16 +1064,6 @@
     }
   }
 
-  /* X Colors only the icon subtree of the channel-page "Personalized" subscription state */
-  ytd-browse[page-subtype="channels"] [aria-label*="personalized" i] :is(
-    .yt-spec-button-shape-next__icon,
-    .yt-spec-button-shape-next__secondary-icon,
-    .ytSpecButtonShapeNextIcon,
-    .ytSpecButtonShapeNextSecondaryIcon
-  ) {
-    &, & * { fill: var(--ytc-accent-solid) !important; }
-  }
-
   /* XX Sets channel-page tab text color across current tab generations */
   ytd-browse[page-subtype="channels"] :is(
     .yt-tab-shape-wiz__tab,
@@ -1123,14 +1154,6 @@
   /* X Removes the separate Shorts cinematic canvas backdrop and its top scrim */
   ytd-shorts :is(#shorts-cinematic-container, #cinematic-shorts-scrim) {
     display: none !important;
-  }
-
-  /* X Colors the Shorts progress fill and playhead, replacing YouTube's red gradient */
-  ytd-shorts :is(
-    .ytProgressBarLineProgressBarPlayed,
-    .ytProgressBarPlayheadProgressBarPlayheadDot
-  ) {
-    background: var(--ytc-progress-bar) !important;
   }
 
   /* X Gives the pause button, volume scrim, and right-hand control pill solid grey backgrounds */
