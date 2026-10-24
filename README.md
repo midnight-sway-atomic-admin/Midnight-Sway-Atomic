@@ -22,7 +22,7 @@ Configure the appropriate scaling settings for your display in:
 
 ### Rofi application entries
 
-The Rofi files assume that the Flatpak versions of **Firefox** and **GIMP** are installed.
+The Rofi files assume that the Flatpak versions of **Firefox**, **GIMP** and **Showtime** are installed.
 
 If you use different applications, change the application names in the relevant Rofi files. You may also need to adjust the Rofi width manually so that application titles fit cleanly within the menu.
 
