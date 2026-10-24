@@ -1,4 +1,4 @@
-# Fedora Sway Atomic: Flatpak setup
+# Flatpak setup
 
 Install Firefox, GIMP and Showtime from Flathub's verified-only selection for the current user only.
 
