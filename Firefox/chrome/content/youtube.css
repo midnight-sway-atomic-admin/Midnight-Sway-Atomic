@@ -871,23 +871,23 @@
     box-shadow: none !important;
   }
 
-  /* X Keeps the search-chip renderer as a transparent layout wrapper */
-  ytd-search yt-chip-cloud-chip-renderer {
+  /* X Keeps search and browse-page chip renderers as transparent layout wrappers, including Community pages without a page-subtype attribute */
+  :is(ytd-search, ytd-browse) yt-chip-cloud-chip-renderer {
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
   }
 
   /* X Disables the native button frame; the visible chip shape below owns the surface */
-  ytd-search .ytChipShapeButtonReset {
+  :is(ytd-search, ytd-browse) .ytChipShapeButtonReset {
     appearance: none !important;
     background: transparent !important;
     border: 0 !important;
     box-shadow: none !important;
   }
 
-  /* X Shares the search-chip surface with channel filters and filled playlist header buttons */
-  :is(ytd-search, ytd-browse[page-subtype="channels"]) .ytChipShapeChip,
+  /* X Shares the search-chip surface with browse-page filters, including Community, and filled playlist header buttons */
+  :is(ytd-search, ytd-browse) .ytChipShapeChip,
   :is(ytd-playlist-header-renderer, ytd-browse[has-page-header-sidebar] .page-header-sidebar)
   :is(.yt-spec-button-shape-next--filled, .ytSpecButtonShapeNextFilled) {
     background: var(--ytc-page-bg) !important;
@@ -910,18 +910,23 @@
   }
 
   /* X Applies selected and hover colors directly to the visible shape */
-  :is(ytd-search, ytd-browse[page-subtype="channels"])
+  :is(ytd-search, ytd-browse)
   .ytChipShapeChip:is(.ytChipShapeActive, .ytChipShapeActiveRedesign),
-  :is(ytd-search, ytd-browse[page-subtype="channels"])
+  :is(ytd-search, ytd-browse)
   .ytChipShapeButtonReset:is(:hover, [aria-selected="true"]) .ytChipShapeChip {
     background: var(--ytc-hover-bg) !important;
     color: var(--ytc-player-text) !important;
     border-color: var(--ytc-accent-solid) !important;
   }
 
-  /* X Prevents the native chip feedback layer from adding a second surface */
-  ytd-search chip-shape yt-touch-feedback-shape {
+  /* X Prevents the native chip feedback layer from adding a second surface on shared search/browse chips */
+  :is(ytd-search, ytd-browse) chip-shape yt-touch-feedback-shape {
     display: none !important;
+  }
+
+  /* X Removes the grey browse-page filter strip; #chips-wrapper owns the background on Community pages */
+  ytd-browse ytd-feed-filter-chip-bar-renderer #chips-wrapper {
+    background: var(--ytc-page-bg) !important;
   }
 
   /* X Sets colors for left/right scroll arrow areas */
@@ -1154,8 +1159,9 @@
     border-color: var(--ytc-accent-solid) !important;
   }
 
-  /* XX Sets the channel-profile header-panel background */
-  ytd-browse[page-subtype="channels"] #page-header {
+  /* X Sets channel and Community header backgrounds; the tabbed header paints both #page-header and its outer #page-header-container */
+  ytd-browse[page-subtype="channels"] #page-header,
+  ytd-tabbed-page-header :is(#page-header, #page-header-container) {
     background-color: var(--ytc-page-bg) !important;
   }
 
