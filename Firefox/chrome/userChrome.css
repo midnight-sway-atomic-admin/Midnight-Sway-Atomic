@@ -24,6 +24,7 @@
   --uc-color-button-active: #6f7aa0;      /* Button active fill */
   --uc-color-light-surface: #e6ebf5;      /* Light dialog background */
   --uc-color-light-control: #d7dbe6;      /* Light dialog controls */
+  --uc-color-light-control-hover: #c9cdd6; /* Hovered light dialog controls */
   --uc-color-faded: #454c61;              /* Inactive text/icons */
   --uc-color-mask-opaque: #000000;        /* Tabstrip fade mask, and some text */
   --uc-color-bg-hover-light: #f1f3fa;     /* Light hover background */
@@ -138,11 +139,6 @@
   align-self: center !important;
 }
 
-/* XX Caps breakout URL-bar max-width at viewport width minus 10px; does not constrain its position */
-#urlbar[breakout][breakout-extend] {
-  max-width: calc(100vw - 10px) !important;
-}
-
 /* Hidden controls and chrome */
 
 /* XX Hides the entire URL-bar results view while search mode is active */
@@ -242,13 +238,6 @@
 #tabbrowser-tabs[orient="horizontal"][movingtab] {
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
-}
-
-/* XX Sets tab hover-preview tooltip background and border color and radius */
-#tab-preview-panel {
-  --panel-background-color: var(--uc-color-surface) !important;
-  --panel-border-color: var(--uc-color-border-muted) !important;
-  --panel-border-radius: 3px !important;
 }
 
 /* XX Sets selected tab-text color */
@@ -398,6 +387,212 @@ menupopup menuseparator {
 menupopup > [_moz-menuactive]:not([disabled]) {
   background-color: var(--uc-color-bg-hover-light) !important;
   color: var(--uc-color-mask-opaque) !important;
+}
+
+/* XX Themes the outer popup surfaces; panelview alone only colours inner content */
+:where(panel, menupopup) {
+  color-scheme: light !important;
+  --panel-background-color: var(--uc-color-light-surface) !important;
+  --panel-background-color-dimmed: var(--uc-color-light-control) !important;
+  --panel-text-color: var(--uc-color-surface) !important;
+  --panel-border-color: var(--uc-color-light-control) !important;
+  --panel-border-radius: 3px !important;
+  --panel-separator-color: var(--uc-color-light-control) !important;
+}
+
+/* XX Supplies Firefox's native control tokens within popups and the named chrome dialogs */
+:where(panel, menupopup, #commonDialogWindow, #commonDialog, #SanitizeDialog,
+       #bookmarkproperties, #places, :root[windowtype="Browser:page-info"], #print) {
+  --background-color-canvas: var(--uc-color-light-surface) !important;
+  --background-color-box: var(--uc-color-light-control) !important;
+  --text-color: var(--uc-color-surface) !important;
+  --text-color-deemphasized: var(--uc-color-faded) !important;
+  --text-color-disabled: var(--uc-color-faded) !important;
+  --border-color: var(--uc-color-light-control) !important;
+  --border-color-deemphasized: var(--uc-color-light-control) !important;
+  --color-accent-primary: var(--uc-color-surface) !important;
+  --color-accent-primary-hover: var(--uc-color-button-hover) !important;
+  --color-accent-primary-active: var(--uc-color-button-active) !important;
+  --color-accent-primary-selected: var(--uc-color-light-control) !important;
+  --text-color-accent-primary-selected: var(--uc-color-surface) !important;
+  --focus-outline-color: var(--uc-color-surface) !important;
+  --focus-outline: var(--focus-outline-width) solid var(--uc-color-surface) !important;
+  --link-color: var(--uc-color-surface) !important;
+  --link-color-hover: var(--uc-color-surface) !important;
+  --link-color-active: var(--uc-color-surface) !important;
+  --link-color-visited: var(--uc-color-surface) !important;
+  --input-text-background-color: #f2f6ff !important;
+  --input-text-color: var(--uc-color-surface) !important;
+  --input-border-color: var(--uc-color-light-control) !important;
+  --input-text-border: var(--border-width, 1px) solid var(--uc-color-light-control) !important;
+  --input-text-border-color: var(--uc-color-light-control) !important;
+  --input-text-background-color-disabled: var(--uc-color-light-control) !important;
+  --input-text-border-color-disabled: var(--uc-color-light-control) !important;
+  --input-text-color-disabled: var(--uc-color-faded) !important;
+  --button-border: var(--border-width, 1px) solid transparent !important;
+  --button-border-color: transparent !important;
+  --button-border-color-hover: transparent !important;
+  --button-border-color-active: transparent !important;
+  --button-border-color-selected: transparent !important;
+  --button-border-color-disabled: transparent !important;
+  --button-split-separator-background-color: transparent !important;
+  --button-background-color: var(--uc-color-light-control) !important;
+  --button-background-color-hover: var(--uc-color-light-control-hover) !important;
+  --button-background-color-active: var(--uc-color-light-control-hover) !important;
+  --button-background-color-selected: var(--uc-color-light-control-hover) !important;
+  --button-background-color-disabled: var(--uc-color-light-control) !important;
+  --button-text-color: var(--uc-color-surface) !important;
+  --button-text-color-hover: var(--uc-color-surface) !important;
+  --button-text-color-active: var(--uc-color-surface) !important;
+  --button-text-color-selected: var(--uc-color-surface) !important;
+  --button-text-color-disabled: var(--uc-color-faded) !important;
+  --button-border-color-primary: transparent !important;
+  --button-border-color-primary-hover: transparent !important;
+  --button-border-color-primary-active: transparent !important;
+  --button-border-color-primary-selected: transparent !important;
+  --button-border-color-primary-disabled: transparent !important;
+  --button-background-color-primary: var(--uc-color-surface) !important;
+  --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
+  --button-background-color-primary-active: var(--uc-color-button-hover) !important;
+  --button-background-color-primary-selected: var(--uc-color-button-hover) !important;
+  --button-background-color-primary-disabled: var(--uc-color-light-control) !important;
+  --button-text-color-primary: var(--uc-color-fg-hover) !important;
+  --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
+  --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
+  --button-text-color-primary-selected: var(--uc-color-fg-hover) !important;
+  --button-text-color-primary-disabled: var(--uc-color-faded) !important;
+  --button-border-color-ghost: transparent !important;
+  --button-border-color-ghost-hover: transparent !important;
+  --button-border-color-ghost-active: transparent !important;
+  --button-border-color-ghost-selected: transparent !important;
+  --button-border-color-ghost-disabled: transparent !important;
+  --button-background-color-ghost-disabled: transparent !important;
+  --button-text-color-ghost-disabled: var(--uc-color-faded) !important;
+  --button-background-color-ghost: transparent !important;
+  --button-background-color-ghost-hover: var(--uc-color-bg-hover-light) !important;
+  --button-background-color-ghost-active: var(--uc-color-light-control) !important;
+  --button-background-color-ghost-selected: var(--uc-color-light-control) !important;
+  --button-text-color-ghost: var(--uc-color-surface) !important;
+  --button-text-color-ghost-hover: var(--uc-color-surface) !important;
+  --button-text-color-ghost-active: var(--uc-color-surface) !important;
+  --button-text-color-ghost-selected: var(--uc-color-surface) !important;
+  --button-border-color-menu: transparent !important;
+  --button-border-color-menu-hover: transparent !important;
+  --button-border-color-menu-active: transparent !important;
+  --button-border-color-menu-selected: transparent !important;
+  --button-border-color-menu-disabled: transparent !important;
+  --button-background-color-menu-disabled: transparent !important;
+  --button-text-color-menu-disabled: var(--uc-color-faded) !important;
+  --button-background-color-menu: transparent !important;
+  --button-background-color-menu-hover: var(--uc-color-bg-hover-light) !important;
+  --button-background-color-menu-active: var(--uc-color-light-control) !important;
+  --button-background-color-menu-selected: var(--uc-color-light-control) !important;
+  --button-text-color-menu: var(--uc-color-surface) !important;
+  --button-text-color-menu-hover: var(--uc-color-surface) !important;
+  --button-text-color-menu-active: var(--uc-color-surface) !important;
+  --button-text-color-menu-selected: var(--uc-color-surface) !important;
+}
+
+/* XX Themes the toggle's own host tokens without changing its checked or disabled state */
+:where(panel, #commonDialog, #SanitizeDialog, #bookmarkproperties, #places,
+       :root[windowtype="Browser:page-info"], #print) moz-toggle {
+  --toggle-background-color-pressed: var(--uc-color-surface) !important;
+  --toggle-background-color-pressed-hover: var(--uc-color-button-hover) !important;
+  --toggle-background-color-pressed-active: var(--uc-color-button-active) !important;
+  --toggle-border-color: var(--uc-color-faded) !important;
+  --toggle-dot-background-color: var(--uc-color-surface) !important;
+  --toggle-dot-background-color-on-pressed: var(--uc-color-light-surface) !important;
+}
+
+/* XX Keeps autocomplete-row shadow controls within the light popup palette */
+#PopupAutoComplete autocomplete-row-item {
+  --button-background-color-hover: var(--uc-color-bg-hover-light) !important;
+  --button-background-color-active: var(--uc-color-light-control) !important;
+  --button-background-color-ghost-hover: var(--uc-color-bg-hover-light) !important;
+  --button-background-color-ghost-active: var(--uc-color-light-control) !important;
+  --sff-pill-bg-color: var(--uc-color-light-control) !important;
+  --sff-pill-bg-color-focus: var(--uc-color-bg-hover-light) !important;
+}
+
+/* XX Colours ordinary tooltips and the tab preview families with the existing dark tooltip palette */
+tooltip,
+#tab-preview-panel,
+#tab-note-preview-panel,
+#ctrlTab-panel {
+  color-scheme: dark !important;
+  --panel-background-color: var(--uc-color-surface) !important;
+  --panel-text-color: var(--uc-color-fg-hover) !important;
+  --panel-border-color: var(--uc-color-border-muted) !important;
+  --background-color-canvas: var(--uc-color-surface) !important;
+  --background-color-box: var(--uc-color-surface) !important;
+  --text-color: var(--uc-color-fg-hover) !important;
+  --text-color-deemphasized: var(--uc-color-fg) !important;
+  --border-color: var(--uc-color-border-muted) !important;
+  --border-color-deemphasized: var(--uc-color-border-muted) !important;
+  --color-accent-primary: var(--uc-color-fg) !important;
+  --color-accent-primary-hover: var(--uc-color-fg-hover) !important;
+  --color-accent-primary-active: var(--uc-color-fg-hover) !important;
+  --color-accent-primary-selected: var(--uc-color-faded) !important;
+  --text-color-accent-primary-selected: var(--uc-color-fg-hover) !important;
+  --focus-outline-color: var(--uc-color-fg-hover) !important;
+  --focus-outline: var(--focus-outline-width) solid var(--uc-color-fg-hover) !important;
+  --link-color: var(--uc-color-fg-hover) !important;
+  --link-color-hover: var(--uc-color-fg-hover) !important;
+  --link-color-active: var(--uc-color-fg-hover) !important;
+  --link-color-visited: var(--uc-color-fg-hover) !important;
+  --button-border-color-menu: transparent !important;
+  --button-border-color-menu-hover: transparent !important;
+  --button-border-color-menu-active: transparent !important;
+  --button-border-color-menu-selected: transparent !important;
+  --button-border-color-menu-disabled: transparent !important;
+  --button-background-color-menu-disabled: transparent !important;
+  --button-text-color-menu-disabled: var(--uc-color-faded) !important;
+  --button-background-color-menu: transparent !important;
+  --button-background-color-menu-hover: transparent !important;
+  --button-background-color-menu-active: transparent !important;
+  --button-text-color-menu: var(--uc-color-fg) !important;
+  --button-text-color-menu-hover: var(--uc-color-fg-hover) !important;
+  --button-text-color-menu-active: var(--uc-color-fg-hover) !important;
+  --button-border-color-ghost: transparent !important;
+  --button-border-color-ghost-hover: transparent !important;
+  --button-border-color-ghost-active: transparent !important;
+  --button-border-color-ghost-selected: transparent !important;
+  --button-border-color-ghost-disabled: transparent !important;
+  --button-background-color-ghost-disabled: transparent !important;
+  --button-text-color-ghost-disabled: var(--uc-color-faded) !important;
+  --button-background-color-ghost: transparent !important;
+  --button-background-color-ghost-hover: transparent !important;
+  --button-background-color-ghost-active: transparent !important;
+  --button-text-color-ghost: var(--uc-color-fg) !important;
+  --button-text-color-ghost-hover: var(--uc-color-fg-hover) !important;
+  --button-text-color-ghost-active: var(--uc-color-fg-hover) !important;
+}
+
+/* XX Paints tooltip elements themselves; fallbacks also cover native anonymous tooltips that do not inherit root variables */
+tooltip {
+  appearance: none !important;
+  background-color: var(--uc-color-surface, #060606) !important;
+  color: var(--uc-color-fg-hover, #c7d0ea) !important;
+  border: 1px solid var(--uc-color-border-muted, #222630b3) !important;
+  border-radius: 3px !important;
+}
+
+/* XX Replaces Ctrl+Tab's hard-coded selection colours while keeping its focus indicator */
+#ctrlTab-showAll {
+  background-color: var(--uc-color-surface) !important;
+}
+
+.ctrlTab-preview:is(:hover, :focus) > .ctrlTab-preview-inner,
+#ctrlTab-showAll:is(:hover, :focus) {
+  background-color: var(--uc-color-bg) !important;
+  border-color: var(--uc-color-fg-hover) !important;
+  color: var(--uc-color-fg-hover) !important;
+  text-shadow: none !important;
+}
+
+/* XX Restores Firefox's icon-only swatch labels after the global chrome font-size rule */
+.tab-group-editor-swatches > .tab-group-editor-swatch {
+  font-size: 0 !important;
 }
 
 /* XX Sets the background and foreground colors of panelview-based popups globally */
@@ -591,16 +786,6 @@ panelview {
 
 /* Panel surfaces and controls */
 
-/* XX Sets "Add Bookmark" "Save" button color */
-#editBookmarkPanelDoneButton {
-  --button-background-color-primary: var(--uc-color-surface) !important;
-  --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
-  --button-background-color-primary-active: var(--uc-color-button-hover) !important;
-  --button-text-color-primary: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
-}
-
 /* XX Sets the Add Bookmark popup header and body background */
 #editBookmarkPanel > .panel-header,
 #editBookmarkPanel > .panel-subview-body {
@@ -701,21 +886,11 @@ color: var(--uc-color-fg-hover) !important;
 
 /* Controls and links */
 
-/* XX Sets trust-panel primary-button colors */
+/* XX Sets the trust-panel primary button's active background */
 #trustpanel-popup {
-  --button-background-color-primary: var(--uc-color-surface) !important;
-  --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
   --button-background-color-primary-active: var(--uc-color-button-active) !important;
-  --button-text-color-primary: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-active: var(--uc-color-fg-hover) !important;
 }
-/* XX Sets ETP-toggle pressed colors; moz-toggle re-declares these on :host, so the element must be hit directly */
-#trustpanel-toggle {
-  --toggle-background-color-pressed: var(--uc-color-surface) !important;
-  --toggle-background-color-pressed-hover: var(--uc-color-button-hover) !important;
-  --toggle-background-color-pressed-active: var(--uc-color-button-active) !important;
-}
+
 /* XX Sets trust-panel link colors */
 #trustpanel-privacy-link,
 #trustpanel-siteinformation-morelink {
@@ -728,9 +903,21 @@ color: var(--uc-color-fg-hover) !important;
 
 /* Toolbar button and progress */
 
-/* XX Sets the Downloads button attention colour, used by its inner progress fill and success state */
+/* XX Sets the Downloads icon, progress fill, and success state to the theme foreground */
 #downloads-button {
-  --toolbarbutton-icon-fill-attention: var(--uc-color-fg) !important;
+  color: var(--uc-color-fg) !important;
+  --toolbarbutton-icon-fill: currentColor !important;
+  --toolbarbutton-icon-fill-attention: currentColor !important;
+}
+
+/* XX Recolours the enabled Downloads button off-white on hover */
+#downloads-button:not([disabled]):hover {
+  color: var(--uc-color-fg-hover) !important;
+}
+
+/* XX Removes the Downloads button's inner background highlight in all states */
+#downloads-button > .toolbarbutton-badge-stack {
+  background-color: transparent !important;
 }
 
 /* XX Sets the fill colour of matching download progress bars, including paused bars, in chrome download views */
@@ -767,19 +954,6 @@ color: var(--uc-color-fg-hover) !important;
 #commonDialog {
   background-color: var(--uc-color-light-surface) !important;
   color: var(--uc-color-surface) !important;
-  --button-background-color-primary: var(--uc-color-surface) !important;
-  --button-background-color-primary-hover: var(--uc-color-button-hover) !important;
-
-  --button-text-color-primary: var(--uc-color-fg-hover) !important;
-  --button-text-color-primary-hover: var(--uc-color-fg-hover) !important;
-
-  /* XX Pressing either dialog button keeps its hover background, text, and border colors. */
-  --button-background-color-active: var(--button-background-color-hover) !important;
-  --button-text-color-active: var(--button-text-color-hover) !important;
-  --button-border-color-active: var(--button-border-color-hover) !important;
-  --button-background-color-primary-active: var(--button-background-color-primary-hover) !important;
-  --button-text-color-primary-active: var(--button-text-color-primary-hover) !important;
-  --button-border-color-primary-active: var(--button-border-color-primary-hover) !important;
 }
 
 /* XX Removes the common-dialog header icon and its painted background. */
@@ -812,4 +986,291 @@ radio {
 /* XX Sets the accent color of all XUL checkbox controls */
 checkbox {
   accent-color: var(--uc-color-surface) !important;
+}
+
+/* XX Colours the named chrome dialog documents without styling the browser window */
+#SanitizeDialog,
+#bookmarkproperties,
+#places,
+:root[windowtype="Browser:page-info"] {
+  color-scheme: light !important;
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
+}
+
+/* XX Leaves enough room for both orientation labels with the global 12px chrome font */
+browser.printSettingsBrowser {
+  width: 25em !important;
+}
+
+/* XX Restricts the print surface rule to Firefox's settings document, not printed pages */
+@-moz-document url("chrome://global/content/print.html") {
+  :root {
+    color-scheme: light !important;
+    --background-color-canvas: var(--uc-color-light-surface) !important;
+    --text-color: var(--uc-color-surface) !important;
+  }
+
+  /* XX Matches native HTML radio buttons and checkboxes to the XUL control accent */
+  input:is([type="radio"], [type="checkbox"]) {
+    accent-color: var(--uc-color-surface) !important;
+  }
+
+  :root, body {
+    background-color: var(--uc-color-light-surface) !important;
+    color: var(--uc-color-surface) !important;
+  }
+}
+
+/* XX Gives text fields in popups and the named dialogs the existing bookmark-field colours */
+:where(panel, #commonDialog, #SanitizeDialog, #bookmarkproperties, #places,
+       :root[windowtype="Browser:page-info"], #print)
+  :is(input:not([type]), input[type="text"], input[type="password"], input[type="number"],
+      input[type="search"], input[type="email"], input[type="url"], input[type="tel"], textarea):not([warning]):not(:user-invalid) {
+  background-color: #f2f6ff !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+/* XX Themes dropdown surfaces while leaving their native controls and keyboard behaviour intact */
+:where(panel, #commonDialog, #SanitizeDialog, #bookmarkproperties, #places,
+       :root[windowtype="Browser:page-info"], #print) :is(menulist, select) {
+  background-color: var(--uc-color-light-control) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+:where(panel, #commonDialog, #SanitizeDialog, #bookmarkproperties, #places,
+       :root[windowtype="Browser:page-info"], #print) :is(menulist, select):not([disabled]):hover {
+  background-color: var(--uc-color-light-control-hover) !important;
+}
+
+/* XX Retains a muted disabled-field appearance after applying the shared field colours */
+:where(panel, #commonDialog, #SanitizeDialog, #bookmarkproperties, #places,
+       :root[windowtype="Browser:page-info"], #print)
+  :is(input, textarea, menulist, select):is(:disabled, [disabled]) {
+  color: var(--uc-color-faded) !important;
+}
+
+/* XX Colours the remaining tree surfaces in popups and dialogs */
+:where(panel, #SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"]) tree {
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+:where(panel, #SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  treechildren::-moz-tree-row(hover) {
+  background-color: var(--uc-color-bg-hover-light) !important;
+}
+
+:where(panel, #SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  treechildren::-moz-tree-row(selected) {
+  background-color: var(--uc-color-light-control) !important;
+}
+
+:where(panel, #SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  treechildren::-moz-tree-cell-text(selected),
+:where(panel, #SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  treechildren::-moz-tree-twisty(selected) {
+  color: var(--uc-color-surface) !important;
+}
+
+/* XX Themes classic XUL buttons in the named dialogs; native system colours do not consume the shared button tokens */
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  button:not(.tree-columnpicker-button) {
+  appearance: none !important;
+  background-color: var(--button-background-color) !important;
+  color: var(--button-text-color) !important;
+  border-color: var(--button-border-color) !important;
+  border-radius: 3px !important;
+}
+
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  button:not(.tree-columnpicker-button):not([disabled]):hover {
+  background-color: var(--button-background-color-hover) !important;
+  color: var(--button-text-color-hover) !important;
+  border-color: var(--button-border-color-hover) !important;
+}
+
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  button:not(.tree-columnpicker-button):not([disabled]):hover:active {
+  background-color: var(--button-background-color-active) !important;
+  color: var(--button-text-color-active) !important;
+  border-color: var(--button-border-color-active) !important;
+}
+
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  button:not(.tree-columnpicker-button):is(:disabled, [disabled]) {
+  background-color: var(--button-background-color-disabled) !important;
+  color: var(--button-text-color-disabled) !important;
+  border-color: var(--button-border-color-disabled) !important;
+}
+
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  button:not(.tree-columnpicker-button):focus-visible {
+  outline: var(--focus-outline) !important;
+  outline-offset: var(--focus-outline-offset) !important;
+}
+
+/* XX Colours classic tree headers, including the adjoining column-picker button */
+:where(#SanitizeDialog, #bookmarkproperties, #places, :root[windowtype="Browser:page-info"])
+  :is(treecol, .tree-columnpicker-button) {
+  appearance: none !important;
+  background-color: var(--uc-color-light-control) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+/* XX Replaces Page Info's explicit platform colours on its navigation and permissions surfaces */
+:root[windowtype="Browser:page-info"] :is(#topBar, #permList, #imagecontainerbox) {
+  appearance: none !important;
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+:root[windowtype="Browser:page-info"] #viewGroup > radio {
+  background-color: transparent !important;
+  color: var(--uc-color-surface) !important;
+}
+
+:root[windowtype="Browser:page-info"] #viewGroup > radio:hover {
+  background-color: var(--uc-color-bg-hover-light) !important;
+}
+
+:root[windowtype="Browser:page-info"] #viewGroup > radio[selected] {
+  background-color: var(--uc-color-light-control) !important;
+}
+
+:root[windowtype="Browser:page-info"] #viewGroup:focus-visible > radio[focused="true"] > .radio-label-box {
+  outline: var(--focus-outline) !important;
+}
+
+:root[windowtype="Browser:page-info"] .permission {
+  border-color: var(--uc-color-light-control) !important;
+}
+
+:root[windowtype="Browser:page-info"] .permission:hover {
+  background-color: var(--uc-color-bg-hover-light) !important;
+  color: var(--uc-color-surface) !important;
+}
+
+/*==============================================================================
+  MANAGE BOOKMARKS / FIREFOX LIBRARY
+==============================================================================*/
+
+/* XX Colours the native Library toolbar, view and details pane rather than only its child popups */
+#places :is(#placesToolbar, #placesView, #placesViewsBox, #detailsPane) {
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
+}
+
+/* XX Replaces the Linux native toolbar-button paint on the Library's menu headings */
+#placesMenu > menu {
+  appearance: none !important;
+  background-color: transparent !important;
+  color: var(--uc-color-surface) !important;
+  border-color: transparent !important;
+  border-radius: 3px !important;
+}
+
+#placesMenu > menu:is(:hover, [_moz-menuactive], [open]) {
+  background-color: var(--uc-color-light-control) !important;
+}
+
+/* XX Themes the Library's remaining toolbar buttons, including Clear Downloads */
+#placesToolbar > toolbarbutton {
+  appearance: none !important;
+  background-color: var(--uc-color-light-control) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: transparent !important;
+  border-radius: 3px !important;
+}
+
+#placesToolbar > toolbarbutton:not([disabled]):is(:hover, :active) {
+  background-color: var(--uc-color-light-control-hover) !important;
+}
+
+#placesToolbar > toolbarbutton[disabled] {
+  color: var(--uc-color-faded) !important;
+}
+
+/* XX Gives the resizable Library divider the light control colour without changing its behaviour */
+#placesView > splitter {
+  background-color: var(--uc-color-light-control) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+/* XX Makes tree headers respond within the same palette */
+#places :is(treecol, .tree-columnpicker-button):hover {
+  background-color: var(--uc-color-light-control-hover) !important;
+}
+
+/* XX Keeps selected bookmark/folder icons visible against the light selection fill */
+#places treechildren::-moz-tree-image(selected) {
+  color: var(--uc-color-surface) !important;
+}
+
+/* XX Replaces native blue/yellow current-row focus colours with the theme focus colour */
+#places treechildren::-moz-tree-row(current, focus) {
+  outline-color: var(--uc-color-surface) !important;
+}
+
+/* XX Keeps drag destinations and tree connectors readable in the Library palette */
+#places treechildren::-moz-tree-cell-text(primary, dropOn) {
+  background-color: var(--uc-color-surface) !important;
+  color: var(--uc-color-fg-hover) !important;
+}
+
+#places treechildren::-moz-tree-drop-feedback {
+  background-color: var(--uc-color-surface) !important;
+}
+
+#places treechildren::-moz-tree-line(selected, focus) {
+  border-color: var(--uc-color-surface) !important;
+}
+
+/* XX Uses Firefox's existing arrow assets instead of Linux's native framed expander widget */
+#places :is(.expander-up, .expander-down) {
+  -moz-context-properties: fill;
+  fill: currentColor;
+}
+
+#places .expander-up {
+  list-style-image: url("chrome://global/skin/icons/arrow-up.svg");
+}
+
+#places .expander-down {
+  list-style-image: url("chrome://global/skin/icons/arrow-down.svg");
+}
+
+#places :is(.expander-up, .expander-down) > .button-box {
+  appearance: none !important;
+  transform: none !important;
+}
+
+/* XX Colours the Library's Downloads and tag-selection lists, including native selection/focus states */
+#places richlistbox {
+  appearance: none !important;
+  background-color: var(--uc-color-light-surface) !important;
+  color: var(--uc-color-surface) !important;
+  border-color: var(--uc-color-light-control) !important;
+}
+
+#places richlistbox[disabled] {
+  color: var(--uc-color-faded) !important;
+}
+
+#places richlistbox > richlistitem:not([selected]):hover {
+  background-color: var(--uc-color-bg-hover-light) !important;
+}
+
+#places richlistitem[selected] {
+  background-color: var(--uc-color-light-control) !important;
+  color: var(--uc-color-surface) !important;
+}
+
+#places richlistbox:focus > richlistitem[current="true"] {
+  outline-color: var(--uc-color-surface) !important;
 }
