@@ -886,23 +886,34 @@
     box-shadow: none !important;
   }
 
-  /* X Styles the actual 32px chip shape, including its existing border-box sizing and rounded corners */
-  ytd-search .ytChipShapeChip {
+  /* X Shares the search-chip surface with channel filters and filled playlist header buttons */
+  :is(ytd-search, ytd-browse[page-subtype="channels"]) .ytChipShapeChip,
+  :is(ytd-playlist-header-renderer, ytd-browse[has-page-header-sidebar] .page-header-sidebar)
+  :is(.yt-spec-button-shape-next--filled, .ytSpecButtonShapeNextFilled) {
     background: var(--ytc-page-bg) !important;
     color: var(--ytc-accent-solid) !important;
     border: 1px solid var(--ytc-chip-border) !important;
     border-radius: 8px !important;
     box-shadow: none !important;
-  }
+    -webkit-text-fill-color: currentColor !important;
 
-  /* X Makes the chip label follow the shape's state color instead of the global text override */
-  ytd-search .ytChipShapeText {
-    color: inherit !important;
+    & * {
+      color: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+    }
+
+    &:hover {
+      background: var(--ytc-hover-bg) !important;
+      color: var(--ytc-player-text) !important;
+      border-color: var(--ytc-accent-solid) !important;
+    }
   }
 
   /* X Applies selected and hover colors directly to the visible shape */
-  ytd-search .ytChipShapeChip:is(.ytChipShapeActive, .ytChipShapeActiveRedesign),
-  ytd-search .ytChipShapeButtonReset:is(:hover, [aria-selected="true"]) .ytChipShapeChip {
+  :is(ytd-search, ytd-browse[page-subtype="channels"])
+  .ytChipShapeChip:is(.ytChipShapeActive, .ytChipShapeActiveRedesign),
+  :is(ytd-search, ytd-browse[page-subtype="channels"])
+  .ytChipShapeButtonReset:is(:hover, [aria-selected="true"]) .ytChipShapeChip {
     background: var(--ytc-hover-bg) !important;
     color: var(--ytc-player-text) !important;
     border-color: var(--ytc-accent-solid) !important;
@@ -1009,6 +1020,25 @@
   }
 
   /* --------------------------------------------------------------------------
+     Playlist pages
+     -------------------------------------------------------------------------- */
+
+  /* X Removes the playlist header's separate hidden-guide offset to match the page-manager reset; native sizing and responsive positioning remain intact */
+  ytd-browse:is([page-subtype="playlist"], [has-page-header-sidebar])
+  > :is(ytd-playlist-header-renderer, .page-header-sidebar) {
+    margin-left: 0 !important;
+    left: 0 !important;
+  }
+
+  /* X Matches the playlist's sticky filter-header background to the page; current and Polymer renderer rules paint this surface independently of the chips */
+  ytd-browse[page-subtype="playlist"] .ytItemSectionRendererStickyHeader,
+  ytd-browse[page-subtype="playlist"]
+  ytd-item-section-renderer[use-chip-bar-view-model-header][page-subtype="playlist"]
+  > #header.ytd-item-section-renderer {
+    background: var(--ytc-page-bg) !important;
+  }
+
+  /* --------------------------------------------------------------------------
      Channel pages
      -------------------------------------------------------------------------- */
 
@@ -1047,13 +1077,27 @@
     background-color: var(--ytc-post-bg) !important;
   }
 
-  /* XX Sets colors for inactive channel-profile sort chips */
-  ytd-browse[page-subtype="channels"] .ytChipShapeInactive {
-    background-color: transparent !important;
+  /* X Gives the channel-header Subscribe button its dark pill surface, independently of the filter-chip style; appearance:none disables native button painting */
+  ytd-browse[page-subtype="channels"] #page-header
+  :is(
+    .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled,
+    .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled
+  ) {
+    appearance: none !important;
+    background: var(--ytc-post-bg) !important;
+    border: 0 !important;
+    border-radius: 9999px !important;
+    box-shadow: none !important;
     color: var(--ytc-accent) !important;
+    -webkit-text-fill-color: currentColor !important;
 
     & * {
       color: inherit !important;
+      -webkit-text-fill-color: currentColor !important;
+    }
+
+    &:hover {
+      color: var(--ytc-player-text) !important;
     }
   }
 
@@ -1096,6 +1140,18 @@
     &, & * {
       color: var(--ytc-player-text) !important;
     }
+  }
+
+  /* X Colors the visible channel-tab slider and hover underline; tabGroupShapeSlider paints the current selected indicator */
+  ytd-browse[page-subtype="channels"] :is(
+    .tabGroupShapeSlider,
+    .ytTabShapeTabBar,
+    .yt-tab-group-shape-wiz__slider,
+    .yt-tab-shape-wiz__tab-bar,
+    tp-yt-paper-tabs #selectionBar
+  ) {
+    background: var(--ytc-accent-solid) !important;
+    border-color: var(--ytc-accent-solid) !important;
   }
 
   /* XX Sets the channel-profile header-panel background */
