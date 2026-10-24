@@ -8,7 +8,7 @@
 @define-color thunar_bg #010305;
 @define-color thunar_accent #8A97BF;
 
-@define-color theme_selected_bg_color alpha(@thunar_accent, 0.060);
+@define-color theme_selected_bg_color alpha(@thunar_accent, 0.080);
 @define-color theme_selected_fg_color #ffffff;
 @define-color theme_unfocused_selected_bg_color alpha(@thunar_accent, 0);
 @define-color theme_unfocused_selected_fg_color #ffffff;
