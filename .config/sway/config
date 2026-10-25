@@ -11,8 +11,8 @@ set $rofi_cmd rofi \
 # Show rofi with desktop apps and PATH commands
 #set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 
-# Custom rofi script
-set $menu ~/.local/bin/rofi-apps
+# Launch the Bash script
+set $menu bash ~/.local/bin/rofi-apps
 
 # Load Fedora system snippets; /etc overrides matching /usr/share snippets
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
