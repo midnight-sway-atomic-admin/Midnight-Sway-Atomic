@@ -1,69 +1,69 @@
-/* Thunar gtk.css */
+/* GTK 3 theme: shared widgets and application overrides.
+   Rules are grouped by function. Section order is intentional: the late
+   overrides preserve the preceding stylesheet's selector precedence. */
 
-/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+/* ==========================================================================
+   1. Theme colors
+   ========================================================================== */
 
-/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
+/* Main Thunar colors and GTK selection colors. */
 
-/* X Color shim. Change these two values to change the theme */
 @define-color thunar_bg #010305;
 @define-color thunar_accent #8A97BF;
-
-@define-color theme_selected_bg_color alpha(@thunar_accent, 0.080);
+@define-color theme_selected_bg_color alpha(@thunar_accent, 0.08);
 @define-color theme_selected_fg_color #ffffff;
 @define-color theme_unfocused_selected_bg_color alpha(@thunar_accent, 0);
 @define-color theme_unfocused_selected_fg_color #ffffff;
 
-/* X Main file-grid background. Keep background-color light because Thunar/GTK uses it when rendering inactive selected icons; paint the visible dark surface with background-image */
-.view,
-.view:backdrop {
-  background-color: #ffffff;
-  background-image: linear-gradient(to bottom, @thunar_bg, @thunar_bg);
-}
+/* Menus and dropdown controls. */
 
-/* X Main Thunar file-grid item text only */
-.view.cell,
-.view.cell:backdrop {
-  color: @thunar_accent;
-}
+@define-color gtk_popup_menu_bg            #060606;
+@define-color gtk_popup_menu_border        #222630;
+@define-color gtk_popup_menu_border_soft   alpha(@gtk_popup_menu_border, 0.55);
+@define-color gtk_popup_menu_text          #8a97bf;
+@define-color gtk_popup_menu_text_hover    #c7d0ea;
+@define-color gtk_popup_menu_text_disabled alpha(#333333, 1);
 
-/* X Controls the main font size OF THE WHOLE SYSTEM, INCLUDING FIREFOX, and hides several base features */
+/* File chooser, headerbars and Places sidebars. */
+
+@define-color portal_bg              #010306;
+@define-color portal_header          #0b0b0b;
+@define-color portal_sidebar         #0b0b0b;
+@define-color portal_bottom          #0b0b0b;
+@define-color portal_field           #060606;
+@define-color portal_border          #1a1a1a;
+@define-color portal_text            #8a97bf;
+@define-color portal_text_hover      #c7d0ea;
+@define-color portal_text_selected   #ffffff;
+
+/* ==========================================================================
+   2. Shared GTK foundation
+   ========================================================================== */
+
+/* Shared GTK defaults: base font and visual resets. */
 * {
-  font-size: 12px; 
+  font-size: 12px;
   border: none;
   outline: none;
   box-shadow: none;
   background-image: none;
 }
 
-/* X Sets base Thunar container colors without touching the file-grid view's logical background */
-window.thunar,
-window.thunar .standard-view {
-  background-color: @thunar_bg;
+/* Shared GTK views: keep the logical background light for Thunar's
+   inactive selected icons; paint the visible dark surface with the gradient. */
+.view,
+.view:backdrop {
+  background-color: #ffffff;
+  background-image: linear-gradient(to bottom, @thunar_bg, @thunar_bg);
+}
+
+/* Shared view-cell text, including the main Thunar file grid. */
+.view.cell,
+.view.cell:backdrop {
   color: @thunar_accent;
 }
 
-/* X Controls main file pane inset: dimensions of the icon grid */
-.thunar .standard-view {
-  padding-top: 50px;
-  padding-right: 100px;
-  padding-bottom: 69px;
-  padding-left: 100px;
-}
-
-/* Sets very restrained drag-selection rectangle */
-iconview.view rubberband,
-iconview.view .rubberband,
-treeview.view rubberband,
-treeview.view .rubberband,
-rubberband,
-.rubberband {
-  border: 1px solid rgba(138, 151, 191, 0.16);
-  background-color: rgba(138, 151, 191, 0.035);
-  background-image: none;
-  box-shadow: none;
-}
-
-/* X Hides scrollbars and paints GTK scrollbar junctions to match Thunar */
+/* Hide GTK scrollbars and their contents. */
 scrollbar,
 scrollbar *,
 scrollbar contents,
@@ -76,11 +76,28 @@ scrollbar button {
   padding: 0;
   border: none;
   background-color: transparent;
-  background-image: none;
-  box-shadow: none;
   opacity: 0;
 }
 
+/* ==========================================================================
+   3. Thunar main window
+   ========================================================================== */
+
+/* Main containers, file-pane spacing and scrollbar junctions. */
+
+/* Sets base Thunar container colors without touching the file-grid view's logical background */
+window.thunar,
+window.thunar .standard-view {
+  background-color: @thunar_bg;
+  color: @thunar_accent;
+}
+
+/* Controls main file pane inset: dimensions of the icon grid */
+.thunar .standard-view {
+  padding: 50px 100px 69px;
+}
+
+/* Match Thunar scrollbar junctions to the main background. */
 window.thunar scrolledwindow junction,
 window.thunar scrolledwindow > junction {
   min-width: 0;
@@ -90,10 +107,11 @@ window.thunar scrolledwindow > junction {
   border: none;
   background-color: @thunar_bg;
   background-image: none;
-  box-shadow: none;
 }
 
-/* X Sets colors for the toolbar strip: the big background strip behind the main address bar */
+/* Toolbar and location entry. */
+
+/* Sets colors for the toolbar strip: the big background strip behind the main address bar */
 .thunar toolbar,
 window.thunar toolbar {
   background-color: @thunar_bg;
@@ -101,7 +119,7 @@ window.thunar toolbar {
   border-color: @thunar_bg;
 }
 
-/* X Hides top toolbar button icons, including the hamburger/menu button, without hiding sidebar/device icons */
+/* Hides top toolbar button icons, including the hamburger/menu button, without hiding sidebar/device icons */
 .thunar toolbar button image,
 window.thunar toolbar button image {
   opacity: 0;
@@ -113,33 +131,25 @@ window.thunar toolbar button image {
   padding: 0;
 }
 
-/* X Sets the main address bar position and inner padding */
+/* Sets the main address bar position and inner padding */
 .thunar #location-toolbar entry,
 window.thunar #location-toolbar entry,
 .thunar toolbar entry,
 window.thunar toolbar entry {
   min-height: 0;
-
-  margin-top: 75px;
-  margin-bottom: 2px;
-  margin-left: 244px; /* This and "margin-right" control the horizontal position of the main address bar */
-  margin-right: 281px;
-
-  padding-top: 5px;
-  padding-bottom: 5px;
-  padding-left: 12px;
-  padding-right: 0;
-
+  margin: 75px 281px 2px 244px;
+  /* Right/left margins position the address bar horizontally. */
+  padding: 5px 0 5px 12px;
   background-color: #060606;
   color: @thunar_accent;
   caret-color: #eeeeee;
-
   border: 0.7px solid #222630;
-  border-radius: 3px; /* Sole control for main address bar corner rounding */
+  border-radius: 3px;
+  /* Sole control for main address bar corner rounding */
   font-size: 11px;
 }
 
-/* X Sets colors for selected text in the main address bar */
+/* Sets colors for selected text in the main address bar */
 .thunar #location-toolbar entry selection,
 window.thunar #location-toolbar entry selection,
 .thunar toolbar entry selection,
@@ -148,13 +158,14 @@ window.thunar toolbar entry selection {
   color: #060606;
 }
 
-/* X Sets colors for text caret (i.e. |) in main address bar */
+/* Sets colors for text caret (i.e. |) in main address bar */
 .thunar entry:focus {
   caret-color: @thunar_accent;
-  -gtk-secondary-caret-color: @thunar_accent; /* bidi-text secondary caret */
+  -gtk-secondary-caret-color: @thunar_accent;
+  /* bidi-text secondary caret */
 }
 
-/* X Hides only the icon directly inside the main location/address entry */
+/* Hides only the icon directly inside the main location/address entry */
 .thunar .path-entry image,
 .thunar .location-entry image,
 .thunar toolbar entry image,
@@ -163,12 +174,12 @@ window.thunar toolbar entry selection {
   margin-left: -6px;
 }
 
-/* X Hides the icon to the left of the main address bar entry */
+/* Hides the icon to the left of the main address bar entry */
 .thunar toolbar entry {
   -ThunarPathEntry-icon-size: 1;
 }
 
-/* X Hides the visible left-side address-bar entry image */
+/* Hides the visible left-side address-bar entry image */
 .thunar toolbar entry image.left {
   opacity: 0;
   -gtk-icon-transform: scale(0);
@@ -178,22 +189,28 @@ window.thunar toolbar entry selection {
   padding: 0;
 }
 
-/* X Controls left-side shortcuts sidebar: icon-only Places / Devices / Network / bookmarks */
+/* Thunar path-entry completion: shift icon + filename right */
+.thunar entry window > frame > box {
+  padding-left: 12px;
+  background-color: @thunar_bg;
+  background-image: none;
+}
+
+/* Sidebar and list headers. */
+
+/* Controls left-side shortcuts sidebar: icon-only Places / Devices / Network / bookmarks */
 .thunar scrolledwindow.shortcuts-pane treeview.view,
 .thunar .sidebar .view {
   background-color: @thunar_bg;
-
   /* Keeps symbolic sidebar icons visible */
   color: @thunar_accent;
-
   /* Hides sidebar text while preserving clickable/icon rows */
   font-size: 0px;
-
   -GtkTreeView-vertical-separator: 8;
   -GtkTreeView-horizontal-separator: 6;
 }
 
-/* X Removes/colors the vertical divider at the right edge of the Thunar sidebar */
+/* Removes/colors the vertical divider at the right edge of the Thunar sidebar */
 window.thunar paned > separator,
 window.thunar paned > separator:backdrop,
 .thunar paned > separator,
@@ -207,10 +224,9 @@ window.thunar scrolledwindow.shortcuts-pane.frame:backdrop {
   background-color: @thunar_bg;
   background-image: none;
   border-color: @thunar_bg;
-  box-shadow: none;
 }
 
-/* X Makes selected sidebar rows visually match the file-grid selected-item highlight */
+/* Makes selected sidebar rows visually match the file-grid selected-item highlight */
 .thunar scrolledwindow.shortcuts-pane treeview.view:selected,
 .thunar scrolledwindow.shortcuts-pane treeview.view:selected:focus,
 .thunar .sidebar .view:selected,
@@ -226,99 +242,78 @@ window.thunar scrolledwindow.shortcuts-pane.frame:backdrop {
   color: @thunar_accent;
 }
 
-/* X Visually hides the list/search-results column header bar */
+/* Visually hides the list/search-results column header bar */
 .thunar treeview.view header button {
   min-height: 0;
   padding: 0;
   border: none;
   background: none;
-  background-image: none;
-  box-shadow: none;
   color: transparent;
   opacity: 0;
   font-size: 0;
 }
 
-/* X Sets Ctrl+M menubar item text color while clicked/open */
+/* Tabs, menubar text and busy indicator. */
+
+/* Controls multi-tab appearance */
+window.thunar notebook,
+window.thunar notebook.frame,
+window.thunar notebook > header,
+window.thunar notebook > header.top,
+window.thunar notebook > header.bottom,
+window.thunar notebook > header > tabs,
+window.thunar notebook > header.top > tabs,
+window.thunar notebook > header.bottom > tabs,
+window.thunar notebook > header > tabs > tab,
+window.thunar notebook > header.top > tabs > tab,
+window.thunar notebook > header.bottom > tabs > tab,
+window.thunar notebook > header > tabs > tab.reorderable-page,
+window.thunar notebook > header.top > tabs > tab.reorderable-page,
+window.thunar notebook > header.bottom > tabs > tab.reorderable-page,
+window.thunar notebook > header > tabs > tab > box,
+window.thunar notebook > header > tabs > arrow,
+window.thunar notebook > stack {
+  background-color: @thunar_bg;
+  background-image: none;
+  border-color: @thunar_bg;
+}
+
+/* Hides new-tab secondary address text */
+window.thunar notebook > header > tabs > tab label {
+  color: @thunar_bg;
+}
+
+/* Sets Ctrl+M menubar item text color while clicked/open */
 .thunar menubar > menuitem:hover,
 .thunar menubar > menuitem:active,
 .thunar menubar > menuitem:checked {
   color: #c7d0ea;
 }
 
-/* X Removes grey inactive-window bar */
-window:backdrop menubar,
-menubar:backdrop {
-  background-color: transparent;
-  background-image: none;
-  box-shadow: none;
-  border-color: transparent;
-}
-
-/* X Hides icons in the "Open With" combo box */
-ThunarPropertiesDialog ThunarChooserButton,
-ThunarPropertiesDialog ThunarChooserButton cellview,
-ThunarPropertiesDialog ThunarChooserButton window.popup,
-ThunarPropertiesDialog ThunarChooserButton window.popup *,
-window.thunar combobox cellview,
-window.thunar combobox cellview image,
-window.thunar combobox button image {
-  -gtk-icon-transform: scale(0);
+/* Hides the top-right menubar busy spinner */
+ThunarWindow spinner,
+window.thunar spinner,
+.thunar spinner {
+  opacity: 0;
+  color: transparent;
+  background: none;
+  border: none;
   -gtk-icon-shadow: none;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
 }
 
-/* Hide combo-box icons without transforming popup arrows and containers. */
-combobox cellview,
-combobox window.popup image {
-  -gtk-icon-transform: scale(0);
-  -gtk-icon-shadow: none;
-}
+/* Trash infobar and its actions. */
 
-/* X Controls GTK tooltip colors, including Thunar sidebar bookmark hover tooltips */
-tooltip,
-tooltip.background,
-window.tooltip,
-window.background.tooltip {
-  background-color: @thunar_bg;
-  background-image: none;
-  color: @thunar_accent;
-  border: 1px solid #222630;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-tooltip box,
-tooltip.background box,
-window.tooltip box,
-window.background.tooltip box {
-  background-color: @thunar_bg;
-  background-image: none;
-  color: @thunar_accent;
-  border-color: transparent;
-  box-shadow: none;
-}
-
-tooltip label,
-tooltip.background label,
-window.tooltip label,
-window.background.tooltip label {
-  background-color: transparent;
-  background-image: none;
-  color: @thunar_accent;
-  font-size: 10px;
-}
-
-/* X Moves the Thunar trash-bar action buttons toward the center and removes the action-area strip */
+/* Moves the Thunar trash-bar action buttons toward the center and removes the action-area strip */
 window.thunar infobar.info > revealer > box > buttonbox {
   margin-right: 456px;
   margin-left: 0px;
-  background-color: @thunar_bg;
-  background-image: none;
-  border: none;
-  box-shadow: none;
 }
 
-/* X Styles trash commands as text-only buttons; hover uses the top-level off-white */
+/* Styles trash commands as text-only buttons; hover uses the top-level off-white */
 window.thunar infobar button,
 window.thunar infobar button:hover,
 window.thunar infobar button:focus,
@@ -327,8 +322,6 @@ window.thunar infobar button:checked {
   background-color: transparent;
   background-image: none;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
 window.thunar infobar button,
@@ -352,75 +345,101 @@ window.thunar infobar button:checked image {
   color: #c7d0ea;
 }
 
-/* X Sets colors for the bar behind the trash commands */
+/* Sets colors for the bar behind the trash commands */
 window.thunar infobar,
 window.thunar infobar.info > revealer,
 window.thunar infobar.info > revealer > box,
 window.thunar infobar.info > revealer > box > buttonbox {
   background: @thunar_bg;
-  background-color: @thunar_bg;
-  background-image: none;
   border: none;
   border-color: @thunar_bg;
-  box-shadow: none;
 }
 
-/* X Controls multi-tab appearance */
-window.thunar notebook,
-window.thunar notebook.frame,
-window.thunar notebook > header,
-window.thunar notebook > header.top,
-window.thunar notebook > header.bottom,
-window.thunar notebook > header > tabs,
-window.thunar notebook > header.top > tabs,
-window.thunar notebook > header.bottom > tabs,
-window.thunar notebook > header > tabs > tab,
-window.thunar notebook > header.top > tabs > tab,
-window.thunar notebook > header.bottom > tabs > tab,
-window.thunar notebook > header > tabs > tab.reorderable-page,
-window.thunar notebook > header.top > tabs > tab.reorderable-page,
-window.thunar notebook > header.bottom > tabs > tab.reorderable-page,
-window.thunar notebook > header > tabs > tab > box,
-window.thunar notebook > header > tabs > arrow,
-window.thunar notebook > stack {
-  background-color: @thunar_bg;
+/* ==========================================================================
+   4. Shared GTK interaction surfaces
+   ========================================================================== */
+
+/* Sets very restrained drag-selection rectangle */
+iconview.view rubberband,
+iconview.view .rubberband,
+treeview.view rubberband,
+treeview.view .rubberband,
+rubberband,
+.rubberband {
+  border: 1px solid rgba(138, 151, 191, 0.16);
+  background-color: rgba(138, 151, 191, 0.035);
   background-image: none;
-  border-color: @thunar_bg;
-  box-shadow: none;
 }
 
-/* X Hides new-tab secondary address text */
-window.thunar notebook > header > tabs > tab label {
-  color: @thunar_bg;
+/* Shared menubars: remove the grey inactive-window strip. */
+window:backdrop menubar,
+menubar:backdrop {
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
 }
 
-/* X Hides the top-right menubar busy spinner */
-ThunarWindow spinner,
-window.thunar spinner,
-.thunar spinner {
-  opacity: 0;
-  color: transparent;
-  background: none;
-  border: none;
-  box-shadow: none;
+/* Hide chooser/combo-box icons while preserving popup arrows and containers.
+   This shared rule also retains the legacy Thunar Properties selectors. */
+ThunarPropertiesDialog ThunarChooserButton,
+ThunarPropertiesDialog ThunarChooserButton cellview,
+ThunarPropertiesDialog ThunarChooserButton window.popup,
+ThunarPropertiesDialog ThunarChooserButton window.popup *,
+window.thunar combobox cellview,
+window.thunar combobox cellview image,
+window.thunar combobox button image,
+combobox cellview,
+combobox window.popup image {
+  -gtk-icon-transform: scale(0);
   -gtk-icon-shadow: none;
-
-  min-width: 0;
-  min-height: 0;
-  padding: 0;
-  margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   GTK menu / popup / dropdown color controls
-   -------------------------------------------------------------------------- */
+/* GTK tooltip surfaces, including Thunar sidebar bookmark tooltips. */
+tooltip,
+tooltip.background,
+window.tooltip,
+window.background.tooltip {
+  background-color: @thunar_bg;
+  background-image: none;
+  color: @thunar_accent;
+  border: 1px solid #222630;
+  border-radius: 0;
+}
 
-@define-color gtk_popup_menu_bg            #060606;
-@define-color gtk_popup_menu_border        #222630;
-@define-color gtk_popup_menu_border_soft   alpha(@gtk_popup_menu_border, 0.55);
-@define-color gtk_popup_menu_text          #8a97bf;
-@define-color gtk_popup_menu_text_hover    #c7d0ea;
-@define-color gtk_popup_menu_text_disabled alpha(#333333, 1);
+tooltip box,
+tooltip.background box,
+window.tooltip box,
+window.background.tooltip box {
+  background-color: @thunar_bg;
+  background-image: none;
+  color: @thunar_accent;
+  border-color: transparent;
+}
+
+tooltip label,
+tooltip.background label,
+window.tooltip label,
+window.background.tooltip label {
+  background-color: transparent;
+  background-image: none;
+  color: @thunar_accent;
+  font-size: 10px;
+}
+
+/* GTK label hyperlinks, including dialog documentation links. */
+label > link,
+label > link:link,
+label > link:visited {
+  color: @thunar_accent;
+}
+
+label > link:hover {
+  color: #c7d0ea;
+}
+
+/* ==========================================================================
+   5. GTK menus and popup content
+   ========================================================================== */
 
 /* Popup windows: neutral container only. The actual menu border is drawn on
    the menu node below, not on rows and not on a generic window fallback. */
@@ -432,8 +451,6 @@ window.background.popup {
   border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
-  box-shadow: none;
-  outline: none;
 }
 
 /* Menus, including nested submenus and Waybar XML power menus.
@@ -456,8 +473,6 @@ menuitem > menu.background,
   border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
-  box-shadow: none;
-  outline: none;
   background-clip: border-box;
 }
 
@@ -475,8 +490,6 @@ menuitem > menu menuitem,
   border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
-  box-shadow: none;
-  outline: none;
   text-shadow: none;
   -gtk-icon-shadow: none;
 }
@@ -517,8 +530,6 @@ menuitem > menu menuitem arrow {
   border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
-  box-shadow: none;
-  outline: none;
   text-shadow: none;
   -gtk-icon-shadow: none;
 }
@@ -540,8 +551,6 @@ menuitem > menu menuitem:selected,
   background-image: none;
   color: @gtk_popup_menu_text_hover;
   border: none;
-  box-shadow: none;
-  outline: none;
   text-shadow: none;
   -gtk-icon-shadow: none;
 }
@@ -586,8 +595,6 @@ menuitem > menu menuitem:selected arrow {
   background-image: none;
   color: inherit;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
 /* Disabled menu rows. */
@@ -601,8 +608,6 @@ menuitem > menu menuitem:disabled,
   background-image: none;
   color: @gtk_popup_menu_text_disabled;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
 window.popup menuitem:disabled label,
@@ -642,8 +647,6 @@ popover row {
   border: none;
   border-radius: 0;
   -gtk-outline-radius: 0;
-  box-shadow: none;
-  outline: none;
   text-shadow: none;
   -gtk-icon-shadow: none;
 }
@@ -670,8 +673,6 @@ popover row:selected {
   background-image: none;
   color: @gtk_popup_menu_text_hover;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
 /* Separators: preserve GTK spacing, but hide visible divider lines. */
@@ -689,9 +690,9 @@ popover.background separator {
   background-image: none;
   color: @gtk_popup_menu_bg;
   border-color: @gtk_popup_menu_bg;
-  box-shadow: none;
-  outline: none;
 }
+
+/* Thunar menubar surfaces follow the shared popup rules to retain their overrides. */
 
 /* Top menubar: do not let popup rules create dividers between File / Edit /
    View / Go / Bookmarks / Help. */
@@ -706,11 +707,9 @@ window.thunar menubar > menuitem:checked {
   background-color: transparent;
   background-image: none;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
-/* X Ctrl+M menubar background */
+/* Ctrl+M menubar background */
 window.thunar menubar,
 window.thunar menubar:backdrop,
 .thunar menubar,
@@ -718,8 +717,11 @@ window.thunar menubar:backdrop,
   background-color: #0b0b0b;
   background-image: none;
   border-color: #0b0b0b;
-  box-shadow: none;
 }
+
+/* ==========================================================================
+   6. Shared GTK dialogs
+   ========================================================================== */
 
 /* Dialog windows, including Thunar rename dialog */
 dialog,
@@ -730,12 +732,12 @@ messagedialog {
   color: #8a97bf;
 }
 
-/* XX Draws a 1px border around the complete message dialog, including its titlebar. */
+/* Draws a 1px border around the complete message dialog, including its titlebar. */
 messagedialog > decoration {
   border: 1px solid #8a97bf;
 }
 
-/* XX Matches GTK message-dialog titlebars to their own dialog background.
+/* Matches GTK message-dialog titlebars to their own dialog background.
    GtkMessageDialog uses box.titlebar rather than a headerbar. */
 messagedialog > box.titlebar {
   background-color: inherit;
@@ -755,25 +757,46 @@ window.dialog buttonbox {
   color: #8a97bf;
 }
 
-/* XX Lets the rounded message-dialog body show through the action strip,
+/* Lets the rounded message-dialog body show through the action strip,
    instead of painting a square background over the lower corner borders. */
 messagedialog .dialog-action-area {
   background-color: transparent;
 }
 
-/* XX Uses the accent color for message-dialog action-button text. */
+/* Uses the accent color for dialog action-button text. */
+dialog .dialog-action-area button,
+dialog .dialog-action-area button label,
+window.dialog .dialog-action-area button,
+window.dialog .dialog-action-area button label,
 messagedialog .dialog-action-area button,
 messagedialog .dialog-action-area button label {
   color: #8a97bf;
 }
 
-/* XX Uses the existing off-white for hovered action-button text. */
+/* Uses the existing off-white for hovered action-button text. */
+dialog .dialog-action-area button:hover,
+dialog .dialog-action-area button:hover label,
+window.dialog .dialog-action-area button:hover,
+window.dialog .dialog-action-area button:hover label,
 messagedialog .dialog-action-area button:hover,
 messagedialog .dialog-action-area button:hover label {
   color: #c7d0ea;
 }
 
-/* Thunar Properties dialog: notebook/page background */
+/* Custom Actions: match the vertical toolbar to the dialog background. */
+dialog toolbar.vertical {
+  background-color: #0b0b0b;
+}
+
+/* About dialog: match the license text panel to the surrounding dialog. */
+dialog.background stack > box > scrolledwindow > textview.view,
+dialog.background stack > box > scrolledwindow > textview.view > text {
+  background-color: #0b0b0b;
+  background-image: none;
+  color: @thunar_accent;
+}
+
+/* Shared dialog notebook/page backgrounds, including Thunar Properties. */
 dialog notebook,
 dialog notebook *,
 window.dialog notebook,
@@ -784,27 +807,19 @@ window.background.dialog notebook * {
   background-image: none;
   color: #8a97bf;
   border-color: #222630;
-  box-shadow: none;
 }
 
-/* Thunar Properties dialog: selected/hovered tab text */
+/* Shared dialog notebooks: off-white text for hovered labels, selected or
+   hovered tabs, and hovered buttons/combo boxes and their children. */
 dialog notebook > header > tabs > tab:hover label,
 dialog notebook > header > tabs > tab:checked label,
 window.dialog notebook > header > tabs > tab:hover label,
 window.dialog notebook > header > tabs > tab:checked label,
 window.background.dialog notebook > header > tabs > tab:hover label,
-window.background.dialog notebook > header > tabs > tab:checked label {
-  color: #c7d0ea;
-}
-
-/* Thunar Properties dialog: plain label hover */
+window.background.dialog notebook > header > tabs > tab:checked label,
 dialog notebook label:hover,
 window.dialog notebook label:hover,
-window.background.dialog notebook label:hover {
-  color: #c7d0ea;
-}
-
-/* Thunar Properties dialog: buttons, tabs, combo boxes, and child text/images */
+window.background.dialog notebook label:hover,
 dialog notebook button:hover,
 dialog notebook button:hover *,
 dialog notebook tab:hover,
@@ -826,7 +841,13 @@ window.background.dialog notebook combobox:hover * {
   color: #c7d0ea;
 }
 
-/* Text selection inside Properties dialog entries, selectable labels, and text views */
+/* Shortcuts editor: let the viewport paint behind the grid's margins.
+   A transparent grid removes the black inset without changing spacing. */
+dialog notebook frame > scrolledwindow > viewport > grid {
+  background-color: transparent;
+}
+
+/* Text selection inside Properties dialogs and popup/dropdown text widgets. */
 dialog notebook selection,
 dialog notebook label selection,
 dialog notebook entry selection,
@@ -838,12 +859,7 @@ window.dialog notebook textview text selection,
 window.background.dialog notebook selection,
 window.background.dialog notebook label selection,
 window.background.dialog notebook entry selection,
-window.background.dialog notebook textview text selection {
-  background-color: #8a97bf;
-  color: #060606;
-}
-
-/* Text selection inside popup/dropdown text widgets, where GTK exposes selection nodes */
+window.background.dialog notebook textview text selection,
 window.popup selection,
 window.popup label selection,
 window.popup entry selection,
@@ -856,9 +872,18 @@ window.background.popup textview text selection {
   color: #060606;
 }
 
-/* --------------------------------------------------------------------------
-   Xarchiver archive-operation progress popup
-   -------------------------------------------------------------------------- */
+/* Hide images on dialog buttons without the image-button class.
+   This shared rule was introduced for Xarchiver's Add button. */
+dialog button:not(.image-button) image {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   7. Xarchiver
+   ========================================================================== */
+
+/* Archive-operation progress windows. These structural selectors also match
+   other unnamed windows with the same classes and hierarchy. */
 
 /* Progress popup surface and internal containers.
    Do not target window.popup, menu, menuitem, or popover here. */
@@ -875,7 +900,6 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   background-image: none;
   color: #8a97bf;
   border-color: #222630;
-  box-shadow: none;
 }
 
 /* Text and icons */
@@ -884,7 +908,6 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   color: #8a97bf;
   background-color: transparent;
   background-image: none;
-  box-shadow: none;
 }
 
 /* Cancel button */
@@ -898,8 +921,6 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   color: #8a97bf;
   border: 0.7px solid #222630;
   border-radius: 0;
-  box-shadow: none;
-  outline: none;
   -gtk-outline-radius: 0;
 }
 
@@ -919,7 +940,6 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   background-image: none;
   border: 0.7px solid #222630;
   border-radius: 0;
-  box-shadow: none;
 }
 
 /* Progress bar active segment */
@@ -928,10 +948,88 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   background-image: none;
   border: none;
   border-radius: 0;
-  box-shadow: none;
 }
 
-/* X Keep Waybar transparent after broad Xarchiver window.background rules */
+/* Add-files Options page. These structural selectors apply to any matching dialog. */
+
+/* Xarchiver Add-files Options page only.
+   Structural selector avoids relying on notebook page index because Xarchiver
+   hides the Selection page when files are already supplied. */
+/* Actions / Compression / Encryption frames */
+dialog notebook > stack > box > box frame > border {
+  border: 0.7px solid #222630;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+dialog notebook > stack > box > box frame > label {
+  background-color: #0b0b0b;
+  color: #8a97bf;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* Checkboxes on the Options page */
+dialog notebook > stack > box > box checkbutton check {
+  min-width: 11px;
+  min-height: 11px;
+  margin-right: 6px;
+  background-color: #060606;
+  border: 0.7px solid #222630;
+  border-radius: 2px;
+  color: #8a97bf;
+  -gtk-icon-shadow: none;
+}
+
+dialog notebook > stack > box > box checkbutton check:checked {
+  border-color: #8a97bf;
+  color: #8a97bf;
+}
+
+dialog notebook > stack > box > box checkbutton:disabled,
+dialog notebook > stack > box > box checkbutton:disabled label {
+  color: alpha(#8a97bf, 0.38);
+}
+
+dialog notebook > stack > box > box checkbutton check:disabled {
+  border-color: alpha(#222630, 0.65);
+  color: alpha(#8a97bf, 0.38);
+}
+
+/* Compression scale */
+dialog notebook > stack > box > box scale contents trough {
+  min-height: 2px;
+  background-color: #222630;
+  border: none;
+  border-radius: 1px;
+}
+
+dialog notebook > stack > box > box scale contents trough highlight {
+  min-height: 2px;
+  background-color: #8a97bf;
+  border: none;
+  border-radius: 1px;
+}
+
+dialog notebook > stack > box > box scale contents trough slider {
+  min-width: 9px;
+  min-height: 9px;
+  margin-top: -4px;
+  margin-bottom: -4px;
+  background-color: #060606;
+  border: 0.7px solid #8a97bf;
+  border-radius: 50%;
+}
+
+dialog notebook > stack > box > box scale value {
+  color: #8a97bf;
+}
+
+/* ==========================================================================
+   8. Waybar transparency
+   ========================================================================== */
+
+/* Keep Waybar transparent after broad Xarchiver window.background rules */
 window#waybar,
 window#waybar.background,
 window#waybar > box,
@@ -939,30 +1037,17 @@ window#waybar.background > box,
 window#waybar > box > box,
 window#waybar.background > box > box {
   background: transparent;
-  background-color: transparent;
-  background-image: none;
-  box-shadow: none;
 }
 
-/* --------------------------------------------------------------------------
-   GTK file chooser / portal save dialog
-   -------------------------------------------------------------------------- */
+/* ==========================================================================
+   9. GTK file chooser, headerbars and Places sidebars
+   ========================================================================== */
 
-@define-color portal_bg              #010306;
-@define-color portal_header          #0b0b0b;
-@define-color portal_sidebar         #0b0b0b;
-@define-color portal_bottom          #0b0b0b;
-@define-color portal_field           #060606;
-@define-color portal_border          #1a1a1a;
-@define-color portal_text            #8a97bf;
-@define-color portal_text_hover      #c7d0ea;
-@define-color portal_text_selected   #ffffff;
+/* File-chooser body: these selectors are scoped to filechooser. */
 
 /* Base file chooser area */
 filechooser,
 filechooser * {
-  background-image: none;
-  box-shadow: none;
   text-shadow: none;
   -gtk-icon-shadow: none;
   border-color: @portal_border;
@@ -982,24 +1067,20 @@ filechooser treeview.view {
   background-image: none;
   color: @portal_text;
   border-color: @portal_border;
-  box-shadow: none;
 }
 
 /* Filename/search entry, but only inside file chooser */
 filechooser entry {
   background-color: @portal_field;
-  background-image: none;
   color: @portal_text;
   border: 1px solid @portal_border;
   border-radius: 0;
-  box-shadow: none;
 }
 
 filechooser entry:focus {
   background-color: @portal_field;
   color: @portal_text_selected;
   border-color: @portal_text;
-  box-shadow: none;
 }
 
 filechooser entry selection {
@@ -1016,7 +1097,6 @@ filechooser treeview.view header button {
   border-style: solid;
   border-color: @portal_border;
   border-radius: 0;
-  box-shadow: none;
 }
 
 filechooser treeview.view header button:hover {
@@ -1043,9 +1123,7 @@ filechooser row:selected {
 filechooser separator,
 filechooser paned > separator {
   background-color: @portal_border;
-  background-image: none;
   border-color: @portal_border;
-  box-shadow: none;
 }
 
 /* Buttons inside the file chooser body.
@@ -1061,8 +1139,6 @@ filechooser button:checked:hover {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 0;
-  box-shadow: none;
-  outline: none;
 }
 
 filechooser button,
@@ -1095,8 +1171,9 @@ filechooser button:checked box {
   background-color: transparent;
   background-image: none;
   border-color: transparent;
-  box-shadow: none;
 }
+
+/* Headerbars: the following bare selectors also apply outside file choosers. */
 
 /* Top GTK portal/file-chooser headerbar.
    Bare headerbar is intentional: the portal header is not exposed under filechooser. */
@@ -1107,7 +1184,6 @@ headerbar.titlebar {
   color: @portal_text;
   border-bottom: 1px solid @portal_border;
   border-radius: 0;
-  box-shadow: none;
 }
 
 /* Headerbar internal containers */
@@ -1116,10 +1192,8 @@ headerbar centerbox,
 headerbar stack,
 headerbar revealer {
   background-color: transparent;
-  background-image: none;
   color: @portal_text;
   border-color: transparent;
-  box-shadow: none;
 }
 
 /* Headerbar labels */
@@ -1140,8 +1214,6 @@ headerbar button:checked:hover {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 0;
-  box-shadow: none;
-  outline: none;
 }
 
 headerbar button,
@@ -1170,24 +1242,23 @@ headerbar button:checked image {
 /* Filename entry in the top headerbar */
 headerbar entry {
   background-color: @portal_field;
-  background-image: none;
   color: @portal_text;
   border: 1px solid @portal_border;
   border-radius: 0;
-  box-shadow: none;
 }
 
 headerbar entry:focus {
   background-color: @portal_field;
   color: @portal_text_selected;
   border-color: @portal_text;
-  box-shadow: none;
 }
 
 headerbar entry selection {
   background-color: @portal_text;
   color: @portal_text_selected;
 }
+
+/* Places sidebars: the following bare selectors also apply outside file choosers. */
 
 /* Portal/file-chooser sidebar: Recents / Home / Desktop / Documents / etc.
    Bare placessidebar is intentional: the portal sidebar is not reliably exposed under filechooser. */
@@ -1200,7 +1271,6 @@ placessidebar list {
   background-image: none;
   color: @portal_text;
   border-color: @portal_border;
-  box-shadow: none;
 }
 
 /* Sidebar rows: no selected/current rectangle */
@@ -1223,8 +1293,6 @@ placessidebar row.sidebar-row:focus {
   background-color: @portal_sidebar;
   background-image: none;
   border-color: transparent;
-  box-shadow: none;
-  outline: none;
 }
 
 /* Sidebar item text/icons */
@@ -1235,7 +1303,6 @@ placessidebar .sidebar-icon {
   color: @portal_text;
   background-color: transparent;
   background-image: none;
-  box-shadow: none;
 }
 
 /* Sidebar hover/selected/focus: text/icons only */
@@ -1258,36 +1325,6 @@ placessidebar row:focus .sidebar-icon {
   color: @portal_text_hover;
 }
 
-/* Bottom bar */
-filechooser actionbar,
-filechooser actionbar *,
-filechooser revealer {
-  background-color: @portal_bottom;
-  background-image: none;
-  color: @portal_text;
-  border-color: @portal_border;
-  box-shadow: none;
-}
-
-/* Bottom file-type selector: PDF */
-filechooser combobox,
-filechooser combobox box,
-filechooser combobox button,
-filechooser combobox cellview {
-  background-color: @portal_bottom;
-  background-image: none;
-  color: @portal_text;
-  border-color: @portal_border;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-filechooser combobox button:hover {
-  background-color: @portal_bottom;
-  color: @portal_text_hover;
-  border-color: @portal_border;
-}
-
 /* Portal/file-chooser sidebar: hide icons and reduce leftover icon spacing */
 placessidebar row image,
 placessidebar row .sidebar-icon,
@@ -1296,7 +1333,6 @@ placessidebar image.sidebar-icon {
   color: transparent;
   -gtk-icon-transform: scale(0);
   -gtk-icon-shadow: none;
-
   min-width: 0;
   min-height: 0;
   margin-left: -16px;
@@ -1304,38 +1340,59 @@ placessidebar image.sidebar-icon {
   padding: 0;
 }
 
+/* File-chooser bottom bar and file-type selector. */
+
+/* Bottom bar */
+filechooser actionbar,
+filechooser actionbar *,
+filechooser revealer {
+  background-color: @portal_bottom;
+  color: @portal_text;
+  border-color: @portal_border;
+}
+
+/* Bottom file-type selector: PDF */
+filechooser combobox,
+filechooser combobox box,
+filechooser combobox button,
+filechooser combobox cellview {
+  background-color: @portal_bottom;
+  color: @portal_text;
+  border-color: @portal_border;
+  border-radius: 0;
+}
+
+filechooser combobox button:hover {
+  background-color: @portal_bottom;
+  color: @portal_text_hover;
+  border-color: @portal_border;
+}
+
+/* ==========================================================================
+   10. GTK text-entry defaults and selection overrides
+   ========================================================================== */
+
+/* Keep after dialog and file-chooser rules: some selection selectors have equal specificity. */
+
 /* Generic GTK text-entry fields */
 entry,
 entry:not(:focus),
-entry:backdrop {
+entry:backdrop,
+entry:focus {
   background-color: #060606;
   background-image: none;
   color: #8a97bf;
-
   border: 0.7px solid #222630;
   border-radius: 3px;
-
-  box-shadow: none;
-  outline: none;
   -gtk-outline-radius: 3px;
   background-clip: border-box;
 }
 
 entry:focus {
-  background-color: #060606;
-  background-image: none;
   color: #c7d0ea;
-
-  border: 0.7px solid #222630;
-  border-radius: 3px;
-
-  box-shadow: none;
-  outline: none;
-  -gtk-outline-radius: 3px;
-  background-clip: border-box;
 }
 
-/* X Rename/input-field selected text color */
+/* Rename/input-field selected text color */
 entry selection,
 entry:focus selection,
 window.dialog entry selection,
@@ -1347,106 +1404,11 @@ dialog entry:focus selection {
   color: #060606;
 }
 
-/* XX Thunar path-entry completion: shift icon + filename right */
-.thunar entry window > frame > box {
-    padding-left: 12px;
-    background-color: @thunar_bg;
-    background-image: none;
-}
+/* ==========================================================================
+   11. GTK dropdown overrides
+   ========================================================================== */
 
-/* Hides the hideous pixmaps "Add" button of Xarchiver, but the code is aggressive and also hides all button images */
-dialog button:not(.image-button) image {
-    opacity: 0;
-}
-
-/* Xarchiver Add-files Options page only.
-   Structural selector avoids relying on notebook page index because Xarchiver
-   hides the Selection page when files are already supplied. */
-
-/* Actions / Compression / Encryption frames */
-dialog notebook > stack > box > box frame > border {
-    border: 0.7px solid #222630;
-    border-radius: 3px;
-    background-color: transparent;
-    background-image: none;
-    box-shadow: none;
-}
-
-dialog notebook > stack > box > box frame > label {
-    background-color: #0b0b0b;
-    background-image: none;
-    color: #8a97bf;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-/* Checkboxes on the Options page */
-dialog notebook > stack > box > box checkbutton check {
-    min-width: 11px;
-    min-height: 11px;
-    margin-right: 6px;
-    background-color: #060606;
-    background-image: none;
-    border: 0.7px solid #222630;
-    border-radius: 2px;
-    color: #8a97bf;
-    box-shadow: none;
-    -gtk-icon-shadow: none;
-}
-
-dialog notebook > stack > box > box checkbutton check:checked {
-    border-color: #8a97bf;
-    color: #8a97bf;
-}
-
-dialog notebook > stack > box > box checkbutton:disabled,
-dialog notebook > stack > box > box checkbutton:disabled label {
-    color: alpha(#8a97bf, 0.38);
-}
-
-dialog notebook > stack > box > box checkbutton check:disabled {
-    border-color: alpha(#222630, 0.65);
-    color: alpha(#8a97bf, 0.38);
-}
-
-/* Compression scale */
-dialog notebook > stack > box > box scale contents trough {
-    min-height: 2px;
-    background-color: #222630;
-    background-image: none;
-    border: none;
-    border-radius: 1px;
-    box-shadow: none;
-}
-
-dialog notebook > stack > box > box scale contents trough highlight {
-    min-height: 2px;
-    background-color: #8a97bf;
-    background-image: none;
-    border: none;
-    border-radius: 1px;
-    box-shadow: none;
-}
-
-dialog notebook > stack > box > box scale contents trough slider {
-    min-width: 9px;
-    min-height: 9px;
-    margin-top: -4px;
-    margin-bottom: -4px;
-    background-color: #060606;
-    background-image: none;
-    border: 0.7px solid #8a97bf;
-    border-radius: 50%;
-    box-shadow: none;
-}
-
-dialog notebook > stack > box > box scale value {
-    color: #8a97bf;
-}
-
-/* --------------------------------------------------------------------------
-   GTK 3 dropdown controls and popup lists
-   -------------------------------------------------------------------------- */
+/* Keep after file-chooser and headerbar buttons: equal-specificity rules depend on this order. */
 
 /* List popups avoid the menu's selected-item alignment behaviour near screen
    edges. Apply to comboboxes directly: extra chooser widgets and their popup
@@ -1463,7 +1425,6 @@ combobox button.combo cellview {
   background-color: @gtk_popup_menu_bg;
   background-image: none;
   color: @gtk_popup_menu_text;
-  box-shadow: none;
   text-shadow: none;
 }
 
@@ -1472,7 +1433,6 @@ combobox button.combo {
   padding: 3px 8px;
   border: 1px solid @gtk_popup_menu_border_soft;
   border-radius: 3px;
-  outline: none;
 }
 
 combobox button.combo:hover,
@@ -1510,8 +1470,6 @@ window#gtk-combobox-popup-window {
   border: none;
   border-radius: 0;
   padding: 0;
-  box-shadow: none;
-  outline: none;
 }
 
 combobox window.popup frame,
@@ -1524,7 +1482,6 @@ window#gtk-combobox-popup-window viewport {
   background-image: none;
   border: none;
   border-radius: 0;
-  box-shadow: none;
   padding: 0;
   margin: 0;
 }
@@ -1539,7 +1496,6 @@ window#gtk-combobox-popup-window scrolledwindow {
   border-radius: 3px;
   padding: 4px;
   margin: 0;
-  box-shadow: none;
 }
 
 combobox window.popup treeview.view,
@@ -1548,8 +1504,6 @@ window#gtk-combobox-popup-window treeview.view {
   background-image: none;
   color: @gtk_popup_menu_text;
   border: none;
-  box-shadow: none;
-  outline: none;
   -GtkTreeView-vertical-separator: 8;
   -GtkTreeView-horizontal-separator: 12;
 }
@@ -1568,8 +1522,6 @@ window#gtk-combobox-popup-window treeview.view:selected:backdrop {
   background-image: none;
   color: @gtk_popup_menu_text_hover;
   border: none;
-  box-shadow: none;
-  outline: none;
 }
 
 /* Keep the dropdown arrow's surface transparent in every interaction state. */
@@ -1583,8 +1535,13 @@ combobox button.combo:backdrop arrow {
   background-color: transparent;
   background-image: none;
   border: none;
-  box-shadow: none;
 }
+
+/* ==========================================================================
+   12. Thunar typeahead popup wrapper override
+   ========================================================================== */
+
+/* Retain this confirmed, broad wrapper fix after dropdown and file-chooser surfaces. */
 
 /* Blend the typeahead popup's wrapper into Thunar's background */
 window.background > frame,
@@ -1592,5 +1549,4 @@ window.background > frame > box {
   background-color: @thunar_bg;
   background-image: none;
   border: none;
-  box-shadow: none;
 }
