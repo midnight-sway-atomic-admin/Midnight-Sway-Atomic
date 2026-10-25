@@ -91,6 +91,7 @@ flatpak override --user \
   --disallow=per-app-dev-shm \
   --unshare=network \
   --nosocket=pulseaudio \
+  --filesystem=xdg-config/GIMP:create \
   --filesystem="$HOME/gimp:create" \
   '--no-talk-name=org.gtk.vfs.*' \
   --no-talk-name=org.freedesktop.FileManager1 \
