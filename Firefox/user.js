@@ -35,6 +35,9 @@ user_pref("browser.chrome.site_icons", false);
 /* Disables the Web Fullscreen API for webpages, including video players; this does not control window-manager/compositor fullscreen */
 user_pref("full-screen-api.enabled", false);
 
+/* Enables "Alt + Enter" to open the save-file dialogue for a selected file link on a website. Helps with keyboard-driven workflow since the right-click menu with Save is suppressed. */
+user_pref("browser.altClickSave", true);
+
 /* Neutralizes Nova redesign; when these stop working, neutralization will move on to the actual CSS */
 user_pref("browser.nova.enabled", false);
 user_pref("sidebar.revamp", false);
