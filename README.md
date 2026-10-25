@@ -103,14 +103,6 @@ Use `Ctrl+B` to open the left-side bookmarks sidebar. The rice does not provide 
 
 Use `Ctrl+D` to bookmark the current page. The URL-bar bookmark button is removed.
 
-### Density
-
-Do **not** use `Density=Compact`.
-
-Compact density now distorts the appearance of the URL bar and tabs. Use **Density=Normal** instead.
-
-If you previously used Compact mode, update your `user.js` with the current version.
-
 ### Popup positioning
 
 The **Add Bookmark** and **Trust** popups have manual positioning controls in `userChrome.css`.
