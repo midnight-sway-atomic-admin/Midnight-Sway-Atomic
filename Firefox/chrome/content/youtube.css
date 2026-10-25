@@ -266,10 +266,29 @@
     display: none !important;
   }
 
-  /* XX Hides page-loading skeletons */
+  /* X Hides initial page/header skeletons and standalone watch-metadata placeholders; the live player bootstrap #player.skeleton is not a placeholder-only container */
   #home-page-skeleton,
   #watch-page-skeleton,
-  #channel-page-skeleton {
+  #channel-page-skeleton,
+  #guide-skeleton,
+  #masthead-skeleton-icons,
+  #grid-container-skeleton,
+  :is(ytd-watch-flexy, ytd-watch-grid, ytd-watch-learning-journey)
+  :is(#info-skeleton, #meta-skeleton) {
+    display: none !important;
+  }
+
+  /* X Hides dedicated ghost grids site-wide, including continuation cards, related videos, and Shorts; hides comment, metadata, chip-shelf, and search/overview placeholders without hiding their live content or continuation triggers */
+  ytd-ghost-grid-renderer,
+  .ytdGhostGridViewModelHost,
+  ytd-ghost-comments-renderer,
+  .ytGhostCommentsHost,
+  ytd-ghost-watch-metadata-renderer,
+  .ytGhostChipShelfHost,
+  .ytdChipsShelfWithVideoShelfGhostCardViewModelHost,
+  .ytAiSearchGhostCardViewModelHost,
+  .ytVideoOverviewGhostCardHost,
+  .ytwOverviewAnswerGhostCardHost {
     display: none !important;
   }
 
