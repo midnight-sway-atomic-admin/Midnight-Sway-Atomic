@@ -2,6 +2,10 @@
 
 A minimal black and `#8a97bf` login screen for **Fedora Sway Atomic**, with a transparent mouse pointer during the greeter and the transition into your desktop.
 
+![SDDM login-screen preview](sddm-preview.png)
+
+*Rendered from the theme at 2560 × 1600 with 200% display scaling. Fonts may vary by system. [Open the full-resolution PNG](sddm-preview.png).*
+
 Requires Fedora's standard **Wayland/Sway SDDM setup with the Qt 6 greeter** and administrator access through `sudo`. No additional packages are needed.
 
 ## Install
