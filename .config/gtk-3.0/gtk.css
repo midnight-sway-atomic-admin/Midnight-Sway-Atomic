@@ -1585,3 +1585,12 @@ combobox button.combo:backdrop arrow {
   border: none;
   box-shadow: none;
 }
+
+/* Blend the typeahead popup's wrapper into Thunar's background */
+window.background > frame,
+window.background > frame > box {
+  background-color: @thunar_bg;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
