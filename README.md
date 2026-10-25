@@ -6,6 +6,8 @@ A visually austere, minimal base desktop environment for a fresh install of Fedo
 
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-showcase.png)
 
+---
+
 ## Setup Notes
 
 For the rice to look correct and function as intended, review the following before using it.
@@ -27,6 +29,8 @@ The Rofi files assume that the Flatpak versions of **Firefox**, **GIMP** and **S
 If you use different applications, change the application names in the relevant Rofi files. You may also need to adjust the Rofi width manually so that application titles fit cleanly within the menu.
 
 If you replace Firefox, you also won't be able to use the included Firefox chrome files or the Firefox temporary extensions described below.
+
+---
 
 ## Firefox Setup
 
@@ -119,6 +123,8 @@ For example, after selecting text, `Ctrl+C` copies it directly; an additional **
 
 This is an opinionated choice and may require some adjustment if you normally rely on context menus.
 
+---
+
 ## Saving a Linked File Without Right-Click Menus
 
 To save a linked file entirely from the keyboard:
@@ -128,6 +134,8 @@ To save a linked file entirely from the keyboard:
 2. Press `Alt + Enter` to save the linked file without opening or activating it.
 
 This assumes `browser.altClickSave` is already enabled in `user.js`.
+
+---
 
 ## Thunar Setup
 
@@ -154,11 +162,15 @@ It is also recommended that you clear the shortcuts for:
 
 This prevents accidental tab creation or pane splitting.
 
+---
+
 ## Display Brightness
 
 A display capable of at least **400 nits**, and preferably around **500 nits**, is recommended.
 
 The theme is intentionally dark and may be uncomfortable or difficult to use on substantially dimmer displays.
+
+---
 
 ## Dunst Timer Commands
 
@@ -187,6 +199,8 @@ Current limits:
 - maximum duration: `9d23h59m`;
 - minimum duration: `1m`.
 
+---
+
 ## Development Status
 
 The files are being refined gradually.
@@ -197,11 +211,15 @@ The aim is to fix, or deliberately abandon after investigation, the issues liste
 problems-to-be-fixed.txt
 ```
 
+---
+
 ## AI Use
 
 AI has been, and will continue to be, used extensively in creating and maintaining this rice.
 
 If you prefer not to use configurations or software developed with AI assistance, this repository may not be suitable for you.
+
+---
 
 ## Support
 
@@ -210,6 +228,8 @@ This rice is free to use, and always will be. I don't like to distro-hop—Fedor
 So if you've found this rice useful and would like to help support its continued maintenance and improvement, even tiny donations are deeply appreciated. They help cover the cost of AI tools used for development, testing, troubleshooting, and keeping the rice current.
 
 - [Buy me a coffee on Ko-fi](https://ko-fi.com/midnightswayatomic)
+
+---
 
 ## Credits
 
