@@ -1,167 +1,98 @@
 # SDDM Rice
 
-A custom SDDM theme and greeter setup for **Fedora Sway Atomic**, including a fix for the post-login mouse-pointer flash.
+A minimal black and `#8a97bf` login screen for **Fedora Sway Atomic**, with a transparent mouse pointer during the greeter and the transition into your desktop.
 
-It requires Fedora Sway Atomic's standard **Wayland/Sway SDDM setup with the Qt 6 greeter**.
+Requires Fedora's standard **Wayland/Sway SDDM setup with the Qt 6 greeter** and administrator access through `sudo`. No additional packages are needed.
 
-No additional runtime packages are required.
+## Install
 
-## Installation
-
-Extract the archive, then open a terminal in the extracted `sddm-rice` directory.
-
-Run:
+Download [sddm-rice.zip](sddm-rice.zip), extract it into a fresh folder, and open a terminal inside the extracted `sddm-rice` directory. Run:
 
 ```bash
-sudo python3 install.py
+sudo python3 setup.py
 ```
 
-Then reboot when ready.
+Reboot when ready. The installer doesn't restart SDDM or end your current session.
 
-The installer does **not** restart SDDM or end your current session.
-
-To check compatibility without installing anything:
+To check compatibility without changing anything:
 
 ```bash
-sudo python3 install.py --check
+sudo python3 setup.py --check
 ```
 
-> Replacing `Main.qml` alone is **not** sufficient to fix the post-login pointer flash. The greeter compositor configuration must also be installed.
+Running the installer again updates this rice's files. Previous versions aren't saved.
 
-## Uninstall / Restore
+## Why this version is simpler
 
-From the extracted `sddm-rice` directory, run:
+Version **1.12** keeps the same login-screen design while simplifying installation and removal:
 
-```bash
-sudo python3 uninstall.py
-```
+- **One script** installs, checks and removes the rice.
+- **One custom folder and one override** hold the installation. New installations leave Fedora's greeter configuration unchanged.
+- **No backup or restore machinery** means no backup imports, installation history or administrator-run restoration of old backup files.
+- **Removal deletes our files**, allowing the remaining SDDM settings to take effect.
 
-This restores the files saved before the **first installation made with these installers**, thereby undoing subsequent updates as well.
+The custom files are owned by root. SDDM can read them but can't change them. The installer also checks for conflicting settings and unsafe file ownership, permissions or links before installation.
 
-It removes only files added by those installations. If the theme already existed before the first install, that original theme is restored.
+There are no extra background processes. Because there are no backups, removal doesn't recover an earlier custom setup.
 
-It does not reset Fedora or remove manually installed files outside the recorded installation history.
+## How it works
 
-### Check without changing anything
-
-```bash
-sudo python3 uninstall.py --check
-```
-
-### List available installation backups
-
-```bash
-sudo python3 uninstall.py --list
-```
-
-### Restore to a particular backup
-
-To return to the state immediately before a particular backup, pass its directory name or full path from the list:
-
-```bash
-sudo python3 uninstall.py --backup BACKUP-DIRECTORY
-```
-
-This undoes the selected installation and every newer active installation.
-
-Without `--backup`, all active installs are undone.
-
-Successfully restored backups are marked so that repeating the command does not reapply old backups.
-
-### Older backup compatibility
-
-The restore script supports backups created by versions **1.8** and **1.9**.
-
-Those older backups did not record original ownership. For them, the script:
-
-- Keeps each existing target file's current ownership
-- Uses the saved copy's ownership if the target no longer exists
-
-New backups record original ownership and permissions explicitly.
-
-### Restore safety
-
-Before restoring anything, the script saves the files it is about to change under:
+The installation uses these two locations:
 
 ```text
-/var/lib/sddm/rice-restore-backups/
+/etc/sddm-rice/
+/etc/sddm.conf.d/99-sddm-rice.conf
 ```
 
-It prints the exact backup path before proceeding.
+The folder contains the theme, transparent cursor assets and a small greeter configuration. The override tells SDDM to use them.
 
-Unrelated files are preserved.
+The custom greeter configuration includes Fedora's existing `/etc/sway/sddm-greeter.config`, then selects the transparent cursor. Fedora's compositor launcher and hardware handling are retained. Nothing under `/usr` is modified, and SELinux labels are applied with `restorecon`.
 
-The restore process also restores SELinux labels and does not restart SDDM. Reboot when ready.
+Fedora Sway Atomic permits administrator changes under `/etc`. Your desktop cursor and boot console are controlled separately; the text insertion caret in the login fields remains visible.
 
-Keep `install.py` beside `uninstall.py`; the restore script reuses the installer's file-writing code.
+Keep separate personal SDDM settings in another configuration file. The custom folder and override belong to this rice and are removed together when uninstalling.
 
-## Cursor Fix
+## Upgrade and remove old files
 
-The installer reads the installed SDDM defaults and configuration in precedence order and verifies that the Wayland greeter uses:
+### 1. Install this version
 
-```text
-/usr/libexec/sddm-compositor-sway
+Follow the installation instructions above. Don't run the old `uninstall.py` before or after migration.
+
+The installer recognises and replaces its standard old `99-sddm-rice.conf`. If that file contains additional settings, it stops so you can move them into a separate `.conf` file first.
+
+It also removes the exact cursor-setting block appended by the old installer to `/etc/sway/sddm-greeter.config`. Other greeter settings are retained. This is a one-time cleanup; subsequent installations use the separate custom configuration.
+
+Old backups are never read or imported.
+
+### 2. Reboot and check the login screen
+
+Confirm that the new login screen works and that you can enter your desktop before deleting the old files.
+
+### 3. Delete the old installation files
+
+Once the new version is working, run:
+
+```bash
+sudo rm -rf -- \
+  /var/lib/sddm/rice-backups \
+  /var/lib/sddm/themes/sddm-rice \
+  /var/lib/sddm/.icons/sddm-rice-invisible \
+  /var/lib/midnight-sway-atomic-sddm
 ```
 
-It then installs a fully transparent Xcursor theme under the SDDM user's home directory and appends:
+**This permanently deletes the old backups.** These locations aren't used by the new version. Remove only the listed legacy locations; keep `/var/lib/sddm` itself and the two new installation paths under `/etc`.
 
-```text
-seat * xcursor_theme sddm-rice-invisible 24
+You can also discard the old extracted installer folder. Files generated by the old scripts may require `sudo` to delete. Don't use the old installer or uninstaller again after migration.
+
+## Remove this version
+
+From the newly extracted `sddm-rice` directory, run:
+
+```bash
+sudo python3 setup.py uninstall
 ```
 
-to:
-
-```text
-/etc/sway/sddm-greeter.config
-```
-
-The compositor's pointer therefore remains transparent after the greeter window closes.
-
-This fix does **not** depend on:
-
-- Mouse movement
-- An idle timeout
-- A background process
-
-Xcursor is the cursor-image format used by Sway on Wayland.
-
-### Configuration checks
-
-Other greeter configurations are rejected before any files are written.
-
-If this happens, report the compositor command displayed by the installer so the fix can be adapted to that setup.
-
-The installer also stops if a higher-priority SDDM configuration would override its settings. The error identifies the files that need to be checked.
-
-### Scope of the fix
-
-The cursor fix targets the mouse pointer in:
-
-- SDDM
-- The SDDM greeter compositor
-- The interval after the login window closes
-
-The logged-in desktop and boot console use separate cursor controls.
-
-The text insertion caret inside the login fields is retained.
-
-## Other Corrections
-
-The theme also includes the following fixes and behavior changes:
-
-- Raw PAM messages are not displayed.
-- Both fields are disabled while authentication is pending.
-- A failed login clears the password, restores focus, and displays exactly `Authentication failure`.
-- Repeated failure signals or PAM messages cannot duplicate the failure message.
-- Successful login clears the password field.
-- Password characters are masked immediately.
-- Input-method prediction is disabled.
-- Holding `Enter` or `Ctrl+1` through `Ctrl+9` cannot submit repeated login attempts.
-- `Enter` does not interrupt an input method while it is composing text.
-- Invalid remembered session indexes fall back to the first available session.
-- An empty session list produces an error rather than an invalid login request.
-- Status messages are rendered as plain text in a fixed-height area.
-- The unused `SddmComponents` import and duplicate cursor handler were removed.
+Reboot when ready. This removes `/etc/sddm-rice/` and its SDDM override. The remaining Fedora or personal SDDM settings then take effect; no old backups are restored.
 
 ## Controls
 
@@ -172,75 +103,4 @@ The theme also includes the following fixes and behavior changes:
 | `Tab` / `Shift+Tab` | Switch fields |
 | `Escape` in the password field | Clear the password |
 
-The last valid desktop session remains selected.
-
-There is no session chooser.
-
-## Backups and Installed Files
-
-The installer prints its backup directory under:
-
-```text
-/var/lib/sddm/rice-backups/
-```
-
-Existing files that are changed are copied there using their original absolute paths relative to the backup directory.
-
-`new-files.txt` lists files that did not exist before installation.
-
-Use `uninstall.py` to restore them.
-
-Keep the backup directories if you want the ability to undo an installation.
-
-### Files installed or modified
-
-```text
-/var/lib/sddm/themes/sddm-rice/Main.qml
-/var/lib/sddm/themes/sddm-rice/metadata.desktop
-/etc/sddm.conf.d/99-sddm-rice.conf
-/var/lib/sddm/.icons/sddm-rice-invisible/
-/etc/sway/sddm-greeter.config
-```
-
-Existing settings in `/etc/sway/sddm-greeter.config` are retained.
-
-The installer restores SELinux labels.
-
-It does **not**:
-
-- Change your personal Sway configuration
-- Switch display servers
-- Change the system's default target
-
-## Validation
-
-The theme was loaded and exercised in **Qt 6.11.2** using simulated SDDM objects.
-
-Testing covered:
-
-- Keyboard navigation
-- Login shortcuts
-- Key-repeat suppression
-- Password masking
-- Pending authentication
-- Informational messages
-- Failure, retry, and success flows
-- Missing sessions
-- Transparent pointer behavior over the background and fields
-
-The generated cursor files were decoded with `libXcursor` at several requested sizes and verified to contain only transparent pixels.
-
-Installer and restore tests covered:
-
-- SDDM configuration precedence
-- Backup creation
-- Successive updates
-- Earlier backup formats
-- Repeated restores
-- Rollback behavior
-
-## References
-
-- [SDDM closes its greeter window on login success](https://github.com/sddm/sddm/blob/v0.21.0/src/greeter/GreeterApp.cpp)
-- [Fedora Sway greeter configuration and wrapper](https://gitlab.com/fedora/sigs/sway/sway-config-fedora/-/tree/0.4.3/sddm)
-- [Sway cursor-theme configuration](https://github.com/swaywm/sway/blob/1.11/sway/sway-input.5.scd)
+The last valid desktop session remains selected; there is no session chooser. A failed login displays `Authentication failure` and clears the password. Passwords are masked immediately.
