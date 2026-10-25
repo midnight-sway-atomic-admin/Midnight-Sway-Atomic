@@ -195,12 +195,20 @@ The aim is to fix, or deliberately abandon after investigation, the issues liste
 problems-to-be-fixed.txt
 ```
 
-## Credits
-
-Thanks to [Visax](https://unsplash.com/@visaxslr) for the abstract designs repurposed here as wallpapers, and to [Andrew Hughes](https://unsplash.com/@hughesy) for the moon photograph used as another wallpaper.
-
 ## AI Use
 
 AI has been, and will continue to be, used extensively in creating and maintaining this rice.
 
 If you prefer not to use configurations or software developed with AI assistance, this repository may not be suitable for you.
+
+## Support
+
+This rice is free to use, and always will be. I don't like to distro-hop—Fedora Sway Atomic will be my daily driver for the foreseeable future—and I don't like to rice. I rice out of necessity, since I dislike the default appearance of virtually every operating system I've used.
+
+So if you've found this rice useful and would like to help support its continued maintenance and improvement, even tiny donations are deeply appreciated. They help cover the cost of AI tools used for development, testing, troubleshooting, and keeping the rice current.
+
+- [Buy me a coffee on Ko-fi](https://ko-fi.com/midnightswayatomic)
+
+## Credits
+
+Thanks to [Visax](https://unsplash.com/@visaxslr) for the abstract designs repurposed here as wallpapers, and to [Andrew Hughes](https://unsplash.com/@hughesy) for the moon photograph used as another wallpaper.
