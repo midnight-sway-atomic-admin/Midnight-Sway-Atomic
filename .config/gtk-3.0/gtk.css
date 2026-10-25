@@ -1,6 +1,8 @@
-/* GTK 3 theme: shared widgets and application overrides.
-   Rules are grouped by function. Section order is intentional: the late
-   overrides preserve the preceding stylesheet's selector precedence. */
+/* gtk.css */
+
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+
+/* Comments tagged with "XX" mean that the code is (seemingly) as efficient, non-redundant, well-formed, and precise as possible */
 
 /* ==========================================================================
    1. Theme colors
@@ -158,7 +160,7 @@ window.thunar toolbar entry selection {
   color: #060606;
 }
 
-/* Sets colors for text caret (i.e. |) in main address bar */
+/* Sets colors for text caret in main address bar */
 .thunar entry:focus {
   caret-color: @thunar_accent;
   -gtk-secondary-caret-color: @thunar_accent;
