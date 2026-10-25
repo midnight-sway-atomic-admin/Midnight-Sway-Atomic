@@ -119,6 +119,16 @@ For example, after selecting text, `Ctrl+C` copies it directly; an additional **
 
 This is an opinionated choice and may require some adjustment if you normally rely on context menus.
 
+## Saving a Linked File Without Right-Click Menus
+
+To save a linked file entirely from the keyboard:
+
+1. Press `Tab` until the file link is focused.
+   - Use `Shift + Tab` if you move past it.
+2. Press `Alt + Enter` to save the linked file without opening or activating it.
+
+This assumes `browser.altClickSave` is already enabled in `user.js`.
+
 ## Thunar Setup
 
 ### File highlight
