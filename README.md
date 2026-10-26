@@ -1,6 +1,6 @@
 # Midnight Sway Atomic
 
-A visually austere, minimal, secure base desktop environment for a fresh install of Fedora Sway Atomic.
+A secure and visually austere base desktop environment for a fresh install of Fedora Sway Atomic.
 
 > **Work in progress:** These files change continually as the setup is refined. Some are deliberately opinionated and include personal conveniences that you may not want. For example, `.bashrc` includes a small script for creating Dunst timer notifications from the command line.
 
