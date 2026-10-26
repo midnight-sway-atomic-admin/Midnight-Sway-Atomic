@@ -19,3 +19,5 @@
 8. Provide complete, harmonious themes for all of Fedora Sway Atomic's default GUI applications.
 
 9. Improve the organization of the GitHub repository's files.
+
+10. Create Midday Sway Atomic, a daytime version of the rice, and implement an easy way to switch between them.
