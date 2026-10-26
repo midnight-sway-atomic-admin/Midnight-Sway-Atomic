@@ -21,3 +21,7 @@
 9. Improve the organization of the GitHub repository's files.
 
 10. Create Midday Sway Atomic, a daytime version of the rice, and implement an easy way to switch between them.
+
+11. Catch and style the few remaining system/app icons left untouched.
+
+12. Improve the styling of each of the custom icons.
