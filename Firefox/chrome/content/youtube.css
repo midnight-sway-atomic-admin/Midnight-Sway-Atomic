@@ -54,17 +54,17 @@
      Global text and icon color
      -------------------------------------------------------------------------- */
 
-  /* X Global text color */
-  :where(yt-formatted-string, .yt-simple-endpoint, .title, .ytd-video-primary-info-renderer, h1, h2, span) {
+  /* X Global text and icon colors; exclude rating-survey faces so their native
+     selected/unselected colors and animated face/eye fills keep their contrast */
+  :where(yt-formatted-string, .yt-simple-endpoint, .title, .ytd-video-primary-info-renderer, h1, h2, span):not(:where(ytd-rating-survey-option-renderer *)) {
     color: var(--ytc-accent) !important;
   }
 
-  /* XX Global icon color; legacy yt-icon paths follow the same state colors through currentColor */
-  :where(yt-icon, .yt-icon-shape, .ytSpecIconShapeHost) {
+  :where(yt-icon, .yt-icon-shape, .ytSpecIconShapeHost):not(:where(ytd-rating-survey-option-renderer *)) {
     color: var(--ytc-accent) !important;
   }
 
-  yt-icon path {
+  yt-icon path:not(:where(ytd-rating-survey-option-renderer *)) {
     fill: currentColor !important;
   }
 
