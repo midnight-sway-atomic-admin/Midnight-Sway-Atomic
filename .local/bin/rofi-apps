@@ -11,7 +11,8 @@ choice="$(printf '%s\n' \
   "Wlsunset" \
   "Bluetooth" \
   "Recorder" \
-  "Showtime" | rofi -dmenu -i -p "Apps")"
+  "Showtime" \
+  "Mindmapper" | rofi -dmenu -i -p "Apps")"
 
 printf 'choice=%q\n' "$choice" >> "$logfile"
 
@@ -46,6 +47,10 @@ case "$choice" in
 
   "Showtime")
     gtk-launch org.gnome.Showtime >> "$logfile" 2>&1 &
+    ;;
+
+  "Mindmapper")
+    xdg-open "$HOME/.config/mindmapper/mindmapper.html" >> "$logfile" 2>&1 &
     ;;
 
   "")
