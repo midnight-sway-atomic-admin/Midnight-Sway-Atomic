@@ -1,4 +1,4 @@
-# Fedora Sway Atomic security hardening
+# Security Hardening
 
 A Bash script that makes several kinds of attack harder by restricting access to the Linux kernel, protecting memory, tightening network behaviour and reducing sensitive crash data.
 
