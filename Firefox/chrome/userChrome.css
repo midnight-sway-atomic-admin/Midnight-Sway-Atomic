@@ -696,8 +696,8 @@ panelview {
 
   /* XX Theme the bookmarks search field */
   #search-box {
-    --input-text-background-color: transparent !important;
-    --input-text-border: transparent !important;
+    --input-background-color: transparent !important;
+    --input-border: transparent !important;
     --input-text-color: #939393 !important;
   }
 
