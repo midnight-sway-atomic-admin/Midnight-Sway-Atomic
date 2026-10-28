@@ -25,3 +25,5 @@
 11. Catch and style the few remaining system/app icons left untouched.
 
 12. Improve the styling of each of the custom icons.
+
+13. Create a comprehensive script that turns a fresh install into a deny-by-default system; e.g., after running the script, if you want to use an included system service like SSH, you should have to enable it manually.
