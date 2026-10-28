@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Name=Nano Text Editor
-Exec=foot -e nano %F
+Exec=foot -o colors-dark.alpha=1.0 --app-id=nano /usr/bin/nano %F
 Terminal=false
 MimeType=text/plain;
 NoDisplay=true
