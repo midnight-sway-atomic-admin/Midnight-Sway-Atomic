@@ -198,7 +198,7 @@ if [[ $- == *i* ]]; then
     unset HISTFILE fixed_history
 fi
 
-# Make Foot opaque while Nano is running, then restore the configured transparency.
+# Make Foot opaque while Nano is running, then restore the configured transparency
 nano() (
     printf '\033]11;[100]#010305\033\\'
     trap 'printf "\033]111\033\\"' EXIT
