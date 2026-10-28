@@ -1,0 +1,94 @@
+QDialog {
+    background: #000305;
+}
+
+QLabel {
+    color: #8a97bf;
+}
+
+/* Suppress the authentication and message-box icons. */
+QLabel#iconLabel,
+QMessageBox QLabel#qt_msgboxex_icon_label {
+    qproperty-minimumSize: 0px 0px;
+    qproperty-maximumSize: 0px 0px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Password field. */
+QLineEdit#passwordEdit {
+    background: #0b0f16;
+    color: #c7cee5;
+    border: 1px solid #30384d;
+    border-radius: 2px;
+    padding: 5px 8px;
+    min-height: 20px;
+    selection-background-color: #8a97bf;
+    selection-color: #000305;
+}
+
+/* Identity: functional combo box, visually plain text. */
+QComboBox#identityComboBox {
+    qproperty-editable: true;
+    qproperty-insertPolicy: NoInsert;
+}
+
+QComboBox#identityComboBox,
+QComboBox#identityComboBox QLineEdit {
+    background: transparent;
+    color: #c7cee5;
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-height: 20px;
+    selection-background-color: #8a97bf;
+    selection-color: #000305;
+}
+
+QComboBox#identityComboBox QLineEdit {
+    qproperty-readOnly: true;
+    outline: none;
+}
+
+QComboBox#identityComboBox::drop-down {
+    width: 0;
+    border: none;
+}
+
+QComboBox#identityComboBox::down-arrow {
+    image: none;
+}
+
+/* Fallback styling if the hidden popup is opened by keyboard shortcut. */
+QComboBox#identityComboBox QAbstractItemView {
+    background: #070a0f;
+    color: #c7cee5;
+    border: 1px solid #30384d;
+    outline: none;
+    selection-background-color: #111722;
+    selection-color: #c7cee5;
+}
+
+QComboBox#identityComboBox QAbstractItemView::item {
+    border: none;
+    padding: 4px 9px;
+}
+
+/* Dialog buttons. */
+QDialogButtonBox {
+    dialogbuttonbox-buttons-have-icons: 0;
+}
+
+QDialogButtonBox QPushButton {
+    background: transparent;
+    color: #8a97bf;
+    border: none;
+    outline: none;
+    padding: 5px 10px;
+    min-width: 52px;
+    min-height: 20px;
+}
+
+QDialogButtonBox QPushButton:hover {
+    color: #c7cee5;
+}
