@@ -3,5 +3,5 @@ Type=Application
 Name=Nano Text Editor
 Exec=foot -o colors-dark.alpha=1.0 --app-id=nano /usr/bin/nano %F
 Terminal=false
-MimeType=text/plain;
+MimeType=text/plain;application/x-desktop;application/javascript;application/json;text/html;text/css;application/x-shellscript;application/x-xbel;application/xml;text/x-python;text/x-python3;
 NoDisplay=true
