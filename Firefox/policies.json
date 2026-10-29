@@ -42,9 +42,9 @@
         "Locked": true
       },
       "ScreenShare": {
-        "Allow": [
-          "http://127.0.0.1:27391"
-        ],
+        "BlockNewRequests": true,
+        "Locked": true
+      },
         "BlockNewRequests": true,
         "Locked": true
       }
