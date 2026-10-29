@@ -2,8 +2,6 @@
 
 A secure and visually austere base desktop environment for a fresh install of Fedora Sway Atomic.
 
-> **Work in progress:** These files change continually as the setup is refined.
-
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-showcase.png)
 
 ---
