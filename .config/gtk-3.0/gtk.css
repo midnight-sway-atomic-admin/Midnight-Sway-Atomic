@@ -732,14 +732,29 @@ messagedialog {
   color: #8a97bf;
 }
 
-/* Square the message-dialog surface and its complete window outline. */
-messagedialog {
+/* Square dialog surfaces. The unnamed-window fallback matches the existing
+   archive-progress rules below; exclude Waybar from window decoration changes. */
+dialog,
+window.dialog,
+messagedialog,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) {
   border-radius: 0;
 }
 
-/* Use the thin slate outline sampled from the connection-type dialog reference. */
-messagedialog > decoration {
+/* One square slate outline, drawn by GTK's decoration node. */
+dialog > decoration,
+window.dialog > decoration,
+messagedialog > decoration,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > decoration {
   border: 1px solid #3b4153;
+  border-radius: 0;
+}
+
+/* Keep titlebar corners inside the square window outline. */
+dialog > .titlebar,
+window.dialog > .titlebar,
+messagedialog > .titlebar,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > .titlebar {
   border-radius: 0;
 }
 
@@ -767,26 +782,6 @@ window.dialog buttonbox {
 /* Let the message-dialog body show through the action strip. */
 messagedialog .dialog-action-area {
   background-color: transparent;
-}
-
-/* Uses the accent color for dialog action-button text. */
-dialog .dialog-action-area button,
-dialog .dialog-action-area button label,
-window.dialog .dialog-action-area button,
-window.dialog .dialog-action-area button label,
-messagedialog .dialog-action-area button,
-messagedialog .dialog-action-area button label {
-  color: #8a97bf;
-}
-
-/* Uses the existing off-white for hovered action-button text. */
-dialog .dialog-action-area button:hover,
-dialog .dialog-action-area button:hover label,
-window.dialog .dialog-action-area button:hover,
-window.dialog .dialog-action-area button:hover label,
-messagedialog .dialog-action-area button:hover,
-messagedialog .dialog-action-area button:hover label {
-  color: #c7d0ea;
 }
 
 /* Custom Actions: match the vertical toolbar to the dialog background. */
@@ -914,29 +909,6 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > bo
   color: #8a97bf;
   background-color: transparent;
   background-image: none;
-}
-
-/* Cancel button */
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button,
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover,
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:focus,
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:active,
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:checked {
-  background-color: #060606;
-  background-image: none;
-  color: #8a97bf;
-  border: 0.7px solid #222630;
-  border-radius: 0;
-  -gtk-outline-radius: 0;
-}
-
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button label {
-  color: #8a97bf;
-}
-
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover label,
-window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip) > box > box button:hover image {
-  color: #c7d0ea;
 }
 
 /* Progress bar trough */
@@ -1132,53 +1104,6 @@ filechooser paned > separator {
   border-color: @portal_border;
 }
 
-/* Buttons inside the file chooser body.
-   Selected/current path buttons are text-only: no rectangle, no fill, no border. */
-filechooser button,
-filechooser button:hover,
-filechooser button:focus,
-filechooser button:active,
-filechooser button:checked,
-filechooser button:active:hover,
-filechooser button:checked:hover {
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 0;
-}
-
-filechooser button,
-filechooser button label,
-filechooser button image {
-  color: @portal_text;
-}
-
-filechooser button:hover,
-filechooser button:focus,
-filechooser button:active,
-filechooser button:checked,
-filechooser button:active:hover,
-filechooser button:checked:hover,
-filechooser button:hover label,
-filechooser button:focus label,
-filechooser button:active label,
-filechooser button:checked label,
-filechooser button:hover image,
-filechooser button:focus image,
-filechooser button:active image,
-filechooser button:checked image {
-  color: @portal_text_hover;
-}
-
-filechooser button box,
-filechooser button:hover box,
-filechooser button:active box,
-filechooser button:checked box {
-  background-color: transparent;
-  background-image: none;
-  border-color: transparent;
-}
-
 /* Headerbars: the following bare selectors also apply outside file choosers. */
 
 /* Top GTK portal/file-chooser headerbar.
@@ -1205,44 +1130,6 @@ headerbar revealer {
 /* Headerbar labels */
 headerbar label {
   color: @portal_text;
-}
-
-/* Headerbar buttons: Cancel / Save / search / navigation.
-   Selected/current header buttons are also text-only. */
-headerbar button,
-headerbar button:hover,
-headerbar button:focus,
-headerbar button:active,
-headerbar button:checked,
-headerbar button:active:hover,
-headerbar button:checked:hover {
-  background-color: transparent;
-  background-image: none;
-  border: 1px solid transparent;
-  border-radius: 0;
-}
-
-headerbar button,
-headerbar button label,
-headerbar button image {
-  color: @portal_text;
-}
-
-headerbar button:hover,
-headerbar button:focus,
-headerbar button:active,
-headerbar button:checked,
-headerbar button:active:hover,
-headerbar button:checked:hover,
-headerbar button:hover label,
-headerbar button:focus label,
-headerbar button:active label,
-headerbar button:checked label,
-headerbar button:hover image,
-headerbar button:focus image,
-headerbar button:active image,
-headerbar button:checked image {
-  color: @portal_text_hover;
 }
 
 /* Filename entry in the top headerbar */
@@ -1571,3 +1458,116 @@ window.background > box > box > scrolledwindow + toolbar.inline-toolbar:backdrop
   border-color: #0b0b0b;
   border-radius: 0;
 }
+
+/* ==========================================================================
+   14. Consistent dialog buttons
+   ========================================================================== */
+
+/* Ordinary dialog buttons are text-only. Combo-box controls retain section 11.
+   Transparent borders preserve the existing button hit areas and spacing. */
+dialog button:not(.combo),
+window.dialog button:not(.combo),
+messagedialog button:not(.combo),
+dialog notebook button:not(.combo),
+window.dialog notebook button:not(.combo),
+filechooser button:not(.combo),
+headerbar button:not(.combo),
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo) {
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  color: #8a97bf;
+}
+
+/* Child widgets follow their button rather than notebook/page colours. */
+dialog button:not(.combo) label,
+dialog button:not(.combo) image,
+dialog button:not(.combo) box,
+window.dialog button:not(.combo) label,
+window.dialog button:not(.combo) image,
+window.dialog button:not(.combo) box,
+messagedialog button:not(.combo) label,
+messagedialog button:not(.combo) image,
+messagedialog button:not(.combo) box,
+dialog notebook button:not(.combo) label,
+dialog notebook button:not(.combo) image,
+dialog notebook button:not(.combo) box,
+window.dialog notebook button:not(.combo) label,
+window.dialog notebook button:not(.combo) image,
+window.dialog notebook button:not(.combo) box,
+filechooser button:not(.combo) label,
+filechooser button:not(.combo) image,
+filechooser button:not(.combo) box,
+headerbar button:not(.combo) label,
+headerbar button:not(.combo) image,
+headerbar button:not(.combo) box,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo) label,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo) image,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo) box {
+  background-color: transparent;
+  background-image: none;
+  color: inherit;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+/* Hover changes text and icons only, including pressed or focused buttons. */
+dialog button:not(.combo):hover,
+window.dialog button:not(.combo):hover,
+messagedialog button:not(.combo):hover,
+dialog notebook button:not(.combo):hover,
+window.dialog notebook button:not(.combo):hover,
+filechooser button:not(.combo):hover,
+headerbar button:not(.combo):hover,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo):hover {
+  color: #c7d0ea;
+}
+
+/* Disabled buttons stay muted even when the pointer is over them. */
+dialog button:not(.combo):disabled,
+window.dialog button:not(.combo):disabled,
+messagedialog button:not(.combo):disabled,
+dialog notebook button:not(.combo):disabled,
+window.dialog notebook button:not(.combo):disabled,
+filechooser button:not(.combo):disabled,
+headerbar button:not(.combo):disabled,
+window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#waybar) > box > box button:not(.combo):disabled {
+  color: alpha(#8a97bf, 0.38);
+}
+
+dialog button:not(.combo):hover label,
+dialog button:not(.combo):hover image,
+dialog button:not(.combo):hover box,
+dialog button:not(.combo):disabled label,
+dialog button:not(.combo):disabled image,
+dialog button:not(.combo):disabled box,
+window.dialog button:not(.combo):hover label,
+window.dialog button:not(.combo):hover image,
+window.dialog button:not(.combo):hover box,
+window.dialog button:not(.combo):disabled label,
+window.dialog button:not(.combo):disabled image,
+window.dialog button:not(.combo):disabled box,
+messagedialog button:not(.combo):hover label,
+messagedialog button:not(.combo):hover image,
+messagedialog button:not(.combo):hover box,
+messagedialog button:not(.combo):disabled label,
+messagedialog button:not(.combo):disabled image,
+messagedialog button:not(.combo):disabled box,
+dialog notebook button:not(.combo):hover label,
+dialog notebook button:not(.combo):hover image,
+dialog notebook button:not(.combo):hover box,
+dialog notebook button:not(.combo):disabled label,
+dialog notebook button:not(.combo):disabled image,
+dialog notebook button:not(.combo):disabled box,
+window.dialog notebook button:not(.combo):hover label,
+window.dialog notebook button:not(.combo):hover image,
+window.dialog notebook button:not(.combo):hover box,
+window.dialog notebook button:not(.combo):disabled label,
+window.dialog notebook button:not(.combo):disabled image,
+window.dialog notebook button:not(.combo):disabled box {
+  color: inherit;
+}
+
