@@ -13,7 +13,7 @@ standard library; no additional Python modules are needed.
 
 ## Install
 
-Download sway-workspace-limit.py and from its location run:
+Download `sway-workspace-limit.py` and from its location run:
 
 ```sh
 install -Dm755 sway-workspace-limit.py "$HOME/.local/bin/sway-workspace-limit.py"
