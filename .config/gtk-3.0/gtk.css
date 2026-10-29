@@ -1,8 +1,6 @@
-/* gtk.css */
-
-/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
-
-/* Comments tagged with "XX" mean that the code is (seemingly) as efficient, non-redundant, well-formed, and precise as possible */
+/* GTK 3 theme: shared widgets and application overrides.
+   Rules are grouped by function. Section order is intentional: the late
+   overrides preserve the preceding stylesheet's selector precedence. */
 
 /* ==========================================================================
    1. Theme colors
@@ -160,7 +158,7 @@ window.thunar toolbar entry selection {
   color: #060606;
 }
 
-/* Sets colors for text caret in main address bar */
+/* Sets colors for text caret (i.e. |) in main address bar */
 .thunar entry:focus {
   caret-color: @thunar_accent;
   -gtk-secondary-caret-color: @thunar_accent;
@@ -734,15 +732,22 @@ messagedialog {
   color: #8a97bf;
 }
 
-/* Draws a 1px border around the complete message dialog, including its titlebar. */
+/* Square the message-dialog surface and its complete window outline. */
+messagedialog {
+  border-radius: 0;
+}
+
+/* Use the thin slate outline sampled from the connection-type dialog reference. */
 messagedialog > decoration {
-  border: 1px solid #8a97bf;
+  border: 1px solid #3b4153;
+  border-radius: 0;
 }
 
 /* Matches GTK message-dialog titlebars to their own dialog background.
    GtkMessageDialog uses box.titlebar rather than a headerbar. */
 messagedialog > box.titlebar {
   background-color: inherit;
+  border-radius: 0;
 }
 
 /* Dialog internal boxes and bottom action strip */
@@ -759,8 +764,7 @@ window.dialog buttonbox {
   color: #8a97bf;
 }
 
-/* Lets the rounded message-dialog body show through the action strip,
-   instead of painting a square background over the lower corner borders. */
+/* Let the message-dialog body show through the action strip. */
 messagedialog .dialog-action-area {
   background-color: transparent;
 }
@@ -1551,4 +1555,19 @@ window.background > frame > box {
   background-color: @thunar_bg;
   background-image: none;
   border: none;
+}
+
+/* ==========================================================================
+   13. NetworkManager connection-list toolbar
+   ========================================================================== */
+
+/* Match the bottom toolbar to the surrounding window. The connection list
+   exposes no application-specific CSS name; use its scrolled-list/toolbar
+   hierarchy rather than changing every GTK toolbar. */
+window.background > box > box > scrolledwindow + toolbar.inline-toolbar,
+window.background > box > box > scrolledwindow + toolbar.inline-toolbar:backdrop {
+  background-color: #0b0b0b;
+  background-image: none;
+  border-color: #0b0b0b;
+  border-radius: 0;
 }
