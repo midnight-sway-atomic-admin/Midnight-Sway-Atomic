@@ -1,4 +1,4 @@
-# Sway workspace limit
+# Sway Workspace Limit
 
 Limits each numbered workspace to two tiled windows. Additional windows move to
 the next higher-numbered workspace with room, without switching your current
@@ -13,7 +13,7 @@ standard library; no additional Python modules are needed.
 
 ## Install
 
-Extract the package, then run this from its `sway-workspace-limit` folder:
+Download sway-workspace-limit.py and from its location run:
 
 ```sh
 install -Dm755 sway-workspace-limit.py "$HOME/.local/bin/sway-workspace-limit.py"
