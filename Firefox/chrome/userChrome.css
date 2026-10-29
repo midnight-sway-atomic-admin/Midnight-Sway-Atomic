@@ -205,8 +205,9 @@
   display: none !important;
 }
 
-/* XX Removes leftover second-line icon indent */
+/* XX Removes leftover second-line icon indent; supports the current lowercase name and the older camel-case name */
 .urlbarView-row {
+  --urlbarview-second-line-indent: 0px !important;
   --urlbarView-second-line-indent: 0px !important;
 }
 
