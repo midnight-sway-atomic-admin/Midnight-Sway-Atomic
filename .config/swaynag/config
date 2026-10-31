@@ -1,0 +1,13 @@
+[warning]
+background=222630
+border=535B74
+border-bottom=535B74
+button-background=222630
+text=8A97BF
+button-text=8A97BF
+
+button-border-size=0
+border-bottom-size=1
+message-padding=4
+button-padding=3
+dismiss-button=No
