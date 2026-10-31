@@ -4,7 +4,7 @@
     <property name="reserve-toggle-size">False</property>
     <child>
       <object class="GtkMenuItem" id="shutdown">
-        <property name="label">Shutdown</property>
+        <property name="label">Shut down</property>
       </object>
     </child>
     <child>
@@ -24,7 +24,7 @@
     </child>
     <child>
       <object class="GtkMenuItem" id="log off">
-        <property name="label">Log Off</property>
+        <property name="label">Log off</property>
       </object>
     </child>
   </object>
