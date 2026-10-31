@@ -4,15 +4,8 @@ set $mod Mod4
 # Use foot as the terminal opened by Sway bindings
 set $term foot
 
-# Define rofi with foot as its terminal fallback
-set $rofi_cmd rofi \
-    -terminal '$term'
-
-# Show rofi with desktop apps and PATH commands
-#set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
-
-# Launch the Bash script
-set $menu bash ~/.local/bin/rofi-apps
+# Custom rofi script
+set $menu ~/.local/bin/rofi-apps
 
 # Load Fedora system snippets; /etc overrides matching /usr/share snippets
 include '$(/usr/libexec/sway/layered-include "/usr/share/sway/config.d/*.conf" "/etc/sway/config.d/*.conf")'
@@ -22,9 +15,6 @@ exec nm-applet --indicator
 
 # Start the Bluetooth tray applet
 exec blueman-applet
-
-# Starts a script that limits workspace windows to 2; additional windows are moved to a new workspace
-exec_always ~/.local/bin/sway-workspace-limit.py
 
 # Set the wallpaper on every output, cropped to fill (or fit, stretch, center, tile)
 output * bg ~/.local/share/wallpapers/2560-1600/00-desktop-wallpaper-2560-1600.png fill
@@ -88,7 +78,7 @@ bindsym $mod+q kill
 bindsym $mod+f fullscreen
 
 # Confirm before exiting the Sway session
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+bindsym $mod+Shift+e exec swaynag -t warning -s 'No' -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
 
 # Move the focused container left or right
 bindsym $mod+Left move left
@@ -122,29 +112,20 @@ bindsym $mod+Shift+8 move container to workspace number 8
 bindsym $mod+Shift+9 move container to workspace number 9
 bindsym $mod+Shift+0 move container to workspace number 10
 
-# Override $mod+w with no operation
-bindsym $mod+w nop
+# New workspaces use the normal split layout
+workspace_layout default
 
-# Override $mod+e with no operation
+# Arrange tiled windows side by side
+default_orientation horizontal
+
+# Disable alternative layouts
+bindsym $mod+v nop
+bindsym $mod+s nop
+bindsym $mod+w nop
 bindsym $mod+e nop
 
-# Override $mod+s with no operation
-bindsym $mod+s nop
-
-# Override $mod+h with no operation
-bindsym $mod+h nop
-
-# Override $mod+v with no operation
-bindsym $mod+v nop
-
-# Override $mod+Shift+e with no operation
-unbindsym $mod+Shift+e
-
-# Save a full-screen screenshot
-bindsym --no-warn $mod+t exec sh -c 'grim ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
-
-# Save a user-selected-region screenshot
-bindsym --no-warn $mod+r exec sh -c 'grim -g "$(slurp)" ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png'
+# Take a selected-region screenshot
+bindsym $mod+r exec grim -g "$(slurp)" ~/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
 
 # Float and center recognized dialog-type windows
 for_window [window_type="dialog"] floating enable, move position center
@@ -168,3 +149,6 @@ for_window [app_id="^xdg-desktop-portal-gtk$" title=".+"] floating enable, resiz
 
 # Center untitled GTK portal confirmations at their natural size
 for_window [app_id="^xdg-desktop-portal-gtk$" title="^$"] floating enable, move position center
+
+# Starts a script that limits workspace windows to 2; additional windows are moved to a new workspace
+exec_always ~/.local/bin/sway-workspace-limit.py
