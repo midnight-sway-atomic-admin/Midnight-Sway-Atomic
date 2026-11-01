@@ -70,7 +70,7 @@ exec podman run --rm \
   --read-only \
   --read-only-tmpfs=false \
   --tmpfs /tmp:rw,nosuid,nodev,noexec,size=2g \
-  -v "/home/suspicious-files:/scan:ro,Z" \
+  -v "$HOME/suspicious-files:/scan:ro,Z" \
   -w /scan \
   localhost/clamav-monthly:44 \
   clamscan --recursive --infected --cross-fs=no "$@"
@@ -89,7 +89,7 @@ The container:
 - has no Linux capabilities;
 - cannot gain additional privileges;
 - has a read-only root filesystem;
-- sees `/home/suspicious-files` read-only;
+- sees `$HOME/suspicious-files` read-only at `/scan`;
 - has only `/tmp` as writable temporary storage.
 
 Assuming `~/.local/bin` is in `PATH`, run:
@@ -121,7 +121,7 @@ The alias fetches the current Fedora 44 base image, rebuilds without cached laye
 Place files to inspect under:
 
 ```text
-/home/suspicious-files/
+$HOME/suspicious-files/
 ```
 
 Then run:
@@ -130,4 +130,4 @@ Then run:
 clam-scan
 ```
 
-The files are exposed to ClamAV read-only, and the scanning container has no network access.
+Inside the container, that directory appears as `/scan`. The files are exposed to ClamAV read-only, and the scanning container has no network access.
