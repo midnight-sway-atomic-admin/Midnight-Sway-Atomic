@@ -1,0 +1,14 @@
+FROM registry.fedoraproject.org/fedora:44
+
+# Update Fedora and install the scanner and signature updater.
+RUN dnf -y upgrade \
+ && dnf -y --setopt=install_weak_deps=False install clamav clamav-freshclam \
+ && dnf clean all
+
+# Download current virus signatures into the image.
+RUN freshclam
+
+WORKDIR /scan
+
+# Harmless default when run without an explicit command.
+CMD ["clamscan", "--version"]
