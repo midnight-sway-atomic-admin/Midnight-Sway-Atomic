@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec podman run --rm \
+  --pull=never \
+  --network=none \
+  --no-hosts \
+  --no-hostname \
+  --userns=keep-id \
+  --cap-drop=all \
+  --security-opt=no-new-privileges \
+  --read-only \
+  --read-only-tmpfs=false \
+  --tmpfs /tmp:rw,nosuid,nodev,noexec,size=2g \
+  -v "$HOME/suspicious-files:/scan:ro,Z" \
+  -w /scan \
+  localhost/clamav-monthly:44 \
+  clamscan --recursive --infected --cross-fs=no "$@"

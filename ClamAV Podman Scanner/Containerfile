@@ -1,0 +1,13 @@
+FROM registry.fedoraproject.org/fedora:44
+
+# Update Fedora, install ClamAV without weak dependencies,
+# clean package metadata, and bake current signatures into the image.
+RUN dnf -y upgrade \
+ && dnf -y --setopt=install_weak_deps=False install clamav \
+ && dnf clean all \
+ && freshclam
+
+WORKDIR /scan
+
+# Harmless default when run without an explicit command.
+CMD ["clamscan", "--version"]
