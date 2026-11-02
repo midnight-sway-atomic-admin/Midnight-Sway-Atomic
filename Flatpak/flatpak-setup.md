@@ -23,6 +23,22 @@ flatpak remote-modify --user --subset=verified flathub
 
 `--if-not-exists` doesn't change an existing repository. The filter restricts this user-level Flathub repository; it doesn't remove previously installed unverified apps or change other repositories.
 
+## Remove the default Firefox
+
+After installing the Flatpak version, remove Fedora Sway Atomic's image-provided Firefox from the active deployment:
+
+```bash
+sudo rpm-ostree override remove firefox firefox-langpacks
+```
+
+Reboot to enter the new deployment:
+
+```bash
+systemctl reboot
+```
+
+This removes Firefox and its language-pack package from the deployed system. Because they are part of the Fedora base image, `rpm-ostree` implements this as a base-package override rather than modifying the underlying OSTree image itself.
+
 ## Update and clean up
 
 Update first, then remove runtimes and extensions that installed apps no longer need:
@@ -54,8 +70,3 @@ These cleanup commands cover your user installation. If you also have system-wid
 ```bash
 sudo flatpak uninstall --system --unused
 ```
-
-## References
-
-- [Flathub subsets](https://docs.flathub.org/docs/for-users/installation#subsets)
-- [Flatpak command reference](https://docs.flatpak.org/en/latest/flatpak-command-reference.html)
