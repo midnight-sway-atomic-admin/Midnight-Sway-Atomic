@@ -186,11 +186,14 @@ complete -f o
 shopt -s cdspell
 shopt -s dirspell
 
-# Load a fixed Bash history, but never save new commands
-if [[ $- == *i* ]]; then
+# Fixed history followed by session-only history
+if [[ $- == *i* && -z ${__fixed_history_loaded-} ]]; then
+    __fixed_history_loaded=1
     fixed_history="$HOME/.config/bash/history.fixed"
 
+    HISTSIZE=-1
     history -c
+
     if ! history -r "$fixed_history" 2>/dev/null; then
         printf 'bash: cannot load fixed history: %s\n' "$fixed_history" >&2
     fi
@@ -214,3 +217,4 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias upgrade='flatpak upgrade -y; rpm-ostree upgrade'
 alias commands='cat ~/.local/share/cli-commands/commands.txt'
+alias a-fresh-clam='cd "$HOME/.local/share/clamav-container" && podman build --pull=always --no-cache -t localhost/clamav-monthly:44 . && podman image prune -f'
