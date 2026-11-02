@@ -9,6 +9,7 @@ import sys
 
 LIMIT = 2
 MARK = "_sway_workspace_limit"
+EXEMPT_APP_IDS = {"scratchpad-terminal"}
 HEADER = struct.Struct("=6sII")
 
 
@@ -38,10 +39,15 @@ def request(connection, kind, message=""):
     return reply
 
 
-def windows(node):
+def windows(node, managed_only=False):
     if node.get("shell") == "xdg_shell":
+        if managed_only and (
+                node.get("app_id") in EXEMPT_APP_IDS
+                or node.get("scratchpad_state", "none") != "none"):
+            return []
         return [node["id"]]
-    return [ident for child in node.get("nodes", []) for ident in windows(child)]
+    return [ident for child in node.get("nodes", [])
+            for ident in windows(child, managed_only)]
 
 
 def workspaces(connection):
@@ -53,8 +59,8 @@ def workspaces(connection):
 def snapshot(connection, spaces=None):
     if spaces is None:
         spaces = workspaces(connection)
-    return {w["num"]: (output, windows(w)) for output, w in spaces
-            if w.get("num", -1) > 0}
+    return {w["num"]: (output, windows(w, managed_only=True))
+            for output, w in spaces if w.get("num", -1) > 0}
 
 
 def destination(spaces, number):
@@ -93,9 +99,15 @@ def sync_rules(connection, known, spaces):
 
 def place(connection, ident):
     spaces = workspaces(connection)
-    source = next((w for _, w in spaces for node in w.get("floating_nodes", [])
-                   if ident in windows(node)), None)
-    if source is None or source["name"] == "__i3_scratch":
+    match = next(((w, node) for _, w in spaces
+                  for node in w.get("floating_nodes", [])
+                  if ident in windows(node)), None)
+    if match is None:
+        return
+    source, node = match
+    if (node.get("app_id") in EXEMPT_APP_IDS
+            or source["name"] == "__i3_scratch"
+            or node.get("scratchpad_state", "none") != "none"):
         return
     number = source.get("num", -1)
     target = destination(snapshot(connection, spaces), number) if number > 0 else number
