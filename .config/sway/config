@@ -158,5 +158,5 @@ for_window [app_id="^xdg-desktop-portal-gtk$" title="^$"] floating enable, move 
 # Starts a script that limits workspace windows to 2; additional windows are moved to a new workspace
 exec_always ~/.local/bin/sway-workspace-limit.py
 
-# Start exactly one dedicated scratchpad terminal per Sway session
+# Start exactly one dedicated scratchpad terminal per Sway session; invoke and hide it with mod+S
 exec foot --app-id=scratchpad-terminal -o colors-dark.alpha=1.0
