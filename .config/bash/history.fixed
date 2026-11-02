@@ -10,7 +10,6 @@ podman images
 flatpak uninstall --unused
 flatpak list
 fwupdmgr update
-fwupdmgr get-updates
 fwupdmgr refresh
 top
 lsblk
