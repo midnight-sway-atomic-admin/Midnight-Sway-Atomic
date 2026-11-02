@@ -11,8 +11,6 @@ flatpak uninstall --unused
 flatpak list
 fwupdmgr update
 fwupdmgr refresh
-top
-lsblk
 thunar -q
 pkill waybar
 pkill sway
@@ -20,6 +18,8 @@ swaymsg reload
 shutdown now
 systemctl reboot
 source ~/.bashrc
+top
+lsblk
 a-fresh-clam
 upgrade
 search
