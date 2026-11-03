@@ -1,0 +1,5 @@
+[options]
+width = 800
+height = 500
+background = #0b0b0b
+scaling_mode = crop
