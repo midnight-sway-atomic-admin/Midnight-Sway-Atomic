@@ -158,5 +158,17 @@ for_window [app_id="^xdg-desktop-portal-gtk$" title="^$"] floating enable, move 
 # Starts a script that limits workspace windows to 2; additional windows are moved to a new workspace
 exec_always ~/.local/bin/sway-workspace-limit.py
 
-# Start exactly one dedicated scratchpad terminal per Sway session; invoke and hide it with mod+S
+# Start exactly one dedicated scratchpad terminal per Sway session
 exec foot --app-id=scratchpad-terminal -o colors-dark.alpha=1.0
+
+# Blueman Manager
+for_window [app_id="^launcher\.py$" title="^Bluetooth Devices$"] floating enable, resize set width 531 px height 150 px, move absolute position center
+
+# imv \u2014 centered floating image viewer
+for_window [app_id="^imv$"] floating enable, border pixel 1, move absolute position center
+
+# Removes passthrough keybinding
+unbindsym $mod+Pause
+
+# Allows invocation of keybindings.svg
+bindsym $mod+k exec imv ~/.local/share/midnight-keybindings/keybindings.svg
