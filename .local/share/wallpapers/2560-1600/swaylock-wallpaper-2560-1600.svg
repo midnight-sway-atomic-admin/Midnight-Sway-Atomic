@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="2560" height="1600" viewBox="0 0 2560 1600">
+  <title>Black lock with subtle blue-gray halo</title>
+  <desc>A small centered black padlock with a transparent keyhole, placed over an soft, diffuse elliptical #8a97bf halo on a black background.</desc>
+  <defs>
+    <radialGradient id="halo" gradientUnits="userSpaceOnUse"
+                    cx="1280" cy="800" r="260"
+                    gradientTransform="translate(-704 0) scale(1.55 1)">
+      <stop offset="0" stop-color="#8a97bf" stop-opacity="0.19"/>
+      <stop offset="0.15" stop-color="#8a97bf" stop-opacity="0.162"/>
+      <stop offset="0.30" stop-color="#8a97bf" stop-opacity="0.113"/>
+      <stop offset="0.45" stop-color="#8a97bf" stop-opacity="0.063"/>
+      <stop offset="0.60" stop-color="#8a97bf" stop-opacity="0.028"/>
+      <stop offset="0.75" stop-color="#8a97bf" stop-opacity="0.009"/>
+      <stop offset="0.90" stop-color="#8a97bf" stop-opacity="0.0015"/>
+      <stop offset="1" stop-color="#8a97bf" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="2560" height="1600" fill="#000000"/>
+  <ellipse cx="1280" cy="800" rx="403" ry="260" fill="url(#halo)"/>
+
+  <!-- U-shaped shackle; the interior remains transparent. -->
+  <path fill="#000000" d="
+    M 1242 777 V 746
+    C 1242 725 1259 709 1280 709
+    C 1301 709 1318 725 1318 746
+    V 777 H 1305 V 746
+    C 1305 732 1294 722 1280 722
+    C 1266 722 1255 732 1255 746
+    V 777 Z"/>
+
+  <!-- Rounded body, with the keyhole cut out of the actual vector shape. -->
+  <path fill="#000000" fill-rule="evenodd" d="
+    M 1238 776 H 1322
+    Q 1334 776 1334 788
+    V 848 Q 1334 860 1322 860
+    H 1238 Q 1226 860 1226 848
+    V 788 Q 1226 776 1238 776 Z
+
+    M 1275.5 818.9
+    A 10 10 0 1 1 1284.5 818.9
+    V 834 H 1275.5 Z"/>
+</svg>
