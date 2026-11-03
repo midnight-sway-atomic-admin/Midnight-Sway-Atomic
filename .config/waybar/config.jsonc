@@ -2,6 +2,7 @@
     "height": 30,
     "width": 250,
     "spacing": 50,
+    "fixed-center": true,
 
     "modules-center": [
         "sway/workspaces",
@@ -54,7 +55,7 @@
     },
 
     "custom/power": {
-        "format": "\u23fb ",
+        "format": "\u23fb",
         "tooltip": false,
         "menu": "on-click",
         "menu-file": "$HOME/.config/waybar/power_menu.xml",
