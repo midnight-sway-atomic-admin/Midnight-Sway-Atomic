@@ -27,3 +27,7 @@
 12. Improve the styling of each of the custom icons.
 
 13. Create a comprehensive script that turns a fresh install into a deny-by-default system; e.g., after running the script, if you want to use an included system service like SSH, you should have to enable it manually.
+
+14. Create different resolution versions of the wallpapers.
+
+15. Turn the wallpapers into .svgs.
