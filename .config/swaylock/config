@@ -1,31 +1,46 @@
-image=$HOME/.local/share/wallpapers/2560-1600/00-desktop-wallpaper-2560-1600.png
+image=$HOME/.local/share/wallpapers/2560-1600/swaylock-wallpaper-2560-1600.svg
+
 scaling=fill
 
-color=000000
+color=010305
 
 indicator-radius=50
-indicator-thickness=5
+indicator-thickness=2
 
+# Hide every graphical part of the indicator.
 ring-color=00000000
 inside-color=00000000
 line-color=00000000
 separator-color=00000000
+
 key-hl-color=00000000
+caps-lock-key-hl-color=00000000
 bs-hl-color=00000000
+caps-lock-bs-hl-color=00000000
 
-ring-ver-color=00FF00
-inside-ver-color=061A12
-line-ver-color=00FF00
+ring-ver-color=00000000
+inside-ver-color=00000000
+line-ver-color=00000000
 
-ring-wrong-color=FF1A1A
-inside-wrong-color=000000
-line-wrong-color=FF1A1A
+ring-wrong-color=00000000
+inside-wrong-color=00000000
+line-wrong-color=00000000
 
-ring-clear-color=A3BE8C
-inside-clear-color=000000
-line-clear-color=A3BE8C
+ring-clear-color=00000000
+inside-clear-color=00000000
+line-clear-color=00000000
 
-text-color=FFFFFF
-text-ver-color=00FF00
-text-wrong-color=FF1A1A
-text-clear-color=A3BE8C
+ring-caps-lock-color=00000000
+inside-caps-lock-color=00000000
+line-caps-lock-color=00000000
+
+# Hide all text, including status messages.
+disable-caps-lock-text
+hide-keyboard-layout
+text-color=00000000
+text-caps-lock-color=00000000
+
+# Hide verification, failure, and cleared-state text.
+text-ver-color=00000000
+text-wrong-color=00000000
+text-clear-color=00000000
