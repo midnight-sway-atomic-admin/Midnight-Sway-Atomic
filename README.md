@@ -201,7 +201,7 @@ Current limits:
 
 ## Development Status
 
-The files are being refined gradually.
+The files are being refined gradually. Thus the preview slideshow may not always be up-to-date.
 
 The aim is to fix, or deliberately abandon after investigation, the issues listed in:
 
