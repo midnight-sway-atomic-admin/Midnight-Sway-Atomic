@@ -38,9 +38,9 @@ If you replace Firefox, you also won't be able to use the included Firefox chrom
 
 ![Locked Foot terminal with a red Waybar padlock and red border](assets/sway-foot-locking-mechanism-preview.png)
 
-### Activate the lock
+Activate the lock
 
-With `jq` and `flock` available, run these commands from your Sway session.
+Run these commands from your Sway session.
 
 ```bash
 chmod u+x ~/.local/bin/sway-foot-lock &&
