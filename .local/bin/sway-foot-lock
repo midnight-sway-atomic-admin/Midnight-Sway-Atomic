@@ -1,0 +1,109 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+action=${1:-}
+case $action in
+    close|toggle|waybar|watch|check) ;;
+    *) printf 'Usage: %s {close|toggle|waybar|watch|check}\n' "${0##*/}" >&2; exit 2 ;;
+esac
+
+for command in swaymsg jq flock; do
+    command -v "$command" >/dev/null || { printf 'Missing command: %s\n' "$command" >&2; exit 1; }
+done
+
+sway_command() {
+    local reply
+    reply=$(swaymsg -r -- "$1") || { printf '%s\n' "$reply" >&2; return 1; }
+    jq -e 'type == "array" and length > 0 and all(.[]; .success == true)' <<< "$reply" >/dev/null ||
+        { printf '%s\n' "$reply" >&2; return 1; }
+}
+
+snapshot() {
+    local state
+    state=$(swaymsg -r -t get_tree | jq -er '
+        if .type != "root" then error("Invalid Sway tree") else
+            first(recurse(.nodes[]?, .floating_nodes[]?)
+                | select(.focused == true and (.type == "con" or .type == "floating_con")
+                    and (.id | type) == "number"
+                    and (.shell != null or .app_id != null or .window != null))
+                | .id as $id
+                | [$id, (.app_id // "<none>"), ((.marks // []) | index("_foot_lock_\($id)"))])
+            // [0, "<none>", null]
+        end
+        | [.[0], .[1], (.[2] != null)] | @tsv
+    ') || return 1
+    IFS=$'\t' read -r id app_id locked <<< "$state"
+}
+
+status_json() {
+    case $app_id in
+        foot|footclient)
+            if [[ $locked == true ]]; then
+                printf '%s\n' '{"text":"·","class":"locked"}'
+            else
+                printf '%s\n' '{"text":"·","class":"unlocked"}'
+            fi
+            ;;
+        *) printf '%s\n' '{"text":"","class":"inactive"}' ;;
+    esac
+}
+
+watch() {
+    # The initial tick arrives after subscribing, so startup cannot miss focus changes.
+    local event last_color='' color
+    swaymsg -m -r -t subscribe '["tick","window","workspace"]' |
+        jq --unbuffered -r '
+            if .first == true or .change == "reload" then "reset"
+            elif .change | IN("focus", "mark", "new", "close", "empty", "init", "move")
+            then "refresh"
+            else empty end
+        ' |
+        while IFS= read -r event; do
+            snapshot || exit 1
+            color=$normal_color
+            if [[ $locked == true && ( $app_id == foot || $app_id == footclient ) ]]; then
+                color=$locked_color
+            fi
+            if [[ -n $color && ( $event == reset || $color != "$last_color" ) ]]; then
+                if sway_command "client.focused $color"; then
+                    last_color=$color
+                fi
+            fi
+            status_json
+        done
+}
+
+case $action in
+    check)
+        snapshot
+        printf 'Sway IPC OK. Focused container: %s | app ID: %s | locked: %s\n' "$id" "$app_id" "$locked"
+        ;;
+    waybar)
+        snapshot
+        status_json
+        ;;
+    watch)
+        normal_color=${2-'#222630 #222630 #FFFFFF #535b74b3 #535b74b3'}
+        locked_color=${3-'#B45F65 #222630 #FFFFFF #B45F65 #B45F65'}
+        watch
+        ;;
+    close|toggle)
+        # Serialize close and toggle so a close cannot use a stale lock decision.
+        : "${XDG_RUNTIME_DIR:?Run this inside your Sway session}"
+        exec 9>"$XDG_RUNTIME_DIR/sway-foot-lock.${SWAYSOCK##*/}.lock"
+        flock -x 9
+        snapshot
+        [[ $id != 0 ]] || exit 0
+        if [[ $action == close ]]; then
+            [[ $app_id != scratchpad-terminal && $locked == false ]] || exit 0
+            sway_command "[con_id=$id] kill"
+        elif [[ $app_id == foot || $app_id == footclient ]]; then
+            mark="_foot_lock_$id"
+            if [[ $locked == true ]]; then
+                sway_command "[con_id=$id] border pixel 1, unmark $mark"
+            else
+                sway_command "[con_id=$id] mark --add $mark, border pixel 1"
+            fi
+        fi
+        ;;
+esac
