@@ -10,7 +10,7 @@
 
 @define-color waybar_fg #8a97bf;
 @define-color waybar_fg_dim rgba(138, 151, 191, 0.5);
-@define-color waybar_urgent #ff1a1a;
+@define-color waybar_urgent #ff0000;
 @define-color waybar_transparent transparent;
 
 /* --------------------------------------------------------------------------
@@ -25,9 +25,14 @@
     transition: none;
 }
 
-/* X Suppresses all tooltips at the CSS level */
-tooltip {
-    opacity: 0;
+/* Clear the tooltip window, its GTK decoration, and its contents. */
+tooltip,
+tooltip * {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: transparent;
+    text-shadow: none;
 }
 
 /* Makes the Waybar background fully transparent */
