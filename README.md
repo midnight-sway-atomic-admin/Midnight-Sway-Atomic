@@ -6,6 +6,7 @@ A secure and visually austere base desktop environment for a fresh install of Fe
 
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-showcase.png)
 
+The preview slideshow is not up-to-date.
 ---
 
 ## Setup Notes
