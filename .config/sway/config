@@ -77,8 +77,9 @@ bindsym $mod+Return exec $term
 # Open the launcher
 bindsym $mod+d exec $menu
 
-# Close the focused window, except the dedicated scratchpad terminal
-bindsym $mod+q [con_id=__focused__ app_id="^(?!scratchpad-terminal$).*$"] kill
+# Guard Super+Q and toggle protection on the focused foot terminal.
+bindsym $mod+q exec "$HOME/.local/bin/sway-foot-lock" close
+bindsym $mod+Shift+l exec "$HOME/.local/bin/sway-foot-lock" toggle
 
 # Toggle fullscreen for the focused window
 bindsym $mod+f fullscreen
