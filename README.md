@@ -1,4 +1,4 @@
-# Midnight Sway Atomic
+# Midnight Sway Atomic (being tested on Fedora 45; apparently unbroken)
 
 A secure and visually austere base desktop environment for a fresh install of Fedora Sway Atomic.
 
