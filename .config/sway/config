@@ -27,6 +27,12 @@ input "type:touchpad" {
     # Enable tap-to-click.
     tap enabled
 
+    # Enable tap-and-drag
+    drag enabled
+
+    # Keep dragging after lifting a finger
+    drag_lock enabled_sticky
+
     # Make two-finger scrolling follow touch direction
     natural_scroll enabled
 
@@ -170,5 +176,5 @@ for_window [app_id="^imv$"] floating enable, border pixel 1, move absolute posit
 # Removes passthrough keybinding
 unbindsym $mod+Pause
 
-# Allows invocation of keybindings.svg
+# Invokes keybindings .png
 bindsym $mod+k exec imv ~/.local/share/midnight-keybindings/keybindings.svg
