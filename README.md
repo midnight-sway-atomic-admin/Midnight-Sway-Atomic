@@ -38,7 +38,7 @@ If you replace Firefox, you also won't be able to use the included Firefox chrom
 
 Click the Waybar padlock or press **Super+Shift+L** to toggle the lock for the focused Foot terminal. **Super+Q** skips locked terminals. A red padlock shows that the terminal is locked, and a thin red border appears while it has focus.
 
-[View the locked terminal preview](assets/sway-waybar-locking-mechanism-preview.png)
+![Locked Foot terminal with a red Waybar padlock and red border](assets/sway-waybar-locking-mechanism-preview.png)
 
 ---
 
@@ -235,7 +235,7 @@ If you prefer not to use configurations or software developed with AI assistance
 
 This rice is free to use, and always will be. I don't like to distro-hop—Fedora Sway Atomic will be my daily driver for the foreseeable future—and I don't like to rice. I rice out of necessity, since I dislike the default appearance of virtually every operating system I've used.
 
-So if you've found this rice useful and would like to help support its continued maintenance and improvement, even tiny donations are deeply appreciated. They help cover the cost of AI tools used for development, testing, troubleshooting, and keeping the rice current.
+So if you've found this rice useful and would like to help support its continued maintenance and improvement, even tiny donations are deeply appreciated. They help cover the costs of AI tools used for development, testing, troubleshooting, and keeping the rice current.
 
 - [Buy me a coffee on Ko-fi](https://ko-fi.com/midnightswayatomic)
 
