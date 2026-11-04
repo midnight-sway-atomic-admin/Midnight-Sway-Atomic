@@ -36,9 +36,19 @@ If you replace Firefox, you also won't be able to use the included Firefox chrom
 
 ## Sway and Foot Locking Mechanism
 
-Click the Waybar padlock or press **Super+Shift+L** to toggle the lock for the focused Foot terminal. **Super+Q** skips locked terminals. A red padlock shows that the terminal is locked, and a thin red border appears while it has focus.
-
 ![Locked Foot terminal with a red Waybar padlock and red border](assets/sway-foot-locking-mechanism-preview.png)
+
+### Activate the lock
+
+With `jq` and `flock` available, run these commands from your Sway session.
+
+```bash
+chmod u+x ~/.local/bin/sway-foot-lock &&
+  swaymsg reload &&
+  pkill -USR2 -u "$UID" -x waybar
+```
+
+Click the Waybar padlock or press **Super+Shift+L** to toggle the lock for the focused Foot terminal. **Super+Q** skips locked terminals. A red padlock shows that the terminal is locked, and a thin red border appears while it has focus.
 
 ---
 
