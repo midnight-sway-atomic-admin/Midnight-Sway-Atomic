@@ -51,7 +51,8 @@ window#waybar {
 #battery,
 #temperature,
 #tray,
-#custom-power {
+#custom-power,
+#custom-foot-lock {
     padding: 0;
     margin: 0;
     color: @waybar_fg;
@@ -184,3 +185,24 @@ window#waybar {
     background-color: @waybar_transparent;
     color: @waybar_urgent;
 }
+
+/* BEGIN sway-foot-lock */
+#custom-foot-lock {
+    min-width: 21px;
+    min-height: 21px;
+    padding: 0;
+    margin: 0;
+    color: #8a97bf;
+    font-size: 1px;
+    background-color: transparent;
+    background-image: url("./waybar-icons/foot-lock-open.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 14px 14px;
+}
+
+#custom-foot-lock.locked {
+    color: #b45f65;
+    background-image: url("./waybar-icons/foot-lock-closed.svg");
+}
+/* END sway-foot-lock */
