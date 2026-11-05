@@ -3,6 +3,7 @@
     "width": 400,
     "spacing": 50,
     "fixed-center": true,
+
     "modules-center": [
         "sway/workspaces",
         "battery",
@@ -13,9 +14,16 @@
         "custom/power",
         "custom/foot-lock"
     ],
+
     "sway/workspaces": {
-        "cursor": 60
-    },
+    "cursor": 60,
+    "format": "{icon}",
+    "format-icons": {
+        "focused": "\u25cf",
+        "default": "\u25cb"
+    }
+     },
+
     "battery": {
         "interval": 2,
         "states": {
@@ -29,32 +37,38 @@
         "format-charging": " ",
         "tooltip": false
     },
+
     "temperature": {
         "interval": 5,
         "critical-threshold": 80,
         "tooltip": false
     },
+
     "clock#date": {
         "format": "{:%a %d}",
         "tooltip": false
     },
+
     "clock#time": {
         "format": "{:%H:%M}",
         "tooltip": false
     },
+
     "tray": {
         "spacing": 50,
         "tooltip": false,
         "cursor": 60
     },
+
     "custom/foot-lock": {
-        "exec": "exec \"$HOME/.local/bin/sway-foot-lock\" watch",
+        "exec": "exec \"$HOME/.local/bin/sway-foot-lock\" watch '#222630 #222630 #FFFFFF #535b74b3 #535b74b3' '#B45F65 #222630 #FFFFFF #B45F65 #B45F65'",
         "on-click": "exec \"$HOME/.local/bin/sway-foot-lock\" toggle",
         "return-type": "json",
         "tooltip": false,
         "exec-on-event": false,
         "restart-interval": 2
     },
+
     "custom/power": {
         "format": "\u23fb",
         "tooltip": false,
