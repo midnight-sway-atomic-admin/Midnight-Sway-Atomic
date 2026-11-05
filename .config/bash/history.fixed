@@ -15,13 +15,14 @@ fwupdmgr refresh
 thunar -q
 pkill waybar
 pkill sway
-swaymsg reload
 shutdown now
 systemctl reboot
 source ~/.bashrc
 top
 lsblk
 a-fresh-clam
+clam-scan
+swaymsg reload
 upgrade
 search
 commands
