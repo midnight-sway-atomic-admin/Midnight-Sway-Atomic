@@ -13,17 +13,6 @@ to open system nano with its usual configuration.
 > **Warning:** Open only locally made or known-safe text files in Nanowriter.
 > It won't be updated as frequently as system nano and may miss security fixes.
 
-## Features
-
-- Black text on an off-white background.
-- Centered writing column, up to 76 terminal columns wide, with ragged-right soft wrapping.
-- Centered filename and live word count, separated by a small dot.
-- Minimal interface, a thin non-blinking cursor, and click-to-position mouse support.
-- Top and bottom spacing to separate the document from the header and save prompts.
-
-Wrapping and margins affect only the display; they don't insert spaces or line
-breaks into the document. The word count includes unsaved changes.
-
 ## Installation
 
 The bundled executable requires x86_64 Linux, Bash, foot, glibc 2.38 or later,
