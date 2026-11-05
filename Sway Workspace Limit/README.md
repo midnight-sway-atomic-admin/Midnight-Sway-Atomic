@@ -31,6 +31,40 @@ Start it from a Sway terminal:
 swaymsg reload
 ```
 
+## Workspace renumbering
+
+Workspaces with plain numeric names are automatically kept consecutive. If
+workspace 2 disappears from `1, 2, 3`, workspace 3 becomes 2. This keeps each
+Waybar dot's position aligned with its workspace number on a single display.
+
+Renumbering is enabled when the script runs. A custom numbered name such as
+`2: web` disables automatic renumbering.
+
+## Waybar dots
+
+Copy the repository's updated `.config/waybar/config.jsonc` to
+`~/.config/waybar/config.jsonc`. It already displays the focused workspace as a
+filled dot and the others as hollow dots.
+
+If you keep your own Waybar configuration, merge these settings into its
+`sway/workspaces` section.
+
+```jsonc
+"sway/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+        "focused": "●",
+        "default": "○"
+    }
+}
+```
+
+Reload Waybar after updating its configuration.
+
+```sh
+pkill -SIGUSR2 -x waybar
+```
+
 ## Change the limit
 
 Edit `LIMIT = 2` near the top of `~/.local/bin/sway-workspace-limit.py`, using a
