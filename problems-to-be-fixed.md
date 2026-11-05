@@ -4,7 +4,7 @@
 
 2. Refactor `userContent.css`, `userChrome.css`, and system files so that all code meets these criteria:
    - **`X`:** Known and commented.
-   - **`XX`:** As efficient, non-redundant, well-formed, and precise as possible.
+   - **`XX`:** Known, commented, and as short and precise as possible.
 
 3. Standardize all code-block formatting, especially in the final versions of `userChrome.css` and `userContent.css`.
 
