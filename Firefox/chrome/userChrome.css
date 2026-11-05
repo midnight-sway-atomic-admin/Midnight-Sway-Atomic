@@ -29,6 +29,15 @@
   --uc-color-mask-opaque: #000000;        /* Tabstrip fade mask, and some text */
   --uc-color-bg-hover-light: #f1f3fa;     /* Light hover background */
 
+/* Shared hover timing; only painted colors transition */
+  --uc-hover-fade: 180ms ease-in-out;
+  --uc-hover-transition:
+    color var(--uc-hover-fade),
+    background-color var(--uc-hover-fade),
+    border-color var(--uc-hover-fade),
+    fill var(--uc-hover-fade),
+    stroke var(--uc-hover-fade);
+
 /* Reused layout tokens for the single-line URL bar + tabs */
   --uc-tab-height: 30px;
   --uc-bar-height: 38px;
@@ -36,6 +45,48 @@
   --uc-urlbar-tabs-gap: 10px;
   --uc-urlbar-box-vertical-margin: 3px; /* Sets height of main URL box; the bigger the number, the shorter the box */
 
+}
+
+/*==============================================================================
+  HOVER TRANSITIONS
+==============================================================================*/
+
+/* X Base-state transitions fade in both directions; tab-label transitions are
+   separate from the tab's existing opacity transition and native tab movement */
+.urlbarView-row,
+.tab-label,
+#trust-icon,
+#downloads-button,
+.ctrlTab-preview-inner,
+#ctrlTab-showAll,
+menupopup > *,
+#editBookmarkPanelRemoveButton,
+#editBMPanel_folderMenuList,
+#editBMPanel_foldersExpander,
+#placesMenu > menu,
+#placesToolbar > toolbarbutton,
+:where(panel, #commonDialogWindow, #commonDialog, #SanitizeDialog,
+       #bookmarkproperties, #places, :root[windowtype="Browser:page-info"], #print)
+  :is(button, toolbarbutton, menulist, select, radio, treecol,
+      .tree-columnpicker-button, .permission, richlistitem) {
+  transition: var(--uc-hover-transition) !important;
+}
+
+/* X Modern buttons paint inside their shadow parts. The tab audio icon's SVG
+   background also uses the part's fill, so its existing color tokens can fade */
+.tab-audio-button::part(button),
+:where(panel, #commonDialogWindow, #commonDialog, #SanitizeDialog,
+       #bookmarkproperties, #places, :root[windowtype="Browser:page-info"], #print)
+  moz-button::part(button),
+:where(panel, #commonDialogWindow, #commonDialog, #SanitizeDialog,
+       #bookmarkproperties, #places, :root[windowtype="Browser:page-info"], #print)
+  moz-button::part(chevron-button) {
+  transition: var(--uc-hover-transition) !important;
+}
+
+/* X Disable the new fades when reduced motion is requested */
+@media (prefers-reduced-motion: reduce) {
+  :root { --uc-hover-fade: 0ms linear; }
 }
 
 /*==============================================================================
@@ -652,7 +703,8 @@ panelview {
   background-color: var(--uc-color-bg) !important;
 }
 
-/* Bookmarks tree and search field */
+/* Bookmarks tree and search field. Legacy ::-moz-tree-* hover painting does not
+   have per-row frames for CSS transitions; those hover colors remain instant. */
 @-moz-document url("chrome://browser/content/places/bookmarksSidebar.xhtml") {
 
   /* XX Hides the bookmarks-sidebar search placeholder text */
