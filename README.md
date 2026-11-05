@@ -1,12 +1,12 @@
 # Midnight Sway Atomic 
 
-(Being tested on Fedora 45; apparently unbroken.)
+(The rice is stable on Fedora 45.)
 
 A secure and visually austere base desktop environment for a fresh install of Fedora Sway Atomic.
 
-![Midnight Sway Atomic desktop showcase](assets/midnight-sway-showcase.png)
+![Midnight Sway Atomic desktop showcase](assets/midnight-sway-slideshow.png)
 
-The preview slideshow is not up-to-date.
+The preview slideshow is up-to-date.
 
 ---
 
