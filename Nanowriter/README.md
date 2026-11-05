@@ -12,6 +12,9 @@ to open system nano with its usual configuration.
 
 > **Warning:** Open only locally made or known-safe text files in Nanowriter.
 > It won't be updated as frequently as system nano and may miss security fixes.
+> Bubblewrap (bwrap) restricts filesystem and network access to limit the damage
+> from a compromise, but a compromised editor could still modify
+> or delete files in ~/nanowriter-docs.
 
 ## Installation
 
