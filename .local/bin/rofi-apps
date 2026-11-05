@@ -10,8 +10,7 @@ choice="$(printf '%s\n' \
   "GIMP" \
   "Wlsunset" \
   "Bluetooth" \
-  "Showtime" \
-  "Mindmapper" | rofi -dmenu -i -p "Apps")"
+  "Showtime" | rofi -dmenu -i -p "Apps")"
 
 printf 'choice=%q\n' "$choice" >> "$logfile"
 
