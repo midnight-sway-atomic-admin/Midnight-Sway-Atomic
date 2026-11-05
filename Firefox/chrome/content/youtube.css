@@ -12,7 +12,7 @@
      Variables
      -------------------------------------------------------------------------- */
 
-  /* Color shim. Change these to change the main theme; custom thumb SVG colors are defined in the like/dislike section */
+  /* Color shim. Change these to change the main theme */
   :root {
     --ytc-page-bg: #010305;        /* silky blue-black */
     --ytc-accent: #8a97bfe6;       /* slate blue; "e6" modifies the opacity of #8a97bf */
@@ -25,6 +25,17 @@
     --ytc-chip-border: #1a1d28;    /* search-chip border */
     --ytc-popup-bg: #f1f3fa;       /* popup surface (light by design) */
     --ytc-progress-bar: #8a97bf;   /* flat progress-bar color */
+    --ytc-hover-fade: 180ms ease-in-out;
+    --ytc-hover-transition:
+      color var(--ytc-hover-fade),
+      -webkit-text-fill-color var(--ytc-hover-fade),
+      background-color var(--ytc-hover-fade),
+      border-color var(--ytc-hover-fade),
+      outline-color var(--ytc-hover-fade),
+      box-shadow var(--ytc-hover-fade),
+      fill var(--ytc-hover-fade),
+      stroke var(--ytc-hover-fade),
+      opacity var(--ytc-hover-fade);
   }
 
   /* --------------------------------------------------------------------------
@@ -110,6 +121,42 @@
     &:hover {
       color: var(--ytc-player-text) !important;
     }
+  }
+
+  /* --------------------------------------------------------------------------
+     Global hover transitions
+     -------------------------------------------------------------------------- */
+
+  /* X Fades control, card, and title colors on hover and mouse-out; only cosmetic
+     properties transition, so layout, seeking, and media transforms stay immediate */
+  :where(
+    a, button, summary,
+    input:is([type="button"], [type="submit"], [type="reset"]),
+    [role="button"], [role="link"], [role="tab"], [role^="menuitem"],
+    [role="option"], [role="checkbox"], [role="radio"], [role="switch"],
+    yt-button-view-model, button-view-model, yt-button-shape,
+    yt-icon-button, tp-yt-paper-icon-button, tp-yt-paper-item, tp-yt-paper-tab,
+    .ytp-button, .ytp-menuitem,
+    .yt-spec-button-shape-next, .ytSpecButtonShapeNext, .ytSpecButtonShapeNextHost,
+    .yt-spec-button-view-model, .ytSpecButtonViewModelHost,
+    .ytChipShapeChip, yt-chip-cloud-chip-renderer,
+    .yt-tab-shape-wiz__tab, .yt-tab-shape__tab, .ytTabShapeTab,
+    yt-lockup-view-model, ytd-rich-item-renderer, ytd-video-renderer,
+    ytd-grid-video-renderer, ytd-playlist-renderer, ytd-channel-renderer,
+    ytd-reel-item-renderer, ytd-reel-video-renderer,
+    yt-shorts-lockup-view-model, ytm-shorts-lockup-view-model, .ytShortsLockupViewModelHost,
+    .yt-lockup-metadata-view-model__title, .ytLockupMetadataViewModelTitle,
+    .yt-shorts-lockup-view-model__title, .ytShortsLockupViewModelTitle,
+    .ytShortsLockupViewModelEntityTitle, #video-title, #video-title-link
+  ):not(:where(ytd-rating-survey-option-renderer, ytd-rating-survey-option-renderer *)) {
+    &, &::before, &::after {
+      transition: var(--ytc-hover-transition) !important;
+    }
+  }
+
+  /* X Honors the browser's reduced-motion preference for these fades */
+  @media (prefers-reduced-motion: reduce) {
+    :root { --ytc-hover-fade: 0ms linear; }
   }
 
   /* --------------------------------------------------------------------------
@@ -221,7 +268,6 @@
   /* X Colors player, thumbnail, Shorts, and navigation progress fills/playheads site-wide */
   .ytp-play-progress,
   .html5-play-progress,
-  .ytp-scrubber-button,
   ytd-thumbnail-overlay-resume-playback-renderer #progress,
   .ytwThumbnailOverlayResumePlaybackRendererThumbnailOverlayResumePlaybackProgress,
   ytm-thumbnail-overlay-resume-playback-renderer,
@@ -232,8 +278,7 @@
   .YtProgressBarLineProgressBarPlayed,
   .YtProgressBarLineProgressBarPlayedRefresh,
   .ytProgressBarPlayheadProgressBarPlayheadDot,
-  .YtProgressBarPlayheadProgressBarPlayheadDot,
-  yt-page-navigation-progress #progress {
+  .YtProgressBarPlayheadProgressBarPlayheadDot {
     background: var(--ytc-progress-bar) !important;
   }
 
@@ -618,12 +663,10 @@
      Like/dislike icons
      -------------------------------------------------------------------------- */
 
-  /* X Like/dislike replacement: one scoped parent preserves the native click targets while removing YouTube's surfaces/glyphs and supplying the four custom thumb states */
+  /* X Like/dislike replacement: one scoped parent preserves the native click targets while removing YouTube's surfaces/glyphs and supplying the outlined and selected circle states */
   ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model {
-    --ytc-thumb-outline-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
-    --ytc-thumb-filled-accent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%238a97bf' fill-opacity='.9' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
-    --ytc-thumb-outline-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8zm0 2.3L16.3 18H10V8.3l3.2-3.8-.9 5.5H20v.3z'/%3E%3C/svg%3E");
-    --ytc-thumb-filled-hover: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Cpath fill='%23c7d0ea' d='M4 22h4V9H4v13zM20 8h-5.5l.7-4.2c.1-.6-.1-1.2-.5-1.6L13.5 1 8 7.5V20h9.5L22 10.5C22.5 9.3 21.6 8 20 8z'/%3E%3C/svg%3E");
+    --ytc-circle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+    --ytc-circle-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='white' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
 
     /* X Keeps only the two native click targets; every YouTube-supplied surface is transparent */
     &, & * {
@@ -678,42 +721,31 @@
       flex: 0 0 24px !important;
     }
 
-    /* X Outline thumb by default */
+    /* X Thin outlined circle; animate its color smoothly on hover and mouse-out */
     & :is(like-button-view-model, dislike-button-view-model)
     :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
       content: "" !important;
       position: absolute !important;
       inset: 1.5px !important;
-      background: var(--ytc-thumb-outline-accent) center / 21px 21px no-repeat !important;
+      background: var(--ytc-accent) !important;
+      mask: var(--ytc-circle-outline) center / 12px 12px no-repeat !important;
+      transition: background-color var(--ytc-hover-fade) !important;
       border: 0 !important;
       box-shadow: none !important;
       pointer-events: none !important;
     }
 
-    /* X Filled thumb when selected */
+    /* X Filled circle when selected */
     & :is(like-button-view-model, dislike-button-view-model)
     button[aria-pressed="true"]
     :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      background-image: var(--ytc-thumb-filled-accent) !important;
+      mask-image: var(--ytc-circle-filled) !important;
     }
 
-    /* X Pale-blue outline on hover */
+    /* X Pale-blue hover color for both outlined and selected circles */
     & :is(like-button-view-model, dislike-button-view-model):hover
     :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      background-image: var(--ytc-thumb-outline-hover) !important;
-    }
-
-    /* X Pale-blue filled thumb when selected and hovered */
-    & :is(like-button-view-model, dislike-button-view-model):hover
-    button[aria-pressed="true"]
-    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      background-image: var(--ytc-thumb-filled-hover) !important;
-    }
-
-    /* X Flips the custom thumb for dislike */
-    & dislike-button-view-model
-    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      transform: scaleY(-1) !important;
+      background-color: var(--ytc-player-text) !important;
     }
   }
 
@@ -783,6 +815,20 @@
     ytd-channel-name,
     .ytd-channel-name
   ) {
+    display: none !important;
+  }
+
+  /* X Hides the leading play triangles beside frontpage view/date metadata */
+  ytd-browse[page-subtype="home"] yt-lockup-view-model :is(
+    .yt-content-metadata-view-model__leading-icon,
+    .ytContentMetadataViewModelLeadingIcon
+  ) {
+    display: none !important;
+  }
+
+  /* X Removes leftover metadata separators and their margins beside frontpage dates */
+  ytd-browse[page-subtype="home"] yt-lockup-view-model
+  :is(.yt-content-metadata-view-model__delimiter, .ytContentMetadataViewModelDelimiter) {
     display: none !important;
   }
 
@@ -1333,10 +1379,16 @@
   /* X Watch-page channel-name hover color */
   ytd-watch-flexy[video-id] ytd-watch-metadata #owner
   :is(ytd-channel-name, #channel-name, #text, a, yt-formatted-string,
-      yt-attributed-string, .yt-core-attributed-string):hover {
+      yt-attributed-string, .yt-core-attributed-string) {
     &, & * {
-      color: var(--ytc-player-text) !important;
-      -webkit-text-fill-color: var(--ytc-player-text) !important;
+      transition: var(--ytc-hover-transition) !important;
+    }
+
+    &:hover {
+      &, & * {
+        color: var(--ytc-player-text) !important;
+        -webkit-text-fill-color: var(--ytc-player-text) !important;
+      }
     }
   }
 
@@ -1351,6 +1403,7 @@
     &, & * {
       color: var(--_byline, var(--ytc-accent)) !important;
       -webkit-text-fill-color: var(--_byline, var(--ytc-accent)) !important;
+      transition: var(--ytc-hover-transition) !important;
     }
     &:hover { --_byline: var(--ytc-player-text); }
   }
@@ -1375,8 +1428,11 @@
   /* X Frontpage three-dot menu-button hover; complements the :not(:has(...)) exclusion above */
   ytd-browse[page-subtype="home"]
   :is(ytd-menu-renderer, .ytLockupMetadataViewModelMenuButton, yt-lockup-menu-button-view-model,
-      .ytLockupMenuButtonViewModelHost, button-view-model):hover {
-    &, & * { color: var(--ytc-player-text) !important; }
+      .ytLockupMenuButtonViewModelHost, button-view-model) {
+    &, & * { transition: var(--ytc-hover-transition) !important; }
+    &:hover {
+      &, & * { color: var(--ytc-player-text) !important; }
+    }
   }
 
   /* X Shorts cards: accent by default, player-text on card hover unless a menu/button is hovered */
@@ -1389,6 +1445,7 @@
       &, & * {
         color: var(--_shorts, var(--ytc-accent)) !important;
         -webkit-text-fill-color: var(--_shorts, var(--ytc-accent)) !important;
+        transition: var(--ytc-hover-transition) !important;
       }
     }
     &:hover:not(:has(:is(ytd-menu-renderer, yt-lockup-menu-button-view-model,
