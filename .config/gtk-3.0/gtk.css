@@ -49,6 +49,44 @@
   background-image: none;
 }
 
+/* Fade existing hover colors in both directions, without animating geometry.
+   Limit view backgrounds to the popup/chooser overrides: the main Thunar view
+   uses a white logical background beneath its dark painted gradient. */
+button,
+menuitem,
+modelbutton,
+row,
+entry,
+combobox,
+notebook tab,
+check,
+radio,
+switch,
+switch slider,
+scale slider,
+label > link,
+filechooser treeview.view,
+window.popup treeview.view,
+window.popup treeview.view cell,
+window#gtk-combobox-popup-window treeview.view {
+  transition: color 180ms ease-in-out,
+              background-color 180ms ease-in-out,
+              border-color 180ms ease-in-out;
+}
+
+/* These children have explicit state colors rather than inheriting them. */
+window.thunar infobar button label,
+window.thunar infobar button image,
+placessidebar row label,
+placessidebar row image,
+placessidebar row .sidebar-label,
+placessidebar row .sidebar-icon,
+combobox button.combo cellview,
+combobox button.combo label,
+combobox button.combo arrow {
+  transition: color 180ms ease-in-out;
+}
+
 /* Shared GTK views: keep the logical background light for Thunar's
    inactive selected icons; paint the visible dark surface with the gradient. */
 .view,
@@ -808,6 +846,9 @@ window.background.dialog notebook * {
   background-image: none;
   color: #8a97bf;
   border-color: #222630;
+  transition: color 180ms ease-in-out,
+              background-color 180ms ease-in-out,
+              border-color 180ms ease-in-out;
 }
 
 /* Shared dialog notebooks: off-white text for hovered labels, selected or
@@ -1512,6 +1553,8 @@ window.background:not(.popup):not(.thunar):not(.dialog):not(.tooltip):not(#wayba
   color: inherit;
   text-shadow: none;
   -gtk-icon-shadow: none;
+  /* Follow the button's animated color directly, without a second fade. */
+  transition: none;
 }
 
 /* Hover changes text and icons only, including pressed or focused buttons. */
