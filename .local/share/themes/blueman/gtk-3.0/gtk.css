@@ -1,5 +1,9 @@
 /* Blueman dark minimal GTK 3 theme */
 
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+
+/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible. */
+
 @define-color bg          #0b0c0f;
 @define-color bg_alt      #111318;
 @define-color surface     #171a20;
