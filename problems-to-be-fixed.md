@@ -1,6 +1,6 @@
 # Problems to be fixed
 
-1. Create shims for all relevant configuration files to simplify changing the rice's main colors.
+1. Create a single top-level control linked to all relevant configuration files to simplify changing the rice's main colors.
 
 2. Refactor `userContent.css`, `userChrome.css`, and system files so that all code meets these criteria:
    - **`X`:** Known and commented.
@@ -31,3 +31,17 @@
 14. Create different resolution versions of the wallpapers.
 
 15. Turn the wallpapers into .svgs.
+
+16. Add install guide for Suricata IDS.
+
+17. Add install guide for ClamAV file monitoring.
+
+18. Fix and reupload Mindmpapper.
+
+19. Complete and upload Pseudo-TeX
+
+20. Complete and upload Flashcards.
+
+21. Fix and reupload Recorder.
+
+22. Add transition guide for replacing sudo with run0.
