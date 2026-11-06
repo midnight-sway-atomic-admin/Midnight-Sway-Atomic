@@ -61,7 +61,7 @@
     },
 
     "custom/foot-lock": {
-        "exec": "exec \"$HOME/.local/bin/sway-foot-lock\" watch '#222630 #222630 #FFFFFF #535b74b3 #535b74b3' '#B45F65 #222630 #FFFFFF #B45F65 #B45F65'",
+        "exec": "exec \"$HOME/.local/bin/sway-foot-lock\" watch",
         "on-click": "exec \"$HOME/.local/bin/sway-foot-lock\" toggle",
         "return-type": "json",
         "tooltip": false,
