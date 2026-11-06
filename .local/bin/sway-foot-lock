@@ -84,7 +84,7 @@ case $action in
         ;;
     watch)
         normal_color=${2-'#222630 #222630 #FFFFFF #535b74b3 #535b74b3'}
-        locked_color=${3-'#B45F65 #222630 #FFFFFF #B45F65 #B45F65'}
+        locked_color=${3-'#c44747 #222630 #FFFFFF #c44747 #c44747'}
         watch
         ;;
     close|toggle)
