@@ -1,8 +1,8 @@
 /* Waybar style.css */
 
-/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed, or precise as it should be. When all code here has been tagged with "X", the next step is to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible. */
+/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
 /* --------------------------------------------------------------------------
    1. Color controls
@@ -48,7 +48,6 @@ window#waybar {
 #workspaces,
 #window,
 #clock,
-#battery,
 #temperature,
 #tray,
 #custom-power,
@@ -150,31 +149,14 @@ window#waybar {
    6. Battery
    -------------------------------------------------------------------------- */
 
-#battery {
-    background: none;
+/* Lower the battery artwork by 1.5px. */
+#image.battery {
     padding: 0;
     margin: 0;
-    margin-left: -1px; /* XX Pulls battery icon 1px to the left; "2px" distorts the battery icon during workspace jumping */
-    min-width: 0;
-    min-height: 0;
 }
 
-#battery.charging,
-#battery.full,
-#battery.plugged,
-#battery.not-charging,
-#battery.pending-charge {
-    background-image: url("./waybar-icons/battery-icon.svg");
-    min-width: 21px;
-    min-height: 21px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-#battery.critical:not(.charging) {
-    background-color: @waybar_transparent;
-    color: @waybar_urgent;
+#image.battery image {
+    -gtk-icon-transform: translateY(1.5px);
 }
 
 /* --------------------------------------------------------------------------
@@ -186,6 +168,13 @@ window#waybar {
     color: @waybar_urgent;
 }
 
+/* --------------------------------------------------------------------------
+   8. Foot terminal lock indicator
+   -------------------------------------------------------------------------- */
+
+/* Display the appropriate SVG over a fixed-width label. The small center dot
+   is only a fallback if an SVG asset cannot be loaded. */
+
 /* BEGIN sway-foot-lock */
 #custom-foot-lock {
     min-width: 21px;
@@ -195,7 +184,8 @@ window#waybar {
     color: #8a97bf;
     font-size: 1px;
     background-color: transparent;
-    background-image: url("./waybar-icons/foot-lock-open.svg");
+    background-image: 
+url("file:///home/user-1/.config/waybar/sway-foot-lock-icons/unlocked.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 14px 14px;
@@ -203,6 +193,7 @@ window#waybar {
 
 #custom-foot-lock.locked {
     color: #b45f65;
-    background-image: url("./waybar-icons/foot-lock-closed.svg");
+    background-image: 
+url("file:///home/user-1/.config/waybar/sway-foot-lock-icons/locked.svg");
 }
 /* END sway-foot-lock */
