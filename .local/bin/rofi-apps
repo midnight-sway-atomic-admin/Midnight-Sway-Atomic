@@ -10,7 +10,8 @@ choice="$(printf '%s\n' \
   "GIMP" \
   "Wlsunset" \
   "Bluetooth" \
-  "Showtime" | rofi -dmenu -i -p "Apps")"
+  "Showtime" \
+  "SELinux" | rofi -dmenu -i -p "Apps")"
 
 printf 'choice=%q\n' "$choice" >> "$logfile"
 
@@ -41,6 +42,15 @@ case "$choice" in
 
   "Showtime")
     gtk-launch org.gnome.Showtime >> "$logfile" 2>&1 &
+    ;;
+
+  "SELinux")
+    systemd-run --quiet --collect --service-type=exec \
+      --setenv=GDK_BACKEND=wayland \
+      --setenv=WAYLAND_DISPLAY="$XDG_RUNTIME_DIR/$WAYLAND_DISPLAY" \
+      --setenv=GTK_THEME=Adwaita:dark \
+      --setenv=XDG_CONFIG_HOME=/etc/selinux-gui \
+      /usr/share/system-config-selinux/system-config-selinux.py >> "$logfile" 2>&1 &
     ;;
 
   "")
