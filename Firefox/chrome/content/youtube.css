@@ -2,7 +2,7 @@
 
 /* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible. */
+/* Comments tagged with "XX" mean that the code is as efficient, non-redundant, well-formed, and precise as possible */
 
 /* The file is grouped under one "@-moz-document domain("youtube.com")" wrapper so cascade order is explicit */
 
@@ -23,7 +23,8 @@
     --ytc-post-bg: #0f0f0f;        /* channel post and button surfaces */
     --ytc-shorts-control-bg: #272727; /* opaque Shorts top-control surface */
     --ytc-chip-border: #1a1d28;    /* search-chip border */
-    --ytc-popup-bg: #f1f3fa;       /* popup surface (light by design) */
+    --ytc-menu-bg: #212121;        /* popup menu surfaces */
+    --ytc-popup-bg: #f1f3fa;       /* dismissal-reason dialog surface */
     --ytc-progress-bar: #8a97bf;   /* flat progress-bar color */
     --ytc-hover-fade: 180ms ease-in-out;
     --ytc-hover-transition:
@@ -1117,7 +1118,13 @@
   tp-yt-paper-input.ytd-expandable-tab-renderer {
     --paper-input-container-color: var(--ytc-accent) !important;
     --paper-input-container-input-color: var(--ytc-accent) !important;
-    --paper-input-container-focus-color: var(--ytc-page-bg) !important; /* The underline when the search-box is focused */
+    --paper-input-container-focus-color: var(--ytc-accent-solid) !important;
+  }
+
+  /* X Colors both channel-search underline borders, preserving their native thickness */
+  ytd-browse[page-subtype="channels"] ytd-expandable-tab-renderer
+  tp-yt-paper-input-container :is(.unfocused-line, .focused-line) {
+    border-bottom-color: var(--ytc-accent-solid) !important;
   }
 
   ytd-browse[page-subtype="channels"]
@@ -1316,15 +1323,66 @@
   }
 
   /* --------------------------------------------------------------------------
+     Comments and posts
+     -------------------------------------------------------------------------- */
+
+  /* X Gives creator-author badges a dark surface */
+  ytd-author-comment-badge-renderer[creator] {
+    background-color: #212121 !important;
+  }
+
+  /* X Colors links within comment and post text, including their nested labels */
+  :is(ytd-comment-view-model, ytd-backstage-post-renderer) #content-text a {
+    &, & * {
+      color: var(--ytc-player-text) !important;
+      -webkit-text-fill-color: var(--ytc-player-text) !important;
+    }
+  }
+
+  /* --------------------------------------------------------------------------
      Popups
      -------------------------------------------------------------------------- */
 
-  /* X Colors menu surfaces, contextual sheets, and the dismissal-reason dialog */
+  /* X Colors popup menus, including subscription preferences and video actions */
   ytd-popup-container
   :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]),
   .ytSheetViewModelContextual,
   .ytSheetViewModelContextual .ytContextualSheetLayoutHost,
-  tp-yt-paper-menu-button .dropdown-content,
+  tp-yt-paper-menu-button .dropdown-content {
+    background: var(--ytc-menu-bg) !important;
+    border-color: var(--ytc-menu-bg) !important;
+  }
+
+  /* X Changes only menu labels on row hover; icons keep their existing color */
+  :is(
+    ytd-popup-container :is(ytd-menu-popup-renderer, tp-yt-paper-listbox, [role="menu"]),
+    .ytSheetViewModelContextual,
+    tp-yt-paper-menu-button .dropdown-content
+  )
+  :is(yt-list-item-view-model, tp-yt-paper-item, [role="menuitem"],
+      [role="menuitemcheckbox"], [role="menuitemradio"]) {
+    /* X Keeps row surfaces and the legacy focus overlay transparent */
+    --paper-item-focused-before-background: transparent !important;
+
+    &, & .ytListItemViewModelContainer {
+      background: transparent !important;
+    }
+
+    & :is(.ytListItemViewModelTitle, yt-formatted-string) {
+      &, & * {
+        transition: var(--ytc-hover-transition) !important;
+      }
+    }
+
+    &:hover :is(.ytListItemViewModelTitle, yt-formatted-string) {
+      &, & * {
+        color: var(--ytc-player-text) !important;
+        -webkit-text-fill-color: var(--ytc-player-text) !important;
+      }
+    }
+  }
+
+  /* X Keeps the dismissal-reason dialog's existing light surface */
   tp-yt-paper-dialog:has(ytd-dismissal-follow-up-renderer),
   tp-yt-paper-dialog ytd-dismissal-follow-up-renderer {
     background: var(--ytc-popup-bg) !important;
