@@ -237,8 +237,6 @@ problems-to-be-fixed.txt
 
 AI has been, and will continue to be, used extensively in creating and maintaining this rice.
 
-If you prefer not to use configurations or software developed with AI assistance, this repository may not be suitable for you.
-
 ---
 
 ## Support
