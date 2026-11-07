@@ -19,6 +19,9 @@ Download `sway-workspace-limit.py` and from its location run:
 install -Dm755 sway-workspace-limit.py "$HOME/.local/bin/sway-workspace-limit.py"
 ```
 
+The `-m755` option sets executable permission, which Sway needs to start the
+script.
+
 Add this line to `~/.config/sway/config`:
 
 ```sway
@@ -30,6 +33,26 @@ Start it from a Sway terminal:
 ```sh
 swaymsg reload
 ```
+
+After a moment, confirm that the limiter is running:
+
+```sh
+pgrep -af '[s]way-workspace-limit'
+```
+
+The output should include the running Python process and the script's path.
+
+### If the script doesn't start
+
+A script copied manually may lack executable permission. If you started it in a
+terminal with `python3`, stop that copy with Ctrl+C first. Then run:
+
+```sh
+chmod u+x "$HOME/.local/bin/sway-workspace-limit.py"
+swaymsg reload
+```
+
+After a moment, repeat the process check above.
 
 ## Workspace renumbering
 
