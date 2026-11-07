@@ -149,14 +149,14 @@ window#waybar {
    6. Battery
    -------------------------------------------------------------------------- */
 
-/* Lower the battery artwork by 1.5px. */
+/* Lower the battery artwork by 1.25px. */
 #image.battery {
     padding: 0;
     margin: 0;
 }
 
 #image.battery image {
-    -gtk-icon-transform: translateY(1.5px);
+    -gtk-icon-transform: translateY(1.25px);
 }
 
 /* --------------------------------------------------------------------------
