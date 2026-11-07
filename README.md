@@ -10,7 +10,9 @@ A secure and visually austere base desktop environment for a fresh install of Fe
 
 ---
 
-## Setup Notes | The rice is stable on Fedora 45
+## Setup Notes
+
+The rice is stable on Fedora 45.
 
 For the rice to look correct and function as intended, review the following before using it.
 
