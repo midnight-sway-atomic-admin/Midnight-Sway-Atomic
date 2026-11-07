@@ -6,7 +6,7 @@
 
     "modules-center": [
         "sway/workspaces",
-        "battery",
+        "image#battery",
         "temperature",
         "clock#date",
         "clock#time",
@@ -24,17 +24,10 @@
     }
      },
 
-    "battery": {
+    "image#battery": {
+        "exec": "python3 \"$HOME/.config/waybar/battery-icons.py\"",
+        "size": 25,
         "interval": 2,
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{capacity}%",
-        "format-discharging": "{capacity}%",
-        "format-plugged": " ",
-        "format-full": " ",
-        "format-charging": " ",
         "tooltip": false
     },
 
