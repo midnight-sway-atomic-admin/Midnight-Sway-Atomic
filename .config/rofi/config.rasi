@@ -43,7 +43,7 @@ window {
     padding:          5px;
     background-color: var(background);
     border:           1px;
-    border-radius:    3;
+    border-radius:    0;
     width:            12ch;
 }
 
