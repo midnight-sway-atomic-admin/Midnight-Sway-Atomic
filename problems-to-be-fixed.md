@@ -36,7 +36,7 @@
 
 17. Add install guide for ClamAV file monitoring.
 
-18. Fix and reupload Mindmpapper.
+18. Fix and reupload Mindmapper.
 
 19. Complete and upload Pseudo-TeX
 
