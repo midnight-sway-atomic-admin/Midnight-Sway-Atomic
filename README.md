@@ -5,7 +5,7 @@ A secure and visually austere base desktop environment for a fresh install of Fe
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-slideshow.png)
 
 <p align="center">
-  <sub><em>The preview slideshow is up-to-date except for rofi, which now has a 3px corner radius.</em></sub>
+  <sub><em>The preview slideshow is up-to-date.</em></sub>
 </p>
 
 ---
