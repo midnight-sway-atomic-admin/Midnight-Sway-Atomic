@@ -48,6 +48,7 @@ window {
 }
 
 mainbox {
+    children: [ listview ]; /* Omit the search widget so typing cannot filter the list. */
     padding: 0;
     border:  0;
 }
@@ -58,6 +59,7 @@ listview {
     border-color: var(separatorcolor);
     spacing:      2px;
     fixed-height: false;
+    dynamic:      false; /* Keep the initial height while filtering. */
     border:       0px;
 }
 
@@ -136,9 +138,4 @@ message {
 
 textbox {
     text-color: var(foreground);
-}
-
-/* Hide the input field. */
-inputbar {
-    enabled: false;
 }
