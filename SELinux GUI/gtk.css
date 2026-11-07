@@ -1,0 +1,305 @@
+/* Midnight Sway Atomic — system-config-selinux, GTK 3.
+   Use over Adwaita:dark via /etc/selinux-gui/gtk-3.0/gtk.css.
+   Colors and interaction states only; retain GTK's layout and indicators. */
+
+@define-color midnight_bg       #010305;
+@define-color midnight_panel    #0b0b0b;
+@define-color midnight_field    #060606;
+@define-color midnight_border   #222630;
+@define-color midnight_text     #8a97bf;
+@define-color midnight_hover    #c7d0ea;
+@define-color midnight_disabled alpha(@midnight_text, 0.38);
+
+/* Remove dashed focus outlines in every widget state. */
+* {
+  outline: none;
+}
+
+/* Opaque surfaces also retain their colors when the window loses focus. */
+.background,
+.view,
+textview text,
+viewport {
+  background-color: @midnight_bg;
+  background-image: none;
+  color: @midnight_text;
+}
+
+notebook,
+notebook > stack,
+menubar,
+toolbar,
+headerbar,
+actionbar,
+.sidebar,
+.dialog-action-area {
+  background-color: @midnight_panel;
+  background-image: none;
+  color: @midnight_text;
+  border-color: @midnight_border;
+}
+
+frame > border,
+scrolledwindow,
+notebook > header {
+  border-color: @midnight_border;
+}
+
+separator,
+paned > separator {
+  background-color: @midnight_border;
+}
+
+decoration {
+  border-color: @midnight_border;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Text-only button surfaces; retain all clickable areas. */
+button {
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  border-radius: 0;
+  color: @midnight_text;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+button label,
+button image,
+button cellview {
+  color: inherit;
+}
+
+/* Hide toolbar artwork and the relabel glyph, never the checkbox indicator. */
+toolbar button image,
+checkbutton image {
+  opacity: 0;
+}
+
+/* Toolbar separators are wide widgets: leave the gap, remove the painted block. */
+toolbar separator {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+button:hover,
+button:focus {
+  color: @midnight_hover;
+}
+
+button:active,
+button:checked {
+  background-color: alpha(@midnight_text, 0.12);
+  color: @midnight_hover;
+}
+
+/* Inputs and dropdowns keep their existing dimensions and arrow graphics. */
+entry,
+spinbutton,
+combobox button.combo {
+  background-color: @midnight_field;
+  background-image: none;
+  border-color: @midnight_border;
+  border-radius: 3px;
+  color: @midnight_text;
+  box-shadow: none;
+  caret-color: @midnight_hover;
+}
+
+entry:focus,
+spinbutton:focus,
+combobox button.combo:focus,
+combobox button.combo:hover,
+combobox button.combo:checked {
+  border-color: @midnight_text;
+  color: @midnight_hover;
+}
+
+entry.error {
+  border-color: #b86e6e;
+}
+
+entry selection,
+textview text selection,
+label selection {
+  background-color: @midnight_text;
+  color: @midnight_field;
+}
+
+/* Policy lists, sidebar selection and column headings remain legible. */
+row {
+  background-color: transparent;
+  color: @midnight_text;
+}
+
+row label,
+row image {
+  color: inherit;
+}
+
+.view:hover,
+row:hover {
+  background-color: alpha(@midnight_text, 0.04);
+  color: @midnight_hover;
+}
+
+.view:selected,
+.view:selected:backdrop,
+row:selected {
+  background-color: alpha(@midnight_text, 0.12);
+  background-image: none;
+  color: @midnight_hover;
+}
+
+treeview header button {
+  background-color: @midnight_field;
+  border-color: @midnight_border;
+}
+
+/* Preserve Adwaita's checkmarks, radio dots and mixed-state indicators. */
+check,
+radio {
+  background-color: @midnight_field;
+  background-image: none;
+  border-color: @midnight_border;
+  color: @midnight_text;
+  box-shadow: none;
+  -gtk-icon-shadow: none;
+}
+
+check:checked,
+check:indeterminate,
+radio:checked {
+  background-color: @midnight_text;
+  border-color: @midnight_text;
+  color: @midnight_field;
+}
+
+/* Popups and menus share the reference stylesheet's quiet dark surfaces. */
+menu,
+menu.background,
+popover,
+popover.background,
+tooltip,
+tooltip.background {
+  background-color: @midnight_field;
+  background-image: none;
+  border-color: @midnight_border;
+  color: @midnight_text;
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* Match the regular GTK theme's single, square, 1px popup outline. */
+window.popup {
+  background-color: @midnight_field;
+  background-image: none;
+  border: none;
+  border-radius: 0;
+}
+
+menu,
+menu.background {
+  background-color: alpha(@midnight_border, 0.55);
+  padding: 1px;
+  border: none;
+  background-clip: border-box;
+}
+
+menu menuitem {
+  background-color: @midnight_field;
+}
+
+menuitem {
+  background-color: transparent;
+  background-image: none;
+  color: @midnight_text;
+}
+
+/* Adwaita draws the menubar underline as an inset shadow. */
+menubar > menuitem {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+menuitem label,
+menuitem image,
+menuitem accelerator,
+menuitem arrow,
+tooltip label {
+  color: inherit;
+}
+
+menuitem:hover,
+menuitem:selected {
+  background-color: @midnight_field;
+  color: @midnight_hover;
+}
+
+label > link,
+label > link:visited {
+  color: @midnight_text;
+}
+
+label > link:hover {
+  color: @midnight_hover;
+}
+
+/* Keep scrollbars quiet; inputs retain their solid focus border. */
+scrollbar,
+scrollbar trough {
+  background-color: @midnight_bg;
+  background-image: none;
+  border-color: transparent;
+}
+
+scrollbar slider {
+  background-color: alpha(@midnight_text, 0.25);
+  border-color: transparent;
+}
+
+scrollbar slider:hover,
+scrollbar slider:active {
+  background-color: alpha(@midnight_text, 0.5);
+}
+
+/* Disabled controls remain distinct, including checked disabled boxes. */
+*:disabled {
+  color: @midnight_disabled;
+  -gtk-icon-shadow: none;
+}
+
+button:disabled,
+combobox button.combo:disabled {
+  color: @midnight_disabled;
+}
+
+check:disabled,
+radio:disabled {
+  border-color: @midnight_border;
+}
+
+check:checked:disabled,
+check:indeterminate:disabled,
+radio:checked:disabled {
+  background-color: @midnight_disabled;
+  border-color: @midnight_disabled;
+  color: @midnight_field;
+}
+
+/* Fade colors only; leave GTK's sizing, scrolling and spinner behavior alone. */
+button,
+entry,
+menuitem,
+check,
+radio {
+  transition: color 180ms ease-in-out,
+              background-color 180ms ease-in-out,
+              border-color 180ms ease-in-out;
+}
