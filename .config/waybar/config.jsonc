@@ -26,7 +26,7 @@
 
     "image#battery": {
         "exec": "python3 \"$HOME/.config/waybar/battery-icons.py\"",
-        "size": 25,
+        "size": 23,
         "interval": 2,
         "tooltip": false
     },
