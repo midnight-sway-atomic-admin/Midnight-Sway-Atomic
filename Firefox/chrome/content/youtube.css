@@ -704,7 +704,7 @@
   ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model {
     --ytc-circle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9.75' fill='none' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
     --ytc-circle-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='white' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
-    --ytc-chisel-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 1 22 22'%3E%3Cpath fill='white' d='M12 7.75A24.4 24.4 0 0 1 18.4 13.25L13 10.06V16.25H11V10.06L5.6 13.25A24.4 24.4 0 0 1 12 7.75Z'/%3E%3C/svg%3E");
+    --ytc-chisel-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 1 22 22'%3E%3Cpath fill='white' d='M12 7.75A24.4 24.4 0 0 1 18.4 13.25L13 10.06V15.25A1 1 0 0 1 11 15.25V10.06L5.6 13.25A24.4 24.4 0 0 1 12 7.75Z'/%3E%3C/svg%3E");
 
     /* X Keeps only the two native click targets; every YouTube-supplied surface is transparent */
     &, & * {
