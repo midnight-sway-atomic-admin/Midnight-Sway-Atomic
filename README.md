@@ -1,6 +1,6 @@
 # Midnight Sway Atomic
 
-A secure and visually austere base desktop environment for a fresh install of Fedora Sway Atomic.
+A secure and visually austere desktop environment for a fresh install of Fedora Sway Atomic.
 
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-slideshow.png)
 
