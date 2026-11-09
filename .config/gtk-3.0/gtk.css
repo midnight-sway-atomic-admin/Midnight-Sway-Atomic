@@ -1616,3 +1616,10 @@ window.dialog notebook button:not(.combo):disabled box {
   color: inherit;
 }
 
+/* Let the color chooser's swatches show through their overlays. */
+dialog notebook colorchooser colorswatch > overlay,
+window.dialog notebook colorchooser colorswatch > overlay,
+window.background.dialog notebook colorchooser colorswatch > overlay {
+  background-color: transparent;
+  background-image: none;
+}
