@@ -12,8 +12,9 @@
      Variables
      -------------------------------------------------------------------------- */
 
-  /* Color shim. Change these to change the main theme */
+  /* Theme and icon settings */
   :root {
+    --ytc-circle-icons: 0; /* YouTube like/dislike: 0 = arrows; 1 = circles */
     --ytc-page-bg: #010305;        /* silky blue-black */
     --ytc-accent: #8a97bfe6;       /* slate blue; "e6" modifies the opacity of #8a97bf */
     --ytc-player-text: #c7d0ea;    /* faint-blue white */
@@ -664,10 +665,11 @@
      Like/dislike icons
      -------------------------------------------------------------------------- */
 
-  /* X Like/dislike replacement: one scoped parent preserves the native click targets while removing YouTube's surfaces/glyphs and supplying the outlined and selected circle states */
+  /* X Replaces the native glyphs with selectable arrows or circles while preserving the click targets */
   ytd-watch-metadata #top-level-buttons-computed segmented-like-dislike-button-view-model {
-    --ytc-circle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+    --ytc-circle-outline: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='9.75' fill='none' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E");
     --ytc-circle-filled: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='21' height='21' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='white' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+    --ytc-chisel-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 1 22 22'%3E%3Cpath fill='white' d='M12 7.75A24.4 24.4 0 0 1 18.4 13.25L13 10.06V16.25H11V10.06L5.6 13.25A24.4 24.4 0 0 1 12 7.75Z'/%3E%3C/svg%3E");
 
     /* X Keeps only the two native click targets; every YouTube-supplied surface is transparent */
     &, & * {
@@ -720,33 +722,58 @@
       min-width: 24px !important;
       height: 24px !important;
       flex: 0 0 24px !important;
+
+      /* X Both styles use the same slot, color, hover fade, and click target */
+      &::before, &::after {
+        content: "" !important;
+        position: absolute !important;
+        inset: 0 !important;
+        background: var(--ytc-accent) !important;
+        transition: background-color var(--ytc-hover-fade) !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        pointer-events: none !important;
+      }
+
+      /* X Circles start outlined and become filled when selected */
+      &::before {
+        opacity: var(--ytc-circle-icons) !important;
+        mask: var(--ytc-circle-outline) center / 12px 12px no-repeat !important;
+      }
+
+      /* X Arrows use the current Chisel shape */
+      &::after {
+        opacity: calc(1 - var(--ytc-circle-icons)) !important;
+        mask: var(--ytc-chisel-arrow) center / 24px 24px no-repeat !important;
+      }
     }
 
-    /* X Thin outlined circle; animate its color smoothly on hover and mouse-out */
-    & :is(like-button-view-model, dislike-button-view-model)
-    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      content: "" !important;
-      position: absolute !important;
-      inset: 1.5px !important;
-      background: var(--ytc-accent) !important;
-      mask: var(--ytc-circle-outline) center / 12px 12px no-repeat !important;
-      transition: background-color var(--ytc-hover-fade) !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      pointer-events: none !important;
+    /* X Dislike uses the same arrow rotated 180 degrees */
+    & dislike-button-view-model
+    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::after {
+      transform: rotate(180deg) !important;
     }
 
-    /* X Filled circle when selected */
-    & :is(like-button-view-model, dislike-button-view-model)
-    button[aria-pressed="true"]
-    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      mask-image: var(--ytc-circle-filled) !important;
-    }
+    & :is(like-button-view-model, dislike-button-view-model) {
+      /* X Circles lighten on hover and fill when selected */
+      &:hover :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+        background-color: var(--ytc-player-text) !important;
+      }
 
-    /* X Pale-blue hover color for both outlined and selected circles */
-    & :is(like-button-view-model, dislike-button-view-model):hover
-    :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
-      background-color: var(--ytc-player-text) !important;
+      & button[aria-pressed="true"]
+      :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::before {
+        mask-image: var(--ytc-circle-filled) !important;
+      }
+
+      /* X Arrows lighten slightly on hover and turn pale blue when selected */
+      &:hover :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::after {
+        background-color: color-mix(in srgb, var(--ytc-accent) 60%, var(--ytc-player-text)) !important;
+      }
+
+      & button[aria-pressed="true"]
+      :is(.yt-spec-button-shape-next__icon, .ytSpecButtonShapeNextIcon)::after {
+        background-color: var(--ytc-player-text) !important;
+      }
     }
   }
 
@@ -1512,8 +1539,9 @@
     }
   }
 
- /* Hide the startup player while preserving its layout. */
-  body > #player.skeleton {
+/* Hide the startup player while preserving its layout. */
+body > #player.skeleton {
   opacity: 0 !important;
-   }
-  }
+}
+
+}
