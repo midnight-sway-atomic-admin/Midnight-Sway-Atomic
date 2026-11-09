@@ -2,7 +2,7 @@
 
 /* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed or precise as it should be. When all code here has been tagged with "X", the next step will be to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
 
-/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible. */
+/* Comments tagged with "XX" mean that the code is (seemingly) as efficient, non-redundant, well-formed, and precise as possible */
 
 /*==============================================================================
   GLOBAL SETTINGS AND VARIABLES
@@ -1326,4 +1326,10 @@ browser.printSettingsBrowser {
 
 #places richlistbox:focus > richlistitem[current="true"] {
   outline-color: var(--uc-color-surface) !important;
+}
+
+/* Hide the tab-drag preview on Linux. */
+panel.dragfeedback-tab {
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
