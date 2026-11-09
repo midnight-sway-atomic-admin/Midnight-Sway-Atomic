@@ -541,6 +541,28 @@
      Player
      -------------------------------------------------------------------------- */
 
+  /* X Black fade behind the player controls and progress bar. */
+  #movie_player:not(.ytp-hide-controls) .ytp-gradient-bottom {
+    display: block !important;
+    height: min(160px, 40%) !important;
+    background-image: linear-gradient(
+      to top,
+      #000 0%,
+      #000 10%,
+      rgba(0, 0, 0, 0.92) 28%,
+      rgba(0, 0, 0, 0.62) 55%,
+      rgba(0, 0, 0, 0.18) 82%,
+      transparent 100%
+    ) !important;
+    background-size: 100% 100% !important;
+    pointer-events: none !important;
+  }
+
+  /* X Hide the fade when YouTube auto-hides the controls. */
+  #movie_player.ytp-autohide .ytp-gradient-bottom {
+    opacity: 0 !important;
+  }
+
   /* XX Hides the specified videoplayer buttons without repeating the common .ytp-button qualifier */
   .ytp-button:is(
     .ytp-play-button,
@@ -587,6 +609,19 @@
       opacity: 1 !important;
       filter: none !important;
     }
+  }
+
+  /* X Hides the HD badge on the player settings button. */
+  #movie_player .ytp-settings-button.ytp-hd-quality-badge::after {
+    display: none !important;
+  }
+
+  /* X Removes capsule highlights on hover from the bottom player controls. */
+  #movie_player .ytp-chrome-controls .ytp-button:hover,
+  #movie_player .ytp-chrome-controls .ytp-button:hover::before,
+  #movie_player .ytp-chrome-controls .ytp-button:hover::after,
+  #movie_player .ytp-chrome-controls :is(.ytp-volume-area, .ytp-time-wrapper):hover::after {
+    background-color: transparent !important;
   }
 
   /* X Grayscales videoplayer controls and menus without filtering the progress bar */
