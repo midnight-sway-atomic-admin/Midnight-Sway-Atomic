@@ -41,6 +41,9 @@ user_pref("browser.altClickSave", true);
 /* Disables picture-in-picture mode */
 user_pref("media.videocontrols.picture-in-picture.enabled", false);
 
+/* Disables WebRTC leaks */
+user_pref("media.peerconnection.enabled", false);
+
 /* Neutralizes Nova redesign; when these stop working, neutralization will move on to the actual CSS */
 user_pref("browser.nova.enabled", false);
 user_pref("sidebar.revamp", false);
