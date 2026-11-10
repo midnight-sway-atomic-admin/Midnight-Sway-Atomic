@@ -30,6 +30,13 @@ Configure the appropriate scaling settings for your display in:
 
 The Rofi files assume that the Flatpak versions of **Firefox**, **GIMP** and **Showtime** are installed.
 
+Activate the "rofi-apps" bin file:
+
+```bash
+chmod u+x ~/.local/bin/rofi-apps &&
+swaymsg reload
+```
+
 If you use different applications, change the application names in the relevant Rofi files. You may also need to adjust the Rofi width manually so that application titles fit cleanly within the menu.
 
 If you replace Firefox, you also won't be able to use the included Firefox chrome files or the Firefox temporary extensions described below.
