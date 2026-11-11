@@ -118,7 +118,7 @@ For example, using `yt` as the keyword for YouTube (`https://www.youtube.com/res
 yt [your query]
 ```
 
-and press Enter, rather than opening the search-shortcuts interface and selecting YouTube manually.
+and press `Enter`, rather than opening the search-shortcuts interface and selecting YouTube manually.
 
 ### Bookmarks sidebar
 
