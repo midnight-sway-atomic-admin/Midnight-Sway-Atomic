@@ -97,7 +97,7 @@ Install:
 - uBlock Origin
 - NoScript
 
-The rice is being built with Ublock's setting enabled for blocking remote fonts. 
+The rice is being built with Ublock's setting enabled for blocking remote fonts. Also, in Firefox, go to Settings > Accessibility > Fonts > Advanced settings, and uncheck the box allowing websites to set their own fonts.
 
 ### `user.js`
 
