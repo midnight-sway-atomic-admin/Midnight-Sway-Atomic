@@ -177,12 +177,12 @@ window.thunar #location-toolbar entry,
 .thunar toolbar entry,
 window.thunar toolbar entry {
   min-height: 0;
-  margin: 75px 281px 2px 244px;
+  margin: 75px 333px 2px 192px;
   /* Right/left margins position the address bar horizontally. */
   padding: 5px 0 5px 12px;
   background-color: #060606;
   color: @thunar_accent;
-  caret-color: #eeeeee;
+  caret-color: #c7d0ea;
   border: 0.7px solid #222630;
   border-radius: 3px;
   /* Sole control for main address bar corner rounding */
@@ -200,8 +200,8 @@ window.thunar toolbar entry selection {
 
 /* Sets colors for text caret (i.e. |) in main address bar */
 .thunar entry:focus {
-  caret-color: @thunar_accent;
-  -gtk-secondary-caret-color: @thunar_accent;
+  caret-color: #c7d0ea;
+  -gtk-secondary-caret-color: #c7d0ea;
   /* bidi-text secondary caret */
 }
 
