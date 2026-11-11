@@ -150,6 +150,11 @@ menupopup > *,
   --link-color: var(--uc-color-fg-hover) !important;
 }
 
+/* XX Sets the URL-field caret color */
+#urlbar-input {
+  caret-color: #c7d0ea !important;
+}
+
 #urlbar:not(:focus-within) #urlbar-input {
   color: var(--uc-color-faded) !important;
 }
@@ -344,14 +349,15 @@ scrollbox[orient="horizontal"] + spacer[part="overflow-end-indicator"] {
   display: none !important;
 }
 
-/* XX Applies 20px fades to both ends of the horizontal tab strip, whether or not it overflows */
+/* XX Fades the ends of the horizontal tab strip, whether or not it overflows */
 #tabbrowser-arrowscrollbox[orient="horizontal"] {
-  --uc-tabstrip-fade-width: 20px; /* Controls both the left and right tab-bar fade width */
+  --uc-tabstrip-left-fade-width: 20px;
+  --uc-tabstrip-right-fade-width: 40px;
   mask-image: linear-gradient(
     to right,
     transparent 0,
-    var(--uc-color-mask-opaque) var(--uc-tabstrip-fade-width),
-    var(--uc-color-mask-opaque) calc(100% - var(--uc-tabstrip-fade-width)),
+    var(--uc-color-mask-opaque) var(--uc-tabstrip-left-fade-width),
+    var(--uc-color-mask-opaque) calc(100% - var(--uc-tabstrip-right-fade-width)),
     transparent 100%
   ) !important;
   mask-repeat: no-repeat !important;
