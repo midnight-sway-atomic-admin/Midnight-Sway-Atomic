@@ -112,13 +112,17 @@ Among other things, it:
 
 In **Settings → Search**, disable all default **Search Shortcuts**, then create your own with short keywords.
 
-For example, using `yt` as the keyword for YouTube (```https://www.youtube.com/results?search_query=%s```) lets you type:
+For example, using `yt` as the keyword for YouTube lets you type:
 
 ```text
 yt [your query]
 ```
 
 and press `Enter`, rather than opening the search-shortcuts interface and selecting YouTube manually.
+
+Set the shortcut URL to:
+
+```https://www.youtube.com/results?search_query=%s```
 
 ### Bookmarks sidebar
 
