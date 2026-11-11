@@ -943,7 +943,7 @@
     display: block !important;
     overflow: hidden !important;
     text-overflow: clip !important;
-    max-height: 2.6em !important;
+    max-height: 2lh !important; /* Keep two complete lines at the current line height */
   }
 
   /* XX Hides frontpage playlist cards; rich sections are already suppressed by the earlier rich-section rule */
@@ -1579,5 +1579,32 @@
 body > #player.skeleton {
   opacity: 0 !important;
 }
+
+  /* Front-page video title size */
+  ytd-browse[page-subtype="home"] :is(
+    #video-title,
+    #video-title-link,
+    .ytLockupMetadataViewModelTitle,
+    .yt-lockup-metadata-view-model__title,
+    .yt-lockup-metadata-view-model-wiz__title,
+    .shortsLockupViewModelHostMetadataTitle,
+    .shortsLockupViewModelHostOutsideMetadataTitle,
+    .yt-shorts-lockup-view-model__title,
+    .ytShortsLockupViewModelTitle,
+    .ytShortsLockupViewModelEntityTitle
+  ) {
+    &, & * {
+      font-size: 14px !important;
+    }
+  }
+
+  /* Watch-page channel name size */
+  ytd-watch-metadata #owner #channel-name :is(
+    #text, a, yt-attributed-string, .yt-core-attributed-string, .ytAttributedStringHost
+  ) {
+    &, & * {
+      font-size: 14px !important;
+    }
+  }
 
 }
