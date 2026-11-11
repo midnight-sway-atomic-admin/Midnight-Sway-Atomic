@@ -97,6 +97,8 @@ Install:
 - uBlock Origin
 - NoScript
 
+The rice is being built with Ublock's setting enabled for blocking remote fonts. 
+
 ### `user.js`
 
 Install the included `user.js`.
