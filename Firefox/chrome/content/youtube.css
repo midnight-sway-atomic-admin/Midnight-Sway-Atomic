@@ -611,8 +611,9 @@
     }
   }
 
-  /* X Hides the HD badge on the player settings button. */
-  #movie_player .ytp-settings-button.ytp-hd-quality-badge::after {
+  /* X Hides the HD and 4K badges on the player settings button. */
+  #movie_player .ytp-settings-button.ytp-hd-quality-badge::after,
+  #movie_player .ytp-settings-button.ytp-4k-quality-badge::after {
     display: none !important;
   }
 
