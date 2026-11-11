@@ -84,11 +84,6 @@ menupopup > *,
   transition: var(--uc-hover-transition) !important;
 }
 
-/* X Disable the new fades when reduced motion is requested */
-@media (prefers-reduced-motion: reduce) {
-  :root { --uc-hover-fade: 0ms linear; }
-}
-
 /*==============================================================================
   MAIN LAYOUT
 ==============================================================================*/
