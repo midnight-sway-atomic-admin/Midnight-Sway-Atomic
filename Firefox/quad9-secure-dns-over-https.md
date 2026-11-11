@@ -35,6 +35,7 @@ For strict fail-closed behavior, enable **Always warn me if secure DNS isn't ava
 - **Privacy** — Quad9 states that it doesn't collect or record end-user IP addresses.
 - **No ECS by default** — the recommended secure service doesn't send EDNS Client Subnet information to authoritative DNS servers.
 - **Independent resolver** — Firefox doesn't simply use the DNS resolver supplied by the current ISP or network.
+- **Mullvad recommended** Mullvad has discontinued its free public DNS resolver and now recommends Quad9's.
 
 ## What This Does Not Do
 
@@ -42,10 +43,15 @@ DNS-over-HTTPS isn't a VPN or anonymity system. It protects DNS traffic between 
 
 ## Verify
 
-Visit:
+Visit either:
 
 ```text
 https://on.quad9.net/
 ```
 
+or:
+
+```text
+https://mullvad.net/en/check
+```
 Quad9 should report that its resolver is being used.
