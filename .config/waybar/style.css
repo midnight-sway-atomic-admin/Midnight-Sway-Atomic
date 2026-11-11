@@ -1,14 +1,15 @@
 /* Waybar style.css */
 
-/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does; this does not mean that the code is as efficient, non-redundant, well-formed, or precise as it should be. When all code here has been tagged with "X", the next step is to make sure that code is as efficient, non-redundant, well-formed, and precise as possible */
+/* Comments tagged with "X" are above seemingly necessary control code that roughly does what the comment says it does */
 
-/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible. */
+/* Comments tagged with "XX" mean that the code is (seemingly) known, commented, and as short and precise as possible */
 
 /* --------------------------------------------------------------------------
    1. Color controls
    -------------------------------------------------------------------------- */
 
 @define-color waybar_fg #8a97bf;
+@define-color waybar_hover #c7d0ea;
 @define-color waybar_fg_dim rgba(138, 151, 191, 0.5);
 @define-color waybar_urgent #ff0000;
 @define-color waybar_transparent transparent;
@@ -33,6 +34,7 @@ tooltip * {
     box-shadow: none;
     color: transparent;
     text-shadow: none;
+    opacity: 0;
 }
 
 /* Makes the Waybar background fully transparent */
@@ -197,3 +199,22 @@ url("file:///home/user-1/.config/waybar/sway-foot-lock-icons/unlocked.svg");
 url("file:///home/user-1/.config/waybar/sway-foot-lock-icons/locked.svg");
 }
 /* END sway-foot-lock */
+
+/* --------------------------------------------------------------------------
+   9. Menu hover colors
+   -------------------------------------------------------------------------- */
+
+/* Match the GTK theme's text transition in Waybar menus. */
+menu menuitem {
+    transition: color 180ms ease-in-out;
+}
+
+/* Let labels follow the menu item's animated color. */
+menu menuitem label {
+    color: inherit;
+}
+
+/* Make hovered tray menu text off-white. */
+#tray menu menuitem:hover {
+    color: @waybar_hover;
+}
