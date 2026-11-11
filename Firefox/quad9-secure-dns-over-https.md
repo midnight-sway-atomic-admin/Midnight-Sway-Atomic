@@ -54,4 +54,3 @@ or:
 ```text
 https://mullvad.net/en/check
 ```
-Quad9 should report that its resolver is being used.
