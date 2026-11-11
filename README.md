@@ -122,7 +122,9 @@ and press `Enter`, rather than opening the search-shortcuts interface and select
 
 Set the shortcut URL to:
 
-```https://www.youtube.com/results?search_query=%s```
+```text
+https://www.youtube.com/results?search_query=%s
+```
 
 ### Bookmarks sidebar
 
