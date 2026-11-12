@@ -17,7 +17,7 @@ The ClamAV signatures are downloaded when the image is built. The scanning conta
 Add this alias to your shell configuration (`~/.bashrc`):
 
 ```bash
-alias a-fresh-clam='cd "$HOME/.local/share/clamav-container" && podman build --pull=always --no-cache -t localhost/clamav-monthly:44 . && podman image prune -f'
+alias a-fresh-clam='cd "$HOME/.local/share/clamav-container" && podman build --pull=always --no-cache -t localhost/clamav-monthly:45 . && podman image prune -f'
 ```
 
 ## Containerfile
@@ -29,7 +29,7 @@ Save as:
 ```
 
 ```Dockerfile
-FROM registry.fedoraproject.org/fedora:44
+FROM registry.fedoraproject.org/fedora:45
 
 # Update Fedora and install the scanner and signature updater.
 RUN dnf -y upgrade \
@@ -53,21 +53,21 @@ Build the image:
 
 ```bash
 cd "$HOME/.local/share/clamav-container"
-podman build --pull=always --no-cache -t localhost/clamav-monthly:44 .
+podman build --pull=always --no-cache -t localhost/clamav-monthly:45 .
 ```
 
 This:
 
-1. fetches the current Fedora 44 base image;
+1. fetches the current Fedora 45 base image;
 2. updates its packages;
 3. installs `clamav` and `clamav-freshclam`;
 4. downloads current ClamAV signatures;
-5. creates `localhost/clamav-monthly:44`.
+5. creates `localhost/clamav-monthly:45`.
 
 Verify the image exists:
 
 ```bash
-podman image exists localhost/clamav-monthly:44
+podman image exists localhost/clamav-monthly:45
 printf 'exit status: %s\n' "$?"
 ```
 
@@ -102,7 +102,7 @@ exec podman run --rm \
   --tmpfs /tmp:rw,nosuid,nodev,noexec,size=2g \
   -v "$HOME/suspicious-files:/scan:ro,Z" \
   -w /scan \
-  localhost/clamav-monthly:44 \
+  localhost/clamav-monthly:45 \
   clamscan --recursive --infected --cross-fs=no "$@"
 ```
 
@@ -161,7 +161,7 @@ a-fresh-clam
 The alias runs:
 
 ```bash
-alias a-fresh-clam='cd "$HOME/.local/share/clamav-container" && podman build --pull=always --no-cache -t localhost/clamav-monthly:44 . && podman image prune -f'
+alias a-fresh-clam='cd "$HOME/.local/share/clamav-container" && podman build --pull=always --no-cache -t localhost/clamav-monthly:45 . && podman image prune -f'
 ```
 
 `podman image prune -f` removes all dangling images in the user's Podman storage, not only old ClamAV images.
