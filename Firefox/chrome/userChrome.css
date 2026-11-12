@@ -167,6 +167,13 @@ menupopup > *,
   margin-block-end: 0 !important;
 }
 
+/* XX Keeps the URL box complete when search-mode results are hidden */
+#urlbar[searchmode][popover-open] > .urlbar-background {
+  inset: 0 !important;
+  margin-block-end: var(--uc-urlbar-box-vertical-margin) !important;
+  clip-path: none !important;
+}
+
 /* XX Modifies the focus state of the URL-bar background layer */
 #urlbar:focus-within > .urlbar-background {
   background-color: var(--uc-color-surface) !important;
