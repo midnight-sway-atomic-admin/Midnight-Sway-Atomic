@@ -5,7 +5,7 @@ A secure and visually austere desktop environment for a fresh install of Fedora 
 ![Midnight Sway Atomic desktop showcase](assets/midnight-sway-slideshow.png)
 
 <p align="center">
-  <sub><em>The preview slideshow is not up-to-date.</em></sub>
+  <sub><em>The preview slideshow is mostly up-to-date.</em></sub>
 </p>
 
 ---
