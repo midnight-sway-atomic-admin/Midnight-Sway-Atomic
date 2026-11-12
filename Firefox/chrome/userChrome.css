@@ -293,6 +293,11 @@ menupopup > *,
   --tab-background-color-selected: transparent !important;
 }
 
+/* XX Adds 10px of space to the right of the horizontal tab strip */
+#tabbrowser-arrowscrollbox[orient="horizontal"] {
+  margin-right: 10px !important;
+}
+
 /* XX Removes Firefox's extra lower drag area from the horizontal tab strip */
 #tabbrowser-tabs[orient="horizontal"][movingtab] {
   padding-bottom: 0 !important;
