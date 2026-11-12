@@ -47,3 +47,5 @@
 22. Complete and upload Sericea Snitch, an extremely minimal version of OpenSnitch tailored exactly for Fedora Sway Atomic.
 
 23. Complete and upload Secure PDF, an extremely minimal, hardened version of MacOs Preview (Preview is great for two reasons: it gets out of the way for reading and allows you to delete pages from a PDF as you read; but it's slow for big PDFs.) Secure PDF will allow two features only: scrolling for reading and page deletion, while strictly locking down the PDF for maximum protection. It will also be ultra-lightweight, allowing big PDFs to be handled quickly.
+
+24. Provide all full hardening files; remove temporary, limited hardening script.
