@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:44
+FROM registry.fedoraproject.org/fedora:45
 
 # Update Fedora and install the scanner and signature updater.
 RUN dnf -y upgrade \
