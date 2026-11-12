@@ -14,5 +14,5 @@ exec podman run --rm \
   --tmpfs /tmp:rw,nosuid,nodev,noexec,size=2g \
   -v "$HOME/suspicious-files:/scan:ro,Z" \
   -w /scan \
-  localhost/clamav-monthly:44 \
+  localhost/clamav-monthly:45 \
   clamscan --recursive --infected --cross-fs=no "$@"
