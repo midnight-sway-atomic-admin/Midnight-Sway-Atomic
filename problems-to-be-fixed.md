@@ -26,22 +26,24 @@
 
 12. Improve the styling of each of the custom icons.
 
-13. Create a comprehensive script that turns a fresh install into a deny-by-default system; e.g., after running the script, if you want to use an included system service like SSH, you should have to enable it manually.
+13. Create different resolution versions of the wallpapers.
 
-14. Create different resolution versions of the wallpapers.
+14. Turn the wallpapers into .svg files.
 
-15. Turn the wallpapers into .svgs.
+15. Add install guide for Suricata IDS.
 
-16. Add install guide for Suricata IDS.
+16. Add install guide for ClamAV active file monitoring.
 
-17. Add install guide for ClamAV file monitoring.
+17. Fix and reupload Mindmapper.
 
-18. Fix and reupload Mindmapper.
+18. Complete and upload Pseudo-TeX, a book- and essay-writing LateX GUI with LuaLaTeX built in.
 
-19. Complete and upload Pseudo-TeX
+19. Complete and upload Flashcards.
 
-20. Complete and upload Flashcards.
+20. Fix and reupload Recorder.
 
-21. Fix and reupload Recorder.
+21. Add transition guide for replacing sudo with run0.
 
-22. Add transition guide for replacing sudo with run0.
+22. Complete and upload Sericea Snitch, an extremely minimal version of OpenSnitch tailored exactly for Fedora Sway Atomic.
+
+23. Complete and upload Secure PDF, an extremely minimal, hardened version of MacOs Preview (Preview is great for two reasons: it gets out of the way for reading and allows you to delete pages from a PDF as you read; but it's slow for big PDFs. Secure PDF will allow two features only: scrolling for reading and page deletion, while strictly locking down the PDF for maximum protection. It will also be ultra-light, allowing big PDFs to be handled quickly.
