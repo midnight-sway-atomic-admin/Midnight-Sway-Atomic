@@ -64,6 +64,9 @@ user_pref("media.videocontrols.picture-in-picture.enabled", false);
    working. Camera and microphone capture are controlled separately */
 user_pref("media.peerconnection.enabled", false);
 
+/* Hides all scrollbars */
+user_pref("layout.testing.scrollbars.always-hidden", true);
+
 /* Neutralizes Nova redesign; when these stop working, neutralization will
    move on to the actual CSS */
 user_pref("browser.nova.enabled", false);
