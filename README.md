@@ -91,7 +91,7 @@ The default layout is **60 cells (12×5)**.
 
 ### Arrows or Circles for YouTube
 
-In `youtube.css` you have the option at the top to select either circle or arrow replacements for YouTube's thumbs-up-down buttons.
+In `youtube.css` you have the option at the top of the file to select either circle or arrow replacements for YouTube's thumbs-up-down buttons; arrows are the default.
 
 ### Recommended extensions
 
