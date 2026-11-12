@@ -72,6 +72,12 @@ menupopup > *,
   transition: var(--uc-hover-transition) !important;
 }
 
+/* XX Fades the Switch to Tab label and secondary button in both directions */
+#urlbar .urlbarView-row[type="switchtab"] .urlbarView-action:not(.urlbarView-userContext, .urlbarView-tabGroup),
+#urlbar .urlbarView-action-btn[data-action="tabswitch"] {
+  transition: var(--uc-hover-transition) !important;
+}
+
 /* X Modern buttons paint inside their shadow parts. The tab audio icon's SVG
    background also uses the part's fill, so its existing color tokens can fade */
 .tab-audio-button::part(button),
