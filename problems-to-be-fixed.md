@@ -36,7 +36,7 @@
 
 17. Fix and reupload Mindmapper.
 
-18. Complete and upload Pseudo-TeX, a book- and essay-writing LateX GUI with LuaLaTeX built in.
+18. Complete and upload Pseudo-TeX, a standalone book- and essay-writing LaTeX GUI with LuaLaTeX built in.
 
 19. Complete and upload Flashcards.
 
