@@ -1428,12 +1428,30 @@
     display: none !important;
   }
 
-  /* X Hides non-action homepage toasts, such as feedback acknowledgments */
-  ytd-app:has(ytd-browse[page-subtype="home"]:not([hidden]))
-  snackbar-view-model:not(:has(button, a[href], [role="button"], [role="link"])),
-  ytd-app:has(ytd-browse[page-subtype="home"]:not([hidden]))
-  ytd-popup-container yt-notification-action-renderer:has(> tp-yt-paper-toast#toast):not(:has(
-    :is(#action-button, #close-action-button):not([hidden]):not([aria-hidden="true"]):not([style*="display: none" i]):not([style*="display:none" i])
+  /* X Hides buttonless toast notifications on YouTube pages */
+  :is(
+    ytd-popup-container yt-notification-action-renderer:has(
+      > :is(tp-yt-paper-toast, paper-toast)#toast
+    ),
+    snackbar-view-model
+  ):not(:has(
+    :is(
+      #action-button,
+      #close-action-button,
+      button,
+      a[href],
+      [role="button"],
+      [role="link"]
+    ):not(
+      [hidden],
+      [aria-hidden="true"],
+      [style*="display: none" i],
+      [style*="display:none" i],
+      [hidden] *,
+      [aria-hidden="true"] *,
+      [style*="display: none" i] *,
+      [style*="display:none" i] *
+    )
   )) {
     display: none !important;
   }
