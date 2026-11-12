@@ -136,15 +136,15 @@ https://www.youtube.com/results?search_query=%s
 
 Other useful shortcut URLs:
 
-```text
+```text "mw":
 https://www.merriam-webster.com/dictionary/%s
 ```
 
-```text
+```text "wk":
 https://en.wikipedia.org/w/index.php?search=%s
 ```
 
-```text
+```text "goo"
 https://www.google.com/search?q=%s
 ```
 
