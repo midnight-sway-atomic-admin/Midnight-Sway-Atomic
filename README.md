@@ -101,13 +101,9 @@ Install:
 - uBlock Origin
 - NoScript
 
-### Finishing touches
-
 The rice is being built with Ublock's setting enabled for blocking remote fonts. Also, in Firefox, go to Settings > Accessibility > Fonts > Advanced settings, and uncheck the box allowing websites to set their own fonts.
 
 I also recommend setting Firefox and Ublock to dark mode, with (1) `Alt+U` invoking Ublock's popup, (2) `Alt+X` invoking Ublock's zapper mode, and (3) `Alt+N` for NoScript to invoke the current page's permissions.
-
-Various Firefox UI elements need to be manually removed by you by right-clicking and removing them, and by dragging them off the UI via the Customize Toolbar menu.
 
 ### `user.js`
 
@@ -166,11 +162,7 @@ Most Firefox right-click menus have been disabled because the rice assumes keybo
 
 For example, after selecting text, `Ctrl+C` copies it directly; an additional **Copy** entry in a context menu is usually unnecessary.
 
-This is an opinionated choice and may require some adjustment if you normally rely on context menus.
-
----
-
-## Saving a Linked File Without Right-Click Menus
+### Saving a Linked File Without Right-Click Menus
 
 To save a linked file entirely from the keyboard:
 
@@ -179,6 +171,10 @@ To save a linked file entirely from the keyboard:
 2. Press `Alt + Enter` to save the linked file without opening or activating it.
 
 This assumes `browser.altClickSave` is already enabled in `user.js`.
+
+### Finishing touches
+
+Various Firefox UI elements need to be manually removed by you by right-clicking and removing them, and by dragging them off the UI via the Customize Toolbar menu.
 
 ---
 
