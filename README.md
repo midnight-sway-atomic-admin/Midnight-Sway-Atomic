@@ -116,6 +116,8 @@ Among other things, it:
 - enables CSS styling used by the rice;
 - applies other Firefox preferences needed by the configuration.
 
+### Shortcuts
+
 In **Settings → Search**, disable all default **Search Shortcuts**, then create your own with short keywords.
 
 For example, using `yt` as the keyword for YouTube lets you type:
@@ -130,6 +132,20 @@ Set the shortcut URL to:
 
 ```text
 https://www.youtube.com/results?search_query=%s
+```
+
+Other useful shortcut URLs:
+
+```text
+https://www.merriam-webster.com/dictionary/%s
+```
+
+```text
+https://en.wikipedia.org/w/index.php?search=%s
+```
+
+```text
+https://www.google.com/search?q=%s
 ```
 
 ### Bookmarks sidebar
