@@ -105,6 +105,8 @@ The rice is being built with Ublock's setting enabled for blocking remote fonts.
 
 I also recommend setting Firefox and Ublock to dark mode, with (1) `Alt+U` invoking Ublock's popup, (2) `Alt+X` invoking Ublock's zapper mode, and (3) `Alt+N` for NoScript to invoke the current page's permissions.
 
+Various Firefox UI elements need to be manually removed by you by right-clicking and removing them, and by dragging them off the UI via the Customize Toolbar menu.
+
 ### `user.js`
 
 Install the included `user.js`.
