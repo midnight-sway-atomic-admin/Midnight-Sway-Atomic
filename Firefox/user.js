@@ -67,6 +67,9 @@ user_pref("media.peerconnection.enabled", false);
 /* Hides all scrollbars */
 user_pref("layout.testing.scrollbars.always-hidden", true);
 
+/* Opens new tabs created with Ctrl+T immediately to the right of the current tab */
+user_pref("browser.tabs.insertAfterCurrent", true);
+
 /* Neutralizes Nova redesign; when these stop working, neutralization will
    move on to the actual CSS */
 user_pref("browser.nova.enabled", false);
