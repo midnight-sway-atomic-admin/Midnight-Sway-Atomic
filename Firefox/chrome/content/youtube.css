@@ -108,16 +108,15 @@
      Global button styling
      -------------------------------------------------------------------------- */
 
-  /* XX Sets filled-mono button colors; nesting preserves the exact base and hover selector specificity without repeating the generation fallbacks */
-  :is(
-    .yt-spec-button-shape-next--mono.yt-spec-button-shape-next--filled,
-    .ytSpecButtonShapeNextMono.ytSpecButtonShapeNextFilled
-  ) {
+  /* X Styles filled buttons, including the blue and white Movies & TV variants. */
+  :is(.yt-spec-button-shape-next--filled, .ytSpecButtonShapeNextFilled) {
     background-color: var(--ytc-post-bg) !important;
     color: var(--ytc-accent) !important;
+    -webkit-text-fill-color: currentColor !important;
 
     & * {
       color: inherit !important;
+      -webkit-text-fill-color: inherit !important;
     }
 
     &:hover {
@@ -1173,6 +1172,12 @@
   ytd-browse:is([page-subtype="playlist"], [has-page-header-sidebar])
   > :is(ytd-playlist-header-renderer, .page-header-sidebar) {
     margin-left: 0 !important;
+    left: 0 !important;
+  }
+
+  /* XX The older TV-show sidebar retains the hidden navigation drawer's left offset;
+     clear that offset so it doesn't overlap the episode list. */
+  ytd-browse[page-subtype="show"] ytd-playlist-sidebar-renderer.ytd-browse {
     left: 0 !important;
   }
 
