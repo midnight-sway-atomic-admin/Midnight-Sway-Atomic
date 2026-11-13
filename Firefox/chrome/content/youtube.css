@@ -575,6 +575,11 @@
     display: none !important;
   }
 
+  /* XX Hides only the in-player "Includes paid promotion" disclosure */
+  #movie_player .ytp-paid-content-overlay {
+    display: none !important;
+  }
+
   /* XX Hides the end-of-video gray "Hide"-button popup */
   .html5-video-player .ytp-ce-hide-button-container {
     display: none !important;
