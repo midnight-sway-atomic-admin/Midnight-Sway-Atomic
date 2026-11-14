@@ -1,7 +1,6 @@
 # Flatpak security profiles
 
 **Firefox · GIMP · Showtime**  
-For Fedora Sway Atomic only · Wayland
 
 Requires **Flatpak 1.16 or newer**. Close all three apps and run the commands as your normal user. Do not use `sudo`.
 
