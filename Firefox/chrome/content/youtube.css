@@ -827,6 +827,30 @@
     max-width: 90% !important;
   }
 
+  /* X Clears the outer highlight on legacy movie cards and dismissed cards,
+     including inline shadows that can linger after the pointer leaves. */
+  ytd-browse[page-subtype="home"]
+  ytd-rich-item-renderer:is(.ytd-rich-item-renderer-highlight, [style*="box-shadow" i]) {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* X Suppresses the full-card feedback layer across both class generations. */
+  ytd-browse[page-subtype="home"] ytd-rich-item-renderer
+  yt-touch-feedback-shape:is(
+    .yt-spec-touch-feedback-shape--thumbnail-size-large,
+    .ytSpecTouchFeedbackShapeThumbnailSizeLarge
+  ) {
+    display: none !important;
+  }
+
+  /* X Clears the hover fill on Undo and Tell us why in removed-video cards. */
+  ytd-browse[page-subtype="home"] ytd-rich-item-renderer
+  :is(notification-multi-action-renderer, ytd-notification-multi-action-renderer)
+  :is(button, a[href]):hover {
+    background-color: transparent !important;
+  }
+
   /* X Hides the frontpage frosted header panel and topic chip bar */
   ytd-app:has(ytd-browse[page-subtype="home"]:not([hidden])) #frosted-glass,
   ytd-browse[page-subtype="home"] ytd-feed-filter-chip-bar-renderer {
